@@ -1,0 +1,10 @@
+signup page app.gumroad.com/signup
+login page app.gumroad.com/login
+    you ca login with Facebook, Google, X, Stripe
+    there's a "Forgot your password" link
+
+sellers page looks like: {sellerhandle}.gumroad.com
+
+gumroad.com is the web site
+help.gumroad.com is the knowledge base
+app.gumroad.com is the app
