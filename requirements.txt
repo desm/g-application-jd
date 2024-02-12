@@ -8,3 +8,56 @@ sellers page looks like: {sellerhandle}.gumroad.com
 gumroad.com is the web site
 help.gumroad.com is the knowledge base
 app.gumroad.com is the app
+
+Roadmap for 2024:
+- abandoned cart emails
+- bundles of products at a discount
+- collabs with other creators
+- website builder
+ref: https://youtu.be/olVOXT0TD8Y?t=830
+
+Website builder examples: https://youtu.be/olVOXT0TD8Y?t=892
+    free
+    subsidized by 10%
+
+helper.ai @39:06
+    Gumroad uses it to draft responses to customer requests
+    currently it takes 6 to 8 hours response time
+    they want to lower to 15 minutes
+
+am i an indie hacker? @41:30
+
+the internet is basically 2 businesses: @56:00
+    website builders
+    email marketing
+
+Sahil has a web site for his book "Minimalist Entrepreneur"
+
+
+More detail
+
+- abandoned cart emails
+    - trigger to send email if they chose a product and didn't check out
+    - you can customize the email per product (or bundled product)
+- bundles of products at a discount
+    - bundles DONE by Connor
+    - next: create a bundle with products from different creators
+- collabs with other creators
+    - split revenue automatically with another creator
+- website builder
+    - our "North Star"
+    - take Content Editor, Product Sections, combine them
+    - use to customize your entire Gumroad profile
+
+Vision:
+    - have a website on the internet for "free"
+    - for anyone who is selling on Gumroad
+
+My Vision:
+    - Gumroad Clone + Website Builder
+        www.gumroad.com
+        discover.gumroad.com
+        app.gumroad.com
+        gumroad.gumroad.com
+        help.gumroad.com
+
