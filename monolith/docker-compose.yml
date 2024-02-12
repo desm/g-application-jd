@@ -7,11 +7,9 @@ services:
       context: .
       dockerfile: ./dockerfiles/Dockerfile.appserver
     ports:
-      - 3000:8080
-      - 3443:8443
+      - 8000:3000
     volumes:
-      # - ./src/appserver:/src/appserver
-      - ./src:/src
+      - ./src/appserver:/src/appserver
     command: sh -c 'while :; do sleep .5; done'
     stop_signal: SIGINT
     user: appserver

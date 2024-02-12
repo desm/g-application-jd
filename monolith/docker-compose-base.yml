@@ -1,0 +1,9 @@
+# https://docs.docker.com/reference/
+version: '3.4'
+
+services:
+  appserver:
+    build:
+      context: .
+      dockerfile: ./dockerfiles/Dockerfile.appserver
+      target: base

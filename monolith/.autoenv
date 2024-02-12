@@ -1,5 +1,5 @@
 # https://github.com/hyperupcall/autoenv
 
-alias appserver-connect="docker-compose exec --workdir /src appserver bash"
+alias appserver-connect="docker-compose exec --workdir /src/appserver appserver bash"
 
-alias appserver-connect-root="docker-compose exec --workdir /src --user root appserver bash"
+alias appserver-connect-root="docker-compose exec --workdir /root --user root appserver bash"
