@@ -75,4 +75,5 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.hosts << "laptop:8000"
+  config.hosts << "app.gumroad.jacquesdesmarais.dev"
 end
