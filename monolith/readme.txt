@@ -75,8 +75,27 @@ steps
     Test with:
     $ curl https://app.gumroad.jacquesdesmarais.dev/users/session_info
 
-9 - code handler for this request:
+0- configure database
+    Update docker-compose.yml file to use a volume "db-data"
+    Restart docker process
+    Change ownership of storage/db directory
+
+    == root@appserver (cwd: /root)
+    $ chown appserver:appserver /src/appserver/storage/db
+    $ exit
+
+    == appserver@appserver (cwd: /src/appserver)
+    $ bin/rails db:create
+
+    # ... thinking of switching to MySQL to have a better view of the database
+
+9 - code the handler for this request:
     https://gumroad.com/users/session_info
         {"success":true,"is_signed_in":false}
         {"success":true,"is_signed_in":true}
+
+    Create models
+        $ bin/rails generate model User name:string email_address:string password_digest:string active:boolean
+        $ bin/rails generate model Session token:string ip_address:string user_agent:string last_active_at:datetime
+
 
