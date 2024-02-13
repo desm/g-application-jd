@@ -32,3 +32,9 @@ COPY ./src/appserver/Gemfile ./
 
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
+
+
+# Install SSL certs
+COPY ./app.gumroad.jacquesdesmarais.dev/ /root/app.gumroad.jacquesdesmarais.dev/
+RUN chown appserver /root/app.gumroad.jacquesdesmarais.dev/privkey1.pem
+RUN chmod 755 /root

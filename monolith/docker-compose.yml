@@ -7,24 +7,17 @@ services:
       context: .
       dockerfile: ./dockerfiles/Dockerfile.appserver
     ports:
-      - 8000:3000
+      # - 8000:3000
+      - 8443:9292
     volumes:
       - ./src/appserver:/src/appserver
-    command: sh -c 'while :; do sleep .5; done'
-    stop_signal: SIGINT
+      - db-data:/src/appserver/storage/db
+    working_dir: /src/appserver
     user: appserver
+    # command: sh -c 'while :; do sleep .5; done'
+    # stop_signal: SIGINT
+    # command: ./bin/rails server --binding=0.0.0.0
+    command: ./bin/rails s --binding='ssl://0.0.0.0:9292?key=/root/app.gumroad.jacquesdesmarais.dev/privkey1.pem&cert=/root/app.gumroad.jacquesdesmarais.dev/fullchain1.pem&verify_mode=none&ca=/root/app.gumroad.jacquesdesmarais.dev/chain1.pem'
 
-  # db:
-  #   image: mysql:8.0.36-debian
-  #   # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
-  #   # (this is just an example, not intended to be a production configuration)
-  #   command: --default-authentication-plugin=mysql_native_password
-  #   restart: always
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: example
-
-  # adminer:
-  #   image: adminer:4.8.1-standalone # https://hub.docker.com/_/adminer
-  #   restart: always
-  #   ports:
-  #     - 8080:8080
+volumes:
+  db-data:

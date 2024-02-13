@@ -39,3 +39,63 @@ steps
 
     Server should now be accessible on port 8080
 
+    Update docker-compose.yml so that Rails server starts up automatically
+
+7- get HTTPS to work
+    generate SSL certificate for app.gumroad.jacquesdesmarais.dev from Let's Encrypt
+    instructions to use Certbot: https://certbot.eff.org/instructions?ws=other&os=debianbuster
+
+    Create AWS EC2 instance
+
+    == on EC2
+    $ sudo snap install --classic certbot
+    $ sudo certbot certonly --standalone --register-unsafely-without-email
+    $ sudo certbot --nginx --register-unsafely-without-email
+    $ sudo certbot --apache --register-unsafely-without-email
+
+    Update ./monolith/dockerfiles/Dockerfile.appserver to copy cert files under /root
+
+    Update config/environments/development.rb
+        Add "app.gumroad.jacquesdesmarais.dev" to config.hosts
+
+    Update docker-compose.yml to run Rails server like this:
+        $ rails s puma -b 'ssl://0.0.0.0:9292?key=path_to_key.key&cert=path_to_cert.crt&verify_mode=none&ca=path_to_root_bundle.crt'
+
+8- expose Rails server to internet
+    Assign static IP to AWS EC2
+        Associate Elastic IP address so that when stop/start stays the same
+        Got 50.16.81.26
+    Set up DNS app.gumroad.jacquesdesmarais.dev
+        A record to 50.16.81.26
+    Set up SSH Remote Port Forwarding (see ~/.ssh/config)
+        $ slogin g
+    On EC2, use "socat" to forward traffic
+        $ sudo socat TCP-LISTEN:443,fork TCP:localhost:9943
+
+    Test with:
+    $ curl https://app.gumroad.jacquesdesmarais.dev/users/session_info
+
+0- configure database
+    Update docker-compose.yml file to use a volume "db-data"
+    Restart docker process
+    Change ownership of storage/db directory
+
+    == root@appserver (cwd: /root)
+    $ chown appserver:appserver /src/appserver/storage/db
+    $ exit
+
+    == appserver@appserver (cwd: /src/appserver)
+    $ bin/rails db:create
+
+    # ... thinking of switching to MySQL to have a better view of the database
+
+9 - code the handler for this request:
+    https://gumroad.com/users/session_info
+        {"success":true,"is_signed_in":false}
+        {"success":true,"is_signed_in":true}
+
+    Create models
+        $ bin/rails generate model User name:string email_address:string password_digest:string active:boolean
+        $ bin/rails generate model Session token:string ip_address:string user_agent:string last_active_at:datetime
+
+
