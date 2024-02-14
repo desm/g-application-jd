@@ -89,13 +89,12 @@ steps
 
     # ... thinking of switching to MySQL to have a better view of the database
 
-9 - code the handler for this request:
+0- code the handler for this request:
     https://gumroad.com/users/session_info
-        {"success":true,"is_signed_in":false}
+        {"success":true,"is_signed_in":false} <--- hardcoded to return this for now
         {"success":true,"is_signed_in":true}
 
     Create models
         $ bin/rails generate model User name:string email_address:string password_digest:string active:boolean
         $ bin/rails generate model Session token:string ip_address:string user_agent:string last_active_at:datetime
-
 
