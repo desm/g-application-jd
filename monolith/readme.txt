@@ -89,7 +89,7 @@ steps
 
     # ... thinking of switching to MySQL to have a better view of the database
 
-9 - code the handler for this request:
+0- code the handler for this request:
     https://gumroad.com/users/session_info
         {"success":true,"is_signed_in":false}
         {"success":true,"is_signed_in":true}
@@ -98,4 +98,32 @@ steps
         $ bin/rails generate model User name:string email_address:string password_digest:string active:boolean
         $ bin/rails generate model Session token:string ip_address:string user_agent:string last_active_at:datetime
 
+    Added route:
+        /users/session_info => app/controllers/users_controller.rb
+
+0- Created a repo "gumroad_json" because Gist wasn't working
+        GitHub Repo:
+            https://github.com/desm/gumroad-json
+            Checked out locally here: /proj/gumroad-json
+
+        Had to turn on GitHub "Pages"
+            https://github.com/desm/gumroad-json/settings/pages
+
+        Created the following 2 endpoints:
+            https://desm.github.io/gumroad-json/users/session_info/signed_in/
+            https://desm.github.io/gumroad-json/users/session_info/not_signed_in/
+
+0- completed mock of www.gumroad on Webflow
+    what's working:
+        dynamic login/dashboard buttons in navbar
+        animated link underlining in navbar
+        animated pop out "start selling" button
+        animated on-scroll of "sticker" classes and callout-image
+
+    what's not working:
+        links and buttons don't work
+        not responsive, desktop only
+
+0- code login form
+    use passowrd authentication
 
