@@ -2,8 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/components/blog" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/components/sign-up" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/monolith/src/appserver" vcs="Git" />
   </component>
 </project>
