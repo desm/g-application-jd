@@ -12,12 +12,13 @@ services:
     volumes:
       - ./src/appserver:/src/appserver
       - db-data:/src/appserver/storage/db
+      - /proj/gumroad:/g
     working_dir: /src/appserver
     user: appserver
-    # command: sh -c 'while :; do sleep .5; done'
-    # stop_signal: SIGINT
+    command: sh -c 'while :; do sleep .5; done'
+    stop_signal: SIGINT
     # command: ./bin/rails server --binding=0.0.0.0
-    command: ./bin/rails s --binding='ssl://0.0.0.0:9292?key=/root/app.gumroad.jacquesdesmarais.dev/privkey1.pem&cert=/root/app.gumroad.jacquesdesmarais.dev/fullchain1.pem&verify_mode=none&ca=/root/app.gumroad.jacquesdesmarais.dev/chain1.pem'
+    # command: ./bin/rails s --binding='ssl://0.0.0.0:9292?key=/root/app.gumroad.jacquesdesmarais.dev/privkey1.pem&cert=/root/app.gumroad.jacquesdesmarais.dev/fullchain1.pem&verify_mode=none&ca=/root/app.gumroad.jacquesdesmarais.dev/chain1.pem'
 
 volumes:
   db-data:

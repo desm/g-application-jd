@@ -207,3 +207,47 @@ This is the library that is used:
 Find out if Gumroad uses Redux
     it looks like it does
 
+    After updating monolith/dockerfiles/Dockerfile.appserver with:
+        RUN bundle add react_on_rails --strict
+
+        The following Gems were installed in the container:
+            Fetching execjs 2.9.1
+            Fetching rainbow 3.1.1
+            Installing rainbow 3.1.1
+            Installing execjs 2.9.1
+            Fetching react_on_rails 13.4.0
+            Installing react_on_rails 13.4.0
+
+    == appserver@appserver (cwd: /src/appserver)
+    $ bin/rails generate react_on_rails:install
+
+    scratch that
+
+    Updated Gemfile with
+        gem "react_on_rails"
+
+    rebuilt container
+    Rails no longer starts, need to debug issue
+    issue is that there is missing javascript runtime
+    need to build node.js into container
+
+    + node --version
+    v21.6.1
+    + npm --version
+    10.2.4
+    + yarn --version
+    1.22.19
+
+    missing git
+    now react on rails is complaining that it isn't being run in a git repo
+    will need to change mounting point
+
+added this to docker compose file:
+    volumes:
+      - ./src/appserver:/src/appserver
+      - db-data:/src/appserver/storage/db
+      - /proj/gumroad:/g <------------------------------- temporary, used to run bin/rails generate react_on_rails:install
+
+    == docker
+    cd /g/monolith/src/appserver
+    bin/rails generate react_on_rails:install
