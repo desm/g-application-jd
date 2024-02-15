@@ -60,6 +60,11 @@ steps
 
     Update docker-compose.yml to run Rails server like this:
         $ rails s puma -b 'ssl://0.0.0.0:9292?key=path_to_key.key&cert=path_to_cert.crt&verify_mode=none&ca=path_to_root_bundle.crt'
+        help on what file is what:
+            https://stackoverflow.com/questions/50389883/generate-crt-key-ssl-files-from-lets-encrypt-from-scratch
+        puma docs:
+            https://github.com/puma/puma
+            https://msp-greg.github.io/puma/#binding-tcp-sockets
 
 8- expose Rails server to internet
     Assign static IP to AWS EC2
