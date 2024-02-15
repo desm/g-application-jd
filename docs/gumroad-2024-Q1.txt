@@ -1,0 +1,74 @@
+gumroad
+send floorplan with submission
+25+ part timers
+people complain about price being too high
+April 4 2024, 0% on that date
+
+    bundles shipped Jan 1 over 300,000 so far
+    prettier receipts
+    stripe dispute win % by week
+    redesigned workflows
+        needed towards abandonned cart emails
+        better segmentation
+    product level ppp
+        ppp: purchasing power parity, price based on region
+            you can exclude products
+            ppp over a million
+        page reordering
+    change your country
+        now possible
+        50 people a day change their country
+        TODO: Sahil says people don't complain, see if you can find evidence of this pain online
+    new content editor
+        grouping
+        good traction
+        plan is to depricate the old content editor in Q1
+    website builder
+        your gumroad profile
+        figma is used to design it
+    marketplace (Discover)
+        this is a MAJOR goal of Gumroad
+            ratings
+            reviews
+            wishlists
+    mobile
+        very important to make it work well on mobile!!!
+        apple costs 30%, 10% goes to Gumroad, that's why it will be opt-in
+            ok if we allow people to generate more money
+    Email marketing
+        segmentation
+        UI similar to Notion
+    onboarding
+    collaborations
+        DEMO
+        products are either eligible or not to collabs
+            not eligible if affiliates, or already in collab
+        "membership" is when you are collaborating on someone else's product
+        a collab member can edit the product
+        only 1 collaborator per product
+
+    jobs.gumroad.com
+        redirects to app.flexible.com
+    
+    helper.ai
+        another product by Sahil
+
+
+My thoughts
+- I need to use Gumroad myself
+- people use apps for notifications, and dashboards, and reading, and watching, in that order
+- noticed that Sahil said that the more equity people choose, the better for the company
+
+include in job application
+- floorplan
+- 12:39 - include what you think is next??? review video
+
+
+Gumroad is meant for this price range:
+    $1 to $100
+    avg $18
+
+About a dozen companies using Flexile now
+
+Hiring 1 person per quarter
+
