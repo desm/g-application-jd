@@ -1,0 +1,18 @@
+# https://docs.docker.com/reference/
+version: '3.4'
+
+services:
+  appserver:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8000:3000
+      - 3035:3035
+    volumes:
+      - .:/app
+    tmpfs:
+      - /tmp
+    working_dir: /app
+    user: appserver
+    command: ./bin/dev
