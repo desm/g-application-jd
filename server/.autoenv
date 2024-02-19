@@ -1,0 +1,13 @@
+# https://github.com/hyperupcall/autoenv
+
+alias connect="docker-compose exec --workdir /app appserver bash"
+
+alias connect-root="docker-compose exec --workdir /root --user root appserver bash"
+
+get() {
+  local _href=$1
+  local _output_dir=$2
+  curl --remote-name --output-dir "$_output_dir" "$_href"
+}
+
+alias reload="cd $(pwd)"
