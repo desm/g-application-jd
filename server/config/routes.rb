@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   post "signup", to: "users#create"
 
   resources :users
+
+  get "dashboard", to: "dashboard#index"
 end
