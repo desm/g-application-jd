@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import type { FunctionComponent } from 'react';
 
 // import HelloWorldMdx from './HelloWorld.mdx'
-// import style from './HelloWorld.module.css'
-// import logo from './logo.svg'
+import style from './HelloWorld.module.css'
+import logo from './logo.svg'
 
 import { thestateoftheworld } from '../../clicketyclack';
 
@@ -30,14 +30,13 @@ const HelloWorld: FunctionComponent<Props> = (props: Props) => {
 
   return (
     <>
-      {/* <img src={logo} className={style.logo} alt="logo" /> */}
+      <img src={logo} className={style.logo} alt="logo" />
       {/* <HelloWorldMdx name={name} /> */}
       <h3>The state of the world is {name}!</h3>
       <hr />
       <form>
-        {/* <label className={style.bright} htmlFor="name"> */}
-        <label htmlFor="name" style={{ color: 'green', fontWeight: 'bold' }}>
-          <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <label className={style.bright} htmlFor="name">
+          This is the label: <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
       </form>
     </>
