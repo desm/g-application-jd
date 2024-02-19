@@ -14,3 +14,7 @@ http://localhost:8001/?server=db&username=root&db=appserver_development&select=u
 http://localhost:8000/signup
 http://localhost:8000/dashboard
 
+
+== Gumroad Servers
+https://assets.gumroad.com
+
