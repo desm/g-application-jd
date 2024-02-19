@@ -1,2 +1,11 @@
 <h1>Hello World</h1>
-<%= react_component("HelloWorld", props: @hello_world_props, prerender: false) %>
+
+<h2>Client rendered</h2>
+<div style="margin-left: 20px;">
+    <%= react_component("HelloWorld", props: @hello_world_props, prerender: false) %>
+</div>
+
+<h2>Server rendered</h2>
+<div style="margin-left: 20px;">
+    <%= react_component("HelloWorld", props: @hello_world_props, prerender: true) %>
+</div>

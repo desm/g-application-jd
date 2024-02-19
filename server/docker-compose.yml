@@ -16,6 +16,8 @@ services:
     working_dir: /app
     user: appserver
     command: ./bin/dev
+    # command: sh -c 'while :; do sleep .5; done'
+    # stop_signal: SIGINT
 
   db:
     image: mysql:8.0.36-debian
