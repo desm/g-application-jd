@@ -1,0 +1,8 @@
+ror 13.4.0
+    React on Rails
+
+i18n
+    <script
+        src="https://assets.gumroad.com/assets/i18n/en-f172180106d485354ea6d0555f2db456dbe92d77711998bd815c5a6956e01dda.js"
+        type="e9fc2b88a0431798c6fd350b-text/javascript"
+    ></script>
