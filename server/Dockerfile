@@ -10,3 +10,4 @@ WORKDIR /home/appserver/app
 # e.g.
 # RUN bundle add _______
 
+RUN echo "PATH=/app/bin:\$PATH" >> ~/.bashrc
