@@ -6,8 +6,6 @@ import type { FunctionComponent } from 'react';
 import style from './HelloWorld.module.css'
 import logo from './logo.svg'
 
-import { thestateoftheworld } from '../../clicketyclack';
-
 export interface Props {
   readonly name: string;
 }
@@ -25,7 +23,6 @@ const HelloWorld: FunctionComponent<Props> = (props: Props) => {
       'color: green; background-color: lightgreen; font-weight: normal;',
       'Check out our open positions: https://www.shakacode.com/career/'
     );
-    setName(thestateoftheworld())
   }, []);
 
   return (

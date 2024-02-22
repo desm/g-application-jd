@@ -6,3 +6,96 @@ i18n
         src="https://assets.gumroad.com/assets/i18n/en-f172180106d485354ea6d0555f2db456dbe92d77711998bd815c5a6956e01dda.js"
         type="e9fc2b88a0431798c6fd350b-text/javascript"
     ></script>
+
+
+# you rolled out the collaborators link on Feb 21 some time between 1 and 2pm EST
+
+bug in email sent subject "a first email"
+    powered by {the gumroad png is black and doesn't show on a black bg}
+
+Zapier integration, fields of a Sale:
+    Affiliate
+    affiliate
+    Affiliate Credit Amount Cents
+    affiliate_credit_amount_cents
+    City
+    city
+    Ip Country
+    country
+    Canada
+    Sale Timestamp
+    sale_timestamp
+    2024-02-21T19:49:23Z
+    Currency
+    currency
+    Currency Symbol
+    currency_symbol
+    CAD$
+    Email
+    email
+    jdesma@gmail.com
+    Full Name
+    full_name
+    Gumroad Fee
+    gumroad_fee
+    Ip Country
+    ip_country
+    Canada
+    Is Preorder Authorization
+    is_preorder_authorization
+    Is Product Physical
+    is_product_physical
+    If true, this is a recurring charge for an ongoing membership. (Not the initial one.)
+    is_recurring_charge
+    License Key
+    license_key
+    Offer Code
+    offer_code
+    Order Number
+    order_number
+    526918623
+    Price
+    price
+    Product Id
+    product_id
+    4Qyjc7fISgJXpmhlHA0QHg==
+    Product Name
+    product_name
+    Graphic Novel
+    Product Permalink
+    product_permalink
+    votwy
+    Purchaser Id
+    purchaser_id
+    Quantity
+    quantity
+    1
+    Recurrence
+    recurrence
+    Sale Id
+    sale_id
+    ifrJldn_0XDGTUWNBdbSew==
+    Seller Id
+    seller_id
+    R2whxs7Q7hlgQoVBIftS5Q==
+    Shipping Information
+    shipping_information
+    Shipping Rate
+    shipping_rate
+    State
+    state
+    ON
+    Street Address
+    street_address
+    Test
+    test
+    Variants And Quantity
+    variants_and_quantity
+    (Free version)
+    Zip Code
+    zip_code
+    K7H
+    Variants
+    variants__
+    Free version
+
