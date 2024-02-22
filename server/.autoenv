@@ -1,13 +1,25 @@
 # https://github.com/hyperupcall/autoenv
 
+# reloads this file
+alias reload="cd $(pwd)"
+
+alias rebuild-appserver-image="docker-compose build appserver"
+
+alias copy-gemfiles-from-appserver="docker run --rm server_appserver bash -i -c 'cd ~/app && tar czf - Gemfile Gemfile.lock' | tar xzf -"
+
+alias pre-up="rebuild-appserver-image && copy-gemfiles-from-appserver"
+
+alias up="pre-up && docker-compose up -d"
+
+alias up-sleep="pre-up && docker-compose -f docker-compose.yml -f docker-compose-sleep.yml up -d"
+
 alias connect="docker-compose exec --workdir /app appserver bash"
 
 alias connect-root="docker-compose exec --workdir /root --user root appserver bash"
 
+# usage: get {url} {output_dir}
 get() {
   local _href=$1
   local _output_dir=$2
   curl --remote-name --output-dir "$_output_dir" "$_href"
 }
-
-alias reload="cd $(pwd)"

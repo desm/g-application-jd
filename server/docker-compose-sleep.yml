@@ -1,0 +1,4 @@
+services:
+  appserver:
+    command: sh -c 'while :; do sleep .5; done'
+    stop_signal: SIGINT
