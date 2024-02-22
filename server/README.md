@@ -1,24 +1,20 @@
-# README
+== shell (/proj/gumroad/server)
+d.c up -d
+...
+connect; # opens a shell
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+== browser
+http://localhost:8000/ - just the main Ruby on Rails page
+http://localhost:8000/hello_world - the example React on Rails page
+http://localhost:8001/?server=db&username=root&db=appserver_development&select=users - MySQL database
 
-* Ruby version
 
-* System dependencies
+== Gumroad Mock
+http://localhost:8000/signup
+http://localhost:8000/dashboard
 
-* Configuration
 
-* Database creation
+== Gumroad Servers
+https://assets.gumroad.com
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

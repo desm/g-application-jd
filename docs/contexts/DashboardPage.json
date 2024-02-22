@@ -1,0 +1,56 @@
+{
+  "name": "",
+  "has_sale": false,
+  "getting_started_stats": {
+    "customized_profile": false,
+    "first_follower": false,
+    "first_product": true,
+    "first_sale": false,
+    "first_payout": false,
+    "first_email": false
+  },
+  "balances": [
+    {
+      "id": "ikgcf",
+      "name": "Bundle",
+      "thumbnail": null,
+      "sales": 0,
+      "revenue": 0.0,
+      "visits": 0,
+      "today": 0,
+      "last_7": 0,
+      "last_30": 0
+    },
+    {
+      "id": "toslm",
+      "name": "Physical good",
+      "thumbnail": null,
+      "sales": 0,
+      "revenue": 0.0,
+      "visits": 0,
+      "today": 0,
+      "last_7": 0,
+      "last_30": 0
+    },
+    {
+      "id": "riwfx",
+      "name": "Audiobook",
+      "thumbnail": null,
+      "sales": 0,
+      "revenue": 0.0,
+      "visits": 0,
+      "today": 0,
+      "last_7": 0,
+      "last_30": 0
+    }
+  ],
+  "activity_items": [],
+  "promo": {
+    "id": 10,
+    "url": "https://help.gumroad.com/article/339-product-bundles",
+    "html": "\u003cstrong\u003eNew!\u003c/strong\u003e Combine multiple products and sell them for a discounted price with Bundles",
+    "enabled": true
+  },
+  "user_stats": { "has_paid_sales": false, "has_paying_active_members": false },
+  "stripe_verification_message": null
+}

@@ -1,0 +1,21 @@
+<div
+  class="flash-message js-flash-message"
+  style="
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateY(-100%);
+    transition: all 0.3s ease-out 0.5s;
+    z-index: var(--z-index-tooltip);
+    right: 0;
+    padding: var(--spacer-4);
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+    pointer-events: none;
+  "
+>
+  <div class="message bg-filled js-message" role="alert" status="success" style="pointer-events: auto"></div>
+</div>
+<%= react_component("Nav", props: {}, prerender: true, html_options: [["style", "display: contents;"]]) %>
+<%= react_component("Dashboard", props: {}, prerender: true, html_options: [["style", "display: contents;"]]) %>
