@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "articles#index"
+
   get "hello_world", to: "hello_world#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -15,4 +17,10 @@ Rails.application.routes.draw do
   resources :users
 
   get "dashboard", to: "dashboard#index"
+
+  # get "/articles", to: "articles#index"
+  # get "/articles/:id", to: "articles#show"
+  resources :articles do
+    resources :comments
+  end
 end
