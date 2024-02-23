@@ -36,3 +36,7 @@ $ docker-compose down
 
 $ up  ;# <------ rebuilds appserver image, updates local Gemfile & Gemfile.lock, and starts services
 ```
+
+## Documentation
+
+- [Minitest](http://docs.seattlerb.org/minitest/)

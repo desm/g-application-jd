@@ -9,7 +9,8 @@ USER root
 RUN apt-get update
 RUN apt-get install -y make gcc git default-libmysqlclient-dev xz-utils
 
-# For Selenium + Headless Chrome + Chrome to work
+# Install packages required by Selenium + Headless Chrome + Chrome
+# ref: https://packages.debian.org/bookworm/libs/
 RUN apt-get install -y libglib2.0-0 \
     libnss3 \
     libdbus-1-3 \
