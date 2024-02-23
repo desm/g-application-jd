@@ -2,10 +2,10 @@
 
 one:
   title: MyString
-  body: MyText
+  body: this is the text of article one
   status: public
 
 two:
   title: MyString
-  body: MyText
+  body: this is the text of article two
   status: public

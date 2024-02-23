@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
+      flash[:notice] = "Article was successfully created."
       redirect_to @article
     else
       render :new, status: :unprocessable_entity
@@ -41,7 +42,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to articles_path, status: :see_other
   end
 
   private
