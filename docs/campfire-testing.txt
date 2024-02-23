@@ -1,0 +1,8 @@
+campfire
+lines of testing code
+/test/controllers 994 <------ functional tests, use cases
+/test/fixtures 316
+/test/helpers 76
+/test/models 695 <------- unit tests
+/test/system 196
+
