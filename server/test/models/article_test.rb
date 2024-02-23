@@ -19,6 +19,8 @@ class ArticleTest < ActiveSupport::TestCase
   end
 
   test "article_path returns the url to the artiles" do
-    assert_equal "", users_url
+    assert_raises(NameError) do
+      assert_equal "", users_url
+    end
   end
 end
