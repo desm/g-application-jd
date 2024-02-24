@@ -15,6 +15,9 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get articles_url
     assert_response :success
+    assert_equal "index", @controller.action_name
+    # assert_equal "application/x-www-form-urlencoded", @request.media_type
+    assert_match "Articles", @response.body
   end
 
   test "should create article" do
@@ -62,5 +65,13 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     # Reload association to fetch updated data and assert that title is updated.
     article.reload
     assert_equal "updated", article.title
+  end
+
+  test "ajax request" do
+    article = articles(:one)
+    get article_url(article), xhr: true
+
+    assert_equal "hello world", @response.body
+    assert_equal "text/javascript", @response.media_type
   end
 end

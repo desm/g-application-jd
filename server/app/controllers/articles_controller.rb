@@ -7,6 +7,16 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+
+    if request.xhr?
+      # If the request is an XHR (Ajax) request
+      respond_to do |format|
+        format.js { render js: "hello world" }
+        # format.html { render html: "<p>This is an XHR request</p>".html_safe }
+      end
+    else
+      @article = Article.find(params[:id])
+    end
   end
 
   def new

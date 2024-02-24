@@ -7,11 +7,11 @@ class BlogFlowTest < ActionDispatch::IntegrationTest
   end
 
   test "can create an article" do
-    # get "/articles/new"
-    # assert_response :success
-
     username = "dhh"
     password = "secret"
+
+    get "/articles/new", headers: { "HTTP_AUTHORIZATION" => ActionController::HttpAuthentication::Basic.encode_credentials(username, password) }
+    assert_response :success
 
     post "/articles",
       params: { article: { title: "can create", body: "article successfully." } },
