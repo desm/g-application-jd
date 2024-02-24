@@ -1,0 +1,51 @@
+$ rails test:system
+Running 1 tests in a single process (parallelization threshold is 50)
+Run options: --seed 31725
+
+# Running:
+
+E
+
+Error:
+UsersTest#test_visiting_articles:
+Selenium::WebDriver::Error::WebDriverError: unable to connect to /home/appserver/.cache/selenium/chromedriver/linux64/122.0.6261.69/chromedriver 127.0.0.1:9515
+    test/system/users_test.rb:11:in `block in <class:UsersTest>'
+
+Error:
+UsersTest#test_visiting_articles:
+Selenium::WebDriver::Error::WebDriverError: unable to connect to /home/appserver/.cache/selenium/chromedriver/linux64/122.0.6261.69/chromedriver 127.0.0.1:9515
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/service_manager.rb:132:in `connect_until_stable'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/service_manager.rb:58:in `block in start'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/socket_lock.rb:42:in `locked'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/service_manager.rb:55:in `start'
+    <internal:kernel>:90:in `tap'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/service.rb:94:in `launch'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/driver.rb:322:in `service_url'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/local_driver.rb:28:in `initialize_local_driver'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/chrome/driver.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/driver.rb:47:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/driver.rb:47:in `for'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver.rb:89:in `for'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/driver.rb:75:in `browser'
+    /usr/local/bundle/ruby/3.3.0/gems/actionpack-7.1.3/lib/action_dispatch/system_testing/driver.rb:55:in `block in register_selenium'
+    <internal:kernel>:90:in `tap'
+    /usr/local/bundle/ruby/3.3.0/gems/actionpack-7.1.3/lib/action_dispatch/system_testing/driver.rb:54:in `register_selenium'
+    /usr/local/bundle/ruby/3.3.0/gems/actionpack-7.1.3/lib/action_dispatch/system_testing/driver.rb:41:in `block in register'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/session.rb:106:in `driver'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/session.rb:92:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara.rb:422:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara.rb:422:in `block in session_pool'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara.rb:317:in `current_session'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/dsl.rb:46:in `page'
+    /usr/local/bundle/ruby/3.3.0/gems/actionpack-7.1.3/lib/action_dispatch/system_testing/test_helpers/screenshot_helper.rb:106:in `save_image'
+    /usr/local/bundle/ruby/3.3.0/gems/actionpack-7.1.3/lib/action_dispatch/system_testing/test_helpers/screenshot_helper.rb:36:in `take_screenshot'
+    /usr/local/bundle/ruby/3.3.0/gems/actionpack-7.1.3/lib/action_dispatch/system_testing/test_helpers/screenshot_helper.rb:47:in `take_failed_screenshot'
+    /usr/local/bundle/ruby/3.3.0/gems/actionpack-7.1.3/lib/action_dispatch/system_testing/test_helpers/setup_and_teardown.rb:8:in `before_teardown'
+
+
+bin/rails test test/system/users_test.rb:10
+
+
+
+Finished in 40.222966s, 0.0249 runs/s, 0.0000 assertions/s.
+1 runs, 0 assertions, 0 failures, 1 errors, 0 skips

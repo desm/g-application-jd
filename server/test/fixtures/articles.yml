@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  body: this is the text of article one
+  status: public
+
+two:
+  title: MyString
+  body: this is the text of article two
+  status: public
