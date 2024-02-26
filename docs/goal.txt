@@ -1,0 +1,3 @@
+model links
+implement POST to /links
+
