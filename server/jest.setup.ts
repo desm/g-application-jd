@@ -1,5 +1,5 @@
 // copied from https://github.com/mswjs/examples/tree/main/examples/with-jest
-
+import 'dotenv/config'
 import { server } from './mocks/node'
 
 beforeAll(() => {

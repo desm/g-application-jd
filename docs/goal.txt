@@ -1,3 +1,6 @@
-implement javascript code that makes the post request
-and parses the URL path that is included in the response
-as that will be the URL to go to next
+[DONE] use most popular env configurator to config the endpoint of the new "createLink" function
+    chose "dotenv"
+
+test a React component successfully
+
+see if dotenv works with React component test

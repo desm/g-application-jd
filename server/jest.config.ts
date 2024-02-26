@@ -4,6 +4,11 @@ import type { Config } from 'jest';
 
 export default {
   rootDir: __dirname,
+  setupFiles: ['./jest.polyfills.js'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testMatch: ['**/__tests__/**/*.test.jsx'],
+  testEnvironment: 'jsdom',
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
 } satisfies Config;
