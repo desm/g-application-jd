@@ -35,3 +35,4 @@ USER appserver
 RUN bundle install
 
 RUN echo "PATH=/app/bin:\$PATH" >> ~/.bashrc
+RUN echo "alias jest=./node_modules/.bin/jest" >> ~/.bashrc

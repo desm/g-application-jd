@@ -37,6 +37,16 @@ $ docker-compose down
 $ up  ;# <------ rebuilds appserver image, updates local Gemfile & Gemfile.lock, and starts services
 ```
 
+### Running Tests
+
+```shell
+$ jest --watchAll
+```
+
+
 ## Documentation
 
 - [Minitest](http://docs.seattlerb.org/minitest/)
+- [React on Rails](https://www.shakacode.com/react-on-rails/docs/)
+- [React](https://react.dev/)
+- [React Testing Library _ Testing Library](https://testing-library.com/docs/react-testing-library/intro)

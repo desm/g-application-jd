@@ -1,3 +1,3 @@
-model links
-implement POST to /links
-
+implement javascript code that makes the post request
+and parses the URL path that is included in the response
+as that will be the URL to go to next
