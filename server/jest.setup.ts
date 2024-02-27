@@ -1,5 +1,4 @@
 // copied from https://github.com/mswjs/examples/tree/main/examples/with-jest
-import 'dotenv/config'
 import 'cross-fetch/polyfill'; // needed for 'fetch' to work
 import { server } from './mocks/node'
 

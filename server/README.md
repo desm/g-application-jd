@@ -69,6 +69,5 @@ Note: running 'jest' does not do type-checking. To do type-checking, run `bin/sh
 - [React on Rails](https://www.shakacode.com/react-on-rails/docs/)
 - [React](https://react.dev/)
 - [React Testing Library \_ Testing Library](https://testing-library.com/docs/react-testing-library/intro)
-- [dotenv](https://www.npmjs.com/package/dotenv)
 - [Capybara](https://rubydoc.info/github/teamcapybara/capybara/master)
 

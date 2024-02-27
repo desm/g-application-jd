@@ -19,7 +19,6 @@
     "compression-webpack-plugin": "9",
     "css-loader": "^6.10.0",
     "css-minimizer-webpack-plugin": "^6.0.0",
-    "dotenv": "^16.4.5",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "mini-css-extract-plugin": "^2.8.0",
     "prop-types": "^15.8.1",
