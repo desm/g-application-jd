@@ -12,7 +12,7 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
   const [translateXValue, setTranslateXValue] = useState(0);
 
   useEffect(() => {
-    setTranslateXValue(nav.current.clientWidth);
+    setTranslateXValue((nav.current as any).clientWidth);
   }, []);
 
   return (
