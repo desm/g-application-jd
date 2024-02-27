@@ -22,7 +22,7 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
           <a href="/">
             <span className="logo-g"> </span>
           </a>
-          <h1>{process.env.HOME_TEXT}</h1>
+          <h1>Home</h1>
           <span className="toggle" role="button"></span>
         </div>
         <header>
