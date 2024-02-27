@@ -1,6 +1,1 @@
-[DONE] use most popular env configurator to config the endpoint of the new "createLink" function
-    chose "dotenv"
-
-test a React component successfully
-
 see if dotenv works with React component test
