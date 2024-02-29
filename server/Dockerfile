@@ -26,7 +26,8 @@ RUN apt-get install -y libglib2.0-0 \
     libxkbcommon0 \
     libpango-1.0-0 \
     libcairo2 \
-    libasound2
+    libasound2 \
+    vim-tiny
 
 COPY ./Gemfile ./Gemfile.lock /home/appserver/app/
 RUN chown appserver:appserver Gemfile Gemfile.lock

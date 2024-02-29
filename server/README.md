@@ -1,19 +1,58 @@
+# Gumroad Prototype
+
+_Give a brief summary here_
+
+## Requirements
+
+- Git
+- Docker
+- Docker Compose
+
+Ruby, Rails, Node.js, and Yarn do not need to be installed locally, as they will be part of the Docker environment.
+
+## Shortcut Commands
+
+These instructions include the use of **bash aliases** that are defined in `.autoenv`.
+
+To make use of these aliases, you can either:
+
+- Install [autoenv](https://github.com/hyperupcall/autoenv?tab=readme-ov-file#installation-automated), then set env var `AUTOENV_ENV_FILENAME=.autoenv`
+- Or source the .autoenv file: `source .autoenv`
+
+Note that these commands are meant to be used from your local shell.
+They are not meant to be used inside docker containers.
+
+| Command      | Description                                        |
+| ------------ | -------------------------------------------------- |
+| up           | Starts all services needed for development         |
+| up-sleep     | Same as `up` except that the appserver just sleeps |
+| up-prod      | Starts all services with a **production** build    |
+| connect      | Opens a shell in the appserver container           |
+| connect-root | Opens a **root** shell in the appserver container  |
+| reload       | Reloads the `.autoenv` file, if you are using      |
+
 ## Development
 
-### Installation
+### Database Configuration
 
-Install [autoenv](https://github.com/hyperupcall/autoenv)
+_Configure MySQL_
 
 ### Start Services
 
-This will start 3 Docker containers: Ruby on Rails, MySQL, and Adminer, which is a DB management tool.
+Start the services needed for development: Ruby on Rails, MySQL, and Adminer (a DB management tool).
 
 ```shell
-# "up" is defined in .autoenv
 $ up
+
+$ docker-compose ps
+       Name                     Command               State                                         Ports
+------------------------------------------------------------------------------------------------------------------------------------------------
+server_appserver_1   ./bin/dev                        Up      0.0.0.0:8000->3000/tcp,:::8000->3000/tcp, 0.0.0.0:3035->3035/tcp,:::3035->3035/tcp
+server_db_1          docker-entrypoint.sh --def ...   Up      3306/tcp, 33060/tcp
+server_adminer_1     entrypoint.sh php -S [::]: ...   Up      0.0.0.0:8001->8080/tcp,:::8001->8080/tcp
 ```
 
-Once the containers are running, these links should work:
+Here are some links that should work once the services are running:
 
 - http://localhost:8000/ - Ruby on Rails app
 - http://localhost:8000/hello_world - Example React on Rails page
@@ -24,7 +63,6 @@ Once the containers are running, these links should work:
 ### Running rails CLI
 
 ```shell
-# "connect" is defined in .autoenv, it opens a shell in the "appserver" container
 $ connect
 
 (appserver) $ rails --help
@@ -33,7 +71,7 @@ $ connect
 ### Adding Gems
 
 ```shell
-# Add the gem from within the container, but update Gemfile only
+# Add the gem from within the container. Use `--skip-install` in order to update the Gemfile only
 (appserver) $ bundle add {gem} --skip-install
 
 (appserver) $ exit
@@ -45,7 +83,7 @@ $ docker-compose down
 $ up
 ```
 
-Running "up" will rebuild the appserver Docker image so that the new Gem is installed in it. For more details, see the "up" alias defined in `.autoenv`.
+"up" will notice that the `Gemfile` changed and will run `bundle install` in the "appserver" Docker image before starting the services.
 
 ### Running Tests
 
@@ -55,19 +93,40 @@ Running "up" will rebuild the appserver Docker image so that the new Gem is inst
 (appserver) $ jest; # runs tests under '__tests__' dir: frontend unit tests
 ```
 
-Note: running 'jest' does not do type-checking. To do type-checking, run `bin/shakapacker` (see next section).
+Note: running 'jest' does not do type checking.
 
-### Building For Production
+### Type Checking
+
+One way to **type check** all TypeScript code is to run the following command:
 
 ```shell
-(appserver) $ RAILS_ENV=production NODE_ENV=production bin/shakapacker
+(appserver) $ shakapacker
 ```
 
-## Documentation
+## Production Build
+
+Get a copy of `config/master.key` from the author, then run this command:
+
+```shell
+(appserver) $ up-prod
+```
+
+In case you want to edit the `credentials.yml.enc` file:
+
+```shell
+(appserver) $ VISUAL=vi rails credentials:edit
+```
+
+## Tech Stack
+
+### Application
+
+- [Ruby on Rails](https://guides.rubyonrails.org/)
+- [React](https://react.dev/)
+- [React on Rails](https://www.shakacode.com/react-on-rails/docs/)
+
+### Testing Libraries
 
 - [Minitest](http://docs.seattlerb.org/minitest/)
-- [React on Rails](https://www.shakacode.com/react-on-rails/docs/)
-- [React](https://react.dev/)
-- [React Testing Library \_ Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - [Capybara](https://rubydoc.info/github/teamcapybara/capybara/master)
-
+- [React Testing Library \_ Testing Library](https://testing-library.com/docs/react-testing-library/intro)

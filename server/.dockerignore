@@ -35,3 +35,11 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 /public/assets
+
+.autoenv
+README.md
+readme.md
+README.txt
+readme.txt
+Dockerfile*
+docker-compose*

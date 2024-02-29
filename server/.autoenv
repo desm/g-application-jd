@@ -13,7 +13,13 @@ alias up="pre-up && docker-compose up -d"
 
 alias up-sleep="pre-up && docker-compose -f docker-compose.yml -f docker-compose-sleep.yml up -d"
 
-alias connect="docker-compose exec --workdir /app appserver bash"
+alias load_master_key="RAILS_MASTER_KEY=$(cat config/master.key)"
+
+alias build-prod="load_master_key docker-compose -f docker-compose-prod.yml build appserver"
+
+alias up-prod="build-prod && load_master_key docker-compose -f docker-compose-prod.yml up -d"
+
+alias connect="docker-compose exec appserver bash"
 
 alias connect-root="docker-compose exec --workdir /root --user root appserver bash"
 

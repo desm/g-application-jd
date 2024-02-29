@@ -1,3 +1,15 @@
-see if .env works in "rails test:system" test
-
 deploy production build using Docker
+
+next:
+
+fix the following issue
+
+These don't exist in the prod Docker image:
+http://localhost:8000/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png
+http://localhost:8000/assets/auth/background-29d487bd6d844e8a6b763d36a7bff15523c665c4e44f8fd67840815f2edbea24.png
+
+But they exist in local:
+$ find . ! -path './node_modules/*' -name background\* -o -name '*avatar*' 
+./public/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png
+./public/assets/auth/background-29d487bd6d844e8a6b763d36a7bff15523c665c4e44f8fd67840815f2edbea24.png
+

@@ -26,5 +26,5 @@ test:
 production:
   <<: *default
   database: appserver_production
-  username: appserver
-  password: <%= ENV["APPSERVER_DATABASE_PASSWORD"] %>
+  username: root
+  password: <%= Rails.application.credentials.mysql_root_password %>
