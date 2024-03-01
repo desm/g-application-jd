@@ -18,18 +18,17 @@ https://d-9067f88fdd.awsapps.com/start
 my public ip: 104.192.232.55
 
 
- 36  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-   37  unzip awscliv2.zip
-   38  sudo apt install unziup
-   39  sudo apt install unzip
-   40  unzip awscliv2.zip
-   41  sudo aws/install 
-   42  aws --version
-   43  mv aws xyz
-   44  aws configure sso
-   45  aws s3 ls
-   46  aws s3 ls --profile AdministratorAccess-711112755670
-   47  export AWS_PROFILE=AdministratorAccess-711112755670
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt install unzip
+unzip awscliv2.zip
+sudo aws/install 
+complete -C '/usr/local/bin/aws_completer' aws
+aws configure sso
+# start url: https://d-9067f889d1.awsapps.com/start
+# region: us-east-1
+export AWS_PROFILE=AdministratorAccess-711112755670
+aws s3 ls
+aws s3 ls --profile AdministratorAccess-711112755670
 
 
 aws ecr describe-repositories
@@ -63,11 +62,7 @@ docker tag hello-world 711112755670.dkr.ecr.us-east-1.amazonaws.com/gumroad-jd
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 711112755670.dkr.ecr.us-east-1.amazonaws.com
 
 # docker push aws_account_id.dkr.ecr.region.amazonaws.com/hello-repository
-docker push 711112755670.dkr.ecr.us-east-1.amazonaws.com/hello-repository
 docker push 711112755670.dkr.ecr.us-east-1.amazonaws.com/gumroad-jd
-
-
-complete -C '/usr/local/bin/aws_completer' aws
 
 
 docker.io/library/mysql:8.0.36-debian
@@ -84,4 +79,35 @@ master
 
 mysql -u admin -p -h db.cbc0ceux1sr1.us-east-1.rds.amazonaws.com
 
+
+
+EC2
+
+sudo apt update
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo aws/install 
+complete -C '/usr/local/bin/aws_completer' aws
+
+sudo apt install -y docker.io docker-compose unzip
+ssh-keygen
+cat .ssh/id_rsa.pub
+sudo vi /etc/group
+git clone git@github.com:desm/gumroad-jd.git
+cd gumroad-jd/server
+cat > config/master.key
+source .autoenv
+aws configure sso
+# start url: https://d-9067f889d1.awsapps.com/start
+# region: us-east-1
+export AWS_PROFILE=AdministratorAccess-711112755670
+
+build-prod
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 711112755670.dkr.ecr.us-east-1.amazonaws.com
+docker tag server_appserver:latest 711112755670.dkr.ecr.us-east-1.amazonaws.com/gumroad-jd:latest
+docker push 711112755670.dkr.ecr.us-east-1.amazonaws.com/gumroad-jd:latest
+
+image URI:
+711112755670.dkr.ecr.us-east-1.amazonaws.com/gumroad-jd:latest
 
