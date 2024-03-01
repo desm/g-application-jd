@@ -56,7 +56,7 @@ Here are some links that should work once the services are running:
 
 - http://localhost:8000/ - Ruby on Rails app
 - http://localhost:8000/hello_world - Example React on Rails page
-- http://localhost:8001/?server=db&username=root&db=appserver_development&select=users - Adminer point to MySQL database, user: root, pass: abc
+- http://localhost:8001/?server=db&username=root - Adminer DB Management Tool (see database.yml for password)
 - http://localhost:8000/signup - Gumroad signup page
 - http://localhost:8000/dashboard - Gumroad dashboard page
 
@@ -121,12 +121,25 @@ In case you want to edit the `credentials.yml.enc` file:
 
 ### Application
 
+- [Docker and Docker Compose](https://docs.docker.com/reference/)
+- [Ruby](https://docs.ruby-lang.org/en/3.3/)
 - [Ruby on Rails](https://guides.rubyonrails.org/)
+- [TypeScript](https://www.typescriptlang.org/docs/handbook/intro.html)
 - [React](https://react.dev/)
 - [React on Rails](https://www.shakacode.com/react-on-rails/docs/)
+- [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+- [Web APIs (Mozilla) (e.g. "fetch")](https://developer.mozilla.org/en-US/docs/Web/API)
 
 ### Testing Libraries
 
 - [Minitest](http://docs.seattlerb.org/minitest/)
 - [Capybara](https://rubydoc.info/github/teamcapybara/capybara/master)
 - [React Testing Library \_ Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
+- [Mock Service Worker V1 (msw)](https://v1.mswjs.io/docs/)
+
+### Tools
+
+- [Adminer - DB Management Tool](https://www.adminer.org/)
+- [Debian Bookworm Packages (for Docker images)](https://packages.debian.org/bookworm/)
+
