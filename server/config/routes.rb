@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "links" => "links#create"
   root "articles#index"
 
   get "hello_world", to: "hello_world#index"

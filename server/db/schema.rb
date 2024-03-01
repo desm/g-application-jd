@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_23_010024) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_26_164309) do
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -27,6 +27,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_010024) do
     t.datetime "updated_at", null: false
     t.string "status", default: "public"
     t.index ["article_id"], name: "index_comments_on_article_id"
+  end
+
+  create_table "links", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.boolean "is_physical"
+    t.string "is_recurring_billing"
+    t.string "name"
+    t.string "native_type"
+    t.string "price_currency_type"
+    t.decimal "price_range", precision: 5, scale: 2
+    t.datetime "release_date"
+    t.string "subscription_duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

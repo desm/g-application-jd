@@ -1,5 +1,3 @@
-model-products.txt
-
 types
     digital
     e-book
@@ -26,6 +24,9 @@ cover
     (upload from computer, external link, unsplash)
 thumbnail image
     (upload from computer, unsplash)
+
+== checkout
+
 call to action
     I want this!
     Buy this
@@ -34,6 +35,9 @@ summary
 details
 Circle API token
 Discord (skip)
+
+== sales
+
 limit product sales?
 maximum number of purchases
 allow customers to choose a quantity

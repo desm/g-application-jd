@@ -99,3 +99,6 @@ Zapier integration, fields of a Sale:
     variants__
     Free version
 
+Feb 28, the Products -> Collabs tab takes forever to load
+    The GET of https://app.gumroad.com/products/collabs
+    Takes 60s

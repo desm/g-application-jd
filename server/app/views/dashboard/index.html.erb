@@ -17,5 +17,5 @@
 >
   <div class="message bg-filled js-message" role="alert" status="success" style="pointer-events: auto"></div>
 </div>
-<%= react_component("Nav", props: {}, prerender: true, html_options: [["style", "display: contents;"]]) %>
+<%= react_component("Nav", props: { avatar_img: asset_path("gumroad-default-avatar-5.png") }, prerender: true, html_options: [["style", "display: contents;"]]) %>
 <%= react_component("Dashboard", props: {}, prerender: true, html_options: [["style", "display: contents;"]]) %>

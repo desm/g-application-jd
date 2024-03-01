@@ -31,7 +31,21 @@
 !/tmp/storage/.keep
 
 # Ignore assets.
-/node_modules/
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
 /public/assets
+/public/packs
+/public/packs-test
+
+/node_modules/
+
+.autoenv
+.dockerignore
+.gitignore
+README.md
+readme.md
+README.txt
+readme.txt
+Dockerfile*
+docker-compose*

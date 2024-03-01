@@ -2,7 +2,9 @@ import * as React from 'react';
 import type { FunctionComponent } from 'react';
 import { useState, useEffect, useRef } from 'react';
 
-export interface Props {}
+export interface Props {
+  avatar_img: string;
+}
 
 // Note, you need to declare the `FunctionComponent` type so that it complies
 // with `ReactOnRails.register` type.
@@ -12,7 +14,7 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
   const [translateXValue, setTranslateXValue] = useState(0);
 
   useEffect(() => {
-    setTranslateXValue(nav.current.clientWidth);
+    setTranslateXValue((nav.current as any).clientWidth);
   }, []);
 
   return (
@@ -76,7 +78,7 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
               <span aria-haspopup="true" aria-expanded="false">
                 <img
                   className="user-avatar"
-                  src="/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png"
+                  src={ props.avatar_img }
                   alt="Your avatar"
                 />
                 jdesma@gmail.com
