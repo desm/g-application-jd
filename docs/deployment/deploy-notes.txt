@@ -1,0 +1,87 @@
+gumroad-jd-prototype
+https://dashboard.heroku.com/apps/gumroad-jd-prototype/settings
+
+gumroad-jd
+https://dashboard.heroku.com/apps/gumroad-jd/settings
+
+To Deploy (and deploy settings)
+https://dashboard.heroku.com/apps/gumroad-jd/deploy/github
+
+first-test-pipeline
+https://dashboard.heroku.com/pipelines/812693d3-99ac-4090-9dcb-2f7cb0924ffc
+
+
+AWS access portal URL
+https://d-9067f88fdd.awsapps.com/start
+
+
+my public ip: 104.192.232.55
+
+
+ 36  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+   37  unzip awscliv2.zip
+   38  sudo apt install unziup
+   39  sudo apt install unzip
+   40  unzip awscliv2.zip
+   41  sudo aws/install 
+   42  aws --version
+   43  mv aws xyz
+   44  aws configure sso
+   45  aws s3 ls
+   46  aws s3 ls --profile AdministratorAccess-711112755670
+   47  export AWS_PROFILE=AdministratorAccess-711112755670
+
+
+aws ecr describe-repositories
+{
+    "repositories": [
+        {
+            "repositoryArn": "arn:aws:ecr:us-east-1:711112755670:repository/gumroad-jd",
+            "registryId": "711112755670",
+            "repositoryName": "gumroad-jd",
+            "repositoryUri": "711112755670.dkr.ecr.us-east-1.amazonaws.com/gumroad-jd",
+            "createdAt": "2024-03-01T01:59:40.587000+00:00",
+            "imageTagMutability": "MUTABLE",
+            "imageScanningConfiguration": {
+                "scanOnPush": false
+            },
+            "encryptionConfiguration": {
+                "encryptionType": "AES256"
+            }
+        }
+    ]
+}
+
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-container-image.html
+
+docker build -t hello-world .
+
+# docker tag hello-world aws_account_id.dkr.ecr.region.amazonaws.com/hello-repository
+docker tag hello-world 711112755670.dkr.ecr.us-east-1.amazonaws.com/gumroad-jd
+
+# aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 711112755670.dkr.ecr.us-east-1.amazonaws.com
+
+# docker push aws_account_id.dkr.ecr.region.amazonaws.com/hello-repository
+docker push 711112755670.dkr.ecr.us-east-1.amazonaws.com/hello-repository
+docker push 711112755670.dkr.ecr.us-east-1.amazonaws.com/gumroad-jd
+
+
+complete -C '/usr/local/bin/aws_completer' aws
+
+
+docker.io/library/mysql:8.0.36-debian
+
+
+
+RDS mysql
+    https://us-east-1.console.aws.amazon.com/rds/home?region=us-east-1#database:id=db;is-cluster=false
+hostname
+    db.cbc0ceux1sr1.us-east-1.rds.amazonaws.com
+master
+    username: admin
+    password: Go_For_It_2024
+
+mysql -u admin -p -h db.cbc0ceux1sr1.us-east-1.rds.amazonaws.com
+
+
