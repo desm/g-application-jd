@@ -25,6 +25,7 @@ test:
 
 production:
   <<: *default
+  host: db.cbc0ceux1sr1.us-east-1.rds.amazonaws.com
   database: appserver_production
-  username: root
+  username: admin
   password: <%= Rails.application.credentials.mysql_root_password %>

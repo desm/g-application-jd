@@ -13,11 +13,25 @@ alias up="pre-up && docker-compose up -d"
 
 alias up-sleep="pre-up && docker-compose -f docker-compose.yml -f docker-compose-sleep.yml up -d"
 
-alias load_master_key="RAILS_MASTER_KEY=$(cat config/master.key)"
+_build_prod() {
+  if [ -z $RAILS_MASTER_KEY ]; then
+    echo "usage: RAILS_MASTER_KEY=___________ build-prod"
+    return 1
+  fi
+  RAILS_MASTER_KEY=$RAILS_MASTER_KEY docker-compose -f docker-compose-prod.yml build appserver
+}
 
-alias build-prod="load_master_key docker-compose -f docker-compose-prod.yml build appserver"
+alias build-prod=_build_prod
 
-alias up-prod="build-prod && load_master_key docker-compose -f docker-compose-prod.yml up -d"
+_up_prod() {
+  if [ -z $RAILS_MASTER_KEY ]; then
+    echo "usage: RAILS_MASTER_KEY=___________ up-prod"
+    return 1
+  fi
+  build-prod && RAILS_MASTER_KEY=$RAILS_MASTER_KEY docker-compose -f docker-compose-prod.yml up -d
+}
+
+alias up-prod=_up_prod
 
 alias connect="docker-compose exec appserver bash"
 
