@@ -4,7 +4,7 @@
 ARG RUBY_VERSION=3.3.0
 ARG RAILS_MASTER_KEY
 
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
 WORKDIR /rails
@@ -112,8 +112,11 @@ RUN set -ex \
   && yarn --version
 
 # Install packages needed for deployment
-RUN apt-get install --no-install-recommends -y build-essential git pkg-config \
-    curl libsqlite3-0 libvips default-libmysqlclient-dev procps dropbear dropbear-bin sudo
+RUN apt-get install --no-install-recommends -y curl libvips default-libmysqlclient-dev procps dropbear dropbear-bin sudo && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Throw-away build stage to reduce size of final image
+FROM base as build
 
 # Update version of bundler to match Gemfile.lock
 RUN echo "source \"https://rubygems.org\"\n\nruby \"3.3.0\"" > Gemfile \
@@ -121,15 +124,19 @@ RUN echo "source \"https://rubygems.org\"\n\nruby \"3.3.0\"" > Gemfile \
     && bundle config set frozen false \
     && bundle update --bundler
 
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git pkg-config
+
+# Install node modules
+COPY package.json yarn.lock ./
+RUN yarn install
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
-
-# Install node modules
-COPY package.json yarn.lock ./
-RUN yarn install
 
 # Copy application code
 COPY . .
@@ -139,6 +146,15 @@ RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production
 RUN SECRET_KEY_BASE_DUMMY=1 RAILS_MASTER_KEY=$RAILS_MASTER_KEY ./bin/rails assets:precompile
+
+# Final stage for app image
+FROM base
+
+# Copy built artifacts: gems, application
+COPY --from=build /usr/local/bundle /usr/local/bundle
+
+# Copy application, assets, node_modules
+COPY --from=build /rails /rails
 
 RUN mv docker-entrypoint.sh /rails/bin/docker-entrypoint \
     && mv start-sshd.sh / \
