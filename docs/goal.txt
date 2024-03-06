@@ -1,1 +1,6 @@
-deploy to AWS
+- combine github repositories
+- github workflow
+    run all tests
+    deploy to staging
+    run smoke tests
+    deploy to production

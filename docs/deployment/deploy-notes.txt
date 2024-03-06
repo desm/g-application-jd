@@ -21,7 +21,7 @@ my public ip: 104.192.232.55
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 sudo apt install unzip
 unzip awscliv2.zip
-sudo aws/install 
+sudo aws/install
 complete -C '/usr/local/bin/aws_completer' aws
 aws configure sso
 # start url: https://d-9067f889d1.awsapps.com/start
@@ -87,7 +87,7 @@ sudo apt update
 
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
-sudo aws/install 
+sudo aws/install
 complete -C '/usr/local/bin/aws_completer' aws
 
 sudo apt install -y docker.io docker-compose unzip
@@ -132,17 +132,17 @@ task execution role
     added policy "permission-to-get-secret-rails-master-key"
 
 Task stopped at: 2024-03-01T23:36:39.977Z
-ResourceInitializationError: unable to pull secrets or registry auth: execution resource retrieval failed: 
-unable to retrieve secret from asm: service call has been retried 5 time(s): failed to fetch secret 
-arn:aws:secretsmanager:us-east-1:711112755670:secret:rails-master-key-8wP0FT from secrets manager: 
-RequestCanceled: request context canceled caused by: context deadline exceeded. 
+ResourceInitializationError: unable to pull secrets or registry auth: execution resource retrieval failed:
+unable to retrieve secret from asm: service call has been retried 5 time(s): failed to fetch secret
+arn:aws:secretsmanager:us-east-1:711112755670:secret:rails-master-key-8wP0FT from secrets manager:
+RequestCanceled: request context canceled caused by: context deadline exceeded.
 Please check your task network configuration.
 
 https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#network_mode
-"For the Fargate launch types, when the network mode is awsvpc, the task is allocated an elastic network interface, 
-and you must specify a NetworkConfiguration when you create a service or run a task with the task definition. 
-For more information, see Fargate Task Networking. The awsvpc network mode offers the highest networking 
-performance for containers because they use the Amazon EC2 network stack. Exposed container ports are mapped 
+"For the Fargate launch types, when the network mode is awsvpc, the task is allocated an elastic network interface,
+and you must specify a NetworkConfiguration when you create a service or run a task with the task definition.
+For more information, see Fargate Task Networking. The awsvpc network mode offers the highest networking
+performance for containers because they use the Amazon EC2 network stack. Exposed container ports are mapped
 directly to the attached elastic network interface port. Because of this, you can't use dynamic host port mappings.
 
 Task networking for tasks on Fargate
@@ -161,8 +161,8 @@ source_profile = AdministratorAccess-711112755670
 
 $ aws --profile X secretsmanager get-secret-value --secret-id rails-master-key
 
-An error occurred (AccessDenied) when calling the AssumeRole operation: User: 
-arn:aws:sts::711112755670:assumed-role/AWSReservedSSO_AdministratorAccess_71349724b263e8dd/gumroad is not 
+An error occurred (AccessDenied) when calling the AssumeRole operation: User:
+arn:aws:sts::711112755670:assumed-role/AWSReservedSSO_AdministratorAccess_71349724b263e8dd/gumroad is not
 authorized to perform: sts:AssumeRole on resource: arn:aws:iam::711112755670:role/ecsTaskExecutionRole
 
 
@@ -173,9 +173,9 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 docker tag simplesshd:latest 711112755670.dkr.ecr.us-east-1.amazonaws.com/simplesshd:latest
 docker push 711112755670.dkr.ecr.us-east-1.amazonaws.com/simplesshd:latest
 
-ResourceInitializationError: unable to pull secrets or registry auth: execution resource retrieval failed: 
-unable to retrieve ecr registry auth: service call has been retried 3 time(s): RequestError: send request 
-failed caused by: Post "https://api.ecr.us-east-1.amazonaws.com/": dial tcp 44.213.79.86:443: i/o timeout. 
+ResourceInitializationError: unable to pull secrets or registry auth: execution resource retrieval failed:
+unable to retrieve ecr registry auth: service call has been retried 3 time(s): RequestError: send request
+failed caused by: Post "https://api.ecr.us-east-1.amazonaws.com/": dial tcp 44.213.79.86:443: i/o timeout.
 Please check your task network configuration.
 
 
@@ -276,14 +276,3 @@ $ start=`date`; RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy 
 
 # to deploy both "www" and "app":
 start=`date`; RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy --name www --name app --env production; echo $start; date ; notify-gmail.sh "$start - $(date)"
-
-
-what's next:
-- update local testing of Dockerfile-prod... sleep only?
-- combine github repositories
-- github workflow
-    run all tests
-    deploy to staging
-    run smoke tests
-    deploy to production
-
