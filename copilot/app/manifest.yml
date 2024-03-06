@@ -66,4 +66,4 @@ environments:
   production:
     http:
       alias:
-        - name: 'app.sample.jacquesdesmarais.dev'
+        - name: 'app.gumroad.jacquesdesmarais.dev'
