@@ -1,8 +1,0 @@
-{
-  "name": "gumroad",
-  "dockerComposeFile": "../docker-compose.yml",
-  "service": "rubyonrails",
-  "workspaceFolder": "/code",
-  "shutdownAction": "none",
-  "remoteUser": "rails"
-}
