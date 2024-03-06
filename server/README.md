@@ -7,6 +7,8 @@ _Give a brief summary here_
 - Git
 - Docker
 - Docker Compose
+- AWS CLI
+- AWS Copilot
 
 Ruby, Rails, Node.js, and Yarn do not need to be installed locally, as they will be part of the Docker environment.
 
@@ -22,14 +24,24 @@ To make use of these aliases, you can either:
 Note that these commands are meant to be used from your local shell.
 They are not meant to be used inside docker containers.
 
-| Command      | Description                                        |
-| ------------ | -------------------------------------------------- |
-| up           | Starts all services needed for development         |
-| up-sleep     | Same as `up` except that the appserver just sleeps |
-| up-prod      | Starts all services with a **production** build    |
-| connect      | Opens a shell in the appserver container           |
-| connect-root | Opens a **root** shell in the appserver container  |
-| reload       | Reloads the `.autoenv` file, if you are using      |
+| Command      | Description                                                                                                                               |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| up           | Starts all services needed for development: Rails server, MySQL server, Adminer DB admin tool                                             |
+| up-sleep     | Same as `up` except that the appserver sleeps instead of running the Rails server                                                         |
+| down         | Shortcut for `docker-compose down`                                                                                                        |
+| connect      | Opens a shell in the appserver container                                                                                                  |
+| connect-root | Opens a **root** shell in the appserver container                                                                                         |
+| reload       | Reloads the `.autoenv` file, if you are using [autoenv](https://github.com/hyperupcall/autoenv?tab=readme-ov-file#installation-automated) |
+
+### Additional Commands
+
+These commands require the `config/master.key` file:
+
+| Command           | Description                             |
+| ----------------- | --------------------------------------- |
+| build-staging     | Builds the staging Docker container     |
+| deploy-staging    | Deploys to the "staging" environment    |
+| deploy-production | Deploys to the "production" environment |
 
 ## Development
 
@@ -103,17 +115,18 @@ One way to **type check** all TypeScript code is to run the following command:
 (appserver) $ shakapacker
 ```
 
-## Production Build
+## Master Key and Credentials File
 
-Get a copy of `config/master.key` from the author, then run this command:
-
-```shell
-(appserver) $ up-prod
-```
+The `config/master.key` file is required to deploy to staging or production.
+It is also required to maintain the `credentials.yml.enc` file.
 
 In case you want to edit the `credentials.yml.enc` file:
 
 ```shell
+$ up-sleep
+
+$ connect
+
 (appserver) $ VISUAL=vi rails credentials:edit
 ```
 
@@ -142,4 +155,3 @@ In case you want to edit the `credentials.yml.enc` file:
 
 - [Adminer - DB Management Tool](https://www.adminer.org/)
 - [Debian Bookworm Packages (for Docker images)](https://packages.debian.org/bookworm/)
-
