@@ -40,3 +40,5 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+id_rsa_sample

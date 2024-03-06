@@ -4,7 +4,7 @@
 module.exports = function (api) {
   const defaultConfigFunc = require('shakapacker/package/babel/preset.js')
   const resultConfig = defaultConfigFunc(api)
-  const isProductionEnv = api.env('production')
+  const isProductionEnv = api.env('staging') || api.env('production')
 
   const changesOnDefault = {
     presets: [

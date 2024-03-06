@@ -23,9 +23,18 @@ test:
   <<: *default
   database: appserver_test
 
-production:
+# CREATE USER 'admin' IDENTIFIED BY 'password';
+# GRANT ALL PRIVILEGES ON appserver_production.* TO 'admin'@'%';
+production: &production
   <<: *default
-  host: db.cbc0ceux1sr1.us-east-1.rds.amazonaws.com
+  host: TBD
   database: appserver_production
   username: admin
-  password: <%= Rails.application.credentials.mysql_root_password %>
+  password: <%= Rails.application.credentials.mysql_admin_password %>
+
+# CREATE USER 'admin' IDENTIFIED BY 'password';
+# GRANT ALL PRIVILEGES ON appserver_staging.* TO 'admin'@'%';
+staging:
+  <<: *production
+  host: sample-staging-addonsstack-1v7rc38n-appdbdbcluster-vmrjczf8he2c.cluster-cbc0ceux1sr1.us-east-1.rds.amazonaws.com
+  database: appserver_staging

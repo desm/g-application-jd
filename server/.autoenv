@@ -13,6 +13,34 @@ alias up="pre-up && docker-compose up -d"
 
 alias up-sleep="pre-up && docker-compose -f docker-compose.yml -f docker-compose-sleep.yml up -d"
 
+#
+# *-* *-* *-* *-* *-* *-* *-* staging *-* *-* *-* *-* *-* *-* *-*
+#
+
+_build_staging() {
+  if [ -z $RAILS_MASTER_KEY ]; then
+    echo "usage: RAILS_MASTER_KEY=___________ build-staging"
+    return 1
+  fi
+  RAILS_ENV=staging RAILS_MASTER_KEY=$RAILS_MASTER_KEY docker-compose -f docker-compose-prod.yml build appserver
+}
+
+_up_staging() {
+  if [ -z $RAILS_MASTER_KEY ]; then
+    echo "usage: RAILS_MASTER_KEY=___________ up-staging"
+    return 1
+  fi
+  _build_staging && RAILS_ENV=staging RAILS_MASTER_KEY=$RAILS_MASTER_KEY docker-compose -f docker-compose-prod.yml up -d
+}
+
+alias build-staging=_build_staging
+
+alias up-staging=_up_staging
+
+#
+# *-* *-* *-* *-* *-* *-* *-* prod *-* *-* *-* *-* *-* *-* *-*
+#
+
 _build_prod() {
   if [ -z $RAILS_MASTER_KEY ]; then
     echo "usage: RAILS_MASTER_KEY=___________ build-prod"
@@ -21,15 +49,15 @@ _build_prod() {
   RAILS_MASTER_KEY=$RAILS_MASTER_KEY docker-compose -f docker-compose-prod.yml build appserver
 }
 
-alias build-prod=_build_prod
-
 _up_prod() {
   if [ -z $RAILS_MASTER_KEY ]; then
     echo "usage: RAILS_MASTER_KEY=___________ up-prod"
     return 1
   fi
-  build-prod && RAILS_MASTER_KEY=$RAILS_MASTER_KEY docker-compose -f docker-compose-prod.yml up -d
+  _build_prod && RAILS_MASTER_KEY=$RAILS_MASTER_KEY docker-compose -f docker-compose-prod.yml up -d
 }
+
+alias build-prod=_build_prod
 
 alias up-prod=_up_prod
 
