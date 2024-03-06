@@ -21,7 +21,6 @@ image:
     dockerfile: ./server/Dockerfile-prod
     context: ./server/
     args:
-      RAILS_ENV: ${COPILOT_ENVIRONMENT_NAME}
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
   # Port exposed through your container to route traffic to it.
   port: 3000
