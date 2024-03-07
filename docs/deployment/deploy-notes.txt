@@ -357,3 +357,30 @@ update 'copilot/app/manifest.yml' to contain the environments.production.http.al
 
 $ copilot svc deploy --app gumroad --env production --force --name app
 
+step 8:
+add storage to "production"
+$ copilot storage init --lifecycle environment --name app-db --storage-type Aurora --workload app --engine MySQL --initial-db appserver_production
+
+  Check that environments/addons/addons.parameters.yml has the following snippet:
+  ```
+  Parameters:
+    VPCID: !Ref VPC
+    PrivateSubnets: !Join [ ',', [ !Ref PrivateSubnet1, !Ref PrivateSubnet2 ] ]
+  ```
+
+Recommended follow-up actions:
+  - Run `copilot env deploy` to deploy your environment storage resources.
+  - Update the manifest for your "app" workload:
+```
+network:
+  vpc:
+    security_groups:
+      - from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-appdbSecurityGroup
+secrets:
+  DB_SECRET:
+    from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-appdbAuroraSecret
+```
+  - Run `copilot svc deploy --name app` to deploy the workload so that app has access to app-db storage.
+
+$ copilot env deploy --name production
+
