@@ -288,5 +288,20 @@ $ copilot app init --domain jacquesdesmarais.dev
 Use existing application: No
 Application name: gumroad
 
+step 3:
 $ copilot init
-...
+answer interactive questions as follows:
+    Workload type: Static Site
+    Service name: www
+    Source(s): webflow/export
+    Deploy?: yes
+    Environment name: staging
+
+step 4:
+update 'copilot/www/manifest.yml' to contain the environments.production.http.alias of 'www.gumroad.jacquesdesmarais.dev'
+
+$ copilot init --app gumroad --deploy --env production
+answer interactive questions as follows:
+    Workload type: Static Site
+    Service name: www
+

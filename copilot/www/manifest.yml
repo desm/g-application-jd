@@ -20,3 +20,7 @@ files:
 #         reinclude:
 #           - '*.txt'
 #           - '*.png'
+environments:
+  production:
+    http:
+      alias: 'www.gumroad.jacquesdesmarais.dev'
