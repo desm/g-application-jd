@@ -352,3 +352,8 @@ change set with name copilot-8fe6facb-dc82-4de7-85f0-1aa74a2fc88f for stack gumr
 
 $ copilot svc deploy --app gumroad --env staging --force --name app ;# RAN this instead
 
+step 7:
+update 'copilot/app/manifest.yml' to contain the environments.production.http.alias of 'app.gumroad.jacquesdesmarais.dev'
+
+$ copilot svc deploy --app gumroad --env production --force --name app
+
