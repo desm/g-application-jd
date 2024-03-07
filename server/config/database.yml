@@ -32,13 +32,13 @@ production_local:
 
 production: &production
   <<: *default
-  host: sample-production-addonsstack-1h4hv-appdbdbcluster-0limichl50nw.cluster-cbc0ceux1sr1.us-east-1.rds.amazonaws.com
+  host: gumroad-production-addonsstack-1en6-appdbdbcluster-dqjn21zbdjxs.cluster-cbc0ceux1sr1.us-east-1.rds.amazonaws.com
   database: appserver_production
   username: admin
   password: <%= Rails.application.credentials.mysql_admin_password_production %>
 
 staging:
   <<: *production
-  host: sample-staging-addonsstack-1v7rc38n-appdbdbcluster-vmrjczf8he2c.cluster-cbc0ceux1sr1.us-east-1.rds.amazonaws.com
+  host: gumroad-staging-addonsstack-1l9ratd-appdbdbcluster-ei3mr2kfcjnq.cluster-cbc0ceux1sr1.us-east-1.rds.amazonaws.com
   database: appserver_staging
   password: <%= Rails.application.credentials.mysql_admin_password_staging %>

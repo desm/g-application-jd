@@ -343,8 +343,8 @@ answer interactive questions as follows:
     Dockerfile: ./Dockerfile
     Environment: staging
 
-✘ Your update does not introduce immediate resource changes. 
-This may be because the resources are not created until they are deemed 
+✘ Your update does not introduce immediate resource changes.
+This may be because the resources are not created until they are deemed
 necessary by a service deployment.
 
 In this case, you can run `copilot env deploy --force` to push a modified template, even if there are no immediate changes. <------ DONT DO THIS
@@ -383,4 +383,18 @@ secrets:
   - Run `copilot svc deploy --name app` to deploy the workload so that app has access to app-db storage.
 
 $ copilot env deploy --name production
+
+step 9:
+update 'copilot/app/manifest.yml' to contain the "network" and "secrets" mentioned above
+
+$ copilot svc deploy --app gumroad --env staging --name app
+
+$ copilot svc deploy --app gumroad --env production --name app
+
+step 10:
+update server/config/database.yml with newly created db hosts for both envs
+update config/credentials.yml.enc with newly created passwords for both envs
+
+step 11:
+...
 
