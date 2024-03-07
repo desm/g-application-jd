@@ -276,3 +276,17 @@ $ start=`date`; RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy 
 
 # to deploy both "www" and "app":
 start=`date`; RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy --name www --name app --env production; echo $start; date ; notify-gmail.sh "$start - $(date)"
+
+
+Mar 7
+to deploy using AWS copilot:
+
+step 1: temporarily remove the 'copilot' dir
+
+step 2:
+$ copilot app init --domain jacquesdesmarais.dev
+Use existing application: No
+Application name: gumroad
+
+$ copilot init
+...
