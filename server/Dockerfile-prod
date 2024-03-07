@@ -159,7 +159,7 @@ COPY --from=build /rails /rails
 RUN mv docker-entrypoint.sh /rails/bin/docker-entrypoint \
     && mv start-sshd.sh / \
     && mkdir /root/.ssh/ \
-    && mv id_rsa_sample.pub /root/.ssh/authorized_keys \
+    && mv id_rsa_gumroad.pub /root/.ssh/authorized_keys \
     && chmod 700 /root/.ssh \
     && chmod 600 /root/.ssh/authorized_keys \
     && useradd rails --create-home --shell /bin/bash \

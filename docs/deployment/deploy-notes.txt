@@ -396,5 +396,19 @@ update server/config/database.yml with newly created db hosts for both envs
 update config/credentials.yml.enc with newly created passwords for both envs
 
 step 11:
-...
+add the master key in the Parameter Store:
 
+    /copilot/applications/gumroad/environments/staging/RAILS_MASTER_KEY
+        Tags:
+            copilot-application gumroad, copilot-environment staging
+
+    /copilot/applications/gumroad/environments/production/RAILS_MASTER_KEY
+        Tags:
+            copilot-application gumroad, copilot-environment production
+
+step 12:
+update service 'app' in both environments to be the Gumroad Rails application
+
+$ RAILS_MASTER_KEY=$(cat ./server/config/master.key) copilot svc deploy --app gumroad --diff-yes --env staging --name app
+
+$ RAILS_MASTER_KEY=$(cat ./server/config/master.key) copilot svc deploy --app gumroad --diff-yes --env production --name app
