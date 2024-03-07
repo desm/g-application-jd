@@ -54,7 +54,9 @@ variables:
 secrets:
   DB_SECRET:
     from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-appdbAuroraSecret
-  RAILS_MASTER_KEY: /copilot/applications/sample/environments/${COPILOT_ENVIRONMENT_NAME}/RAILS_MASTER_KEY # from SSM Parameter Store
+  # /copilot/applications/gumroad/environments/staging/RAILS_MASTER_KEY
+  # /copilot/applications/gumroad/environments/production/RAILS_MASTER_KEY
+  RAILS_MASTER_KEY: /copilot/applications/${COPILOT_APPLICATION_NAME}/environments/${COPILOT_ENVIRONMENT_NAME}/RAILS_MASTER_KEY # from SSM Parameter Store
 
 # You can override any of the values defined above by environment.
 #environments:
@@ -66,4 +68,4 @@ environments:
   production:
     http:
       alias:
-        - name: 'app.sample.jacquesdesmarais.dev'
+        - name: 'app.gumroad.jacquesdesmarais.dev'

@@ -276,3 +276,139 @@ $ start=`date`; RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy 
 
 # to deploy both "www" and "app":
 start=`date`; RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy --name www --name app --env production; echo $start; date ; notify-gmail.sh "$start - $(date)"
+
+
+Mar 7
+to deploy using AWS copilot:
+
+step 1: temporarily remove the 'copilot' dir
+
+step 2:
+$ copilot app init --domain jacquesdesmarais.dev
+Use existing application: No
+Application name: gumroad
+
+step 3:
+$ copilot init
+answer interactive questions as follows:
+    Workload type: Static Site
+    Service name: www
+    Source(s): webflow/export
+    Deploy?: yes
+    Environment name: staging
+
+step 4:
+update 'copilot/www/manifest.yml' to contain the environments.production.http.alias of 'www.gumroad.jacquesdesmarais.dev'
+
+$ copilot init --app gumroad --deploy --env production
+answer interactive questions as follows:
+    Workload type: Static Site
+    Service name: www
+
+step 5:
+add storage to "staging"
+$ copilot storage init
+answer interactive questions as follows:
+    Storage type: Aurora Serverless
+    Storage resource name: app-db
+    Lifecycle:  No, the storage should be created and deleted at the environment level
+    Database engine: MySQL
+    Initial database name: appserver_staging
+
+Recommended follow-up actions:
+  - Run `copilot env deploy` to deploy your environment storage resources. <---------------------- do this
+  - Update the manifest for your "www" workload: <------------------------------------------------ DONT do this yet. We will want 'app' to have access to the database, not 'www'
+```
+network:
+  vpc:
+    security_groups:
+      - from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-appdbSecurityGroup
+secrets:
+  DB_SECRET:
+    from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-appdbAuroraSecret
+```
+  - Run `copilot svc deploy --name www` to deploy the workload so that www has access to app-db storage. <---------- DONT do this
+
+$ copilot env deploy --name staging
+
+step 6:
+create files in root of project:
+Dockerfile (copied from https://github.com/desm/aws-copilot-sample-service/blob/ebd4370359e5bd834ecf0e63bfc8e64ad9bd6a56/Dockerfile)
+index.html (copied from https://github.com/desm/aws-copilot-sample-service/blob/ebd4370359e5bd834ecf0e63bfc8e64ad9bd6a56/index.html)
+
+$ copilot init --deploy
+answer interactive questions as follows:
+    Workload type: Load Balanced Web Service
+    Service name: app
+    Dockerfile: ./Dockerfile
+    Environment: staging
+
+✘ Your update does not introduce immediate resource changes.
+This may be because the resources are not created until they are deemed
+necessary by a service deployment.
+
+In this case, you can run `copilot env deploy --force` to push a modified template, even if there are no immediate changes. <------ DONT DO THIS
+change set with name copilot-8fe6facb-dc82-4de7-85f0-1aa74a2fc88f for stack gumroad-staging has no changes
+
+$ copilot svc deploy --app gumroad --env staging --force --name app ;# RAN this instead
+
+step 7:
+update 'copilot/app/manifest.yml' to contain the environments.production.http.alias of 'app.gumroad.jacquesdesmarais.dev'
+
+$ copilot svc deploy --app gumroad --env production --force --name app
+
+step 8:
+add storage to "production"
+$ copilot storage init --lifecycle environment --name app-db --storage-type Aurora --workload app --engine MySQL --initial-db appserver_production
+
+  Check that environments/addons/addons.parameters.yml has the following snippet:
+  ```
+  Parameters:
+    VPCID: !Ref VPC
+    PrivateSubnets: !Join [ ',', [ !Ref PrivateSubnet1, !Ref PrivateSubnet2 ] ]
+  ```
+
+Recommended follow-up actions:
+  - Run `copilot env deploy` to deploy your environment storage resources.
+  - Update the manifest for your "app" workload:
+```
+network:
+  vpc:
+    security_groups:
+      - from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-appdbSecurityGroup
+secrets:
+  DB_SECRET:
+    from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-appdbAuroraSecret
+```
+  - Run `copilot svc deploy --name app` to deploy the workload so that app has access to app-db storage.
+
+$ copilot env deploy --name production
+
+step 9:
+update 'copilot/app/manifest.yml' to contain the "network" and "secrets" mentioned above
+
+$ copilot svc deploy --app gumroad --env staging --name app
+
+$ copilot svc deploy --app gumroad --env production --name app
+
+step 10:
+update server/config/database.yml with newly created db hosts for both envs
+update config/credentials.yml.enc with newly created passwords for both envs
+
+step 11:
+add the master key in the Parameter Store:
+
+    /copilot/applications/gumroad/environments/staging/RAILS_MASTER_KEY
+        Tags:
+            copilot-application gumroad, copilot-environment staging
+
+    /copilot/applications/gumroad/environments/production/RAILS_MASTER_KEY
+        Tags:
+            copilot-application gumroad, copilot-environment production
+
+step 12:
+update service 'app' in both environments to be the Gumroad Rails application
+
+$ RAILS_MASTER_KEY=$(cat ./server/config/master.key) copilot svc deploy --app gumroad --diff-yes --env staging --name app
+
+$ RAILS_MASTER_KEY=$(cat ./server/config/master.key) copilot svc deploy --app gumroad --diff-yes --env production --name app

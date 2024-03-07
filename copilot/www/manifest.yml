@@ -6,7 +6,7 @@
 name: www
 type: Static Site
 files:
-  - source: src/www
+  - source: webflow/export
     recursive: true
 
 # You can override any of the values defined above by environment.
@@ -23,4 +23,4 @@ files:
 environments:
   production:
     http:
-      alias: 'www.sample.jacquesdesmarais.dev'
+      alias: 'www.gumroad.jacquesdesmarais.dev'

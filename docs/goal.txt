@@ -1,4 +1,5 @@
-- combine github repositories
+- deploy staging and production environments
+
 - github workflow
     run all tests
     deploy to staging
