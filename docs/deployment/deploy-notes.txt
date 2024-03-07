@@ -331,3 +331,24 @@ secrets:
 
 $ copilot env deploy --name staging
 
+step 6:
+create files in root of project:
+Dockerfile (copied from https://github.com/desm/aws-copilot-sample-service/blob/ebd4370359e5bd834ecf0e63bfc8e64ad9bd6a56/Dockerfile)
+index.html (copied from https://github.com/desm/aws-copilot-sample-service/blob/ebd4370359e5bd834ecf0e63bfc8e64ad9bd6a56/index.html)
+
+$ copilot init --deploy
+answer interactive questions as follows:
+    Workload type: Load Balanced Web Service
+    Service name: app
+    Dockerfile: ./Dockerfile
+    Environment: staging
+
+✘ Your update does not introduce immediate resource changes. 
+This may be because the resources are not created until they are deemed 
+necessary by a service deployment.
+
+In this case, you can run `copilot env deploy --force` to push a modified template, even if there are no immediate changes. <------ DONT DO THIS
+change set with name copilot-8fe6facb-dc82-4de7-85f0-1aa74a2fc88f for stack gumroad-staging has no changes
+
+$ copilot svc deploy --app gumroad --env staging --force --name app ;# RAN this instead
+
