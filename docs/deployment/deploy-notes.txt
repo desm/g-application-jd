@@ -305,3 +305,29 @@ answer interactive questions as follows:
     Workload type: Static Site
     Service name: www
 
+step 5:
+add storage to "staging"
+$ copilot storage init
+answer interactive questions as follows:
+    Storage type: Aurora Serverless
+    Storage resource name: app-db
+    Lifecycle:  No, the storage should be created and deleted at the environment level
+    Database engine: MySQL
+    Initial database name: appserver_staging
+
+Recommended follow-up actions:
+  - Run `copilot env deploy` to deploy your environment storage resources. <---------------------- do this
+  - Update the manifest for your "www" workload: <------------------------------------------------ DONT do this yet. We will want 'app' to have access to the database, not 'www'
+```
+network:
+  vpc:
+    security_groups:
+      - from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-appdbSecurityGroup
+secrets:
+  DB_SECRET:
+    from_cfn: ${COPILOT_APPLICATION_NAME}-${COPILOT_ENVIRONMENT_NAME}-appdbAuroraSecret
+```
+  - Run `copilot svc deploy --name www` to deploy the workload so that www has access to app-db storage. <---------- DONT do this
+
+$ copilot env deploy --name staging
+
