@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>App</title>
+    <title>Home</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
-    <%= javascript_pack_tag "application" %>
+    <%= javascript_pack_tag 'client-bundle' %>
   </head>
 
-  <body>
+  <body class="sidebar-nav" id style>
     <%= yield %>
   </body>
 </html>
