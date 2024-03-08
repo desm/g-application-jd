@@ -62,12 +62,12 @@ const Dashboard: FunctionComponent<Props> = (props: Props) => {
             <div className="placeholder">
               <p>
                 You haven't made any sales yet. Learn how to
-                <a href="#https://help.gumroad.com/article/170-audience" target="_blank" rel="noopener noreferrer">
+                <a href="#https://help.gumroad.jacquesdesmarais.dev/article/170-audience" target="_blank" rel="noopener noreferrer">
                   build a following
                 </a>
                 and
                 <a
-                  href="#https://help.gumroad.com/article/79-gumroad-discover"
+                  href="#https://help.gumroad.jacquesdesmarais.dev/article/79-gumroad-discover"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

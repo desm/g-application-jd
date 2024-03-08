@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     @props = {
       Nav: {
         title: "What are you creating?",
-        help_url: "https://help.gumroad.com",
+        help_url: "https://help.gumroad.jacquesdesmarais.dev",
         unbecome_path: nil,
       },
       NewProductPage: {},
