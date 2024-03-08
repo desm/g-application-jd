@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'products/new'
   post "links" => "links#create"
   root "articles#index"
 
