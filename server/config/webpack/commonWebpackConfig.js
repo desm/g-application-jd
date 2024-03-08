@@ -10,6 +10,9 @@ const commonOptions = {
   resolve: {
     extensions: ['.css', '.ts', '.tsx'],
   },
+  devServer: {
+    allowedHosts: 'all'
+  }
 };
 
 // Copy the object using merge b/c the baseClientWebpackConfig and commonOptions are mutable globals
