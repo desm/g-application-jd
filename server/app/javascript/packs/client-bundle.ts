@@ -3,6 +3,8 @@ import Nav from '../bundles/Nav';
 import Dashboard from '../bundles/Dashboard';
 import ProductsDashboardPage from '../bundles/ProductsDashboardPage';
 import NewProductPage from '../bundles/NewProductPage';
+import ProductContentPreview from '../bundles/ProductContentPreview';
+import ProductPreviewVariantDropdown from '../bundles/ProductPreviewVariantDropdown';
 
 // This is how react_on_rails can see the HelloWorld in the browser.
 ReactOnRails.register({
@@ -10,4 +12,6 @@ ReactOnRails.register({
   Dashboard,
   ProductsDashboardPage,
   NewProductPage,
+  ProductContentPreview,
+  ProductPreviewVariantDropdown,
 });

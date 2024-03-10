@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get "products" => "products#index"
   get "products/new"
+  get "products/:id/edit" => "products#edit" # edit_product_path
+
   post "links" => "links#create"
   root "articles#index"
 

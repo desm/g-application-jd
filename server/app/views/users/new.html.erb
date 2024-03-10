@@ -1,113 +1,99 @@
-<html lang="en">
-  <head>
-    <title>Gumroad</title>
-    <meta charset="utf-8" />
-  </head>
-  <body class="onboarding-page">
-    <div class="modals-container" style="display: contents">
-      <div class="modal gr-auth showing squished" style="display: contents">
-        <main class="signup-form">
-          <header class="header">
-            <a class="wordmark logo-full" href="https://gumroad.jacquesdesmarais.dev"></a>
-            <div class="actions">
-              <a href="/login">Log in</a>
-            </div>
-            <h1>
-              Join over 168,436 creators who have earned over $926,913,252 on Gumroad selling digital products and
-              memberships.
-            </h1>
-          </header>
-          <div class="input-group">
-            <section style="display: grid; grid-gap: var(--spacer-6); padding-bottom: var(--spacer-7)">
-              <div class="error-indicator danger" role="alert" style="display: none"></div>
-              <div style="display: grid; gap: var(--spacer-3); grid-template-rows: 1fr">
-                <form class="button_to" method="post" action="/users/auth/facebook?referer=%2Fsignup">
-                  <button class="button button-facebook" style="width: 100%" type="submit">Facebook</button
-                  ><input
-                    type="hidden"
-                    name="authenticity_token"
-                    value="N_GURvU_________________________________________________________________________kqCoEQ"
-                    autocomplete="off"
-                  />
-                </form>
-                <form
-                  class="button_to"
-                  method="post"
-                  action="/users/auth/google_oauth2?referer=%2Fsignup&amp;x_auth_access_type=read"
-                >
-                  <button class="button button-google" style="width: 100%" type="submit">Google</button
-                  ><input
-                    type="hidden"
-                    name="authenticity_token"
-                    value="lcSL43_________________________________________________________________________Xw9xSsA"
-                    autocomplete="off"
-                  />
-                </form>
-                <form
-                  class="button_to"
-                  method="post"
-                  action="/users/auth/twitter?referer=%2Fsignup&amp;x_auth_access_type=read"
-                >
-                  <button class="button button-twitter" style="width: 100%" type="submit">X</button
-                  ><input
-                    type="hidden"
-                    name="authenticity_token"
-                    value="FlIFjudEo0QXHfkFqMr2_NpvGk61yb1n2j1QpYRueKwnuPoX8_N_9-qNwjObBWpYWi7EEcENj6jEOtOBl9_yQA"
-                    value="FlIFjud_______________________________________________________________________OBl9_yQA"
-                    autocomplete="off"
-                  />
-                </form>
-                <form class="button_to" method="post" action="/users/auth/stripe_connect?referer=%2Fsignup">
-                  <button class="button button-stripe" style="width: 100%" type="submit">Stripe</button
-                  ><input
-                    type="hidden"
-                    name="authenticity_token"
-                    value="5-dgFl8________________________________________________________________________xB0u5BA"
-                    autocomplete="off"
-                  />
-                </form>
-              </div>
-            </section>
-            <%= form_with model: @user, path: "/signup" do |form| %>
-            <section>
-              <div class="divider" role="separator">
-                <span>or</span>
-              </div>
-              <fieldset>
-                <legend>
-                  <label>Email</label>
-                </legend>
-                <%= form.text_field :email %>
-              </fieldset>
-              <fieldset>
-                <legend>
-                  <label>Password</label>
-                </legend>
-                <%= form.password_field :password %>
-              </fieldset>
-              <!-- <input
-                  value="on"
-                  autocomplete="off"
-                  type="hidden"
-                  name="user[user_was_explicitly_displayed_a_terms_notice]"
-                /> -->
-              <%= form.button "Create account", {class: "js-signup-button primary"} %>
-              <p class="terms">
-                You agree to our <a href="/terms">Terms Of Use</a> and <a href="/privacy">Privacy Policy</a>.
-              </p>
-            </section>
-            <div
-              class="js-recaptcha"
-              data-sitekey="6LcSj_____________________________z85cLO"
-              id="signupRecaptcha"
-            ></div>
-            <% end %>
+<div class="modals-container" style="display: contents">
+  <div class="modal gr-auth showing squished" style="display: contents">
+    <main class="signup-form">
+      <header class="header">
+        <a class="wordmark logo-full" href="https://gumroad.jacquesdesmarais.dev"></a>
+        <div class="actions">
+          <a href="/login">Log in</a>
+        </div>
+        <h1>
+          Join over 168,436 creators who have earned over $926,913,252 on Gumroad selling digital products and
+          memberships.
+        </h1>
+      </header>
+      <div class="input-group">
+        <section style="display: grid; grid-gap: var(--spacer-6); padding-bottom: var(--spacer-7)">
+          <div class="error-indicator danger" role="alert" style="display: none"></div>
+          <div style="display: grid; gap: var(--spacer-3); grid-template-rows: 1fr">
+            <form class="button_to" method="post" action="/users/auth/facebook?referer=%2Fsignup">
+              <button class="button button-facebook" style="width: 100%" type="submit">Facebook</button
+              ><input
+                type="hidden"
+                name="authenticity_token"
+                value="N_GURvU_________________________________________________________________________kqCoEQ"
+                autocomplete="off"
+              />
+            </form>
+            <form
+              class="button_to"
+              method="post"
+              action="/users/auth/google_oauth2?referer=%2Fsignup&amp;x_auth_access_type=read"
+            >
+              <button class="button button-google" style="width: 100%" type="submit">Google</button
+              ><input
+                type="hidden"
+                name="authenticity_token"
+                value="lcSL43_________________________________________________________________________Xw9xSsA"
+                autocomplete="off"
+              />
+            </form>
+            <form
+              class="button_to"
+              method="post"
+              action="/users/auth/twitter?referer=%2Fsignup&amp;x_auth_access_type=read"
+            >
+              <button class="button button-twitter" style="width: 100%" type="submit">X</button
+              ><input
+                type="hidden"
+                name="authenticity_token"
+                value="FlIFjudEo0QXHfkFqMr2_NpvGk61yb1n2j1QpYRueKwnuPoX8_N_9-qNwjObBWpYWi7EEcENj6jEOtOBl9_yQA"
+                value="FlIFjud_______________________________________________________________________OBl9_yQA"
+                autocomplete="off"
+              />
+            </form>
+            <form class="button_to" method="post" action="/users/auth/stripe_connect?referer=%2Fsignup">
+              <button class="button button-stripe" style="width: 100%" type="submit">Stripe</button
+              ><input
+                type="hidden"
+                name="authenticity_token"
+                value="5-dgFl8________________________________________________________________________xB0u5BA"
+                autocomplete="off"
+              />
+            </form>
           </div>
-        </main>
+        </section>
+        <%= form_with model: @user, path: "/signup" do |form| %>
+        <section>
+          <div class="divider" role="separator">
+            <span>or</span>
+          </div>
+          <fieldset>
+            <legend>
+              <label>Email</label>
+            </legend>
+            <%= form.text_field :email %>
+          </fieldset>
+          <fieldset>
+            <legend>
+              <label>Password</label>
+            </legend>
+            <%= form.password_field :password %>
+          </fieldset>
+          <!-- <input
+              value="on"
+              autocomplete="off"
+              type="hidden"
+              name="user[user_was_explicitly_displayed_a_terms_notice]"
+            /> -->
+          <%= form.button "Create account", {class: "js-signup-button primary"} %>
+          <p class="terms">
+            You agree to our <a href="/terms">Terms Of Use</a> and <a href="/privacy">Privacy Policy</a>.
+          </p>
+        </section>
+        <div class="js-recaptcha" data-sitekey="6LcSj_____________________________z85cLO" id="signupRecaptcha"></div>
+        <% end %>
       </div>
-      <aside class="avatars-container">
-        <%= image_tag "auth/background.png" %>
-      </aside>
-    </div>
-  </body>
-</html>
+    </main>
+  </div>
+  <aside class="avatars-container"><%= image_tag "auth/background.png" %></aside>
+</div>

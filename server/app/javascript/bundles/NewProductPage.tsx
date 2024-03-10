@@ -14,9 +14,10 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
               <span className="icon icon-x-square"></span>
               <span>Cancel</span>
             </a>
-            <button className="accent" type="submit" form="new-product-form-:R0:">
-              Next: Customize
-            </button>
+            {/* <button className="accent" type="submit" form="new-product-form-:R0:"> */}
+            <a href="/products/asdf/edit">
+              <button className="accent">Next: Customize</button>
+            </a>
           </div>
         </header>
         <div>
