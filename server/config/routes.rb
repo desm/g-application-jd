@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  root "users#new"
+
   get "products" => "products#index"
   get "products/new"
   get "products/:id/edit" => "products#edit" # edit_product_path
 
   post "links" => "links#create"
-  root "articles#index"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
