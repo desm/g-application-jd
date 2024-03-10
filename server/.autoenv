@@ -21,8 +21,8 @@ alias connect-root="docker-compose exec --workdir /root --user root appserver ba
 alias build-staging="docker build -f Dockerfile-prod -t 711112755670.dkr.ecr.us-east-1.amazonaws.com/sample/app:latest ."
 
 if [ -e config/master.key ]; then
-  alias deploy-staging="RAILS_MASTER_KEY=$(cat config/master.key) copilot deploy --name app --env staging"
-  alias deploy-production="RAILS_MASTER_KEY=$(cat config/master.key) copilot deploy --name app --env production"
+  alias deploy-staging="RAILS_MASTER_KEY=$(cat config/master.key) copilot deploy --name app --name www --env staging"
+  alias deploy-production="RAILS_MASTER_KEY=$(cat config/master.key) copilot deploy --name app --name www --env production"
 else
   alias deploy-staging="echo \"the deploy-staging alias was not set up because it requires the config/master.key file\""
   alias deploy-production="echo \"the deploy-production alias was not set up because it requires the config/master.key file\""
