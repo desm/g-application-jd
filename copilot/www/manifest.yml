@@ -8,6 +8,7 @@ type: Static Site
 files:
   - source: webflow/export
     recursive: true
+    exclude: 'index-*.html'
 
 # You can override any of the values defined above by environment.
 # environments:
@@ -24,3 +25,11 @@ environments:
   production:
     http:
       alias: 'www.gumroad.jacquesdesmarais.dev'
+    files:
+      - source: webflow/export/index-production.html
+        destination: index.html
+
+  staging:
+    files:
+      - source: webflow/export/index-staging.html
+        destination: index.html

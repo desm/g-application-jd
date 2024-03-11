@@ -63,4 +63,5 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # config.logger = Logger.new(STDOUT)
+  config.access_control_allow_origin_for_www = "http://localhost:8080"
 end

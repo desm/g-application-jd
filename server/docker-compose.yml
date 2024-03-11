@@ -33,6 +33,15 @@ services:
     restart: always
     ports:
       - 8001:8080
+  
+  www:
+    build:
+      context: ../webflow
+      dockerfile: Dockerfile # webflow/Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - ../webflow/export:/usr/share/nginx/html
 
 volumes:
   db-data:

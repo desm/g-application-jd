@@ -23,5 +23,6 @@ module App
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.access_control_allow_origin_for_www = "https://www.gumroad.jacquesdesmarais.dev"
   end
 end
