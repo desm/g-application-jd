@@ -1,3 +1,7 @@
+<% content_for :title do %>
+product name
+<% end %>
+
 <%= react_component("Nav", props: @props[:Nav], prerender: true, html_options: [["style", "display: contents;"]]) %>
 
 <header class="sticky" id="header-root"></header>

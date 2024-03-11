@@ -1,1 +1,1 @@
-make Nav show what page we are on
+set the HTML title correctly
