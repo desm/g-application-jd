@@ -1,38 +1,18 @@
 class ProductsController < ApplicationController
   def index
-    @props = {
-      Nav: {
-        title: "What are you creating?",
-        help_url: "https://help.gumroad.jacquesdesmarais.dev",
-        unbecome_path: nil,
-      },
-      ProductsDashboardPage: {},
-    }
+    @props[:Nav][:highlight] = "Products"
+    @props[:ProductsDashboardPage] = {}
   end
 
   def new
-    @props = {
-      Nav: {
-        title: "What are you creating?",
-        help_url: "https://help.gumroad.jacquesdesmarais.dev",
-        unbecome_path: nil,
-      },
-      NewProductPage: {},
-    }
+    @props[:Nav][:highlight] = "Products"
+    @props[:NewProductPage] = {}
   end
 
   def edit
-    @props = {
-      Nav: {
-        title: "What are you creating?",
-        help_url: "https://help.gumroad.jacquesdesmarais.dev",
-        unbecome_path: nil,
-      },
-      ProductContentPreview: {},
-      ProductPreviewVariantDropdown: {
-        "variants": [],
-      },
-    }
+    @props[:Nav][:highlight] = "Products"
+    @props[:ProductContentPreview] = {}
+    @props[:ProductPreviewVariantDropdown] = {}
   end
 
   private

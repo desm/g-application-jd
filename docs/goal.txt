@@ -1,1 +1,1 @@
-improve link from www -> appp
+make Nav show what page we are on
