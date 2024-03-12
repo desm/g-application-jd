@@ -13,7 +13,11 @@
       </header>
       <div class="input-group">
         <section style="display: grid; grid-gap: var(--spacer-6); padding-bottom: var(--spacer-7)">
+          <% if flash[:error] %>
+          <div class="error-indicator danger" role="alert"><%= flash[:error] %></div>
+          <% else %>
           <div class="error-indicator danger" role="alert" style="display: none"></div>
+          <% end %>
           <div style="display: grid; gap: var(--spacer-3); grid-template-rows: 1fr">
             <form class="button_to" method="post" action="/users/auth/facebook?referer=%2Fsignup">
               <button class="button button-facebook" style="width: 100%" type="submit">Facebook</button
@@ -62,7 +66,7 @@
             </form>
           </div>
         </section>
-        <%= form_with model: @user, path: "/signup", id: "user_form" do |form| %>
+        <%= form_with url: signup_path, id: "user_form" do |form| %>
         <section>
           <div class="divider" role="separator">
             <span>or</span>
@@ -85,7 +89,9 @@
               type="hidden"
               name="user[user_was_explicitly_displayed_a_terms_notice]"
             /> -->
-          <%= form.button "Create account", {id: "submit_button", class: "js-signup-button primary"} %>
+          <button name="button" type="submit" id="submit_button" class="js-signup-button primary">
+            Create account
+          </button>
           <p class="terms">
             You agree to our <a href="/terms">Terms Of Use</a> and <a href="/privacy">Privacy Policy</a>.
           </p>
@@ -106,6 +112,8 @@
     submitButton.addEventListener('click', function (event) {
       if (!validateForm()) {
         event.preventDefault(); // Prevent form submission
+      } else {
+        form.setAttribute('novalidate', true); // turn off browser default validation
       }
     });
 

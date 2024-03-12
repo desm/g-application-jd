@@ -3,6 +3,8 @@ ror 13.4.0
 
 Flight
     https://github.com/flightjs/flight
+    seems to be used on "login" and "signup" pages
+    not sure if I will have the time to integrate Flight into those pages
 
 i18n
     <script

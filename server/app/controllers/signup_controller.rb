@@ -1,11 +1,9 @@
-class UsersController < ApplicationController
+class SignupController < ApplicationController
   def new
     @user = User.new
   end
 
-  # inputs need to be filled with something
   # An account already exists with this email.
-  # Email is invalid
   # Password has previously appeared in a data breach as per haveibeenpwned.com and should never be used. Please choose something harder to guess.
   #   ref: https://haveibeenpwned.com/API/v3
   def create
@@ -13,15 +11,9 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to dashboard_path
     else
-      flash[:error] = "missing something"
-      render "new"
+      flash[:error] = @user.errors.first.full_message
+      redirect_to signup_path
     end
-  end
-
-  def session_info
-    response.set_header("Access-Control-Allow-Origin", Rails.application.config.access_control_allow_origin_for_www)
-    data = { "success": true, "is_signed_in": false }
-    render json: data, status: :ok
   end
 
   private

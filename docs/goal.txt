@@ -2,3 +2,10 @@ users and user sessions
     add validation to signup page
         show flash when signup is unsuccessful try this
             do client-side validation of email and password fields
+
+if user is currently logged in
+    going to
+        /login
+        /signup
+    redirects to
+        /dashboard
