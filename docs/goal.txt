@@ -1,1 +1,1 @@
-adjust .autoenv and docker files so that it is all controllable from the root of the project
+fix favicon
