@@ -1,1 +1,4 @@
-fix favicon
+users and user sessions
+    add validation to signup page
+        show flash when signup is unsuccessful try this
+            do client-side validation of email and password fields

@@ -62,7 +62,7 @@
             </form>
           </div>
         </section>
-        <%= form_with model: @user, path: "/signup" do |form| %>
+        <%= form_with model: @user, path: "/signup", id: "user_form" do |form| %>
         <section>
           <div class="divider" role="separator">
             <span>or</span>
@@ -71,13 +71,13 @@
             <legend>
               <label>Email</label>
             </legend>
-            <%= form.text_field :email %>
+            <input class="required" tabindex="1" type="email" name="user[email]" id="user_email" />
           </fieldset>
           <fieldset>
             <legend>
               <label>Password</label>
             </legend>
-            <%= form.password_field :password %>
+            <input class="password required" tabindex="2" type="password" name="user[password]" id="user_password" />
           </fieldset>
           <!-- <input
               value="on"
@@ -85,7 +85,7 @@
               type="hidden"
               name="user[user_was_explicitly_displayed_a_terms_notice]"
             /> -->
-          <%= form.button "Create account", {class: "js-signup-button primary"} %>
+          <%= form.button "Create account", {id: "submit_button", class: "js-signup-button primary"} %>
           <p class="terms">
             You agree to our <a href="/terms">Terms Of Use</a> and <a href="/privacy">Privacy Policy</a>.
           </p>
@@ -97,3 +97,37 @@
   </div>
   <aside class="avatars-container"><%= image_tag "auth/background.png" %></aside>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('user_form');
+    var submitButton = document.getElementById('submit_button');
+
+    submitButton.addEventListener('click', function (event) {
+      if (!validateForm()) {
+        event.preventDefault(); // Prevent form submission
+      }
+    });
+
+    function validateForm() {
+      var emailField = document.getElementById('user_email');
+      var passwordField = document.getElementById('user_password');
+
+      if (!emailField.value.trim()) {
+        emailField.classList.add('error');
+        emailField.parentElement.classList.add('danger');
+        emailField.focus();
+        return false;
+      }
+
+      if (!passwordField.value.trim()) {
+        passwordField.classList.add('error');
+        passwordField.parentElement.classList.add('danger');
+        passwordField.focus();
+        return false;
+      }
+
+      return true; // Form is valid
+    }
+  });
+</script>

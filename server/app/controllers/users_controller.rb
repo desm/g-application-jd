@@ -3,11 +3,17 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # inputs need to be filled with something
+  # An account already exists with this email.
+  # Email is invalid
+  # Password has previously appeared in a data breach as per haveibeenpwned.com and should never be used. Please choose something harder to guess.
+  #   ref: https://haveibeenpwned.com/API/v3
   def create
     @user = User.new(user_params)
     if @user.save
       redirect_to dashboard_path
     else
+      flash[:error] = "missing something"
       render "new"
     end
   end

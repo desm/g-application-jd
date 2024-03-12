@@ -1,6 +1,9 @@
 ror 13.4.0
     React on Rails
 
+Flight
+    https://github.com/flightjs/flight
+
 i18n
     <script
         src="https://assets.gumroad.com/assets/i18n/en-f172180106d485354ea6d0555f2db456dbe92d77711998bd815c5a6956e01dda.js"
