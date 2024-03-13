@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to dashboard_path
     else
-      render("new")
+      render "new"
     end
   end
 
@@ -19,5 +19,9 @@ class UsersController < ApplicationController
       :email,
       :password,
     )
+  end
+
+  def set_default_body_class
+    @body_class = "onboarding-page"
   end
 end

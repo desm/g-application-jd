@@ -17,7 +17,6 @@ export const createLink = async () => {
         subscription_duration: null,
       },
     }),
-    // referrer: 'https://app.gumroad.com/products/new',
     referrer: 'http://localhost/products/new',
     referrerPolicy: 'strict-origin-when-cross-origin',
     mode: 'cors',

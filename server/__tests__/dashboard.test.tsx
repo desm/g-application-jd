@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Dashboard from '../app/javascript/bundles/Dashboard/components/Dashboard';
+import Dashboard from '../app/javascript/bundles/Dashboard';
 
 describe('Dashboard', () => {
   it('should contain a "create product" link', async () => {

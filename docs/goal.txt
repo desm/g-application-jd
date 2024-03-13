@@ -1,7 +1,1 @@
-- deploy staging and production environments
-
-- github workflow
-    run all tests
-    deploy to staging
-    run smoke tests
-    deploy to production
+get "Next: Customize" button to work

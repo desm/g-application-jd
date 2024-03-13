@@ -59,7 +59,7 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
           <a href="/balance" title="Payouts">
             <span className="icon icon-solid-currency-dollar"></span>Payouts
           </a>
-          <a href="#https://discover.gumroad.com" title="Discover">
+          <a href="#https://discover.gumroad.jacquesdesmarais.dev" title="Discover">
             <span className="icon icon-solid-search"></span>Discover
           </a>
           <a href="/library" title="Library">
@@ -67,7 +67,7 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
           </a>
         </section>
         <footer>
-          <a href="#https://help.gumroad.com" title="Help">
+          <a href="#https://help.gumroad.jacquesdesmarais.dev" title="Help">
             <span className="icon icon-book-half"></span>Help
           </a>
           <a href="/settings" title="Settings">
@@ -92,7 +92,7 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
               }}
             >
               <div role="menu">
-                <a role="menuitem" href="#https://9078562000866.gumroad.com/">
+                <a role="menuitem" href="#https://9078562000866.gumroad.jacquesdesmarais.dev/">
                   <span className="icon icon-shop-window-fill"></span>Profile
                 </a>
                 <a role="menuitem" href="/affiliates">

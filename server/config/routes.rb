@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get "products" => "products#index"
+  get "products/new"
+  get "products/:id/edit" => "products#edit" # edit_product_path
+
   post "links" => "links#create"
   root "articles#index"
 
-  get "hello_world", to: "hello_world#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
