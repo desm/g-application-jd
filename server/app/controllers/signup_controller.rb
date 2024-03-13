@@ -1,4 +1,6 @@
 class SignupController < ApplicationController
+  require_unauthenticated_access
+
   def new
     @user = User.new
   end
@@ -9,7 +11,8 @@ class SignupController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to dashboard_path
+      start_new_session_for @user
+      redirect_to root_url
     else
       flash[:error] = @user.errors.first.full_message
       redirect_to signup_path
@@ -20,7 +23,7 @@ class SignupController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :email,
+      :email_address,
       :password,
     )
   end

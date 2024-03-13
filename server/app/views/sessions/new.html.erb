@@ -1,15 +1,12 @@
 <div class="modals-container" style="display: contents">
   <div class="modal gr-auth showing squished" style="display: contents">
-    <main class="signup-form">
+    <main class="login-form">
       <header class="header">
         <a class="wordmark logo-full" href="https://gumroad.jacquesdesmarais.dev"></a>
         <div class="actions">
-          <a href="/login">Log in</a>
+          <a href="/signup">Sign up</a>
         </div>
-        <h1>
-          Join over 168,436 creators who have earned over $926,913,252 on Gumroad selling digital products and
-          memberships.
-        </h1>
+        <h1>Log in</h1>
       </header>
       <div class="input-group">
         <section style="display: grid; grid-gap: var(--spacer-6); padding-bottom: var(--spacer-7)">
@@ -66,37 +63,27 @@
             </form>
           </div>
         </section>
-        <%= form_with url: signup_path, id: "user_form" do |form| %>
-        <section>
+        <%= form_with url: "/login.json", id: "login-form", autocomplete: "off" do |form| %>
+        <section class="js-classic-auth">
           <div class="divider" role="separator">
             <span>or</span>
           </div>
           <fieldset>
             <legend>
-              <label>Email</label>
+              <label> Email </label>
             </legend>
-            <input class="required" tabindex="1" type="email" name="user[email_address]" id="user_email" />
+            <input class="required" tabindex="1" type="email" name="user[login_identifier]" id="user_email" />
           </fieldset>
           <fieldset>
             <legend>
-              <label>Password</label>
+              <label> Password </label>
+              <a class="js-show-forgot-password-form-trigger" href="#">Forgot your password?</a>
             </legend>
             <input class="password required" tabindex="2" type="password" name="user[password]" id="user_password" />
           </fieldset>
-          <!-- <input
-              value="on"
-              autocomplete="off"
-              type="hidden"
-              name="user[user_was_explicitly_displayed_a_terms_notice]"
-            /> -->
-          <button name="button" type="submit" id="submit_button" class="js-signup-button primary">
-            Create account
-          </button>
-          <p class="terms">
-            You agree to our <a href="/terms">Terms Of Use</a> and <a href="/privacy">Privacy Policy</a>.
-          </p>
+          <button class="primary js-login-button" id="submit_button">Login</button>
+          <div class="js-recaptcha" data-sitekey="6LcSj_____________________________z85cLO" id="signupRecaptcha"></div>
         </section>
-        <div class="js-recaptcha" data-sitekey="6LcSj_____________________________z85cLO" id="signupRecaptcha"></div>
         <% end %>
       </div>
     </main>
@@ -106,14 +93,13 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementById('user_form');
+    var form = document.getElementById('login-form');
     var submitButton = document.getElementById('submit_button');
 
     submitButton.addEventListener('click', function (event) {
-      if (!validateForm()) {
-        event.preventDefault(); // Prevent form submission
-      } else {
-        form.setAttribute('novalidate', true); // turn off browser default validation
+      event.preventDefault(); // Prevent form submission
+      if (validateForm()) {
+        submitForm();
       }
     });
 
@@ -136,6 +122,38 @@
       }
 
       return true; // Form is valid
+    }
+
+    function submitForm() {
+      // Get form data
+      var formData = new FormData(form);
+
+      // Convert form data to URL encoded string
+      var urlEncodedFormData = new URLSearchParams(formData).toString();
+
+      // Create new XMLHttpRequest object
+      var xhr = new XMLHttpRequest();
+
+      // Configure request
+      xhr.open('POST', '/login.json', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+      // Handle response
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          window.location.href = '/';
+        } else {
+          console.error('Request failed with status code:', xhr.status);
+        }
+      };
+
+      // Handle error
+      xhr.onerror = function () {
+        console.error('Request failed');
+      };
+
+      // Send request with URL encoded form data
+      xhr.send(urlEncodedFormData);
     }
   });
 </script>

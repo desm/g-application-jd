@@ -35,6 +35,11 @@
       Webflow.push(function() {
         $(document).ready(function() {
           const _sref = document.referrer ? new URL(document.referrer).host.toLowerCase() : null;
+          $.ajaxSetup({
+            xhrFields: {
+              withCredentials: true
+            }
+          });
           $.get(`https://app.gumroad.jacquesdesmarais.dev/session_info`, function(data) {
             console.log(data);
             console.log(data.is_signed_in);

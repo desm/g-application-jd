@@ -5,15 +5,17 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root "signup#new" # todo: change to root "login#new"
+  # used by www to show either "Login | Start Selling" buttons VS "Dashboard" buttons
+  get "session_info" => "session_info#index"
 
-  # todo: add login controller
+  root "dashboard#index"
+
+  get "login", to: "sessions#new"
+  post "login.json", to: "sessions#create"
+  get "logout", to: "sessions#destroy"
 
   get "signup", to: "signup#new"
   post "signup", to: "signup#create"
-
-  # used by www to show either "Login | Start Selling" buttons VS "Dashboard" buttons
-  get "session_info" => "session_info#index"
 
   # Dashboard
   get "dashboard", to: "dashboard#index"

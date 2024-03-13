@@ -8,3 +8,9 @@ rails generate model link \
     release_date:datetime \
     subscription_duration:string
 
+rails generate model session \
+    user:references \
+    token:string \
+    ip_address:string \
+    user_agent:string \
+    last_active_at:datetime
