@@ -1,0 +1,9 @@
+
+in collabs https://app.gumroad.com/collaborators
+    the Delete button
+        does not prompt for confirmation
+        does not warn what will happen
+
+going to /products/collabs
+    takes 60s, then something times out and shows page
+

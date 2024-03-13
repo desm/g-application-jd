@@ -1,0 +1,38 @@
+# https://github.com/hyperupcall/autoenv
+
+# reloads this file
+alias reload="cd $(pwd)"
+
+export AWS_PROFILE=default
+
+alias up="_pre-up && docker-compose up -d"
+  alias _pre-up="_rebuild-appserver-image && _copy-gemfiles-from-appserver"
+  alias _rebuild-appserver-image="docker-compose build appserver"
+  alias _copy-gemfiles-from-appserver="docker run --rm gumroad-jd_appserver bash -i -c 'cd ~/app && tar czf - Gemfile Gemfile.lock' | tar -C ./server -xzf -"
+
+alias up-sleep="_pre-up && docker-compose -f docker-compose.yml -f docker-compose-sleep.yml up -d"
+
+alias logs="docker-compose logs -f --tail 100 appserver"
+
+alias down="docker-compose down"
+
+alias connect="docker-compose exec appserver bash"
+
+alias connect-root="docker-compose exec --workdir /root --user root appserver bash"
+
+alias build-production="docker build -f copilot/app/Dockerfile -t 711112755670.dkr.ecr.us-east-1.amazonaws.com/sample/app:latest ./server"
+
+if [ -e server/config/master.key ]; then
+  alias deploy-staging="RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy --name app --name www --env staging"
+  alias deploy-production="RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy --name app --name www --env production"
+else
+  alias deploy-staging="echo \"the deploy-staging alias was not set up because it requires the server/config/master.key file\""
+  alias deploy-production="echo \"the deploy-production alias was not set up because it requires the server/config/master.key file\""
+fi
+
+# usage: get {url} {output_dir}
+get() {
+  local _href=$1
+  local _output_dir=$2
+  curl --remote-name --output-dir "$_output_dir" "$_href"
+}

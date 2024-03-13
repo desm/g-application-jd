@@ -28,23 +28,23 @@
         n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
       }(window, document);
     </script>
-  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="images/favicon.ico?v=3" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
   <script type="text/javascript">
       var Webflow = Webflow || [];
       Webflow.push(function() {
         $(document).ready(function() {
           const _sref = document.referrer ? new URL(document.referrer).host.toLowerCase() : null;
-          $.get(`https://desm.github.io/gumroad-json/users/session_info/not_signed_in/`, function(data) {
+          $.get(`http://localhost:8000/session_info`, function(data) {
             console.log(data);
             console.log(data.is_signed_in);
             if (data.is_signed_in) {
               console.log("signed in");
               $("a.nav-link.hidden-login").attr('style', 'display: none !important');
               $("a.nav-link.hidden-sign-up .nav-link-text").text("Dashboard");
-              $("a.nav-link.hidden-sign-up").attr("href", "https://app.gumroad.jacquesdesmarais.dev");
+              $("a.nav-link.hidden-sign-up").attr("href", "http://localhost:8000");
               $("a.nav-link.sign-up").attr('style', 'transform: translateY(0)');
-              $("a.nav-link.sign-up").attr("href", "https://app.gumroad.jacquesdesmarais.dev");
+              $("a.nav-link.sign-up").attr("href", "http://localhost:8000/dashboard");
               $("a.nav-link.sign-up div").text("Dashboard");
               document.getElementById("discover").href = "https://discover.gumroad.jacquesdesmarais.dev/";
             } else {
@@ -107,10 +107,10 @@
         </a>
       </nav>
       <div class="nav-menu-secondary">
-        <a href="#" class="nav-link log-in w-inline-block">
+        <a href="http://localhost:8000" class="nav-link log-in w-inline-block">
           <div>Login</div>
         </a>
-        <a href="#" class="nav-link sign-up w-inline-block">
+        <a href="http://localhost:8000" class="nav-link sign-up w-inline-block">
           <div class="nav-link-label-signup">Start Selling</div>
         </a>
       </div>

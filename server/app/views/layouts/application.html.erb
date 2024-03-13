@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Gumroad</title>
+    <title><%= yield(:title).blank? ? "Gumroad" : yield(:title) %></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application" %>
     <%= javascript_pack_tag 'client-bundle' %>
+    <%= favicon_link_tag 'favicon.ico' %>
   </head>
   <body class="<%= @body_class %>" id="app">
     <div

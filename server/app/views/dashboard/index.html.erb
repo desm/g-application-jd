@@ -1,2 +1,5 @@
-<%= react_component("Nav", props: { avatar_img: asset_path("gumroad-default-avatar-5.png") }, prerender: true, html_options: [["style", "display: contents;"]]) %>
+<% content_for :title do %>
+Home
+<% end %>
+<%= react_component("Nav", props: @props[:Nav], prerender: true, html_options: [["style", "display: contents;"]]) %>
 <%= react_component("Dashboard", props: {}, prerender: true, html_options: [["style", "display: contents;"]]) %>

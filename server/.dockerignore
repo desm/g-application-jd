@@ -40,6 +40,10 @@
 
 /node_modules/
 
+/.idea/
+/copilot/
+/docs/
+/webflow/
 .autoenv
 .dockerignore
 .gitignore

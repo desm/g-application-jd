@@ -24,24 +24,20 @@ To make use of these aliases, you can either:
 Note that these commands are meant to be used from your local shell.
 They are not meant to be used inside docker containers.
 
-| Command      | Description                                                                                                                               |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| up           | Starts all services needed for development: Rails server, MySQL server, Adminer DB admin tool                                             |
-| up-sleep     | Same as `up` except that the appserver sleeps instead of running the Rails server                                                         |
-| down         | Shortcut for `docker-compose down`                                                                                                        |
-| connect      | Opens a shell in the appserver container                                                                                                  |
-| connect-root | Opens a **root** shell in the appserver container                                                                                         |
-| reload       | Reloads the `.autoenv` file, if you are using [autoenv](https://github.com/hyperupcall/autoenv?tab=readme-ov-file#installation-automated) |
+| Command              | Description                                                                                                                               |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| up                   | Starts all services needed for development: Rails server, MySQL server, Adminer DB admin tool, nginx                                      |
+| up-sleep             | Same as `up` except that the appserver sleeps instead of running the Rails server                                                         |
+| logs                 | Tails the appserver logs                                                                                                                  |
+| down                 | Shortcut for `docker-compose down`                                                                                                        |
+| connect              | Opens a shell in the appserver container                                                                                                  |
+| connect-root         | Opens a **root** shell in the appserver container                                                                                         |
+| build-production \*  | Builds the Docker image used in staging & production. Not required before deploying                                                       |
+| deploy-staging \*    | Deploys to the staging env using AWS Copilot                                                                                              |
+| deploy-production \* | Deploys to the production env using AWS Copilot                                                                                           |
+| reload               | Reloads the `.autoenv` file, if you are using [autoenv](https://github.com/hyperupcall/autoenv?tab=readme-ov-file#installation-automated) |
 
-### Additional Commands
-
-These commands require the `config/master.key` file:
-
-| Command           | Description                             |
-| ----------------- | --------------------------------------- |
-| build-staging     | Builds the staging Docker container     |
-| deploy-staging    | Deploys to the "staging" environment    |
-| deploy-production | Deploys to the "production" environment |
+\*: these commands require the `server/config/master.key` file to be present.
 
 ## Development
 
@@ -51,26 +47,26 @@ _Configure MySQL_
 
 ### Start Services
 
-Start the services needed for development: Ruby on Rails, MySQL, and Adminer (a DB management tool).
+Start the services needed for development: Ruby on Rails, MySQL, Adminer (a DB management tool), nginx.
 
 ```shell
 $ up
 
 $ docker-compose ps
-       Name                     Command               State                                         Ports
-------------------------------------------------------------------------------------------------------------------------------------------------
-server_appserver_1   ./bin/dev                        Up      0.0.0.0:8000->3000/tcp,:::8000->3000/tcp, 0.0.0.0:3035->3035/tcp,:::3035->3035/tcp
-server_db_1          docker-entrypoint.sh --def ...   Up      3306/tcp, 33060/tcp
-server_adminer_1     entrypoint.sh php -S [::]: ...   Up      0.0.0.0:8001->8080/tcp,:::8001->8080/tcp
+         Name                       Command               State                                         Ports
+----------------------------------------------------------------------------------------------------------------------------------------------------
+gumroad-jd_appserver_1   ./bin/dev                        Up      0.0.0.0:8000->3000/tcp,:::8000->3000/tcp, 0.0.0.0:3035->3035/tcp,:::3035->3035/tcp
+gumroad-jd_db_1          docker-entrypoint.sh --def ...   Up      3306/tcp, 33060/tcp
+gumroad-jd_adminer_1     entrypoint.sh php -S [::]: ...   Up      0.0.0.0:8001->8080/tcp,:::8001->8080/tcp
+gumroad-jd_www_1         /docker-entrypoint.sh ngin ...   Up      0.0.0.0:8080->80/tcp,:::8080->80/tcp
 ```
 
 Here are some links that should work once the services are running:
 
-- http://localhost:8000/ - Ruby on Rails app
-- http://localhost:8000/hello_world - Example React on Rails page
-- http://localhost:8001/?server=db&username=root - Adminer DB Management Tool (see database.yml for password)
+- http://localhost:8080/ - Gumroad web site, made with Webflow
 - http://localhost:8000/signup - Gumroad signup page
 - http://localhost:8000/dashboard - Gumroad dashboard page
+- http://localhost:8001/?server=db&username=root - DB Admin Tool (see database.yml "default" section for credentials)
 
 ### Running rails CLI
 
@@ -83,6 +79,8 @@ $ connect
 ### Adding Gems
 
 ```shell
+$ connect
+
 # Add the gem from within the container. Use `--skip-install` in order to update the Gemfile only
 (appserver) $ bundle add {gem} --skip-install
 
@@ -91,17 +89,19 @@ $ connect
 # Bring all running containers down
 $ docker-compose down
 
-# Run "up" again
+# Run "up" again; this will INSTALL the Gem in the Docker image used for Development
 $ up
 ```
-
-"up" will notice that the `Gemfile` changed and will run `bundle install` in the "appserver" Docker image before starting the services.
 
 ### Running Tests
 
 ```shell
+$ connect
+
 (appserver) $ rails test; # runs tests in the 'test' dir (except for 'test/system'): unit, functional, integration
+
 (appserver) $ rails test:system; # runs tests under 'test/system': headless browser tests
+
 (appserver) $ jest; # runs tests under '__tests__' dir: frontend unit tests
 ```
 
@@ -112,6 +112,8 @@ Note: running 'jest' does not do type checking.
 One way to **type check** all TypeScript code is to run the following command:
 
 ```shell
+$ connect
+
 (appserver) $ shakapacker
 ```
 

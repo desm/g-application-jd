@@ -4,17 +4,35 @@ import { useState, useEffect, useRef } from 'react';
 
 export interface Props {
   avatar_img: string;
+  highlight: string;
 }
 
 // Note, you need to declare the `FunctionComponent` type so that it complies
 // with `ReactOnRails.register` type.
 const Nav: FunctionComponent<Props> = (props: Props) => {
+  /**
+   * concerns the styling of the Profile/Affiliates/Logout popup
+   */
   const nav = useRef();
 
   const [translateXValue, setTranslateXValue] = useState(0);
 
   useEffect(() => {
     setTranslateXValue((nav.current as any).clientWidth);
+  }, []);
+
+  /**
+   * concerns highlighting the current page in the Nav
+   */
+  const refs = {
+    Home: useRef<HTMLAnchorElement | null>(null),
+    Products: useRef<HTMLAnchorElement | null>(null),
+  };
+
+  useEffect(() => {
+    if (refs[props.highlight]?.current) {
+      refs[props.highlight].current.setAttribute('aria-current', 'page');
+    }
   }, []);
 
   return (
@@ -33,10 +51,10 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
           </a>
         </header>
         <section>
-          <a aria-current="page" href="/dashboard" title="Home">
+          <a href="/dashboard" title="Home" ref={refs.Home}>
             <span className="icon icon-shop-window-fill"></span>Home
           </a>
-          <a href="/products" title="Products">
+          <a href="/products" title="Products" ref={refs.Products}>
             <span className="icon icon-archive-fill"></span>Products
           </a>
           <a href="/checkout/discounts" title="Checkout">
@@ -76,11 +94,7 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
           <details className="popover toggle top">
             <summary>
               <span aria-haspopup="true" aria-expanded="false">
-                <img
-                  className="user-avatar"
-                  src={ props.avatar_img }
-                  alt="Your avatar"
-                />
+                <img className="user-avatar" src={props.avatar_img} alt="Your avatar" />
                 jdesma@gmail.com
               </span>
             </summary>

@@ -156,10 +156,10 @@ COPY --from=build /usr/local/bundle /usr/local/bundle
 # Copy application, assets, node_modules
 COPY --from=build /rails /rails
 
-RUN mv docker-entrypoint.sh /rails/bin/docker-entrypoint \
-    && mv start-sshd.sh / \
+RUN mv production/docker-entrypoint.sh /rails/bin/docker-entrypoint \
+    && mv production/start-sshd.sh / \
     && mkdir /root/.ssh/ \
-    && mv id_rsa_gumroad.pub /root/.ssh/authorized_keys \
+    && mv production/id_rsa_gumroad.pub /root/.ssh/authorized_keys \
     && chmod 700 /root/.ssh \
     && chmod 600 /root/.ssh/authorized_keys \
     && useradd rails --create-home --shell /bin/bash \
