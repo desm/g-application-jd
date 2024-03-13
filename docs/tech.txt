@@ -1,6 +1,11 @@
 ror 13.4.0
     React on Rails
 
+Flight
+    https://github.com/flightjs/flight
+    seems to be used on "login" and "signup" pages
+    not sure if I will have the time to integrate Flight into those pages
+
 i18n
     <script
         src="https://assets.gumroad.com/assets/i18n/en-f172180106d485354ea6d0555f2db456dbe92d77711998bd815c5a6956e01dda.js"

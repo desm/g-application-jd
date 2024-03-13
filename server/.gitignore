@@ -44,3 +44,4 @@ yarn-debug.log*
 # temp files used for comparing HTML sources
 app/javascript/bundles/a.html
 app/javascript/bundles/b.html
+app/javascript/bundles/c.html
