@@ -1,10 +1,1 @@
-users and user sessions
-    user has 1 to many sessions
-        create session model
-
-if user is currently logged in
-    going to
-        /login
-        /signup
-    redirects to
-        /dashboard
+show error message when login with incorrect password

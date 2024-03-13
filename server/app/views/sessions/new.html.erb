@@ -10,11 +10,7 @@
       </header>
       <div class="input-group">
         <section style="display: grid; grid-gap: var(--spacer-6); padding-bottom: var(--spacer-7)">
-          <% if flash[:error] %>
-          <div class="error-indicator danger" role="alert"><%= flash[:error] %></div>
-          <% else %>
           <div class="error-indicator danger" role="alert" style="display: none"></div>
-          <% end %>
           <div style="display: grid; gap: var(--spacer-3); grid-template-rows: 1fr">
             <form class="button_to" method="post" action="/users/auth/facebook?referer=%2Fsignup">
               <button class="button button-facebook" style="width: 100%" type="submit">Facebook</button
@@ -143,13 +139,17 @@
         if (xhr.status >= 200 && xhr.status < 300) {
           window.location.href = '/';
         } else {
-          console.error('Request failed with status code:', xhr.status);
+          const el = document.querySelector('.error-indicator');
+          el.innerHTML = 'Incorrect username or password.';
+          el.style.display = '';
         }
       };
 
       // Handle error
       xhr.onerror = function () {
-        console.error('Request failed');
+        const el = document.querySelector('.error-indicator');
+        el.innerHTML = 'Something went wrong. Please try again later.';
+        el.style.display = '';
       };
 
       // Send request with URL encoded form data
