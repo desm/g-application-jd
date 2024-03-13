@@ -155,5 +155,6 @@ $ connect
 
 ### Tools
 
+- [AWS Copilot CLI](https://aws.github.io/copilot-cli/docs/overview/)
 - [Adminer - DB Management Tool](https://www.adminer.org/)
 - [Debian Bookworm Packages (for Docker images)](https://packages.debian.org/bookworm/)

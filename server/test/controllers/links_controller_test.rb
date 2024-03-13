@@ -7,6 +7,7 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   # end
 
   test "should return a success object when a request to create a Link is received" do
+    sign_in :one
     post links_url, params: {
                       "link": {
                         "is_physical": false,
