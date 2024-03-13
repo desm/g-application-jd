@@ -1,11 +1,6 @@
 require "test_helper"
 
 class LinksControllerTest < ActionDispatch::IntegrationTest
-  # test "should get create" do
-  #   get links_create_url
-  #   assert_response :success
-  # end
-
   test "should return a success object when a request to create a Link is received" do
     sign_in :one
     post links_url, params: {
