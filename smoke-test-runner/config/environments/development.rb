@@ -25,7 +25,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}",
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -73,8 +73,4 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
-
-  config.hosts = ["localhost", "laptop", "app.gumroad.local.jacquesdesmarais.dev"]
-
-  config.access_control_allow_origin_for_www = "http://localhost:8080"
 end

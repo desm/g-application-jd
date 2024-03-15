@@ -5,40 +5,21 @@
 #   gem "sqlite3"
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: abc
-  host: db
+  timeout: 5000
 
 development:
   <<: *default
-  database: appserver_development
+  database: storage/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: appserver_test
+  database: storage/test.sqlite3
 
-# CREATE USER 'admin' IDENTIFIED BY 'password';
-# GRANT ALL PRIVILEGES ON database_name.* TO 'admin'@'%';
-
-production_local:
+production:
   <<: *default
-  database: appserver_production
-
-production: &production
-  <<: *default
-  host: gumroad-production-addonsstack-1en6-appdbdbcluster-dqjn21zbdjxs.cluster-cbc0ceux1sr1.us-east-1.rds.amazonaws.com
-  database: appserver_production
-  username: admin
-  password: <%= Rails.application.credentials.mysql_admin_password_production %>
-
-staging:
-  <<: *production
-  host: gumroad-staging-addonsstack-1l9ratd-appdbdbcluster-ei3mr2kfcjnq.cluster-cbc0ceux1sr1.us-east-1.rds.amazonaws.com
-  database: appserver_staging
-  password: <%= Rails.application.credentials.mysql_admin_password_staging %>
+  database: storage/production.sqlite3
