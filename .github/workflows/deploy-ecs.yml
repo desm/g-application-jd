@@ -15,7 +15,9 @@ name: Deploy to Amazon ECS
 on:
   push:
     branches:
-      - automate-smoke-test
+      - main
+    tags:
+      - deploy-*
 
 env:
   AWS_REGION: us-east-1                                 # set this to your preferred AWS region, e.g. us-west-1
@@ -123,7 +125,7 @@ jobs:
     services:
       selenium-standalone:
         image: selenium/standalone-chrome:4.18.1-20240224
-        options: --shm-size=2gb
+        options: --shm-size=2gb # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontaineroptions
         ports:
           - 4444:4444
 
