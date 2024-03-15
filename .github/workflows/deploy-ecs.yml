@@ -15,7 +15,7 @@ name: Deploy to Amazon ECS
 on:
   push:
     branches:
-      - test-automated-deploy-to-staging
+      - non-existant-branch-for-now
 
 env:
   AWS_REGION: us-east-1                                               # set this to your preferred AWS region, e.g. us-west-1

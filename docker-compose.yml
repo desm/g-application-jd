@@ -55,10 +55,10 @@ services:
     stop_signal: SIGINT
 
   selenium-standalone:
-    image: selenium/standalone-chrome:4.18.1-20240224
+    image: selenium/standalone-chrome:4.18.1-20240224 # https://github.com/SeleniumHQ/docker-selenium?tab=readme-ov-file#standalone
     ports:
       - 4444:4444
-    shm_size: 2g
+    shm_size: 2g # https://docs.docker.com/compose/compose-file/05-services/#shm_size
 
 volumes:
   db-data:
