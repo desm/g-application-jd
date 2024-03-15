@@ -51,12 +51,11 @@ jobs:
         env:
           IMAGE: smoke-test-runner:${{ github.sha }}
         run: |
-          docker network ls
-          docker ps
-          docker ps --format '{{ .Names }}' --filter name=selenium
-          docker inspect $(docker ps --format '{{ .Names }}' --filter name=selenium)
-          # docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
-          # docker run --rm --volume ./server:/app --workdir /app --user runner --network selenium-standalone $IMAGE ./bin/rails test:system
+          docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
+          echo "===============  ===============  ===============  ===============  ==============="
+          echo docker run --rm --volume ./server:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
+          echo "===============  ===============  ===============  ===============  ==============="
+          docker run --rm --volume ./server:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
 
     services:
       selenium-standalone:
