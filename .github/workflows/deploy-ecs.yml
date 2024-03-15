@@ -134,6 +134,9 @@ jobs:
     environment: test
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: "Configure AWS Credentials" # Action for GitHub Actions
         uses: aws-actions/configure-aws-credentials@v4.0.2 # https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
         with:
