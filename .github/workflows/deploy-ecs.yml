@@ -52,8 +52,9 @@ jobs:
           IMAGE: smoke-test-runner:${{ github.sha }}
         run: |
           docker network ls
+          docker inspect selenium-standalone
           # docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
-          # docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./bin/rails test:system
+          # docker run --rm --volume ./server:/app --workdir /app --user runner --network selenium-standalone $IMAGE ./bin/rails test:system
 
     services:
       selenium-standalone:
