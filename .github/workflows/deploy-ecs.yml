@@ -43,6 +43,7 @@ jobs:
         run: |
           docker build -f docker-compose/app/Dockerfile -t $IMAGE ./server
           ls -al
+          docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE ls -al
           docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE yarn install
           docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE ./node_modules/.bin/jest
           docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE ./bin/rails test
