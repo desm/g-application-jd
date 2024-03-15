@@ -15,21 +15,27 @@ name: Deploy to Amazon ECS
 on:
   push:
     branches:
-      - non-existant-branch-for-now
+      - main
+    tags:
+      - deploy-*
 
 env:
-  AWS_REGION: us-east-1                                               # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: gumroad/app                                         # set this to your Amazon ECR repository name
-  ECS_SERVICE: gumroad-staging-app-Service-BIz1a0vbXVft               # set this to your Amazon ECS service name
-  ECS_CLUSTER: gumroad-staging-Cluster-OnUjaD06brDx                   # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: .aws/task-definition.json                      # set this to the path to your Amazon ECS task definition
-                                                                      # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: app                                                 # set this to the name of the container in the
-                                                                      # containerDefinitions section of your task definition
+  AWS_REGION: us-east-1                                 # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: gumroad/app                           # set this to your Amazon ECR repository name
+  ECS_SERVICE: gumroad-staging-app-Service-BIz1a0vbXVft # set this to your Amazon ECS service name
+  ECS_CLUSTER: gumroad-staging-Cluster-OnUjaD06brDx     # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: .aws/task-definition.json        # set this to the path to your Amazon ECS task definition
+                                                        # file, e.g. .aws/task-definition.json
+  CONTAINER_NAME: app                                   # set this to the name of the container in the
+                                                        # containerDefinitions section of your task definition
+
+  ECS_SERVICE_PROD: gumroad-production-app-Service-FJcOhGEYnUrU
+  ECS_CLUSTER_PROD: gumroad-production-Cluster-MxEOSzI3XQCt
+  ECS_TASK_DEFINITION_PROD: .aws/task-definition-prod.json
 
 jobs:
-  deploy:
-    name: Deploy
+  test:
+    name: Test
     runs-on: ubuntu-latest
     environment: test
 
@@ -37,8 +43,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # - name: Configure AWS credentials
-      #   uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83 
+      - name: Run tests
+        env:
+          IMAGE: test:${{ github.sha }}
+        run: |
+          docker build -f github-workflows/Dockerfile -t $IMAGE ./server
+          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE yarn install
+          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./node_modules/.bin/jest
+          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./bin/rails test
+          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./bin/rails test:system
+
+  deploy-staging:
+    name: Deploy to staging
+    needs: test
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: "Configure AWS Credentials" # Action for GitHub Actions
         uses: aws-actions/configure-aws-credentials@v4.0.2 # https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
         with:
@@ -77,4 +101,67 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
+
+  smoke-test:
+    name: Smoke test staging
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run smoke test
+        env:
+          IMAGE: smoke-test-runner:${{ github.sha }}
+        run: |
+          docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
+          NETWORK=$(docker network ls --format '{{ .Name }}' --filter name=github_network)
+          echo "NETWORK is: $NETWORK"
+          docker run --rm --volume ./smoke-test-runner:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
+
+    services:
+      selenium-standalone:
+        image: selenium/standalone-chrome:4.18.1-20240224
+        options: --shm-size=2gb # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontaineroptions
+        ports:
+          - 4444:4444
+
+  deploy-production:
+    name: Deploy to production
+    needs: smoke-test
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: "Configure AWS Credentials" # Action for GitHub Actions
+        uses: aws-actions/configure-aws-credentials@v4.0.2 # https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
+        with:
+          task-definition: ${{ env.ECS_TASK_DEFINITION_PROD }}
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_PROD }}
+          cluster: ${{ env.ECS_CLUSTER_PROD }}
           wait-for-service-stability: true
