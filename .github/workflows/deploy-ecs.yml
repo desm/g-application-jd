@@ -52,10 +52,7 @@ jobs:
           IMAGE: smoke-test-runner:${{ github.sha }}
         run: |
           docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
-          echo "===============  ===============  ===============  ===============  ==============="
-          echo docker run --rm --volume ./server:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
-          echo "===============  ===============  ===============  ===============  ==============="
-          docker run --rm --volume ./server:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
+          docker run --rm --volume ./smoke-test-runner:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
 
     services:
       selenium-standalone:
