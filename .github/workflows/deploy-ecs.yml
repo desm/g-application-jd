@@ -42,6 +42,7 @@ jobs:
           IMAGE: test:${{ github.sha }}
         run: |
           docker build -f docker-compose/app/Dockerfile -t $IMAGE ./server
+          docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE yarn install
           docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE ./node_modules/.bin/jest
           docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE ./bin/rails test
           docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE ./bin/rails test:system
@@ -94,6 +95,7 @@ jobs:
 
   smoke-test:
     name: Smoke Test Staging
+    needs: deploy
     runs-on: ubuntu-latest
     environment: test
     container: smoke-test-runner:${{ github.sha }} # was built above
