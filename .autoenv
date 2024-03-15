@@ -18,6 +18,8 @@ alias down="docker compose down"
 
 alias connect="docker compose exec appserver bash"
 
+alias connect-smoke="docker compose exec smoke-test-runner bash"
+
 alias connect-root="docker compose exec --workdir /root --user root appserver bash"
 
 alias build-production="docker build -f copilot/app/Dockerfile -t 711112755670.dkr.ecr.us-east-1.amazonaws.com/sample/app:latest ./server"
