@@ -29,8 +29,7 @@ RUN apt-get update \
     vim-tiny
 
 COPY ./Gemfile ./Gemfile.lock /home/appserver/app/
-
-RUN chown appserver:appserver Gemfile Gemfile.lock
+RUN chown appserver:appserver /home/appserver/app/Gemfile /home/appserver/app/Gemfile.lock
 
 USER appserver
 WORKDIR /home/appserver/app
