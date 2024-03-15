@@ -52,13 +52,14 @@ Start the services needed for development: Ruby on Rails, MySQL, Adminer (a DB m
 ```shell
 $ up
 
-$ docker-compose ps
-         Name                       Command               State                                         Ports
-----------------------------------------------------------------------------------------------------------------------------------------------------
-gumroad-jd_appserver_1   ./bin/dev                        Up      0.0.0.0:8000->3000/tcp,:::8000->3000/tcp, 0.0.0.0:3035->3035/tcp,:::3035->3035/tcp
-gumroad-jd_db_1          docker-entrypoint.sh --def ...   Up      3306/tcp, 33060/tcp
-gumroad-jd_adminer_1     entrypoint.sh php -S [::]: ...   Up      0.0.0.0:8001->8080/tcp,:::8001->8080/tcp
-gumroad-jd_www_1         /docker-entrypoint.sh ngin ...   Up      0.0.0.0:8080->80/tcp,:::8080->80/tcp
+$ docker compose ps
+NAME                               IMAGE                                        COMMAND                  SERVICE               CREATED       STATUS       PORTS
+gumroad-jd-adminer-1               adminer:4.8.1-standalone                     "entrypoint.sh php -…"   adminer               3 hours ago   Up 3 hours   0.0.0.0:8001->8080/tcp, :::8001->8080/tcp
+gumroad-jd-appserver-1             gumroad-jd-appserver                         "./bin/dev"              appserver             3 hours ago   Up 3 hours   0.0.0.0:3035->3035/tcp, :::3035->3035/tcp, 0.0.0.0:8000->3000/tcp, :::8000->3000/tcp
+gumroad-jd-db-1                    mysql:8.0.36-debian                          "docker-entrypoint.s…"   db                    3 hours ago   Up 3 hours   3306/tcp, 33060/tcp
+gumroad-jd-selenium-standalone-1   selenium/standalone-chrome:4.18.1-20240224   "/opt/bin/entry_poin…"   selenium-standalone   3 hours ago   Up 3 hours   0.0.0.0:4444->4444/tcp, :::4444->4444/tcp, 5900/tcp
+gumroad-jd-smoke-test-runner-1     gumroad-jd-smoke-test-runner                 "sh -c 'while :; do …"   smoke-test-runner     3 hours ago   Up 3 hours   
+gumroad-jd-www-1                   nginx:bookworm                               "/docker-entrypoint.…"   www                   3 hours ago   Up 3 hours   0.0.0.0:8080->80/tcp, :::8080->80/tcp
 ```
 
 Here are some links that should work once the services are running:
@@ -144,6 +145,7 @@ $ connect
 
 ### Application
 
+- [GitHub - desm/gumroad-jd](https://github.com/desm/gumroad-jd)
 - [Docker and Docker Compose](https://docs.docker.com/reference/)
 - [Ruby](https://docs.ruby-lang.org/en/3.3/)
 - [Ruby on Rails](https://guides.rubyonrails.org/)
@@ -166,3 +168,4 @@ $ connect
 - [AWS Copilot CLI](https://aws.github.io/copilot-cli/docs/overview/)
 - [Adminer - DB Management Tool](https://www.adminer.org/)
 - [Debian Bookworm Packages (for Docker images)](https://packages.debian.org/bookworm/)
+- [GitHub Actions](https://docs.github.com/en/actions/quickstart)
