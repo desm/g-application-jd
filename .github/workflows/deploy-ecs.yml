@@ -37,6 +37,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Test
+        env:
+          IMAGE: test:${{ github.sha }}
+        run: |
+          docker build -f docker-compose/app/Dockerfile -t $IMAGE ./server
+          docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE ./node_modules/.bin/jest
+          docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE ./bin/rails test
+          docker run --rm --volume ./server:/app --workdir /app --user appserver $IMAGE ./bin/rails test:system
+
       - name: "Configure AWS Credentials" # Action for GitHub Actions
         uses: aws-actions/configure-aws-credentials@v4.0.2 # https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
         with:
@@ -48,33 +57,16 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
 
-      - name: Build and tag docker image
-        id: build-tag-image
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Build a docker container and
-          docker build -f copilot/app/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./server
-
-      - name: Run all tests except for smoke test
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./node_modules/.bin/jest
-          docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./bin/shakapacker
-          docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./bin/rails test
-          docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./bin/rails test:system
-
-      - name: Push image to Amazon ECR
-        id: push-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          # Push it to ECR so that it can
+          # push it to ECR so that it can
           # be deployed to ECS.
+          docker build -f copilot/app/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./server
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
@@ -100,18 +92,18 @@ jobs:
         run: |
           docker build -f docker-compose/app/Dockerfile -t smoke-test-runner:$IMAGE_TAG ./smoke-test-runner
 
-  # smoke-test:
-  #   name: Smoke Test Staging
-  #   runs-on: ubuntu-latest
-  #   environment: test
-  #   container: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  smoke-test:
+    name: Smoke Test Staging
+    runs-on: ubuntu-latest
+    environment: test
+    container: smoke-test-runner:${{ github.sha }} # was built above
 
-  #   steps:
-  #     - name: X
-  #       run: rails test:system
+    steps:
+      - name: Run smoke test
+        run: ./bin/rails test:system
 
-  #   services:
-  #     selenium-standalone:
-  #       image: selenium/standalone-chrome:4.18.1-20240224
-  #       ports:
-  #         - 4444:4444
+    services:
+      selenium-standalone:
+        image: selenium/standalone-chrome:4.18.1-20240224
+        ports:
+          - 4444:4444
