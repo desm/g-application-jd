@@ -18,14 +18,14 @@ on:
       - automate-smoke-test
 
 env:
-  AWS_REGION: us-east-1                                               # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: gumroad/app                                         # set this to your Amazon ECR repository name
-  ECS_SERVICE: gumroad-staging-app-Service-BIz1a0vbXVft               # set this to your Amazon ECS service name
-  ECS_CLUSTER: gumroad-staging-Cluster-OnUjaD06brDx                   # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: .aws/task-definition.json                      # set this to the path to your Amazon ECS task definition
-                                                                      # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: app                                                 # set this to the name of the container in the
-                                                                      # containerDefinitions section of your task definition
+  AWS_REGION: us-east-1                                 # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: gumroad/app                           # set this to your Amazon ECR repository name
+  ECS_SERVICE: gumroad-staging-app-Service-BIz1a0vbXVft # set this to your Amazon ECS service name
+  ECS_CLUSTER: gumroad-staging-Cluster-OnUjaD06brDx     # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: .aws/task-definition.json        # set this to the path to your Amazon ECS task definition
+                                                        # file, e.g. .aws/task-definition.json
+  CONTAINER_NAME: app                                   # set this to the name of the container in the
+                                                        # containerDefinitions section of your task definition
 
 jobs:
   deploy:
@@ -37,8 +37,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # - name: Configure AWS credentials
-      #   uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83 
       - name: "Configure AWS Credentials" # Action for GitHub Actions
         uses: aws-actions/configure-aws-credentials@v4.0.2 # https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
         with:
@@ -50,7 +48,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
 
-      - name: Build, tag, and push image to Amazon ECR
+      - name: Build Docker Image
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -60,21 +58,26 @@ jobs:
           # push it to ECR so that it can
           # be deployed to ECS.
           docker build -f copilot/app/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./server
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
-        with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.build-image.outputs.image }}
+      - name: Test
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG rails test
 
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
+  # smoke-test:
+  #   name: Smoke Test Staging
+  #   runs-on: ubuntu-latest
+  #   environment: test
+  #   container: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+  #   steps:
+  #     - name: X
+  #       run: rails test:system
+
+  #   services:
+  #     selenium-standalone:
+  #       image: selenium/standalone-chrome:4.18.1-20240224
+  #       ports:
+  #         - 4444:4444
