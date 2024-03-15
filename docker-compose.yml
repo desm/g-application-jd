@@ -42,5 +42,11 @@ services:
       - ./docker-compose/www/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./webflow/export:/usr/share/nginx/html
 
+  selenium-standalone:
+    image: selenium/standalone-chrome:4.18.1-20240224
+    ports:
+      - 4444:4444
+    shm_size: 2g
+
 volumes:
   db-data:

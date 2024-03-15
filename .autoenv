@@ -5,20 +5,20 @@ alias reload="cd $(pwd)"
 
 export AWS_PROFILE=default
 
-alias up="_pre-up && docker-compose up -d"
+alias up="_pre-up && docker compose up -d"
   alias _pre-up="_rebuild-appserver-image && _copy-gemfiles-from-appserver"
-  alias _rebuild-appserver-image="docker-compose build appserver"
-  alias _copy-gemfiles-from-appserver="docker run --rm gumroad-jd_appserver bash -i -c 'cd ~/app && tar czf - Gemfile Gemfile.lock' | tar -C ./server -xzf -"
+  alias _rebuild-appserver-image="docker compose build appserver"
+  alias _copy-gemfiles-from-appserver="docker run --rm gumroad-jd-appserver bash -i -c 'cd ~/app && tar czf - Gemfile Gemfile.lock' | tar -C ./server -xzf -"
 
-alias up-sleep="_pre-up && docker-compose -f docker-compose.yml -f docker-compose-sleep.yml up -d"
+alias up-sleep="_pre-up && docker compose -f docker-compose.yml -f docker-compose-sleep.yml up -d"
 
-alias logs="docker-compose logs -f --tail 100 appserver"
+alias logs="docker compose logs -f --tail 100 appserver"
 
-alias down="docker-compose down"
+alias down="docker compose down"
 
-alias connect="docker-compose exec appserver bash"
+alias connect="docker compose exec appserver bash"
 
-alias connect-root="docker-compose exec --workdir /root --user root appserver bash"
+alias connect-root="docker compose exec --workdir /root --user root appserver bash"
 
 alias build-production="docker build -f copilot/app/Dockerfile -t 711112755670.dkr.ecr.us-east-1.amazonaws.com/sample/app:latest ./server"
 

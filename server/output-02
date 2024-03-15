@@ -1,0 +1,306 @@
+while : ; do date >> output; RAILS_ENV=test rails test:smoke >> output; date >> output; done
+
+Thu Mar 14 17:50:28 UTC 2024
+
+Run options: --seed 26826
+
+# Running:
+
+..
+
+Finished in 7.858296s, 0.2545 runs/s, 1.7816 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:50:38 UTC 2024
+Thu Mar 14 17:50:38 UTC 2024
+
+Run options: --seed 26232
+
+# Running:
+
+..
+
+Finished in 8.223773s, 0.2432 runs/s, 1.7024 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:50:47 UTC 2024
+Thu Mar 14 17:50:47 UTC 2024
+
+Run options: --seed 41973
+
+# Running:
+
+..
+
+Finished in 7.887414s, 0.2536 runs/s, 1.7750 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:50:57 UTC 2024
+Thu Mar 14 17:50:57 UTC 2024
+
+Run options: --seed 16147
+
+# Running:
+
+..
+
+Finished in 7.466167s, 0.2679 runs/s, 1.8751 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:51:06 UTC 2024
+Thu Mar 14 17:51:06 UTC 2024
+
+Run options: --seed 3870
+
+# Running:
+
+..
+
+Finished in 7.949861s, 0.2516 runs/s, 1.7610 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:51:15 UTC 2024
+Thu Mar 14 17:51:15 UTC 2024
+
+Run options: --seed 49047
+
+# Running:
+
+[Screenshot Image]: /app/tmp/screenshots/failures_test_one.png
+F
+
+Failure:
+LoginTest#test_one [test/smoke/login_test.rb:34]:
+expected "/login" not to equal "/login"
+
+bin/rails test test/smoke/login_test.rb:9
+
+.
+
+Finished in 16.301516s, 0.1227 runs/s, 0.7361 assertions/s.
+2 runs, 12 assertions, 1 failures, 0 errors, 0 skips
+Thu Mar 14 17:51:33 UTC 2024
+Thu Mar 14 17:51:33 UTC 2024
+
+Run options: --seed 38439
+
+# Running:
+
+..
+
+Finished in 8.168836s, 0.2448 runs/s, 1.7138 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:51:42 UTC 2024
+Thu Mar 14 17:51:42 UTC 2024
+
+Run options: --seed 9640
+
+# Running:
+
+..
+
+Finished in 8.165966s, 0.2449 runs/s, 1.7144 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:51:52 UTC 2024
+Thu Mar 14 17:51:52 UTC 2024
+
+Run options: --seed 29595
+
+# Running:
+
+..
+
+Finished in 8.217640s, 0.2434 runs/s, 1.7037 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:52:01 UTC 2024
+Thu Mar 14 17:52:01 UTC 2024
+
+Run options: --seed 10156
+
+# Running:
+
+..
+
+Finished in 7.907249s, 0.2529 runs/s, 1.7705 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:52:11 UTC 2024
+Thu Mar 14 17:52:11 UTC 2024
+
+Run options: --seed 4696
+
+# Running:
+
+..
+
+Finished in 7.854079s, 0.2546 runs/s, 1.7825 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:52:20 UTC 2024
+Thu Mar 14 17:52:20 UTC 2024
+
+Run options: --seed 30005
+
+# Running:
+
+[Screenshot Image]: /app/tmp/screenshots/failures_test_one.png
+F
+
+Failure:
+LoginTest#test_one [test/smoke/login_test.rb:34]:
+expected "/login" not to equal "/login"
+
+bin/rails test test/smoke/login_test.rb:9
+
+.
+
+Finished in 15.911375s, 0.1257 runs/s, 0.7542 assertions/s.
+2 runs, 12 assertions, 1 failures, 0 errors, 0 skips
+Thu Mar 14 17:52:37 UTC 2024
+Thu Mar 14 17:52:37 UTC 2024
+
+Run options: --seed 59945
+
+# Running:
+
+..
+
+Finished in 8.460193s, 0.2364 runs/s, 1.6548 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:52:47 UTC 2024
+Thu Mar 14 17:52:47 UTC 2024
+
+Run options: --seed 12608
+
+# Running:
+
+[Screenshot Image]: /app/tmp/screenshots/failures_test_two.png
+F
+
+Failure:
+LoginTest#test_two [test/smoke/login_test.rb:72]:
+expected "/login" not to equal "/login"
+
+bin/rails test test/smoke/login_test.rb:47
+
+.
+
+Finished in 16.041365s, 0.1247 runs/s, 0.7481 assertions/s.
+2 runs, 12 assertions, 1 failures, 0 errors, 0 skips
+Thu Mar 14 17:53:05 UTC 2024
+Thu Mar 14 17:53:05 UTC 2024
+
+Run options: --seed 23693
+
+# Running:
+
+..
+
+Finished in 8.348863s, 0.2396 runs/s, 1.6769 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:53:14 UTC 2024
+Thu Mar 14 17:53:14 UTC 2024
+
+Run options: --seed 23509
+
+# Running:
+
+..
+
+Finished in 7.864046s, 0.2543 runs/s, 1.7803 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:53:24 UTC 2024
+Thu Mar 14 17:53:24 UTC 2024
+
+Run options: --seed 25264
+
+# Running:
+
+..
+
+Finished in 7.967040s, 0.2510 runs/s, 1.7572 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:53:33 UTC 2024
+Thu Mar 14 17:53:33 UTC 2024
+
+Run options: --seed 3302
+
+# Running:
+
+[Screenshot Image]: /app/tmp/screenshots/failures_test_two.png
+F
+
+Failure:
+LoginTest#test_two [test/smoke/login_test.rb:72]:
+expected "/login" not to equal "/login"
+
+bin/rails test test/smoke/login_test.rb:47
+
+.
+
+Finished in 17.402017s, 0.1149 runs/s, 0.6896 assertions/s.
+2 runs, 12 assertions, 1 failures, 0 errors, 0 skips
+Thu Mar 14 17:53:52 UTC 2024
+Thu Mar 14 17:53:52 UTC 2024
+
+Run options: --seed 25475
+
+# Running:
+
+..
+
+Finished in 8.918270s, 0.2243 runs/s, 1.5698 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:54:02 UTC 2024
+Thu Mar 14 17:54:02 UTC 2024
+
+Run options: --seed 16488
+
+# Running:
+
+..
+
+Finished in 8.470586s, 0.2361 runs/s, 1.6528 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:54:12 UTC 2024
+Thu Mar 14 17:54:12 UTC 2024
+
+Run options: --seed 9365
+
+# Running:
+
+..
+
+Finished in 8.400442s, 0.2381 runs/s, 1.6666 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:54:22 UTC 2024
+Thu Mar 14 17:54:22 UTC 2024
+
+Run options: --seed 51362
+
+# Running:
+
+..
+
+Finished in 8.135938s, 0.2458 runs/s, 1.7208 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:54:32 UTC 2024
+Thu Mar 14 17:54:32 UTC 2024
+
+Run options: --seed 61321
+
+# Running:
+
+..
+
+Finished in 8.701152s, 0.2299 runs/s, 1.6090 assertions/s.
+2 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+Thu Mar 14 17:54:42 UTC 2024
+Thu Mar 14 17:54:42 UTC 2024
+
+Run options: --seed 35827
+
+# Running:
+
+Thu Mar 14 17:54:48 UTC 2024
+Thu Mar 14 17:54:48 UTC 2024
+
+Run options: --seed 31209
+
+# Running:
+
+Thu Mar 14 17:54:50 UTC 2024
+Thu Mar 14 17:54:50 UTC 2024

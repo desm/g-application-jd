@@ -1,1 +1,1 @@
-add system tests and make all tests pass
+smoke test staging env

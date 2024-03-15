@@ -87,7 +87,7 @@ $ connect
 (appserver) $ exit
 
 # Bring all running containers down
-$ docker-compose down
+$ down
 
 # Run "up" again; this will INSTALL the Gem in the Docker image used for Development
 $ up

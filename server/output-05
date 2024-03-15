@@ -1,0 +1,1922 @@
+while : ; do date >> output; RAILS_ENV=test rails test:smoke >> output; date >> output; done
+
+Fri Mar 15 02:37:44 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 42196
+
+# Running:
+
+.....
+
+Finished in 17.372706s, 0.2878 runs/s, 1.4966 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:38:03 UTC 2024
+Fri Mar 15 02:38:03 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 18881
+
+# Running:
+
+.....
+
+Finished in 18.508630s, 0.2701 runs/s, 1.4048 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:38:23 UTC 2024
+Fri Mar 15 02:38:23 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 32771
+
+# Running:
+
+.....
+
+Finished in 17.744626s, 0.2818 runs/s, 1.4652 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:38:42 UTC 2024
+Fri Mar 15 02:38:42 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 10296
+
+# Running:
+
+.....
+
+Finished in 16.986150s, 0.2944 runs/s, 1.5307 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:39:01 UTC 2024
+Fri Mar 15 02:39:01 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 54085
+
+# Running:
+
+.....
+
+Finished in 16.709622s, 0.2992 runs/s, 1.5560 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:39:19 UTC 2024
+Fri Mar 15 02:39:19 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 18356
+
+# Running:
+
+.....
+
+Finished in 16.371925s, 0.3054 runs/s, 1.5881 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:39:37 UTC 2024
+Fri Mar 15 02:39:37 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 27645
+
+# Running:
+
+.....
+
+Finished in 17.101090s, 0.2924 runs/s, 1.5204 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:39:55 UTC 2024
+Fri Mar 15 02:39:55 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 41592
+
+# Running:
+
+.....
+
+Finished in 17.273550s, 0.2895 runs/s, 1.5052 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:40:14 UTC 2024
+Fri Mar 15 02:40:14 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 35164
+
+# Running:
+
+.....
+
+Finished in 17.782571s, 0.2812 runs/s, 1.4621 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:40:33 UTC 2024
+Fri Mar 15 02:40:33 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 7977
+
+# Running:
+
+.....
+
+Finished in 17.332225s, 0.2885 runs/s, 1.5001 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:40:52 UTC 2024
+Fri Mar 15 02:40:52 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 46325
+
+# Running:
+
+.....
+
+Finished in 17.334949s, 0.2884 runs/s, 1.4999 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:41:11 UTC 2024
+Fri Mar 15 02:41:11 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 64935
+
+# Running:
+
+.....
+
+Finished in 17.344913s, 0.2883 runs/s, 1.4990 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:41:30 UTC 2024
+Fri Mar 15 02:41:30 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 28461
+
+# Running:
+
+.....
+
+Finished in 17.784899s, 0.2811 runs/s, 1.4619 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:41:49 UTC 2024
+Fri Mar 15 02:41:49 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 1675
+
+# Running:
+
+.....
+
+Finished in 18.249448s, 0.2740 runs/s, 1.4247 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:42:09 UTC 2024
+Fri Mar 15 02:42:09 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 46707
+
+# Running:
+
+.....
+
+Finished in 17.643347s, 0.2834 runs/s, 1.4736 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:42:28 UTC 2024
+Fri Mar 15 02:42:28 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 9555
+
+# Running:
+
+.....
+
+Finished in 17.287301s, 0.2892 runs/s, 1.5040 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:42:47 UTC 2024
+Fri Mar 15 02:42:47 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 21271
+
+# Running:
+
+.....
+
+Finished in 17.178759s, 0.2911 runs/s, 1.5135 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:43:05 UTC 2024
+Fri Mar 15 02:43:05 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 7447
+
+# Running:
+
+.....
+
+Finished in 17.086863s, 0.2926 runs/s, 1.5216 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:43:24 UTC 2024
+Fri Mar 15 02:43:24 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 64405
+
+# Running:
+
+.....
+
+Finished in 17.540730s, 0.2851 runs/s, 1.4823 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:43:43 UTC 2024
+Fri Mar 15 02:43:43 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 1305
+
+# Running:
+
+.....
+
+Finished in 16.879388s, 0.2962 runs/s, 1.5403 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:44:01 UTC 2024
+Fri Mar 15 02:44:01 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 54689
+
+# Running:
+
+.....
+
+Finished in 16.953740s, 0.2949 runs/s, 1.5336 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:44:20 UTC 2024
+Fri Mar 15 02:44:20 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 8711
+
+# Running:
+
+..[Screenshot Image]: /app/tmp/screenshots/failures_test_three-2.png
+E
+
+Error:
+Login02Test#test_three.2:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x55f69999e793 <unknown>
+    #1 0x55f6996921c6 <unknown>
+    #2 0x55f699679a12 <unknown>
+    #3 0x55f699677d43 <unknown>
+    #4 0x55f6996783ff <unknown>
+    #5 0x55f6996a242f <unknown>
+    #6 0x55f699697edc <unknown>
+    #7 0x55f6996962f1 <unknown>
+    #8 0x55f69969932b <unknown>
+    #9 0x55f6996993cc <unknown>
+    #10 0x55f6996d7832 <unknown>
+    #11 0x55f6996ff3d2 <unknown>
+    #12 0x55f6996d1bd8 <unknown>
+    #13 0x55f6996ff59e <unknown>
+    #14 0x55f69971ddd9 <unknown>
+    #15 0x55f6996ff173 <unknown>
+    #16 0x55f6996d02d3 <unknown>
+    #17 0x55f6996d0c9e <unknown>
+    #18 0x55f6999628cb <unknown>
+    #19 0x55f699966745 <unknown>
+    #20 0x55f69994f2e1 <unknown>
+    #21 0x55f6999672d2 <unknown>
+    #22 0x55f69993317f <unknown>
+    #23 0x55f69998cdc8 <unknown>
+    #24 0x55f69998cfc3 <unknown>
+    #25 0x55f69999d944 <unknown>
+    #26 0x7f378341dac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:46
+
+..
+
+Finished in 17.181186s, 0.2910 runs/s, 1.4551 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 02:44:38 UTC 2024
+Fri Mar 15 02:44:38 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 43392
+
+# Running:
+
+.....
+
+Finished in 16.819640s, 0.2973 runs/s, 1.5458 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:44:57 UTC 2024
+Fri Mar 15 02:44:57 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 43871
+
+# Running:
+
+.....
+
+Finished in 17.856185s, 0.2800 runs/s, 1.4561 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:45:16 UTC 2024
+Fri Mar 15 02:45:16 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 51665
+
+# Running:
+
+.[Screenshot Image]: /app/tmp/screenshots/failures_test_three-3.png
+E
+
+Error:
+Login02Test#test_three.3:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x55e7b176e793 <unknown>
+    #1 0x55e7b14621c6 <unknown>
+    #2 0x55e7b1449a12 <unknown>
+    #3 0x55e7b1447d43 <unknown>
+    #4 0x55e7b14483ff <unknown>
+    #5 0x55e7b147242f <unknown>
+    #6 0x55e7b1467edc <unknown>
+    #7 0x55e7b146800d <unknown>
+    #8 0x55e7b14662f1 <unknown>
+    #9 0x55e7b14695f2 <unknown>
+    #10 0x55e7b14eede8 <unknown>
+    #11 0x55e7b14cf3d2 <unknown>
+    #12 0x55e7b14eddd9 <unknown>
+    #13 0x55e7b14cf173 <unknown>
+    #14 0x55e7b14a02d3 <unknown>
+    #15 0x55e7b14a0c9e <unknown>
+    #16 0x55e7b17328cb <unknown>
+    #17 0x55e7b1736745 <unknown>
+    #18 0x55e7b171f2e1 <unknown>
+    #19 0x55e7b17372d2 <unknown>
+    #20 0x55e7b170317f <unknown>
+    #21 0x55e7b175cdc8 <unknown>
+    #22 0x55e7b175cfc3 <unknown>
+    #23 0x55e7b176d944 <unknown>
+    #24 0x7f61f1950ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:333:in `execute_script'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/atoms.rb:35:in `execute_atom'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:491:in `element_displayed?'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:253:in `displayed?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:187:in `visible?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/nodes/chrome_node.rb:59:in `visible?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:306:in `block in visible?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:306:in `visible?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:572:in `matches_visibility_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:447:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:84
+
+..[Screenshot Image]: /app/tmp/screenshots/failures_test_three-2.png
+E
+
+Error:
+Login02Test#test_three.2:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x55e7b176e793 <unknown>
+    #1 0x55e7b14621c6 <unknown>
+    #2 0x55e7b1449a12 <unknown>
+    #3 0x55e7b1447d43 <unknown>
+    #4 0x55e7b14483ff <unknown>
+    #5 0x55e7b147242f <unknown>
+    #6 0x55e7b1467edc <unknown>
+    #7 0x55e7b14662f1 <unknown>
+    #8 0x55e7b146932b <unknown>
+    #9 0x55e7b14693cc <unknown>
+    #10 0x55e7b14a7832 <unknown>
+    #11 0x55e7b14cf3d2 <unknown>
+    #12 0x55e7b14a1bd8 <unknown>
+    #13 0x55e7b14cf59e <unknown>
+    #14 0x55e7b14eddd9 <unknown>
+    #15 0x55e7b14cf173 <unknown>
+    #16 0x55e7b14a02d3 <unknown>
+    #17 0x55e7b14a0c9e <unknown>
+    #18 0x55e7b17328cb <unknown>
+    #19 0x55e7b1736745 <unknown>
+    #20 0x55e7b171f2e1 <unknown>
+    #21 0x55e7b17372d2 <unknown>
+    #22 0x55e7b170317f <unknown>
+    #23 0x55e7b175cdc8 <unknown>
+    #24 0x55e7b175cfc3 <unknown>
+    #25 0x55e7b176d944 <unknown>
+    #26 0x7f61f1950ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:46
+
+
+
+Finished in 16.465234s, 0.3037 runs/s, 1.4576 assertions/s.
+5 runs, 24 assertions, 0 failures, 2 errors, 0 skips
+Fri Mar 15 02:45:34 UTC 2024
+Fri Mar 15 02:45:34 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 55523
+
+# Running:
+
+.....
+
+Finished in 17.197493s, 0.2907 runs/s, 1.5118 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:45:53 UTC 2024
+Fri Mar 15 02:45:53 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 12621
+
+# Running:
+
+.....
+
+Finished in 17.137155s, 0.2918 runs/s, 1.5172 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:46:11 UTC 2024
+Fri Mar 15 02:46:11 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 10666
+
+# Running:
+
+.....
+
+Finished in 17.288132s, 0.2892 runs/s, 1.5039 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:46:30 UTC 2024
+Fri Mar 15 02:46:30 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 57629
+
+# Running:
+
+...[Screenshot Image]: /app/tmp/screenshots/failures_test_three-2.png
+E
+
+Error:
+Login02Test#test_three.2:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x558106721793 <unknown>
+    #1 0x5581064151c6 <unknown>
+    #2 0x5581063fca12 <unknown>
+    #3 0x5581063fad43 <unknown>
+    #4 0x5581063fb3ff <unknown>
+    #5 0x55810642542f <unknown>
+    #6 0x55810641aedc <unknown>
+    #7 0x5581064192f1 <unknown>
+    #8 0x55810641c32b <unknown>
+    #9 0x55810641c3cc <unknown>
+    #10 0x55810645a832 <unknown>
+    #11 0x5581064823d2 <unknown>
+    #12 0x558106454bd8 <unknown>
+    #13 0x55810648259e <unknown>
+    #14 0x5581064a0dd9 <unknown>
+    #15 0x558106482173 <unknown>
+    #16 0x5581064532d3 <unknown>
+    #17 0x558106453c9e <unknown>
+    #18 0x5581066e58cb <unknown>
+    #19 0x5581066e9745 <unknown>
+    #20 0x5581066d22e1 <unknown>
+    #21 0x5581066ea2d2 <unknown>
+    #22 0x5581066b617f <unknown>
+    #23 0x55810670fdc8 <unknown>
+    #24 0x55810670ffc3 <unknown>
+    #25 0x558106720944 <unknown>
+    #26 0x7fcc4f16aac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:46
+
+.
+
+Finished in 17.468663s, 0.2862 runs/s, 1.4311 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 02:46:49 UTC 2024
+Fri Mar 15 02:46:49 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 22524
+
+# Running:
+
+.....
+
+Finished in 17.616435s, 0.2838 runs/s, 1.4759 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:47:08 UTC 2024
+Fri Mar 15 02:47:08 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 21808
+
+# Running:
+
+.....
+
+Finished in 17.420790s, 0.2870 runs/s, 1.4925 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:47:27 UTC 2024
+Fri Mar 15 02:47:27 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 31566
+
+# Running:
+
+.....
+
+Finished in 18.075763s, 0.2766 runs/s, 1.4384 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:47:46 UTC 2024
+Fri Mar 15 02:47:46 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 10129
+
+# Running:
+
+.....
+
+Finished in 17.702517s, 0.2824 runs/s, 1.4687 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:48:06 UTC 2024
+Fri Mar 15 02:48:06 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 52781
+
+# Running:
+
+.....
+
+Finished in 17.106581s, 0.2923 runs/s, 1.5199 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:48:24 UTC 2024
+Fri Mar 15 02:48:24 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 25081
+
+# Running:
+
+.....
+
+Finished in 17.623220s, 0.2837 runs/s, 1.4753 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:48:43 UTC 2024
+Fri Mar 15 02:48:43 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 7666
+
+# Running:
+
+.....
+
+Finished in 17.319208s, 0.2887 runs/s, 1.5012 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:49:02 UTC 2024
+Fri Mar 15 02:49:02 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 24118
+
+# Running:
+
+...[Screenshot Image]: /app/tmp/screenshots/failures_test_three-3.png
+E
+
+Error:
+Login02Test#test_three.3:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x55d901ac6793 <unknown>
+    #1 0x55d9017ba1c6 <unknown>
+    #2 0x55d9017a1a12 <unknown>
+    #3 0x55d90179fd43 <unknown>
+    #4 0x55d9017a03ff <unknown>
+    #5 0x55d9017ca42f <unknown>
+    #6 0x55d9017bfedc <unknown>
+    #7 0x55d9017be2f1 <unknown>
+    #8 0x55d9017c132b <unknown>
+    #9 0x55d9017c13cc <unknown>
+    #10 0x55d9017ff832 <unknown>
+    #11 0x55d9018273d2 <unknown>
+    #12 0x55d9017f9bd8 <unknown>
+    #13 0x55d90182759e <unknown>
+    #14 0x55d901845dd9 <unknown>
+    #15 0x55d901827173 <unknown>
+    #16 0x55d9017f82d3 <unknown>
+    #17 0x55d9017f8c9e <unknown>
+    #18 0x55d901a8a8cb <unknown>
+    #19 0x55d901a8e745 <unknown>
+    #20 0x55d901a772e1 <unknown>
+    #21 0x55d901a8f2d2 <unknown>
+    #22 0x55d901a5b17f <unknown>
+    #23 0x55d901ab4dc8 <unknown>
+    #24 0x55d901ab4fc3 <unknown>
+    #25 0x55d901ac5944 <unknown>
+    #26 0x7fc1fedcbac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:84
+
+.
+
+Finished in 17.741853s, 0.2818 runs/s, 1.4091 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 02:49:21 UTC 2024
+Fri Mar 15 02:49:21 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 63521
+
+# Running:
+
+.....
+
+Finished in 17.414022s, 0.2871 runs/s, 1.4930 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:49:40 UTC 2024
+Fri Mar 15 02:49:40 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 45492
+
+# Running:
+
+.....
+
+Finished in 17.802407s, 0.2809 runs/s, 1.4605 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:49:59 UTC 2024
+Fri Mar 15 02:49:59 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 36994
+
+# Running:
+
+.....
+
+Finished in 17.131515s, 0.2919 runs/s, 1.5177 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:50:18 UTC 2024
+Fri Mar 15 02:50:18 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 44623
+
+# Running:
+
+.....
+
+Finished in 17.652187s, 0.2833 runs/s, 1.4729 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:50:37 UTC 2024
+Fri Mar 15 02:50:37 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 9293
+
+# Running:
+
+.....
+
+Finished in 17.395487s, 0.2874 runs/s, 1.4946 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:50:56 UTC 2024
+Fri Mar 15 02:50:56 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 42007
+
+# Running:
+
+.....
+
+Finished in 18.581738s, 0.2691 runs/s, 1.3992 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:51:16 UTC 2024
+Fri Mar 15 02:51:16 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 45680
+
+# Running:
+
+.....
+
+Finished in 16.949977s, 0.2950 runs/s, 1.5339 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:51:35 UTC 2024
+Fri Mar 15 02:51:35 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 38129
+
+# Running:
+
+.....
+
+Finished in 16.988927s, 0.2943 runs/s, 1.5304 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:51:53 UTC 2024
+Fri Mar 15 02:51:53 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 44219
+
+# Running:
+
+.....
+
+Finished in 17.119166s, 0.2921 runs/s, 1.5188 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:52:12 UTC 2024
+Fri Mar 15 02:52:12 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 9935
+
+# Running:
+
+.....
+
+Finished in 16.872236s, 0.2963 runs/s, 1.5410 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:52:30 UTC 2024
+Fri Mar 15 02:52:30 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 6014
+
+# Running:
+
+.....
+
+Finished in 17.186044s, 0.2909 runs/s, 1.5129 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:52:49 UTC 2024
+Fri Mar 15 02:52:49 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 58989
+
+# Running:
+
+.....
+
+Finished in 17.179454s, 0.2910 runs/s, 1.5134 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:53:08 UTC 2024
+Fri Mar 15 02:53:08 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 20083
+
+# Running:
+
+.....
+
+Finished in 17.261058s, 0.2897 runs/s, 1.5063 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:53:27 UTC 2024
+Fri Mar 15 02:53:27 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 62579
+
+# Running:
+
+.[Screenshot Image]: /app/tmp/screenshots/failures_test_three-2.png
+E
+
+Error:
+Login02Test#test_three.2:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x55a672dd0793 <unknown>
+    #1 0x55a672ac41c6 <unknown>
+    #2 0x55a672aaba12 <unknown>
+    #3 0x55a672aa9d43 <unknown>
+    #4 0x55a672aaa3ff <unknown>
+    #5 0x55a672ad442f <unknown>
+    #6 0x55a672ac9edc <unknown>
+    #7 0x55a672aca00d <unknown>
+    #8 0x55a672ac82f1 <unknown>
+    #9 0x55a672acb5f2 <unknown>
+    #10 0x55a672b50de8 <unknown>
+    #11 0x55a672b313d2 <unknown>
+    #12 0x55a672b4fdd9 <unknown>
+    #13 0x55a672b31173 <unknown>
+    #14 0x55a672b022d3 <unknown>
+    #15 0x55a672b02c9e <unknown>
+    #16 0x55a672d948cb <unknown>
+    #17 0x55a672d98745 <unknown>
+    #18 0x55a672d812e1 <unknown>
+    #19 0x55a672d992d2 <unknown>
+    #20 0x55a672d6517f <unknown>
+    #21 0x55a672dbedc8 <unknown>
+    #22 0x55a672dbefc3 <unknown>
+    #23 0x55a672dcf944 <unknown>
+    #24 0x7feb8a084ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:333:in `execute_script'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/atoms.rb:35:in `execute_atom'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:491:in `element_displayed?'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:253:in `displayed?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:187:in `visible?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/nodes/chrome_node.rb:59:in `visible?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:306:in `block in visible?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:306:in `visible?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:572:in `matches_visibility_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:447:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:46
+
+...
+
+Finished in 16.789716s, 0.2978 runs/s, 1.4890 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 02:53:45 UTC 2024
+Fri Mar 15 02:53:45 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 24408
+
+# Running:
+
+.....
+
+Finished in 17.119563s, 0.2921 runs/s, 1.5187 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:54:04 UTC 2024
+Fri Mar 15 02:54:04 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 40041
+
+# Running:
+
+.....
+
+Finished in 17.110163s, 0.2922 runs/s, 1.5196 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:54:23 UTC 2024
+Fri Mar 15 02:54:23 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 33828
+
+# Running:
+
+..[Screenshot Image]: /app/tmp/screenshots/failures_test_two.png
+E
+
+Error:
+Login02Test#test_two:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x555f7a94b793 <unknown>
+    #1 0x555f7a63f1c6 <unknown>
+    #2 0x555f7a626a12 <unknown>
+    #3 0x555f7a624d43 <unknown>
+    #4 0x555f7a6253ff <unknown>
+    #5 0x555f7a64f42f <unknown>
+    #6 0x555f7a644edc <unknown>
+    #7 0x555f7a6432f1 <unknown>
+    #8 0x555f7a64632b <unknown>
+    #9 0x555f7a6463cc <unknown>
+    #10 0x555f7a684832 <unknown>
+    #11 0x555f7a6ac3d2 <unknown>
+    #12 0x555f7a67ebd8 <unknown>
+    #13 0x555f7a6ac59e <unknown>
+    #14 0x555f7a6cadd9 <unknown>
+    #15 0x555f7a6ac173 <unknown>
+    #16 0x555f7a67d2d3 <unknown>
+    #17 0x555f7a67dc9e <unknown>
+    #18 0x555f7a90f8cb <unknown>
+    #19 0x555f7a913745 <unknown>
+    #20 0x555f7a8fc2e1 <unknown>
+    #21 0x555f7a9142d2 <unknown>
+    #22 0x555f7a8e017f <unknown>
+    #23 0x555f7a939dc8 <unknown>
+    #24 0x555f7a939fc3 <unknown>
+    #25 0x555f7a94a944 <unknown>
+    #26 0x7f96e0fb0ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_02_test.rb:8
+
+..
+
+Finished in 16.488467s, 0.3032 runs/s, 1.5162 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 02:54:40 UTC 2024
+Fri Mar 15 02:54:40 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 60034
+
+# Running:
+
+.....
+
+Finished in 17.360640s, 0.2880 runs/s, 1.4976 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:54:59 UTC 2024
+Fri Mar 15 02:54:59 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 59361
+
+# Running:
+
+.....
+
+Finished in 17.314160s, 0.2888 runs/s, 1.5017 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:55:18 UTC 2024
+Fri Mar 15 02:55:18 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 50300
+
+# Running:
+
+....[Screenshot Image]: /app/tmp/screenshots/failures_test_two.png
+E
+
+Error:
+Login02Test#test_two:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x561b8fa9d793 <unknown>
+    #1 0x561b8f7911c6 <unknown>
+    #2 0x561b8f778a12 <unknown>
+    #3 0x561b8f776d43 <unknown>
+    #4 0x561b8f7773ff <unknown>
+    #5 0x561b8f7a142f <unknown>
+    #6 0x561b8f796edc <unknown>
+    #7 0x561b8f7952f1 <unknown>
+    #8 0x561b8f79832b <unknown>
+    #9 0x561b8f7983cc <unknown>
+    #10 0x561b8f7d6832 <unknown>
+    #11 0x561b8f7fe3d2 <unknown>
+    #12 0x561b8f7d0bd8 <unknown>
+    #13 0x561b8f7fe59e <unknown>
+    #14 0x561b8f81cdd9 <unknown>
+    #15 0x561b8f7fe173 <unknown>
+    #16 0x561b8f7cf2d3 <unknown>
+    #17 0x561b8f7cfc9e <unknown>
+    #18 0x561b8fa618cb <unknown>
+    #19 0x561b8fa65745 <unknown>
+    #20 0x561b8fa4e2e1 <unknown>
+    #21 0x561b8fa662d2 <unknown>
+    #22 0x561b8fa3217f <unknown>
+    #23 0x561b8fa8bdc8 <unknown>
+    #24 0x561b8fa8bfc3 <unknown>
+    #25 0x561b8fa9c944 <unknown>
+    #26 0x7f3b7b5b2ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_02_test.rb:8
+
+
+
+Finished in 16.591604s, 0.3014 runs/s, 1.5068 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 02:55:36 UTC 2024
+Fri Mar 15 02:55:36 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 14122
+
+# Running:
+
+....[Screenshot Image]: /app/tmp/screenshots/failures_test_three-3.png
+E
+
+Error:
+Login02Test#test_three.3:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x55970bdda793 <unknown>
+    #1 0x55970bace1c6 <unknown>
+    #2 0x55970bab5a12 <unknown>
+    #3 0x55970bab3d43 <unknown>
+    #4 0x55970bab43ff <unknown>
+    #5 0x55970bade42f <unknown>
+    #6 0x55970bad3edc <unknown>
+    #7 0x55970bad22f1 <unknown>
+    #8 0x55970bad532b <unknown>
+    #9 0x55970bad53cc <unknown>
+    #10 0x55970bb13832 <unknown>
+    #11 0x55970bb3b3d2 <unknown>
+    #12 0x55970bb0dbd8 <unknown>
+    #13 0x55970bb3b59e <unknown>
+    #14 0x55970bb59dd9 <unknown>
+    #15 0x55970bb3b173 <unknown>
+    #16 0x55970bb0c2d3 <unknown>
+    #17 0x55970bb0cc9e <unknown>
+    #18 0x55970bd9e8cb <unknown>
+    #19 0x55970bda2745 <unknown>
+    #20 0x55970bd8b2e1 <unknown>
+    #21 0x55970bda32d2 <unknown>
+    #22 0x55970bd6f17f <unknown>
+    #23 0x55970bdc8dc8 <unknown>
+    #24 0x55970bdc8fc3 <unknown>
+    #25 0x55970bdd9944 <unknown>
+    #26 0x7f1c4d2e7ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:84
+
+
+
+Finished in 16.751307s, 0.2985 runs/s, 1.4924 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 02:55:55 UTC 2024
+Fri Mar 15 02:55:55 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 40994
+
+# Running:
+
+.....
+
+Finished in 16.864400s, 0.2965 runs/s, 1.5417 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:56:13 UTC 2024
+Fri Mar 15 02:56:13 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 6065
+
+# Running:
+
+.....
+
+Finished in 17.279678s, 0.2894 runs/s, 1.5047 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:56:32 UTC 2024
+Fri Mar 15 02:56:32 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 63467
+
+# Running:
+
+.....
+
+Finished in 16.885808s, 0.2961 runs/s, 1.5398 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:56:50 UTC 2024
+Fri Mar 15 02:56:50 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 57943
+
+# Running:
+
+.....
+
+Finished in 16.656556s, 0.3002 runs/s, 1.5609 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:57:08 UTC 2024
+Fri Mar 15 02:57:08 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 14360
+
+# Running:
+
+.....
+
+Finished in 16.942612s, 0.2951 runs/s, 1.5346 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:57:27 UTC 2024
+Fri Mar 15 02:57:27 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 24577
+
+# Running:
+
+.[Screenshot Image]: /app/tmp/screenshots/failures_test_two.png
+E
+
+Error:
+Login02Test#test_two:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x562bc155b793 <unknown>
+    #1 0x562bc124f1c6 <unknown>
+    #2 0x562bc1236a12 <unknown>
+    #3 0x562bc1234d43 <unknown>
+    #4 0x562bc12353ff <unknown>
+    #5 0x562bc125f42f <unknown>
+    #6 0x562bc1254edc <unknown>
+    #7 0x562bc12532f1 <unknown>
+    #8 0x562bc125632b <unknown>
+    #9 0x562bc12563cc <unknown>
+    #10 0x562bc1294832 <unknown>
+    #11 0x562bc12bc3d2 <unknown>
+    #12 0x562bc128ebd8 <unknown>
+    #13 0x562bc12bc59e <unknown>
+    #14 0x562bc12dadd9 <unknown>
+    #15 0x562bc12bc173 <unknown>
+    #16 0x562bc128d2d3 <unknown>
+    #17 0x562bc128dc9e <unknown>
+    #18 0x562bc151f8cb <unknown>
+    #19 0x562bc1523745 <unknown>
+    #20 0x562bc150c2e1 <unknown>
+    #21 0x562bc15242d2 <unknown>
+    #22 0x562bc14f017f <unknown>
+    #23 0x562bc1549dc8 <unknown>
+    #24 0x562bc1549fc3 <unknown>
+    #25 0x562bc155a944 <unknown>
+    #26 0x7ff077fa1ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_02_test.rb:8
+
+..[Screenshot Image]: /app/tmp/screenshots/failures_test_three-3.png
+E
+
+Error:
+Login02Test#test_three.3:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x562bc155b793 <unknown>
+    #1 0x562bc124f1c6 <unknown>
+    #2 0x562bc1236a12 <unknown>
+    #3 0x562bc1234d43 <unknown>
+    #4 0x562bc12353ff <unknown>
+    #5 0x562bc125f42f <unknown>
+    #6 0x562bc1254edc <unknown>
+    #7 0x562bc12532f1 <unknown>
+    #8 0x562bc125632b <unknown>
+    #9 0x562bc12563cc <unknown>
+    #10 0x562bc1294832 <unknown>
+    #11 0x562bc12bc3d2 <unknown>
+    #12 0x562bc128ebd8 <unknown>
+    #13 0x562bc12bc59e <unknown>
+    #14 0x562bc12dadd9 <unknown>
+    #15 0x562bc12bc173 <unknown>
+    #16 0x562bc128d2d3 <unknown>
+    #17 0x562bc128dc9e <unknown>
+    #18 0x562bc151f8cb <unknown>
+    #19 0x562bc1523745 <unknown>
+    #20 0x562bc150c2e1 <unknown>
+    #21 0x562bc15242d2 <unknown>
+    #22 0x562bc14f017f <unknown>
+    #23 0x562bc1549dc8 <unknown>
+    #24 0x562bc1549fc3 <unknown>
+    #25 0x562bc155a944 <unknown>
+    #26 0x7ff077fa1ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:84
+
+
+
+Finished in 20.725176s, 0.2413 runs/s, 1.1580 assertions/s.
+5 runs, 24 assertions, 0 failures, 2 errors, 0 skips
+Fri Mar 15 02:57:49 UTC 2024
+Fri Mar 15 02:57:49 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 51218
+
+# Running:
+
+.....
+
+Finished in 19.045825s, 0.2625 runs/s, 1.3651 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:58:09 UTC 2024
+Fri Mar 15 02:58:09 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 32542
+
+# Running:
+
+.....
+
+Finished in 17.967587s, 0.2783 runs/s, 1.4471 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:58:29 UTC 2024
+Fri Mar 15 02:58:29 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 26051
+
+# Running:
+
+.....
+
+Finished in 17.427045s, 0.2869 runs/s, 1.4919 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:58:48 UTC 2024
+Fri Mar 15 02:58:48 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 56626
+
+# Running:
+
+.....
+
+Finished in 17.830194s, 0.2804 runs/s, 1.4582 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:59:07 UTC 2024
+Fri Mar 15 02:59:07 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 339
+
+# Running:
+
+..[Screenshot Image]: /app/tmp/screenshots/failures_test_two.png
+E
+
+Error:
+Login02Test#test_two:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x55a81ce97793 <unknown>
+    #1 0x55a81cb8b1c6 <unknown>
+    #2 0x55a81cb72a12 <unknown>
+    #3 0x55a81cb70d43 <unknown>
+    #4 0x55a81cb713ff <unknown>
+    #5 0x55a81cb9b42f <unknown>
+    #6 0x55a81cb90edc <unknown>
+    #7 0x55a81cb8f2f1 <unknown>
+    #8 0x55a81cb9232b <unknown>
+    #9 0x55a81cb923cc <unknown>
+    #10 0x55a81cbd0832 <unknown>
+    #11 0x55a81cbf83d2 <unknown>
+    #12 0x55a81cbcabd8 <unknown>
+    #13 0x55a81cbf859e <unknown>
+    #14 0x55a81cc16dd9 <unknown>
+    #15 0x55a81cbf8173 <unknown>
+    #16 0x55a81cbc92d3 <unknown>
+    #17 0x55a81cbc9c9e <unknown>
+    #18 0x55a81ce5b8cb <unknown>
+    #19 0x55a81ce5f745 <unknown>
+    #20 0x55a81ce482e1 <unknown>
+    #21 0x55a81ce602d2 <unknown>
+    #22 0x55a81ce2c17f <unknown>
+    #23 0x55a81ce85dc8 <unknown>
+    #24 0x55a81ce85fc3 <unknown>
+    #25 0x55a81ce96944 <unknown>
+    #26 0x7f78b58e8ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_02_test.rb:8
+
+..
+
+Finished in 17.410591s, 0.2872 runs/s, 1.4359 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 02:59:26 UTC 2024
+Fri Mar 15 02:59:26 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 54445
+
+# Running:
+
+.....
+
+Finished in 16.762285s, 0.2983 runs/s, 1.5511 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 02:59:44 UTC 2024
+Fri Mar 15 02:59:44 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 52127
+
+# Running:
+
+.....
+
+Finished in 17.489509s, 0.2859 runs/s, 1.4866 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:00:03 UTC 2024
+Fri Mar 15 03:00:03 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 2897
+
+# Running:
+
+.....
+
+Finished in 17.114057s, 0.2922 runs/s, 1.5192 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:00:22 UTC 2024
+Fri Mar 15 03:00:22 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 40874
+
+# Running:
+
+.....
+
+Finished in 17.147298s, 0.2916 runs/s, 1.5163 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:00:40 UTC 2024
+Fri Mar 15 03:00:40 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 36903
+
+# Running:
+
+.[Screenshot Image]: /app/tmp/screenshots/failures_test_two.png
+E
+
+Error:
+Login02Test#test_two:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x55cb90821793 <unknown>
+    #1 0x55cb905151c6 <unknown>
+    #2 0x55cb904fca12 <unknown>
+    #3 0x55cb904fad43 <unknown>
+    #4 0x55cb904fb3ff <unknown>
+    #5 0x55cb9052542f <unknown>
+    #6 0x55cb9051aedc <unknown>
+    #7 0x55cb905192f1 <unknown>
+    #8 0x55cb9051c32b <unknown>
+    #9 0x55cb9051c3cc <unknown>
+    #10 0x55cb9055a832 <unknown>
+    #11 0x55cb905823d2 <unknown>
+    #12 0x55cb90554bd8 <unknown>
+    #13 0x55cb9058259e <unknown>
+    #14 0x55cb905a0dd9 <unknown>
+    #15 0x55cb90582173 <unknown>
+    #16 0x55cb905532d3 <unknown>
+    #17 0x55cb90553c9e <unknown>
+    #18 0x55cb907e58cb <unknown>
+    #19 0x55cb907e9745 <unknown>
+    #20 0x55cb907d22e1 <unknown>
+    #21 0x55cb907ea2d2 <unknown>
+    #22 0x55cb907b617f <unknown>
+    #23 0x55cb9080fdc8 <unknown>
+    #24 0x55cb9080ffc3 <unknown>
+    #25 0x55cb90820944 <unknown>
+    #26 0x7f4b351b5ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_02_test.rb:8
+
+...
+
+Finished in 17.475919s, 0.2861 runs/s, 1.4305 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 03:00:59 UTC 2024
+Fri Mar 15 03:00:59 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 42309
+
+# Running:
+
+.....
+
+Finished in 17.665829s, 0.2830 runs/s, 1.4718 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:01:19 UTC 2024
+Fri Mar 15 03:01:19 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 16872
+
+# Running:
+
+.....
+
+Finished in 16.649768s, 0.3003 runs/s, 1.5616 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:01:37 UTC 2024
+Fri Mar 15 03:01:37 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 43218
+
+# Running:
+
+.....
+
+Finished in 16.876144s, 0.2963 runs/s, 1.5406 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:01:55 UTC 2024
+Fri Mar 15 03:01:55 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 32337
+
+# Running:
+
+.....
+
+Finished in 16.890060s, 0.2960 runs/s, 1.5394 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:02:14 UTC 2024
+Fri Mar 15 03:02:14 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 18501
+
+# Running:
+
+.....
+
+Finished in 17.224713s, 0.2903 runs/s, 1.5095 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:02:32 UTC 2024
+Fri Mar 15 03:02:32 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 42648
+
+# Running:
+
+...
+
+Finished in 13.282631s, 0.2259 runs/s, 1.2046 assertions/s.
+3 runs, 16 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:02:47 UTC 2024
+Fri Mar 15 03:02:47 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 3698
+
+# Running:
+
+.....
+
+Finished in 17.777962s, 0.2812 runs/s, 1.4625 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:03:06 UTC 2024
+Fri Mar 15 03:03:06 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 55598
+
+# Running:
+
+.....
+
+Finished in 18.464215s, 0.2708 runs/s, 1.4081 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:03:26 UTC 2024
+Fri Mar 15 03:03:26 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 7416
+
+# Running:
+
+...[Screenshot Image]: /app/tmp/screenshots/failures_test_three-1.png
+E
+
+Error:
+Login02Test#test_three.1:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x565417d97793 <unknown>
+    #1 0x565417a8b1c6 <unknown>
+    #2 0x565417a72a12 <unknown>
+    #3 0x565417a70d43 <unknown>
+    #4 0x565417a713ff <unknown>
+    #5 0x565417a9b42f <unknown>
+    #6 0x565417a90edc <unknown>
+    #7 0x565417a8f2f1 <unknown>
+    #8 0x565417a9232b <unknown>
+    #9 0x565417a923cc <unknown>
+    #10 0x565417ad0832 <unknown>
+    #11 0x565417af83d2 <unknown>
+    #12 0x565417acabd8 <unknown>
+    #13 0x565417af859e <unknown>
+    #14 0x565417b16dd9 <unknown>
+    #15 0x565417af8173 <unknown>
+    #16 0x565417ac92d3 <unknown>
+    #17 0x565417ac9c9e <unknown>
+    #18 0x565417d5b8cb <unknown>
+    #19 0x565417d5f745 <unknown>
+    #20 0x565417d482e1 <unknown>
+    #21 0x565417d602d2 <unknown>
+    #22 0x565417d2c17f <unknown>
+    #23 0x565417d85dc8 <unknown>
+    #24 0x565417d85fc3 <unknown>
+    #25 0x565417d96944 <unknown>
+    #26 0x7f24f8a88ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:8
+
+.
+
+Finished in 18.371777s, 0.2722 runs/s, 1.3608 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 03:03:46 UTC 2024
+Fri Mar 15 03:03:46 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 15140
+
+# Running:
+
+.....
+
+Finished in 17.698981s, 0.2825 runs/s, 1.4690 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:04:05 UTC 2024
+Fri Mar 15 03:04:05 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 23304
+
+# Running:
+
+.....
+
+Finished in 17.223978s, 0.2903 runs/s, 1.5095 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:04:24 UTC 2024
+Fri Mar 15 03:04:24 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 13952
+
+# Running:
+
+.....
+
+Finished in 20.145150s, 0.2482 runs/s, 1.2906 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:04:45 UTC 2024
+Fri Mar 15 03:04:45 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 30254
+
+# Running:
+
+.....
+
+Finished in 17.851567s, 0.2801 runs/s, 1.4565 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:05:05 UTC 2024
+Fri Mar 15 03:05:05 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 20473
+
+# Running:
+
+.....
+
+Finished in 16.377820s, 0.3053 runs/s, 1.5875 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:05:22 UTC 2024
+Fri Mar 15 03:05:22 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 23178
+
+# Running:
+
+.....
+
+Finished in 16.662313s, 0.3001 runs/s, 1.5604 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:05:40 UTC 2024
+Fri Mar 15 03:05:40 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 36215
+
+# Running:
+
+.....
+
+Finished in 17.490098s, 0.2859 runs/s, 1.4866 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:05:59 UTC 2024
+Fri Mar 15 03:05:59 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 23838
+
+# Running:
+
+....[Screenshot Image]: /app/tmp/screenshots/failures_test_three-1.png
+E
+
+Error:
+Login02Test#test_three.1:
+Selenium::WebDriver::Error::UnknownError: unknown error: unhandled inspector error: {"code":-32000,"message":"Node with given id does not belong to the document"}
+  (Session info: chrome=122.0.6261.69)
+    #0 0x561c40dc7793 <unknown>
+    #1 0x561c40abb1c6 <unknown>
+    #2 0x561c40aa2a12 <unknown>
+    #3 0x561c40aa0d43 <unknown>
+    #4 0x561c40aa13ff <unknown>
+    #5 0x561c40acb42f <unknown>
+    #6 0x561c40ac0edc <unknown>
+    #7 0x561c40abf2f1 <unknown>
+    #8 0x561c40ac232b <unknown>
+    #9 0x561c40ac23cc <unknown>
+    #10 0x561c40b00832 <unknown>
+    #11 0x561c40b283d2 <unknown>
+    #12 0x561c40afabd8 <unknown>
+    #13 0x561c40b2859e <unknown>
+    #14 0x561c40b46dd9 <unknown>
+    #15 0x561c40b28173 <unknown>
+    #16 0x561c40af92d3 <unknown>
+    #17 0x561c40af9c9e <unknown>
+    #18 0x561c40d8b8cb <unknown>
+    #19 0x561c40d8f745 <unknown>
+    #20 0x561c40d782e1 <unknown>
+    #21 0x561c40d902d2 <unknown>
+    #22 0x561c40d5c17f <unknown>
+    #23 0x561c40db5dc8 <unknown>
+    #24 0x561c40db5fc3 <unknown>
+    #25 0x561c40dc6944 <unknown>
+    #26 0x7f8a84546ac3 <unknown>
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:55:in `assert_ok'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/response.rb:34:in `initialize'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `new'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:83:in `create_response'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/default.rb:103:in `request'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/http/common.rb:59:in `call'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:607:in `execute'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/remote/bridge.rb:455:in `element_text'
+    /usr/local/bundle/ruby/3.3.0/gems/selenium-webdriver-4.17.0/lib/selenium/webdriver/common/element.rb:190:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/selenium/node.rb:17:in `visible_text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `block in text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/base.rb:77:in `synchronize'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/node/element.rb:60:in `text'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:603:in `matches_text_regexp'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:607:in `matches_text_regexp?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:554:in `matches_text_filter?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:452:in `matches_system_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/queries/selector_query.rb:122:in `matches_filters?'
+    /usr/local/bundle/ruby/3.3.0/gems/capybara-3.40.0/lib/capybara/result.rb:32:in `block in initialize'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+    bin/rails:in `each'
+
+bin/rails test test/smoke/login_03_test.rb:8
+
+
+
+Finished in 17.036384s, 0.2935 runs/s, 1.4674 assertions/s.
+5 runs, 25 assertions, 0 failures, 1 errors, 0 skips
+Fri Mar 15 03:06:18 UTC 2024
+Fri Mar 15 03:06:18 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 22110
+
+# Running:
+
+.....
+
+Finished in 17.202183s, 0.2907 runs/s, 1.5114 assertions/s.
+5 runs, 26 assertions, 0 failures, 0 errors, 0 skips
+Fri Mar 15 03:06:36 UTC 2024
+Fri Mar 15 03:06:36 UTC 2024
+Running 5 tests in a single process (parallelization threshold is 50)
+Run options: --seed 40982
+
+# Running:
+
+Fri Mar 15 03:06:39 UTC 2024
+Fri Mar 15 03:06:39 UTC 2024
+Fri Mar 15 03:06:39 UTC 2024
+Fri Mar 15 03:06:39 UTC 2024
