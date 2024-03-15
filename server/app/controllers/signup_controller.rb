@@ -5,14 +5,11 @@ class SignupController < ApplicationController
     @user = User.new
   end
 
-  # An account already exists with this email.
-  # Password has previously appeared in a data breach as per haveibeenpwned.com and should never be used. Please choose something harder to guess.
-  #   ref: https://haveibeenpwned.com/API/v3
   def create
     @user = User.new(user_params)
     if @user.save
       start_new_session_for @user
-      redirect_to root_url
+      redirect_to dashboard_url
     else
       flash[:error] = @user.errors.first.full_message
       redirect_to signup_path

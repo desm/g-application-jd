@@ -87,7 +87,7 @@ $ connect
 (appserver) $ exit
 
 # Bring all running containers down
-$ docker-compose down
+$ down
 
 # Run "up" again; this will INSTALL the Gem in the Docker image used for Development
 $ up
@@ -100,12 +100,20 @@ $ connect
 
 (appserver) $ rails test; # runs tests in the 'test' dir (except for 'test/system'): unit, functional, integration
 
-(appserver) $ rails test:system; # runs tests under 'test/system': headless browser tests
-
 (appserver) $ jest; # runs tests under '__tests__' dir: frontend unit tests
+
+(appserver) $ rails test:system; # runs tests under 'test/system': headless browser tests
 ```
 
 Note: running 'jest' does not do type checking.
+
+### Smoke Testing Staging Environment
+
+```shell
+$ connect-smoke
+
+(smoke-test-runner) $ rails test:system; # runs smoke tests against staging env https://app.staging.gumroad.jacquesdesmarais.dev
+```
 
 ### Type Checking
 
@@ -155,5 +163,6 @@ $ connect
 
 ### Tools
 
+- [AWS Copilot CLI](https://aws.github.io/copilot-cli/docs/overview/)
 - [Adminer - DB Management Tool](https://www.adminer.org/)
 - [Debian Bookworm Packages (for Docker images)](https://packages.debian.org/bookworm/)

@@ -1,1 +1,1 @@
-show error message when login with incorrect password
+smoke test staging env

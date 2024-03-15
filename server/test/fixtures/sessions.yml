@@ -2,14 +2,14 @@
 
 one:
   user: one
-  token: MyString
-  ip_address: MyString
-  user_agent: MyString
+  token: 4UDVRsC5uB1VdSiPUh9gFKDe
+  ip_address: 192.168.32.1
+  user_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
   last_active_at: 2024-03-12 20:55:36
 
 two:
   user: two
-  token: MyString
-  ip_address: MyString
-  user_agent: MyString
+  token: sRh4sNSBNoim8j1NaU1vFVWc
+  ip_address: 192.168.32.1
+  user_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36
   last_active_at: 2024-03-12 20:55:36

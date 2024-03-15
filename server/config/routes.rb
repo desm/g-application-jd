@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   # used by www to show either "Login | Start Selling" buttons VS "Dashboard" buttons
   get "session_info" => "session_info#index"
 
-  root "dashboard#index"
+  root to: redirect("/dashboard")
 
   get "login", to: "sessions#new"
-  post "login.json", to: "sessions#create"
+  post "login.json", to: "sessions#create", as: :session
   get "logout", to: "sessions#destroy"
 
   get "signup", to: "signup#new"
