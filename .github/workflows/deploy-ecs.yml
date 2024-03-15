@@ -52,6 +52,8 @@ jobs:
           IMAGE: smoke-test-runner:${{ github.sha }}
         run: |
           docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
+          NETWORK=$(docker network ls --format '{{ .Name }}' --filter name=github_network)
+          echo "NETWORK is: $NETWORK"
           docker run --rm --volume ./smoke-test-runner:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
 
     services:
