@@ -6,4 +6,5 @@ in collabs https://app.gumroad.com/collaborators
 
 going to /products/collabs
     takes 60s, then something times out and shows page
+    update Mar 16: works now
 

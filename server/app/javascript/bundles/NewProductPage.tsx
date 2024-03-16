@@ -1,9 +1,24 @@
 import * as React from 'react';
 import type { FunctionComponent } from 'react';
+import { useForm, SubmitHandler } from "react-hook-form"
 
 export interface Props {}
 
+type Inputs = {
+  example: string
+  exampleRequired: string
+}
+
 const NewProductPage: FunctionComponent<Props> = (props: Props) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>()
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+  console.log(watch("example")) // watch input value by passing the name of it
+
   return (
     <>
       <main>
@@ -14,14 +29,13 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
               <span className="icon icon-x-square"></span>
               <span>Cancel</span>
             </a>
-            {/* <button className="accent" type="submit" form="new-product-form-:R0:"> */}
-            <a href="/products/asdf/edit">
-              <button className="accent">Next: Customize</button>
-            </a>
+            <button className="accent" type="submit" form="new-product-form-:R0:">
+              Next: Customize
+            </button>
           </div>
         </header>
         <div>
-          <form id="new-product-form-:R0:" className="row">
+          <form id="new-product-form-:R0:" className="row" onSubmit={handleSubmit(onSubmit)}>
             <section>
               <header>
                 <p>
@@ -36,7 +50,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
                 <legend>
                   <label htmlFor="name-:R0:">Name</label>
                 </legend>
-                <input id="name-:R0:" type="text" placeholder="Name of product" aria-invalid="false" />
+                <input {...register("example")} />
               </fieldset>
               <fieldset>
                 <legend>

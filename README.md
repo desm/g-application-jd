@@ -175,6 +175,7 @@ $ connect
 - [React on Rails](https://www.shakacode.com/react-on-rails/docs/)
 - [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 - [Web APIs (Mozilla) (e.g. "fetch")](https://developer.mozilla.org/en-US/docs/Web/API)
+- [React Hook Form](https://react-hook-form.com/)
 
 ### Testing Libraries
 
