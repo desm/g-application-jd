@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useRef, useState } from 'react';
 import type { FunctionComponent } from 'react';
-import { useForm, SubmitHandler, useWatch } from 'react-hook-form';
+import { useForm, Controller, SubmitHandler, useWatch } from 'react-hook-form';
 
 export interface Props {}
 
@@ -12,13 +12,13 @@ type Inputs = {
 };
 
 const NewProductPage: FunctionComponent<Props> = (props: Props) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    getValues,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const { control, handleSubmit, register, watch, getValues } = useForm<Inputs>({
+    defaultValues: {
+      name: '',
+      price_currency_type: 'cad',
+      price_range: '',
+    },
+  });
 
   const defaultInput = {
     is_physical: false,
@@ -31,8 +31,6 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     release_at_time: '12PM',
     subscription_duration: null,
   };
-
-  const shortValue = (a) => a;
 
   const o = {
     usd: '$',
@@ -57,39 +55,72 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
   };
 
   const o2 = {
-    usd: {short:'$', long: '(US Dollars)'},
-    gbp: {short:'£', long: '(GBP)'},
-    eur: {short:'€', long: '(Euro)'},
-    jpy: {short:'¥', long: '(Yen)'},
-    inr: {short:'₹', long: '(Rupees)'},
-    aud: {short:'A$', long: '(Australian Dollars)'},
-    cad: {short:'CAD$', long: '(Canadian Dollars)'},
-    hkd: {short:'HK$', long: '(Hong Kong Dollars)'},
-    sgd: {short:'SGD$', long: '(Singapore Dollars)'},
-    twd: {short:'NT$', long: '(Taiwanese Dollars)'},
-    nzd: {short:'NZ$', long: '(New Zealand Dollars)'},
-    brl: {short:'R$', long: '(Brazilian Real)'},
-    zar: {short:'ZAR', long: '(South African Rand)'},
-    chf: {short:'CHF', long: '(Swiss Franc)'},
-    ils: {short:'₪', long: '(Israeli Shekel)'},
-    php: {short:'₱', long: '(Philippine Peso)'},
-    krw: {short:'₩', long: '(Korean Won)'},
-    pln: {short:'zł', long: '(Polish zloty)'},
-    czk: {short:'Kč', long: '(Czech koruna)'},
+    usd: { short: '$', long: '(US Dollars)' },
+    gbp: { short: '£', long: '(GBP)' },
+    eur: { short: '€', long: '(Euro)' },
+    jpy: { short: '¥', long: '(Yen)' },
+    inr: { short: '₹', long: '(Rupees)' },
+    aud: { short: 'A$', long: '(Australian Dollars)' },
+    cad: { short: 'CAD$', long: '(Canadian Dollars)' },
+    hkd: { short: 'HK$', long: '(Hong Kong Dollars)' },
+    sgd: { short: 'SGD$', long: '(Singapore Dollars)' },
+    twd: { short: 'NT$', long: '(Taiwanese Dollars)' },
+    nzd: { short: 'NZ$', long: '(New Zealand Dollars)' },
+    brl: { short: 'R$', long: '(Brazilian Real)' },
+    zar: { short: 'ZAR', long: '(South African Rand)' },
+    chf: { short: 'CHF', long: '(Swiss Franc)' },
+    ils: { short: '₪', long: '(Israeli Shekel)' },
+    php: { short: '₱', long: '(Philippine Peso)' },
+    krw: { short: '₩', long: '(Korean Won)' },
+    pln: { short: 'zł', long: '(Polish zloty)' },
+    czk: { short: 'Kč', long: '(Czech koruna)' },
   };
 
-  function currencyPillText() {
-    // return getValues('price_currency_type') || defaultInput.price_currency_type
-    const t = watch('price_currency_type') || defaultInput.price_currency_type;
-    console.log(currencySelectRef?.current?.value);
-    console.log(currencySelectRef);
-    console.log(t);
-    return o2[t].short
-  }
+  const pillText = (v) => o2[v].short;
+
+  const [currencyPillText, setCurrencyPillText] = useState(pillText(defaultInput.price_currency_type));
+
+  const priceCurrencyTypeOnChangeHandler = (event) => {
+    setCurrencyPillText(pillText(event.target.value));
+  };
+
+  const l = [
+    'usd',
+    'gbp',
+    'eur',
+    'jpy',
+    'inr',
+    'aud',
+    'cad',
+    'hkd',
+    'sgd',
+    'twd',
+    'nzd',
+    'brl',
+    'zar',
+    'chf',
+    'ils',
+    'php',
+    'krw',
+    'pln',
+    'czk',
+  ];
+
+  const options = l.map((value) => ({ value, label: o2[value].long }));
+
+  // function currencyPillText() {
+  //   // return getValues('price_currency_type') || defaultInput.price_currency_type
+  //   const t = watch('price_currency_type') || defaultInput.price_currency_type;
+  //   console.log(currencySelectRef?.current?.value);
+  //   console.log(currencySelectRef);
+  //   console.log(t);
+  //   return o2[t].short;
+  // }
 
   // let currencyPillText = defaultInput.price_currency_type;
 
-  // const [currencyPillText, setCurrencyPillText] = useState('');
+  // setCurrencyPillText(getValues('price_currency_type'));
+
   // setCurrencyPillText(getValues('price_currency_type'));
   // ((value) => {
   //   setCurrencyPillText(value);
@@ -239,32 +270,19 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
                 </legend>
                 <div className="input">
                   <label className="pill select">
-                    <span>{currencyPillText()}</span>
+                    <span>{currencyPillText}</span>
                     <select
                       aria-label="Currency"
                       ref={currencySelectRef}
                       defaultValue={defaultInput.price_currency_type}
                       {...register('price_currency_type')}
+                      onChange={priceCurrencyTypeOnChangeHandler}
                     >
-                      <option value="usd">$ (US Dollars)</option>
-                      <option value="gbp">£ (GBP)</option>
-                      <option value="eur">€ (Euro)</option>
-                      <option value="jpy">¥ (Yen)</option>
-                      <option value="inr">₹ (Rupees)</option>
-                      <option value="aud">A$ (Australian Dollars)</option>
-                      <option value="cad">CAD$ (Canadian Dollars)</option>
-                      <option value="hkd">HK$ (Hong Kong Dollars)</option>
-                      <option value="sgd">SGD$ (Singapore Dollars)</option>
-                      <option value="twd">NT$ (Taiwanese Dollars)</option>
-                      <option value="nzd">NZ$ (New Zealand Dollars)</option>
-                      <option value="brl">R$ (Brazilian Real)</option>
-                      <option value="zar">ZAR (South African Rand)</option>
-                      <option value="chf">CHF (Swiss Franc)</option>
-                      <option value="ils">₪ (Israeli Shekel)</option>
-                      <option value="php">₱ (Philippine Peso)</option>
-                      <option value="krw">₩ (Korean Won)</option>
-                      <option value="pln">zł (Polish zloty)</option>
-                      <option value="czk">Kč (Czech koruna)</option>
+                      {options.map(({ value, label }) => (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      ))}
                     </select>
                   </label>
                   <input
