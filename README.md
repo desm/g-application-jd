@@ -1,16 +1,30 @@
-# Gumroad Prototype
+# Gumroad JD
 
-_Give a brief summary here_
+Tiny reproduction of a couple of UX flows of gumroad.com.
 
 ## Requirements
 
 - Git
 - Docker
 - Docker Compose
+
+Ruby, Rails, Node.js, and Yarn do not need to be installed locally, as they will be part of the Docker environment.
+
+### Optional
+
 - AWS CLI
 - AWS Copilot
 
-Ruby, Rails, Node.js, and Yarn do not need to be installed locally, as they will be part of the Docker environment.
+## Getting Started
+
+- Check out repository
+- run `up-sleep` - this builds and pulls all Docker images
+- run `connect` - this opens a shell in the "appserver" container
+- in appserver container, run `yarn install` - this installs node modules
+- in appserver container, run `rails db:prepare` - this sets up the database
+- exit the container
+- run `down` - this stops all containers
+- run `up` - this starts all containers, and starts the Rails server
 
 ## Shortcut Commands
 
@@ -26,10 +40,10 @@ They are not meant to be used inside docker containers.
 
 | Command              | Description                                                                                                                               |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| up                   | Starts all services needed for development: Rails server, MySQL server, Adminer DB admin tool, nginx                                      |
+| up                   | Starts all services: Rails server, MySQL server, Adminer DB admin tool, nginx, Selenium Standalone                                        |
 | up-sleep             | Same as `up` except that the appserver sleeps instead of running the Rails server                                                         |
 | logs                 | Tails the appserver logs                                                                                                                  |
-| down                 | Shortcut for `docker-compose down`                                                                                                        |
+| down                 | Stops all services                                                                                                                        |
 | connect              | Opens a shell in the appserver container                                                                                                  |
 | connect-root         | Opens a **root** shell in the appserver container                                                                                         |
 | build-production \*  | Builds the Docker image used in staging & production. Not required before deploying                                                       |
@@ -37,17 +51,13 @@ They are not meant to be used inside docker containers.
 | deploy-production \* | Deploys to the production env using AWS Copilot                                                                                           |
 | reload               | Reloads the `.autoenv` file, if you are using [autoenv](https://github.com/hyperupcall/autoenv?tab=readme-ov-file#installation-automated) |
 
-\*: these commands require the `server/config/master.key` file to be present.
+\*: these commands require a copy of `server/config/master.key`.
 
 ## Development
 
-### Database Configuration
-
-_Configure MySQL_
-
 ### Start Services
 
-Start the services needed for development: Ruby on Rails, MySQL, Adminer (a DB management tool), nginx.
+Start the services needed for development: Rails, MySQL, Adminer, nginx, Selenium.
 
 ```shell
 $ up
@@ -58,18 +68,20 @@ gumroad-jd-adminer-1               adminer:4.8.1-standalone                     
 gumroad-jd-appserver-1             gumroad-jd-appserver                         "./bin/dev"              appserver             3 hours ago   Up 3 hours   0.0.0.0:3035->3035/tcp, :::3035->3035/tcp, 0.0.0.0:8000->3000/tcp, :::8000->3000/tcp
 gumroad-jd-db-1                    mysql:8.0.36-debian                          "docker-entrypoint.s…"   db                    3 hours ago   Up 3 hours   3306/tcp, 33060/tcp
 gumroad-jd-selenium-standalone-1   selenium/standalone-chrome:4.18.1-20240224   "/opt/bin/entry_poin…"   selenium-standalone   3 hours ago   Up 3 hours   0.0.0.0:4444->4444/tcp, :::4444->4444/tcp, 5900/tcp
-gumroad-jd-smoke-test-runner-1     gumroad-jd-smoke-test-runner                 "sh -c 'while :; do …"   smoke-test-runner     3 hours ago   Up 3 hours   
+gumroad-jd-smoke-test-runner-1     gumroad-jd-smoke-test-runner                 "sh -c 'while :; do …"   smoke-test-runner     3 hours ago   Up 3 hours
 gumroad-jd-www-1                   nginx:bookworm                               "/docker-entrypoint.…"   www                   3 hours ago   Up 3 hours   0.0.0.0:8080->80/tcp, :::8080->80/tcp
 ```
 
 Here are some links that should work once the services are running:
 
-- http://localhost:8080/ - Gumroad web site, made with Webflow
+- http://localhost:8080/ - A partial reproduction of the www.gumroad.com web site, made with Webflow
 - http://localhost:8000/signup - Gumroad signup page
 - http://localhost:8000/dashboard - Gumroad dashboard page
 - http://localhost:8001/?server=db&username=root - DB Admin Tool (see database.yml "default" section for credentials)
 
 ### Running rails CLI
+
+The `rails` command is available in the appserver container.
 
 ```shell
 $ connect
@@ -79,6 +91,10 @@ $ connect
 
 ### Adding Gems
 
+Adding gems is a 2-step process.
+
+**Step 1**: Add the gem to the Gemfile from inside the appserver container, but without installing the gem just yet
+
 ```shell
 $ connect
 
@@ -86,6 +102,11 @@ $ connect
 (appserver) $ bundle add {gem} --skip-install
 
 (appserver) $ exit
+```
+
+**Step 2**: Restart the containers. The changes to the Gemfile will cause the gems to be installed inside the container
+
+```shell
 
 # Bring all running containers down
 $ down
