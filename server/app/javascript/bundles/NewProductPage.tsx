@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FunctionComponent } from 'react';
-import { useForm, Controller, SubmitHandler, useWatch } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 export interface Props {}
 
@@ -12,49 +12,25 @@ type Inputs = {
 };
 
 const NewProductPage: FunctionComponent<Props> = (props: Props) => {
-  const { control, handleSubmit, register, watch, getValues } = useForm<Inputs>({
-    defaultValues: {
-      name: '',
-      price_currency_type: 'cad',
-      price_range: '',
-    },
-  });
-
-  const defaultInput = {
+  const defaultValues = {
     is_physical: false,
     is_recurring_billing: false,
     name: '',
     native_type: 'digital',
     price_currency_type: 'cad',
-    price_range: '111',
+    price_range: '',
     release_at_date: 'April 16, 2024',
     release_at_time: '12PM',
     subscription_duration: null,
   };
 
-  const o = {
-    usd: '$',
-    gbp: '£',
-    eur: '€',
-    jpy: '¥',
-    inr: '₹',
-    aud: 'A$',
-    cad: 'CAD$',
-    hkd: 'HK$',
-    sgd: 'SGD$',
-    twd: 'NT$',
-    nzd: 'NZ$',
-    brl: 'R$',
-    zar: 'ZAR',
-    chf: 'CHF',
-    ils: '₪',
-    php: '₱',
-    krw: '₩',
-    pln: 'zł',
-    czk: 'Kč',
-  };
+  const { handleSubmit, register, watch } = useForm<Inputs>({
+    defaultValues,
+  });
 
-  const o2 = {
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(JSON.stringify(data, null, 4));
+
+  const currencyMap = {
     usd: { short: '$', long: '(US Dollars)' },
     gbp: { short: '£', long: '(GBP)' },
     eur: { short: '€', long: '(Euro)' },
@@ -76,15 +52,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     czk: { short: 'Kč', long: '(Czech koruna)' },
   };
 
-  const pillText = (v) => o2[v].short;
-
-  const [currencyPillText, setCurrencyPillText] = useState(pillText(defaultInput.price_currency_type));
-
-  const priceCurrencyTypeOnChangeHandler = (event) => {
-    setCurrencyPillText(pillText(event.target.value));
-  };
-
-  const l = [
+  const orderedCurrencyKeys = [
     'usd',
     'gbp',
     'eur',
@@ -106,47 +74,19 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     'czk',
   ];
 
-  const options = l.map((value) => ({ value, label: o2[value].long }));
+  const options = orderedCurrencyKeys.map((value) => ({ value, label: currencyMap[value].long }));
 
-  // function currencyPillText() {
-  //   // return getValues('price_currency_type') || defaultInput.price_currency_type
-  //   const t = watch('price_currency_type') || defaultInput.price_currency_type;
-  //   console.log(currencySelectRef?.current?.value);
-  //   console.log(currencySelectRef);
-  //   console.log(t);
-  //   return o2[t].short;
-  // }
+  const formatPillText = (currency) => currencyMap[currency].short;
 
-  // let currencyPillText = defaultInput.price_currency_type;
+  const [currencyPillText, setCurrencyPillText] = useState(formatPillText(defaultValues.price_currency_type));
 
-  // setCurrencyPillText(getValues('price_currency_type'));
+  // useEffect(() => {
+  //   setCurrencyPillText(pillText(getValues('price_currency_type')));
+  // }, [useWatch({ control, name: 'price_currency_type', defaultValue: 'cad' })]);
 
-  // setCurrencyPillText(getValues('price_currency_type'));
-  // ((value) => {
-  //   setCurrencyPillText(value);
-  // })(getValues('price_currency_type'));
-
-  // ((value) => {
-  //   // console.log('setting...');
-  //   currencyPillText = value;
-  // })(watch('price_currency_type'));
-
-  // const currencyPillText = watch('price_currency_type');
-  // console.log(getValues('price_currency_type'));
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(JSON.stringify({ ...defaultInput, ...data }, null, 4));
-
-  const currencySelectRef = useRef(null);
-
-  // console.log(watch('price_currency_type'));
-  // console.log(typeof watch('price_currency_type'));
-
-  // function joey(bla: any) {
-  //   console.log(bla);
-  //   console.log(arguments);
-  // }
-
-  // joey(watch('price_currency_type'));
+  useEffect(() => {
+    setCurrencyPillText(formatPillText(watch('price_currency_type')));
+  }, [watch('price_currency_type')]);
 
   return (
     <>
@@ -271,13 +211,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
                 <div className="input">
                   <label className="pill select">
                     <span>{currencyPillText}</span>
-                    <select
-                      aria-label="Currency"
-                      ref={currencySelectRef}
-                      defaultValue={defaultInput.price_currency_type}
-                      {...register('price_currency_type')}
-                      onChange={priceCurrencyTypeOnChangeHandler}
-                    >
+                    <select aria-label="Currency" {...register('price_currency_type')}>
                       {options.map(({ value, label }) => (
                         <option key={value} value={value}>
                           {label}
