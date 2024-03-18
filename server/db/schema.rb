@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_12_234130) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_18_000322) do
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -30,13 +30,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_234130) do
   end
 
   create_table "links", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.boolean "is_physical"
-    t.string "is_recurring_billing"
-    t.string "name"
-    t.string "native_type"
-    t.string "price_currency_type"
-    t.decimal "price_range", precision: 5, scale: 2
-    t.datetime "release_date"
+    t.boolean "is_physical", null: false
+    t.boolean "is_recurring_billing", null: false
+    t.string "name", null: false
+    t.string "native_type", null: false
+    t.string "price_currency_type", null: false
+    t.decimal "price_range", precision: 5, scale: 2, null: false
+    t.datetime "release_datetime", null: false
     t.string "subscription_duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

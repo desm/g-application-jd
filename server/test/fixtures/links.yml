@@ -2,20 +2,20 @@
 
 one:
   is_physical: false
-  is_recurring_billing: MyString
-  name: MyString
-  native_type: MyString
-  price_currency_type: MyString
+  is_recurring_billing: false
+  name: product one
+  native_type: digital
+  price_currency_type: cad
   price_range: 9.99
-  release_date: 2024-02-26 16:43:09
-  subscription_duration: MyString
+  release_datetime: 2024-02-26 16:43:09
+  subscription_duration: nil
 
 two:
   is_physical: false
-  is_recurring_billing: MyString
-  name: MyString
-  native_type: MyString
-  price_currency_type: MyString
+  is_recurring_billing: false
+  name: product two
+  native_type: digital
+  price_currency_type: cad
   price_range: 9.99
-  release_date: 2024-02-26 16:43:09
-  subscription_duration: MyString
+  release_datetime: 2024-02-26 16:43:09
+  subscription_duration: nil
