@@ -1,5 +1,17 @@
 require "test_helper"
 
+def generate_unique_id
+  loop do
+    # Generate a random 5-letter ID using alphanumeric characters
+    id = (0...5).map { ('a'..'z').to_a[rand(26)] }.join
+
+    # Check if the generated ID is already used
+    # unless Model.exists?(id: id)
+      return id  # Return the ID if it's unique
+    # end
+  end
+end
+
 class LinksControllerTest < ActionDispatch::IntegrationTest
   test "creating a link requires user to be signed in" do
     post links_url, params: { "link": DataOfCreateLinkPostRequest::DIGITAL_PRODUCT }

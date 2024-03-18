@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_03_18_000322) do
-  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.datetime "created_at", null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_000322) do
     t.string "status", default: "public"
   end
 
-  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.string "commenter"
     t.text "body"
     t.bigint "article_id", null: false
@@ -29,9 +29,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_000322) do
     t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
-  create_table "links", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "links", force: :cascade do |t|
     t.boolean "is_physical", null: false
-    t.boolean "is_recurring_billing", null: false
     t.string "name", null: false
     t.string "native_type", null: false
     t.string "price_currency_type", null: false
@@ -40,9 +39,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_000322) do
     t.string "subscription_duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_recurring_billing", null: false
   end
 
-  create_table "sessions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "token", null: false
     t.string "ip_address"
@@ -54,13 +54,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_18_000322) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
-  create_table "tests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "tests", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email_address"
     t.string "password_digest"
     t.datetime "created_at", null: false
