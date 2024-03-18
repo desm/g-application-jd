@@ -1,0 +1,4 @@
+username
+    Username has to contain at least one letter and may only contain lower case letters and numbers
+    Username has to be unique across Gumroad
+

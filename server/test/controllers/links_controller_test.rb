@@ -1,4 +1,7 @@
 require "test_helper"
+require "base64"
+
+require 'securerandom'
 
 def generate_unique_id
   loop do
@@ -25,6 +28,16 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     expected_response = { "success" => true, "redirect_to" => "/products/tsxsi/edit" }
     assert_equal expected_response, JSON.parse(@response.body)
+
+    # encoded_id = 'O5_GQNXtgJAuuzPT2mrtPg=='
+    # decoded_id = Base64.decode64(encoded_id)
+    # puts decoded_id
+
+    # Generate a random 16-byte binary string
+    random_bytes = SecureRandom.random_bytes(16)
+    # Encode the binary string in Base64 format
+    base64_id = Base64.strict_encode64(random_bytes)
+    puts base64_id
 
     # needs to have created a Link
     # needs to have created a Product
