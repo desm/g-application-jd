@@ -1,8 +1,7 @@
-class RecreateProducts < ActiveRecord::Migration[7.1]
+class CreateProducts < ActiveRecord::Migration[7.1]
   def change
-    drop_table :products
-
-    create_table :products do |t|
+    create_table :products, id: false do |t|
+      t.string :id, primary_key: true
       t.references :creator, foreign_key: { to_table: :users }, null: false
       t.string :permalink, null: false
       t.string :name, null: false

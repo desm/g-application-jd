@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+p1:
+  creator_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
+  permalink: abcde
+  name: product one
+  buy_price: 9.99
+  currency_code: cad
+  published: true
+  created_at: 2024-02-26 16:43:09
+  updated_at: 2024-02-26 16:43:09
+
+p2:
+  creator_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
+  permalink: fghij
+  name: product two
+  buy_price: 9.99
+  currency_code: cad
+  published: false
+  created_at: 2024-02-26 16:43:09
+  updated_at: 2024-02-26 16:43:09

@@ -1,16 +1,16 @@
 require "test_helper"
 require "base64"
 
-require 'securerandom'
+require "securerandom"
 
 def generate_unique_id
   loop do
     # Generate a random 5-letter ID using alphanumeric characters
-    id = (0...5).map { ('a'..'z').to_a[rand(26)] }.join
+    id = (0...5).map { ("a".."z").to_a[rand(26)] }.join
 
     # Check if the generated ID is already used
     # unless Model.exists?(id: id)
-      return id  # Return the ID if it's unique
+    return id  # Return the ID if it's unique
     # end
   end
 end
@@ -37,7 +37,7 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     random_bytes = SecureRandom.random_bytes(16)
     # Encode the binary string in Base64 format
     base64_id = Base64.strict_encode64(random_bytes)
-    puts base64_id
+    # puts base64_id
 
     # needs to have created a Link
     # needs to have created a Product
