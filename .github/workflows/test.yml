@@ -12,10 +12,7 @@
 
 name: Test
 
-on:
-  push:
-    tags-ignore:
-      - deploy-*
+on: push
 
 jobs:
   test:
