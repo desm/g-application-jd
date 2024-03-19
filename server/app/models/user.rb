@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   validates_presence_of :password_digest
 
-  has_many :sessions, dependent: :destroy
-
   has_secure_password validations: false
+
+  has_many :sessions, dependent: :destroy
+  has_many :products, dependent: :destroy
 end

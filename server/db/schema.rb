@@ -10,36 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_12_234130) do
-  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
+ActiveRecord::Schema[7.1].define(version: 2024_03_18_214902) do
+  create_table "products", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "creator_id", null: false
+    t.string "permalink", null: false
+    t.string "name", null: false
+    t.decimal "buy_price", precision: 5, scale: 2, null: false
+    t.string "currency_code", null: false
+    t.boolean "published", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status", default: "public"
-  end
-
-  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "commenter"
-    t.text "body"
-    t.bigint "article_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "status", default: "public"
-    t.index ["article_id"], name: "index_comments_on_article_id"
-  end
-
-  create_table "links", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.boolean "is_physical"
-    t.string "is_recurring_billing"
-    t.string "name"
-    t.string "native_type"
-    t.string "price_currency_type"
-    t.decimal "price_range", precision: 5, scale: 2
-    t.datetime "release_date"
-    t.string "subscription_duration"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["creator_id", "permalink"], name: "index_products_on_creator_id_and_permalink", unique: true
+    t.index ["creator_id"], name: "index_products_on_creator_id"
   end
 
   create_table "sessions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -54,12 +36,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_234130) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
-  create_table "tests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email_address"
     t.string "password_digest"
@@ -68,6 +44,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_234130) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
-  add_foreign_key "comments", "articles"
+  add_foreign_key "products", "users", column: "creator_id"
   add_foreign_key "sessions", "users"
 end

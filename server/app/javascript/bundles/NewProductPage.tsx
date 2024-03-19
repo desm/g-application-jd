@@ -111,8 +111,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
                   Make some selections, fill in some boxes, and go live in minutes.
                   <br />
                   <br />
-                  Our <a href="/help/adding-a-product">Help Center</a>
-                  has everything you need to know.
+                  Our <a href="/help/adding-a-product">Help Center</a> has everything you need to know.
                 </p>
               </header>
               <fieldset>

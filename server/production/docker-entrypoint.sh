@@ -9,6 +9,11 @@ if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
     ./bin/rails db:prepare
     echo "running \"rails db:version\" AFTER db:prepare"
     ./bin/rails db:version
+
+    # echo "running drop, create, migrate"
+    # ./bin/rails db:drop
+    # ./bin/rails db:create
+    # ./bin/rails db:migrate
 fi
 
 # Dropbear SSH server - never ended up needing

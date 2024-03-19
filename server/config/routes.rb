@@ -25,10 +25,4 @@ Rails.application.routes.draw do
   get "products" => "products#index"
   get "products/new"
   get "products/:id/edit" => "products#edit" # edit_product_path
-
-  # get "/articles", to: "articles#index"
-  # get "/articles/:id", to: "articles#show"
-  resources :articles do
-    resources :comments
-  end
 end

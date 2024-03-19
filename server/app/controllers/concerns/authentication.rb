@@ -12,6 +12,11 @@ module Authentication
       skip_before_action :require_authentication, **options
     end
 
+    def deny_unauthenticated_access(**options)
+      skip_before_action :require_authentication, **options
+      before_action :restore_or_forbid, **options
+    end
+
     def require_unauthenticated_access(**options)
       skip_before_action :require_authentication, **options
       before_action :restore_authentication, :redirect_signed_in_user_to_root, **options
@@ -37,6 +42,10 @@ module Authentication
   def request_authentication
     session[:return_to_after_authenticating] = request.url
     redirect_to login_url
+  end
+
+  def restore_or_forbid
+    restore_authentication || render(plain: "Access Denied", status: :forbidden)
   end
 
   def redirect_signed_in_user_to_root
