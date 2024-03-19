@@ -1,0 +1,38 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# GitHub recommends pinning actions to a commit SHA.
+# To get a newer version, you will need to update the SHA.
+# You can also reference a tag or branch, but the action may change without warning.
+
+# Finding and customizing actions:
+# https://docs.github.com/en/actions/learn-github-actions/finding-and-customizing-actions
+
+name: Test
+
+on:
+  push:
+    tags-ignore:
+      - deploy-*
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run tests
+        env:
+          IMAGE: test:${{ github.sha }}
+        run: |
+          docker build -f github-workflows/Dockerfile -t $IMAGE ./server
+          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE yarn install
+          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./node_modules/.bin/jest
+          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./bin/rails test
+          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./bin/rails test:system
