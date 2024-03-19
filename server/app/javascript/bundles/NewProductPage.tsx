@@ -1,9 +1,93 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import type { FunctionComponent } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
 export interface Props {}
 
+type Inputs = {
+  name: string;
+  price_currency_type: string;
+  price_range: string;
+};
+
 const NewProductPage: FunctionComponent<Props> = (props: Props) => {
+  const defaultValues = {
+    is_physical: false,
+    is_recurring_billing: false,
+    name: '',
+    native_type: 'digital',
+    price_currency_type: 'cad',
+    price_range: '',
+    release_at_date: 'April 16, 2024',
+    release_at_time: '12PM',
+    subscription_duration: null,
+  };
+
+  const { handleSubmit, register, watch } = useForm<Inputs>({
+    defaultValues,
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(JSON.stringify(data, null, 4));
+
+  const currencyMap = {
+    usd: { short: '$', long: '(US Dollars)' },
+    gbp: { short: '£', long: '(GBP)' },
+    eur: { short: '€', long: '(Euro)' },
+    jpy: { short: '¥', long: '(Yen)' },
+    inr: { short: '₹', long: '(Rupees)' },
+    aud: { short: 'A$', long: '(Australian Dollars)' },
+    cad: { short: 'CAD$', long: '(Canadian Dollars)' },
+    hkd: { short: 'HK$', long: '(Hong Kong Dollars)' },
+    sgd: { short: 'SGD$', long: '(Singapore Dollars)' },
+    twd: { short: 'NT$', long: '(Taiwanese Dollars)' },
+    nzd: { short: 'NZ$', long: '(New Zealand Dollars)' },
+    brl: { short: 'R$', long: '(Brazilian Real)' },
+    zar: { short: 'ZAR', long: '(South African Rand)' },
+    chf: { short: 'CHF', long: '(Swiss Franc)' },
+    ils: { short: '₪', long: '(Israeli Shekel)' },
+    php: { short: '₱', long: '(Philippine Peso)' },
+    krw: { short: '₩', long: '(Korean Won)' },
+    pln: { short: 'zł', long: '(Polish zloty)' },
+    czk: { short: 'Kč', long: '(Czech koruna)' },
+  };
+
+  const orderedCurrencyKeys = [
+    'usd',
+    'gbp',
+    'eur',
+    'jpy',
+    'inr',
+    'aud',
+    'cad',
+    'hkd',
+    'sgd',
+    'twd',
+    'nzd',
+    'brl',
+    'zar',
+    'chf',
+    'ils',
+    'php',
+    'krw',
+    'pln',
+    'czk',
+  ];
+
+  const options = orderedCurrencyKeys.map((value) => ({ value, label: currencyMap[value].long }));
+
+  const formatPillText = (currency) => currencyMap[currency].short;
+
+  const [currencyPillText, setCurrencyPillText] = useState(formatPillText(defaultValues.price_currency_type));
+
+  // useEffect(() => {
+  //   setCurrencyPillText(pillText(getValues('price_currency_type')));
+  // }, [useWatch({ control, name: 'price_currency_type', defaultValue: 'cad' })]);
+
+  useEffect(() => {
+    setCurrencyPillText(formatPillText(watch('price_currency_type')));
+  }, [watch('price_currency_type')]);
+
   return (
     <>
       <main>
@@ -14,14 +98,13 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
               <span className="icon icon-x-square"></span>
               <span>Cancel</span>
             </a>
-            {/* <button className="accent" type="submit" form="new-product-form-:R0:"> */}
-            <a href="/products/asdf/edit">
-              <button className="accent">Next: Customize</button>
-            </a>
+            <button className="accent" type="submit" form="new-product-form-:R0:">
+              Next: Customize
+            </button>
           </div>
         </header>
         <div>
-          <form id="new-product-form-:R0:" className="row">
+          <form id="new-product-form-:R0:" className="row" onSubmit={handleSubmit(onSubmit)}>
             <section>
               <header>
                 <p>
@@ -36,7 +119,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
                 <legend>
                   <label htmlFor="name-:R0:">Name</label>
                 </legend>
-                <input id="name-:R0:" type="text" placeholder="Name of product" aria-invalid="false" />
+                <input {...register('name')} />
               </fieldset>
               <fieldset>
                 <legend>
@@ -127,29 +210,13 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
                 </legend>
                 <div className="input">
                   <label className="pill select">
-                    <span>CAD$</span>
-                    <select aria-label="Currency">
-                      <option value="usd">$ (US Dollars)</option>
-                      <option value="gbp">£ (GBP)</option>
-                      <option value="eur">€ (Euro)</option>
-                      <option value="jpy">¥ (Yen)</option>
-                      <option value="inr">₹ (Rupees)</option>
-                      <option value="aud">A$ (Australian Dollars)</option>
-                      <option value="cad" selected>
-                        CAD$ (Canadian Dollars)
-                      </option>
-                      <option value="hkd">HK$ (Hong Kong Dollars)</option>
-                      <option value="sgd">SGD$ (Singapore Dollars)</option>
-                      <option value="twd">NT$ (Taiwanese Dollars)</option>
-                      <option value="nzd">NZ$ (New Zealand Dollars)</option>
-                      <option value="brl">R$ (Brazilian Real)</option>
-                      <option value="zar">ZAR (South African Rand)</option>
-                      <option value="chf">CHF (Swiss Franc)</option>
-                      <option value="ils">₪ (Israeli Shekel)</option>
-                      <option value="php">₱ (Philippine Peso)</option>
-                      <option value="krw">₩ (Korean Won)</option>
-                      <option value="pln">zł (Polish zloty)</option>
-                      <option value="czk">Kč (Czech koruna)</option>
+                    <span>{currencyPillText}</span>
+                    <select aria-label="Currency" {...register('price_currency_type')}>
+                      {options.map(({ value, label }) => (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      ))}
                     </select>
                   </label>
                   <input
@@ -159,6 +226,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
                     placeholder="Price your product"
                     autoComplete="off"
                     aria-invalid="false"
+                    {...register('price_range')}
                   />
                 </div>
               </fieldset>
