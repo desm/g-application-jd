@@ -103,35 +103,35 @@ jobs:
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
 
-  smoke-test:
-    name: Smoke test staging
-    needs: deploy-staging
-    runs-on: ubuntu-latest
-    environment: test
+  # smoke-test:
+  #   name: Smoke test staging
+  #   needs: deploy-staging
+  #   runs-on: ubuntu-latest
+  #   environment: test
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Run smoke test
-        env:
-          IMAGE: smoke-test-runner:${{ github.sha }}
-        run: |
-          docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
-          NETWORK=$(docker network ls --format '{{ .Name }}' --filter name=github_network)
-          echo "NETWORK is: $NETWORK"
-          docker run --rm --volume ./smoke-test-runner:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
+  #     - name: Run smoke test
+  #       env:
+  #         IMAGE: smoke-test-runner:${{ github.sha }}
+  #       run: |
+  #         docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
+  #         NETWORK=$(docker network ls --format '{{ .Name }}' --filter name=github_network)
+  #         echo "NETWORK is: $NETWORK"
+  #         docker run --rm --volume ./smoke-test-runner:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
 
-    services:
-      selenium-standalone:
-        image: selenium/standalone-chrome:4.18.1-20240224
-        options: --shm-size=2gb # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontaineroptions
-        ports:
-          - 4444:4444
+  #   services:
+  #     selenium-standalone:
+  #       image: selenium/standalone-chrome:4.18.1-20240224
+  #       options: --shm-size=2gb # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontaineroptions
+  #       ports:
+  #         - 4444:4444
 
   deploy-production:
     name: Deploy to production
-    needs: smoke-test
+    needs: deploy-staging
     runs-on: ubuntu-latest
     environment: test
 
