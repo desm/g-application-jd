@@ -18,7 +18,7 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_match /\/products\/[a-z]{5}\/edit/, response["redirect_to"]
   end
 
-  test "each create returns a different path" do
+  test "each create returns a unique path to edit product" do
     sign_in :one
     post links_url, params: { "link": DataOfCreateLinkPostRequest::DIGITAL_PRODUCT },
                     headers: { "Accept" => "application/json" }
@@ -27,6 +27,15 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
                     headers: { "Accept" => "application/json" }
     response_b = JSON.parse(@response.body)
     assert_not_equal response_a, response_b
+  end
+
+  test "creating a link creates a product" do
+    sign_in :one
+    products_count_before = Product.count
+    post links_url, params: { "link": DataOfCreateLinkPostRequest::DIGITAL_PRODUCT },
+                    headers: { "Accept" => "application/json" }
+    expected_products_count = products_count_before + 1
+    assert_equal expected_products_count, Product.count
   end
 end
 

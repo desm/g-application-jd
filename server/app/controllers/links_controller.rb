@@ -17,10 +17,31 @@ class LinksController < ApplicationController
   deny_unauthenticated_access
 
   def create
+    _params = link_params()["link"]
     permalink = generate_permalink
-    response = { success: true, redirect_to: "/products/#{permalink}/edit" }
-    respond_to do |format|
-      format.json { render json: response }
+    @product = Product.new(
+      id: generate_product_id,
+      creator_id: Current.user.id,
+      permalink: permalink,
+      name: _params["name"],
+      buy_price: _params["price_range"],
+      currency_code: _params["price_currency_type"],
+    )
+    if @product.save
+      response = { success: true, redirect_to: "/products/#{permalink}/edit" }
+      respond_to do |format|
+        format.json { render json: response }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { success: false } }
+      end
     end
+  end
+
+  private
+
+  def link_params
+    params.permit(link: [:name, :price_currency_type, :price_range])
   end
 end
