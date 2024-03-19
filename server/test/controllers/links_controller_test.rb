@@ -7,13 +7,26 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_response :forbidden
   end
 
-  test "should create a new link everytime" do
+  test "creating a link successfully returns url path to edit product" do
     sign_in :one
     post links_url, params: { "link": DataOfCreateLinkPostRequest::DIGITAL_PRODUCT },
                     headers: { "Accept" => "application/json" }
     assert_response :ok
-    expected_response = { "success" => true, "redirect_to" => "/products/tsxsi/edit" }
-    assert_equal expected_response, JSON.parse(@response.body)
+    response = JSON.parse(@response.body)
+    assert_equal ["success", "redirect_to"].sort, response.keys.sort
+    assert_equal true, response["success"]
+    assert_match /\/products\/[a-z]{5}\/edit/, response["redirect_to"]
+  end
+
+  test "each create returns a different path" do
+    sign_in :one
+    post links_url, params: { "link": DataOfCreateLinkPostRequest::DIGITAL_PRODUCT },
+                    headers: { "Accept" => "application/json" }
+    response_a = JSON.parse(@response.body)
+    post links_url, params: { "link": DataOfCreateLinkPostRequest::DIGITAL_PRODUCT },
+                    headers: { "Accept" => "application/json" }
+    response_b = JSON.parse(@response.body)
+    assert_not_equal response_a, response_b
   end
 end
 
