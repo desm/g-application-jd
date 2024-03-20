@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import type { FunctionComponent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { postJSONTo } from './util';
 
 interface Props {}
 
@@ -22,29 +23,12 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     defaultValues,
   });
 
-  const doFetch = async (data) => {
-    try {
-      const response = await fetch('/links', {
-        headers: {
-          'content-type': 'application/json',
-          'x-csrf-token': document.head.querySelector('meta[name=csrf-token]').getAttribute('content'),
-        },
-        body: JSON.stringify({ link: data }),
-        method: 'POST',
-      });
-      return await response.json();
-    } catch (e) {
-      console.log(e);
-      return { success: false };
-    }
-  };
-
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const response = await doFetch(data);
+    const response = await postJSONTo(JSON.stringify({ link: data }), '/links');
     if (response.success) {
       location.href = response.redirect_to;
     } else {
-      console.log('an error occurred');
+      // todo: ask user to try again later
     }
   };
 
@@ -88,6 +72,21 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     setCurrencyPillText(formatPillText(watch('price_currency_type')));
   }, [watch('price_currency_type')]);
 
+  const thebutton = React.useRef();
+
+  const sleep = (n) =>
+    new Promise((resolve, reject) => {
+      setTimeout(resolve, n);
+    });
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (thebutton.current) {
+        (thebutton.current as any).style.display = '';
+      }
+    }, 200);
+  }, [thebutton]);
+
   return (
     <>
       <main>
@@ -98,7 +97,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
               <span className="icon icon-x-square"></span>
               <span>Cancel</span>
             </a>
-            <button className="accent" type="submit" form="new-product-form-:R0:">
+            <button className="accent" type="submit" form="new-product-form-:R0:" ref={thebutton}>
               Next: Customize
             </button>
           </div>
