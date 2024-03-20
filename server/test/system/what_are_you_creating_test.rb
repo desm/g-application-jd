@@ -13,7 +13,6 @@ class WhatAreYouCreatingTest < ApplicationSystemTestCase
     end
     fill_in "name", with: "product name"
     fill_in "price_range", with: "999"
-    watch_js_console_activity
     click_button "Next: Customize", wait: 10
     assert_no_current_path products_new_path, wait: 2
   end

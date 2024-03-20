@@ -1,10 +1,10 @@
 function getCSRFToken() {
   const csrfToken = document.querySelector("[name='csrf-token']");
-  // if (csrfToken) {
+  if (csrfToken) {
     return csrfToken.getAttribute('content');
-  // } else {
-    // return null;
-  // }
+  } else {
+    return null;
+  }
 }
 
 /**
