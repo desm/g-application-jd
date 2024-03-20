@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_18_214902) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_19_134821) do
   create_table "products", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "creator_id", null: false
     t.string "permalink", null: false
     t.string "name", null: false
     t.decimal "buy_price", precision: 5, scale: 2, null: false
     t.string "currency_code", null: false
-    t.boolean "published", null: false
+    t.boolean "published", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id", "permalink"], name: "index_products_on_creator_id_and_permalink", unique: true

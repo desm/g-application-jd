@@ -65,7 +65,10 @@ Rails.application.configure do
   # Load test helpers
   config.autoload_paths += %w[ test/test_helpers ]
 
-  # config.logger = Logger.new(STDOUT)
+  if ENV['LOGS'] == "1"
+    config.logger = Logger.new(STDOUT)
+  end
+
   config.access_control_allow_origin_for_www = "http://localhost:8080"
 
   # config.active_support.test_parallelization_threshold = 1

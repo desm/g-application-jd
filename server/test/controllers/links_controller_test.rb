@@ -1,228 +1,65 @@
 require "test_helper"
-require "base64"
 
-require "securerandom"
+module DataOfCreateLinkPostRequest
+  DIGITAL_PRODUCT = {
+    name: "digital product",
+    price_currency_type: "cad",
+    price_range: "999",
+  }
+end
 
-def generate_unique_id
-  loop do
-    # Generate a random 5-letter ID using alphanumeric characters
-    id = (0...5).map { ("a".."z").to_a[rand(26)] }.join
+def create_link_with_valid_payload
+  post links_url, params: { "link": DataOfCreateLinkPostRequest::DIGITAL_PRODUCT },
+                  headers: { "Accept" => "application/json" }
+end
 
-    # Check if the generated ID is already used
-    # unless Model.exists?(id: id)
-    return id  # Return the ID if it's unique
-    # end
+def create_link_with_missing_param
+  payload = DataOfCreateLinkPostRequest::DIGITAL_PRODUCT.merge({
+    price_range: nil,
+  })
+  post links_url, params: { "link": payload },
+                  headers: { "Accept" => "application/json" }
+end
+
+class LinksControllerWhenNotAuthenticatedTest < ActionDispatch::IntegrationTest
+  test "creating a link requires user to be signed in" do
+    create_link_with_valid_payload
+    assert_response :forbidden
   end
 end
 
 class LinksControllerTest < ActionDispatch::IntegrationTest
-  test "creating a link requires user to be signed in" do
-    post links_url, params: { "link": DataOfCreateLinkPostRequest::DIGITAL_PRODUCT }
-    assert_response :forbidden
-  end
-
-  test "should create a new link everytime" do
+  def setup
     sign_in :one
-    post links_url, params: { "link": DataOfCreateLinkPostRequest::DIGITAL_PRODUCT },
-                    headers: { "Accept" => "application/json" }
-    assert_response :ok
-    expected_response = { "success" => true, "redirect_to" => "/products/tsxsi/edit" }
-    assert_equal expected_response, JSON.parse(@response.body)
-
-    # encoded_id = 'O5_GQNXtgJAuuzPT2mrtPg=='
-    # decoded_id = Base64.decode64(encoded_id)
-    # puts decoded_id
-
-    # Generate a random 16-byte binary string
-    random_bytes = SecureRandom.random_bytes(16)
-    # Encode the binary string in Base64 format
-    base64_id = Base64.strict_encode64(random_bytes)
-    # puts base64_id
-
-    # needs to have created a Link
-    # needs to have created a Product
-    # a product has a Link
-
-    # GET /products/{permalink}/edit
-    # GET /l/{permalink}
   end
-end
 
-module DataOfCreateLinkPostRequest
-  HEADERS = {
-    accept: "application/json, text/html",
-    'accept-language': "en-GB,en-US;q=0.9,en;q=0.8",
-    'content-type': "application/json",
-    'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Brave";v="122"',
-    'sec-ch-ua-mobile': "?0",
-    'sec-ch-ua-platform': '"Linux"',
-    'sec-fetch-dest': "empty",
-    'sec-fetch-mode': "cors",
-    'sec-fetch-site': "same-origin",
-    'sec-gpc': "1",
-    'x-csrf-token': "KmEkNtoZcAVFDmFv2Sh6RZpzpyWdTjdHGJkZgpAgdMqo7gCEp1aHngWQJ3Fryyi3di6vmgvVolDoQJpbhohG9w",
-  }
+  test "creating a link successfully returns url path to edit product" do
+    create_link_with_valid_payload
+    assert_response :ok
+    response = JSON.parse(@response.body)
+    assert_equal ["success", "redirect_to"].sort, response.keys.sort
+    assert_equal true, response["success"]
+    assert_match /\/products\/[a-z]{5}\/edit/, response["redirect_to"]
+  end
 
-  @fetch_options = {
-    headers: {
-      accept: "application/json, text/html",
-      'accept-language': "en-GB,en-US;q=0.9,en;q=0.8",
-      'content-type': "application/json",
-      'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Brave";v="122"',
-      'sec-ch-ua-mobile': "?0",
-      'sec-ch-ua-platform': '"Linux"',
-      'sec-fetch-dest': "empty",
-      'sec-fetch-mode': "cors",
-      'sec-fetch-site': "same-origin",
-      'sec-gpc': "1",
-      'x-csrf-token': "KmEkNtoZcAVFDmFv2Sh6RZpzpyWdTjdHGJkZgpAgdMqo7gCEp1aHngWQJ3Fryyi3di6vmgvVolDoQJpbhohG9w",
-    },
-    referrer: "https://app.gumroad.com/products/new",
-    referrerPolicy: "strict-origin-when-cross-origin",
-    body: {
-      link: nil, # one of @body_fixtures goes here
-    },
-    method: "POST",
-    mode: "cors",
-    credentials: "include",
-  }
+  test "each successful create link returns a unique permalink" do
+    create_link_with_valid_payload
+    path_a = JSON.parse(@response.body)["redirect_to"]
+    create_link_with_valid_payload
+    path_b = JSON.parse(@response.body)["redirect_to"]
+    assert_not_equal path_a, path_b
+  end
 
-  @fetch_options_old = {
-    headers: {
-      accept: "application/json, text/html",
-      'accept-language': "en-GB,en-US;q=0.9,en;q=0.8",
-      'content-type': "application/json",
-      'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Brave";v="122"',
-      'sec-ch-ua-mobile': "?0",
-      'sec-ch-ua-platform': '"Linux"',
-      'sec-fetch-dest': "empty",
-      'sec-fetch-mode': "cors",
-      'sec-fetch-site': "same-origin",
-      'sec-gpc': "1",
-      'x-csrf-token': "KmEkNtoZcAVFDmFv2Sh6RZpzpyWdTjdHGJkZgpAgdMqo7gCEp1aHngWQJ3Fryyi3di6vmgvVolDoQJpbhohG9w",
-    },
-    referrer: "https://app.gumroad.com/products/new",
-    referrerPolicy: "strict-origin-when-cross-origin",
-    body: {
-      link: nil, # one of @body_fixtures goes here
-    },
-    method: "POST",
-    mode: "cors",
-    credentials: "include",
-  }
+  test "creating a link fails when one of the inputs is missing" do
+    products_count_before = Product.count
+    create_link_with_missing_param
+    assert_response :internal_server_error
+    assert_equal ({ "success" => false }), JSON.parse(@response.body)
+  end
 
-  DIGITAL_PRODUCT = {
-    is_physical: false,
-    is_recurring_billing: false, # is_recurring
-    name: "digital product",
-    native_type: "digital",
-    price_currency_type: "cad", # currency_code
-    price_range: "999", # buy_price
-    release_at_date: "April 17, 2024",
-    release_at_time: "12PM",
-    subscription_duration: nil, # recurring_settings, recurrence_values_for_recurring_product
-  # "static_recurrence_list": ["monthly", "quarterly", "biannually", "yearly"],
-  }
-
-  body_fixtures = {
-    digital_product: {
-      is_physical: false,
-      is_recurring_billing: false,
-      name: "digital product",
-      native_type: "digital",
-      price_currency_type: "cad",
-      price_range: "999",
-      release_at_date: "April 17, 2024",
-      release_at_time: "12PM",
-      subscription_duration: nil,
-    },
-    course_or_tutorial: {
-      is_physical: false,
-      is_recurring_billing: false,
-      name: "course",
-      native_type: "course",
-      price_currency_type: "cad",
-      price_range: "999",
-      release_at_date: "April 17, 2024",
-      release_at_time: "12PM",
-      subscription_duration: nil,
-    },
-    ebook: {
-      is_physical: false,
-      is_recurring_billing: false,
-      name: "ebook",
-      native_type: "ebook",
-      price_currency_type: "cad",
-      price_range: "999",
-      release_at_date: "April 17, 2024",
-      release_at_time: "12PM",
-      subscription_duration: nil,
-    },
-    membership_monthly: {
-      is_physical: false,
-      is_recurring_billing: true,
-      name: "membership",
-      native_type: "membership",
-      price_currency_type: "cad",
-      price_range: "1",
-      release_at_date: "April 17, 2024",
-      release_at_time: "12PM",
-      subscription_duration: "monthly",
-    },
-    membership_quarterly: {
-      is_physical: false,
-      is_recurring_billing: true,
-      name: "membership_3m",
-      native_type: "membership",
-      price_currency_type: "cad",
-      price_range: "2",
-      release_at_date: "April 17, 2024",
-      release_at_time: "12PM",
-      subscription_duration: "quarterly",
-    },
-    membership_biannually: {
-      is_physical: false,
-      is_recurring_billing: true,
-      name: "membership_6m",
-      native_type: "membership",
-      price_currency_type: "cad",
-      price_range: "3",
-      release_at_date: "April 17, 2024",
-      release_at_time: "12PM",
-      subscription_duration: "biannually",
-    },
-    membership_yearly: {
-      is_physical: false,
-      is_recurring_billing: true,
-      name: "membership_yearly",
-      native_type: "membership",
-      price_currency_type: "cad",
-      price_range: "4",
-      release_at_date: "April 17, 2024",
-      release_at_time: "12PM",
-      subscription_duration: "yearly",
-    },
-    physical_good: {
-      is_physical: true,
-      is_recurring_billing: false,
-      name: "physical_good",
-      native_type: "physical",
-      price_currency_type: "cad",
-      price_range: "999",
-      release_at_date: "April 17, 2024",
-      release_at_time: "12PM",
-      subscription_duration: nil,
-    },
-    bundle: {
-      is_physical: false,
-      is_recurring_billing: false,
-      name: "bundle",
-      native_type: "bundle",
-      price_currency_type: "cad",
-      price_range: "999",
-      release_at_date: "April 17, 2024",
-      release_at_time: "12PM",
-      subscription_duration: nil,
-    },
-  }
+  test "a product is not created when one of the inputs is missing" do
+    products_count_before = Product.count
+    create_link_with_missing_param
+    assert_equal products_count_before, Product.count
+  end
 end

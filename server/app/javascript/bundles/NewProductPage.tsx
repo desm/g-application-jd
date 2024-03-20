@@ -2,8 +2,9 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import type { FunctionComponent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { postJSONTo } from './util';
 
-export interface Props {}
+interface Props {}
 
 type Inputs = {
   name: string;
@@ -13,76 +14,59 @@ type Inputs = {
 
 const NewProductPage: FunctionComponent<Props> = (props: Props) => {
   const defaultValues = {
-    is_physical: false,
-    is_recurring_billing: false,
     name: '',
-    native_type: 'digital',
-    price_currency_type: 'cad',
+    price_currency_type: 'usd',
     price_range: '',
-    release_at_date: 'April 16, 2024',
-    release_at_time: '12PM',
-    subscription_duration: null,
   };
 
   const { handleSubmit, register, watch } = useForm<Inputs>({
     defaultValues,
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(JSON.stringify(data, null, 4));
-
-  const currencyMap = {
-    usd: { short: '$', long: '(US Dollars)' },
-    gbp: { short: '£', long: '(GBP)' },
-    eur: { short: '€', long: '(Euro)' },
-    jpy: { short: '¥', long: '(Yen)' },
-    inr: { short: '₹', long: '(Rupees)' },
-    aud: { short: 'A$', long: '(Australian Dollars)' },
-    cad: { short: 'CAD$', long: '(Canadian Dollars)' },
-    hkd: { short: 'HK$', long: '(Hong Kong Dollars)' },
-    sgd: { short: 'SGD$', long: '(Singapore Dollars)' },
-    twd: { short: 'NT$', long: '(Taiwanese Dollars)' },
-    nzd: { short: 'NZ$', long: '(New Zealand Dollars)' },
-    brl: { short: 'R$', long: '(Brazilian Real)' },
-    zar: { short: 'ZAR', long: '(South African Rand)' },
-    chf: { short: 'CHF', long: '(Swiss Franc)' },
-    ils: { short: '₪', long: '(Israeli Shekel)' },
-    php: { short: '₱', long: '(Philippine Peso)' },
-    krw: { short: '₩', long: '(Korean Won)' },
-    pln: { short: 'zł', long: '(Polish zloty)' },
-    czk: { short: 'Kč', long: '(Czech koruna)' },
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const response = await postJSONTo(JSON.stringify({ link: data }), '/links');
+    if (response.success) {
+      location.href = response.redirect_to;
+    } else {
+      // todo: ask user to try again later
+    }
   };
 
-  const orderedCurrencyKeys = [
-    'usd',
-    'gbp',
-    'eur',
-    'jpy',
-    'inr',
-    'aud',
-    'cad',
-    'hkd',
-    'sgd',
-    'twd',
-    'nzd',
-    'brl',
-    'zar',
-    'chf',
-    'ils',
-    'php',
-    'krw',
-    'pln',
-    'czk',
+  const currencies = [
+    { code: 'usd', short: '$', long: '(US Dollars)' },
+    { code: 'gbp', short: '£', long: '(GBP)' },
+    { code: 'eur', short: '€', long: '(Euro)' },
+    { code: 'jpy', short: '¥', long: '(Yen)' },
+    { code: 'inr', short: '₹', long: '(Rupees)' },
+    { code: 'aud', short: 'A$', long: '(Australian Dollars)' },
+    { code: 'cad', short: 'CAD$', long: '(Canadian Dollars)' },
+    { code: 'hkd', short: 'HK$', long: '(Hong Kong Dollars)' },
+    { code: 'sgd', short: 'SGD$', long: '(Singapore Dollars)' },
+    { code: 'twd', short: 'NT$', long: '(Taiwanese Dollars)' },
+    { code: 'nzd', short: 'NZ$', long: '(New Zealand Dollars)' },
+    { code: 'brl', short: 'R$', long: '(Brazilian Real)' },
+    { code: 'zar', short: 'ZAR', long: '(South African Rand)' },
+    { code: 'chf', short: 'CHF', long: '(Swiss Franc)' },
+    { code: 'ils', short: '₪', long: '(Israeli Shekel)' },
+    { code: 'php', short: '₱', long: '(Philippine Peso)' },
+    { code: 'krw', short: '₩', long: '(Korean Won)' },
+    { code: 'pln', short: 'zł', long: '(Polish zloty)' },
+    { code: 'czk', short: 'Kč', long: '(Czech koruna)' },
   ];
 
-  const options = orderedCurrencyKeys.map((value) => ({ value, label: currencyMap[value].long }));
+  const currencyCodeShortMap = currencies.reduce((accum, curr) => {
+    accum[curr.code] = curr.short;
+    return accum;
+  }, {});
 
-  const formatPillText = (currency) => currencyMap[currency].short;
+  const currencyOptions = currencies.map((el: (typeof currencies)[0]) => ({
+    value: el.code,
+    label: el.short + ' ' + el.long,
+  }));
+
+  const formatPillText = (currencyCode: string) => currencyCodeShortMap[currencyCode];
 
   const [currencyPillText, setCurrencyPillText] = useState(formatPillText(defaultValues.price_currency_type));
-
-  // useEffect(() => {
-  //   setCurrencyPillText(pillText(getValues('price_currency_type')));
-  // }, [useWatch({ control, name: 'price_currency_type', defaultValue: 'cad' })]);
 
   useEffect(() => {
     setCurrencyPillText(formatPillText(watch('price_currency_type')));
@@ -211,7 +195,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
                   <label className="pill select">
                     <span>{currencyPillText}</span>
                     <select aria-label="Currency" {...register('price_currency_type')}>
-                      {options.map(({ value, label }) => (
+                      {currencyOptions.map(({ value, label }) => (
                         <option key={value} value={value}>
                           {label}
                         </option>

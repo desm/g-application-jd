@@ -16,5 +16,15 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     driver_option.add_argument("no-sandbox")
   end
 
+  def watch_js_console_activity
+    # https://www.selenium.dev/documentation/webdriver/bidirectional/chrome_devtools/cdp_api/#console-logs
+    # https://www.rubydoc.info/gems/selenium-devtools/Selenium/DevTools/V122/Runtime
+    page.driver.browser.devtools.runtime.enable
+
+    page.driver.browser.devtools.runtime.on("consoleAPICalled") do |message|
+      puts message
+    end
+  end
+
   include SystemTestHelper
 end

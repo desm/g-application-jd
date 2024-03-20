@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   post "links" => "links#create"
   get "products" => "products#index"
   get "products/new"
-  get "products/:id/edit" => "products#edit" # edit_product_path
+  get "products/:id/edit" => "products#edit", as: :products_edit
 end

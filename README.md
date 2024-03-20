@@ -120,11 +120,16 @@ $ up
 ```shell
 $ connect
 
-(appserver) $ rails test; # runs tests in the 'test' dir (except for 'test/system'): unit, functional, integration
+# run all tests except for system tests
+(appserver) $ rails test;
+(appserver) $ LOGS=1 rails test; # prints server-side logs to STDOUT
 
-(appserver) $ jest; # runs tests under '__tests__' dir: frontend unit tests
+# run frontend unit tests (tests under './server/__tests__' dir)
+(appserver) $ jest;
 
-(appserver) $ rails test:system; # runs tests under 'test/system': headless browser tests
+# run system tests
+(appserver) $ rails test:system;
+(appserver) $ LOGS=1 rails test:system; # prints server-side logs to STDOUT
 ```
 
 Note: running 'jest' does not do type checking.
@@ -134,7 +139,8 @@ Note: running 'jest' does not do type checking.
 ```shell
 $ connect-smoke
 
-(smoke-test-runner) $ rails test:system; # runs smoke tests against staging env https://app.staging.gumroad.jacquesdesmarais.dev
+# run smoke tests against staging env https://app.staging.gumroad.jacquesdesmarais.dev
+(smoke-test-runner) $ rails test:system;
 ```
 
 ### Type Checking
@@ -147,7 +153,7 @@ $ connect
 (appserver) $ shakapacker
 ```
 
-## Master Key and Credentials File
+### Master Key and Credentials File
 
 The `config/master.key` file is required to deploy to staging or production.
 It is also required to maintain the `credentials.yml.enc` file.
@@ -160,6 +166,22 @@ $ up-sleep
 $ connect
 
 (appserver) $ VISUAL=vi rails credentials:edit
+```
+
+## CI/CD
+
+CI/CD is done using **GitHub Actions**.
+
+**The code is tested** each time a commit is pushed to GitHub. This is configured via `.github/workflows/test.yml`. Past test runs can be found here: [Test · Workflow runs](https://github.com/desm/gumroad-jd/actions/workflows/test.yml).
+
+**The code is deployed** when a tag is pushed that matches the pattern `deploy-*`. This is configured via `.github/workflows/deploy-ecs.yml`. Past deployments can be found here: [Test & Deploy to Amazon ECS · Workflow runs](https://github.com/desm/gumroad-jd/actions/workflows/deploy-ecs.yml).
+
+```shell
+# tag the commit to deploy. If "ref" is not specified, then HEAD is tagged
+$ git tag deploy-20240319-01 [ref]
+
+# push the tag to GitHub
+$ git push origin deploy-20240319-01
 ```
 
 ## Tech Stack
@@ -177,10 +199,16 @@ $ connect
 - [Web APIs (Mozilla) (e.g. "fetch")](https://developer.mozilla.org/en-US/docs/Web/API)
 - [React Hook Form](https://react-hook-form.com/)
 
-### Testing Libraries
+### Testing Libraries For Rails
 
 - [Minitest](http://docs.seattlerb.org/minitest/)
 - [Capybara](https://rubydoc.info/github/teamcapybara/capybara/master)
+- [capybara 3.39.2 API](https://rubydoc.info/gems/capybara/3.39.2/index)
+- [selenium-webdriver 4.16 API](https://www.rubydoc.info/gems/selenium-webdriver/4.16.0/index)
+- [selenium-devtools V122 API](https://www.rubydoc.info/gems/selenium-devtools/Selenium/DevTools/V122)
+
+### Testing Libraries For Jest
+
 - [React Testing Library \_ Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
 - [Mock Service Worker V1 (msw)](https://v1.mswjs.io/docs/)
