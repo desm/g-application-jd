@@ -199,10 +199,16 @@ $ git push origin deploy-20240319-01
 - [Web APIs (Mozilla) (e.g. "fetch")](https://developer.mozilla.org/en-US/docs/Web/API)
 - [React Hook Form](https://react-hook-form.com/)
 
-### Testing Libraries
+### Testing Libraries For Rails
 
 - [Minitest](http://docs.seattlerb.org/minitest/)
 - [Capybara](https://rubydoc.info/github/teamcapybara/capybara/master)
+- [capybara 3.39.2 API](https://rubydoc.info/gems/capybara/3.39.2/index)
+- [selenium-webdriver 4.16 API](https://www.rubydoc.info/gems/selenium-webdriver/4.16.0/index)
+- [selenium-devtools V122 API](https://www.rubydoc.info/gems/selenium-devtools/Selenium/DevTools/V122)
+
+### Testing Libraries For Jest
+
 - [React Testing Library \_ Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)
 - [Mock Service Worker V1 (msw)](https://v1.mswjs.io/docs/)
