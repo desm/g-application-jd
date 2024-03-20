@@ -72,21 +72,6 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     setCurrencyPillText(formatPillText(watch('price_currency_type')));
   }, [watch('price_currency_type')]);
 
-  const thebutton = React.useRef();
-
-  const sleep = (n) =>
-    new Promise((resolve, reject) => {
-      setTimeout(resolve, n);
-    });
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (thebutton.current) {
-        (thebutton.current as any).style.display = '';
-      }
-    }, 200);
-  }, [thebutton]);
-
   return (
     <>
       <main>
@@ -97,7 +82,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
               <span className="icon icon-x-square"></span>
               <span>Cancel</span>
             </a>
-            <button className="accent" type="submit" form="new-product-form-:R0:" ref={thebutton}>
+            <button className="accent" type="submit" form="new-product-form-:R0:">
               Next: Customize
             </button>
           </div>
