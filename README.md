@@ -177,11 +177,11 @@ CI/CD is done using **GitHub Actions**.
 **The code is deployed** when a tag is pushed that matches the pattern `deploy-*`. This is configured via `.github/workflows/deploy-ecs.yml`. Past deployments can be found here: [Test & Deploy to Amazon ECS · Workflow runs](https://github.com/desm/gumroad-jd/actions/workflows/deploy-ecs.yml).
 
 ```shell
-# tag the commit to deploy. If "ref" is not specified, then HEAD is tagged
+# tag the commit to deploy. "ref" can be commit sha, or HEAD, or branch name
 $ git tag deploy-20240319-01 [ref]
 
-# push the tag to GitHub
-$ git push origin deploy-20240319-01
+# push the ref + tag to GitHub (use same ref as in previous command)
+$ git push origin [ref] deploy-20240319-01
 ```
 
 ## Tech Stack
