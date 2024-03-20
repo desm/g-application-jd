@@ -22,7 +22,31 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     defaultValues,
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(JSON.stringify(data, null, 4));
+  const doFetch = async (data) => {
+    try {
+      const response = await fetch('/links', {
+        headers: {
+          'content-type': 'application/json',
+          'x-csrf-token': document.head.querySelector('meta[name=csrf-token]').getAttribute('content'),
+        },
+        body: JSON.stringify({ link: data }),
+        method: 'POST',
+      });
+      return await response.json();
+    } catch (e) {
+      console.log(e);
+      return { success: false };
+    }
+  };
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const response = await doFetch(data);
+    if (response.success) {
+      location.href = response.redirect_to;
+    } else {
+      console.log('an error occurred');
+    }
+  };
 
   const currencies = [
     { code: 'usd', short: '$', long: '(US Dollars)' },
