@@ -1,0 +1,68 @@
+require "test_helper"
+
+# Documentation regarding the Chrome-specific --no-sandbox command line argument:
+#
+# Stop checking for the setuid sanbox binary on desktop Linux [40462640] - Chromium
+#     https://issues.chromium.org/issues/40462640
+#
+# ChromeDriver - WebDriver for Chrome - Capabilities & ChromeOptions
+#     https://chromedriver.chromium.org/capabilities
+#
+# List of Chromium Command Line Switches « Peter Beverloo
+#     https://peter.sh/experiments/chromium-command-line-switches/
+
+class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_option("goog:loggingPrefs", { browser: "ALL" })
+
+  opt = {
+    "goog:loggingPrefs" => {
+      "browser" => "ALL",
+    },
+  }
+
+  opt2 = {
+    "goog" => {
+      "loggingPrefs" => {
+        "browser" => "ALL",
+      },
+    },
+  }
+
+  opt3 = {
+    "loggingPrefs" => {
+      "browser" => "ALL",
+    },
+  }
+
+  # driven_by :selenium, using: :headless_chrome, screen_size: [1680, 1050], options: opt3 do |driver_option|
+  #   driver_option.add_argument("no-sandbox")
+  # end
+
+  # driven_by :selenium, using: :headless_chrome, screen_size: [1680, 1050] do |driver_option|
+  #   driver_option.add_argument("no-sandbox")
+  #   driver_option.add_option("goog:loggingPrefs", { browser: "ALL" })
+  # end
+
+  # https://stackoverflow.com/questions/46278514/capture-browser-console-logs-with-capybara/46292517
+
+  Capybara.register_driver :logging_selenium_chrome do |app|
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_option("goog:loggingPrefs", { browser: "ALL" })
+    options.add_argument("no-sandbox")
+
+    browser_options = ::Selenium::WebDriver::Chrome::Options.new()
+
+    Capybara.register_driver :chrome do |app|
+      Capybara::Selenium::Driver.new(app,
+                                     capabilities: options,
+                                     browser: :headless_chrome)
+    end
+  end
+
+  Capybara.javascript_driver = :logging_selenium_chrome # or however else you're specifying which driver to use
+
+  Selenium::WebDriver::Remote::Capabilities.chrome( "goog:loggingPrefs": { browser: 'ALL' } )
+
+  include SystemTestHelper
+end
