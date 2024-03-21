@@ -95,7 +95,7 @@ ssh-keygen
 cat .ssh/id_rsa.pub
 sudo vi /etc/group
 git clone git@github.com:desm/gumroad-jd.git
-cd gumroad-jd/server
+cd gumroad-jd/webapp
 cat > config/master.key
 source .autoenv
 aws configure sso
@@ -246,11 +246,11 @@ Mar 5 2024
 ----------
 
 # to deploy "app" to staging:
-cd ./server
+cd ./webapp
 start=`date`; RAILS_MASTER_KEY=$(cat ./config/master.key) copilot deploy --name app --env staging; echo $start; date
 
 ### # to deploy "app" to production:
-### cd ./server
+### cd ./webapp
 ### start=`date`; RAILS_MASTER_KEY=$(cat ./config/master.key) copilot deploy --name app --env production; echo $start; date
 
 
@@ -271,11 +271,11 @@ $ start=`date`; RAILS_MASTER_KEY=$(cat config/master.key) copilot deploy --name 
 ok (about 15 minutes)
 
 # to deploy:
-$ start=`date`; RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy --name app --env staging; echo $start; date ; notify-gmail.sh "$start - $(date)"
-$ start=`date`; RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy --name app --env production; echo $start; date ; notify-gmail.sh "$start - $(date)"
+$ start=`date`; RAILS_MASTER_KEY=$(cat webapp/config/master.key) copilot deploy --name app --env staging; echo $start; date ; notify-gmail.sh "$start - $(date)"
+$ start=`date`; RAILS_MASTER_KEY=$(cat webapp/config/master.key) copilot deploy --name app --env production; echo $start; date ; notify-gmail.sh "$start - $(date)"
 
 # to deploy both "www" and "app":
-start=`date`; RAILS_MASTER_KEY=$(cat server/config/master.key) copilot deploy --name www --name app --env production; echo $start; date ; notify-gmail.sh "$start - $(date)"
+start=`date`; RAILS_MASTER_KEY=$(cat webapp/config/master.key) copilot deploy --name www --name app --env production; echo $start; date ; notify-gmail.sh "$start - $(date)"
 
 
 Mar 7
@@ -392,7 +392,7 @@ $ copilot svc deploy --app gumroad --env staging --name app
 $ copilot svc deploy --app gumroad --env production --name app
 
 step 10:
-update server/config/database.yml with newly created db hosts for both envs
+update webapp/config/database.yml with newly created db hosts for both envs
 update config/credentials.yml.enc with newly created passwords for both envs
 
 step 11:
@@ -409,6 +409,6 @@ add the master key in the Parameter Store:
 step 12:
 update service 'app' in both environments to be the Gumroad Rails application
 
-$ RAILS_MASTER_KEY=$(cat ./server/config/master.key) copilot svc deploy --app gumroad --diff-yes --env staging --name app
+$ RAILS_MASTER_KEY=$(cat ./webapp/config/master.key) copilot svc deploy --app gumroad --diff-yes --env staging --name app
 
-$ RAILS_MASTER_KEY=$(cat ./server/config/master.key) copilot svc deploy --app gumroad --diff-yes --env production --name app
+$ RAILS_MASTER_KEY=$(cat ./webapp/config/master.key) copilot svc deploy --app gumroad --diff-yes --env production --name app

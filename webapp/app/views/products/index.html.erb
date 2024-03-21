@@ -1,0 +1,10 @@
+<% content_for :title do %>
+Products
+<% end %>
+
+<% content_for :body_class do %>
+fixed-aside sidebar-nav
+<% end %>
+
+<%= react_component("Nav", props: @props[:Nav], prerender: true, html_options: [["style", "display: contents;"]]) %>
+<%= react_component("ProductsDashboardPage", props: @props[:ProductsDashboardPage], prerender: true, html_options: [["style", "display: contents;"]]) %>

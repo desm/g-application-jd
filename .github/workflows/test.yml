@@ -28,8 +28,8 @@ jobs:
         env:
           IMAGE: test:${{ github.sha }}
         run: |
-          docker build -f github-workflows/Dockerfile -t $IMAGE ./server
-          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE yarn install
-          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./node_modules/.bin/jest
-          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./bin/rails test
-          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./bin/rails test:system
+          docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner $IMAGE yarn install
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner $IMAGE ./node_modules/.bin/jest
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner $IMAGE ./bin/rails test
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner $IMAGE ./bin/rails test:system
