@@ -24,8 +24,4 @@ class SessionsController < ApplicationController
     data = { "success": false, "error": "unauthorized" }
     render json: data, status: status
   end
-
-  def set_default_body_class
-    @body_class = "onboarding-page"
-  end
 end

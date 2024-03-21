@@ -1,14 +1,9 @@
 class ApplicationController < ActionController::Base
   include Authentication
 
-  before_action :set_default_body_class
   before_action :set_default_props
 
   private
-
-  def set_default_body_class
-    @body_class = "sidebar-nav"
-  end
 
   def set_default_props
     @props = {

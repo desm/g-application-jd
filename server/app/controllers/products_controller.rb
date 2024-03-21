@@ -22,10 +22,4 @@ class ProductsController < ApplicationController
     @discover_taxonomy_options = discover_taxonomy_options
     @current_seller = current_seller
   end
-
-  private
-
-  def set_default_body_class
-    @body_class = "fixed-aside sidebar-nav"
-  end
 end

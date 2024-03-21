@@ -24,8 +24,4 @@ class SignupController < ApplicationController
       :password,
     )
   end
-
-  def set_default_body_class
-    @body_class = "onboarding-page"
-  end
 end

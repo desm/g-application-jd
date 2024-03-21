@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'client-bundle' %>
     <%= favicon_link_tag 'favicon.ico' %>
   </head>
-  <body class="<%= @body_class %>" id="app">
+  <body class="<%= yield(:body_class).blank? ? "sidebar-nav" : yield(:body_class).chomp %>" id="app">
     <div
       data-settings='{"font":{"name":"Mabry Pro","url":"/assets/mabry-regular-pro-2987dea5e28da4cf6ec452e081243d69aa29503e7f870eddabcb2225dac42343.woff2"}}'
       id="design-settings"
