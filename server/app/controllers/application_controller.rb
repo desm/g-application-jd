@@ -15,8 +15,6 @@ class ApplicationController < ActionController::Base
       Nav: {
         avatar_img: view_context.asset_path("gumroad-default-avatar-5.png"),
         url_path: request.path,
-        # title: "What are you creating?",
-        title: "", # depends on the current page
         help_url: "https://help.gumroad.jacquesdesmarais.dev",
         unbecome_path: nil,
       },
