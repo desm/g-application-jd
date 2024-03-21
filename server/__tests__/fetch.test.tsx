@@ -1,4 +1,4 @@
-import { createLink } from '../app/javascript/bundles/lib';
+import { createLink } from '../client/bundles/lib';
 
 test('calling createLink', async () => {
   const response = await createLink();
