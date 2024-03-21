@@ -2,7 +2,7 @@ def design_settings
   {
     "font": {
       "name": "Mabry Pro",
-      "url": "https://assets.gumroad.com/assets/mabry-regular-pro-2987dea5e28da4cf6ec452e081243d69aa29503e7f870eddabcb2225dac42343.woff2",
+      "url": "/assets/mabry-regular-pro-2987dea5e28da4cf6ec452e081243d69aa29503e7f870eddabcb2225dac42343.woff2",
     },
   }
 end
@@ -18,8 +18,8 @@ def edit_attributes
     "seller": {
       "id": "9078562000866",
       "name": "Jacques",
-      "profile_url": "https://jdesma.gumroad.com/",
-      "avatar_url": "https://assets.gumroad.com/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png",
+      "profile_url": "https://jdesma.gumroad.jacquesdesmarais.dev/",
+      "avatar_url": "/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png",
     },
     "sales_count": 0,
     "sales_count_for_inventory": 0,
@@ -1045,7 +1045,7 @@ def edit_attributes
     ],
     "is_epublication": false,
     "unique_permalink": "gxtwf",
-    "subdomain": "jdesma.gumroad.com",
+    "subdomain": "jdesma.gumroad.jacquesdesmarais.dev",
     "protocol": "https",
     "is_adult_content": false,
     "display_product_reviews": true,
@@ -2564,8 +2564,8 @@ def current_seller
     "id": "9078562000866",
     "email": "jdesma@gmail.com",
     "name": "Jacques",
-    "subdomain": "jdesma.gumroad.com",
-    "avatar_url": "https://assets.gumroad.com/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png",
+    "subdomain": "jdesma.gumroad.jacquesdesmarais.dev",
+    "avatar_url": "/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png",
     "is_buyer": false,
     "time_zone": {
       "name": "America/New_York",

@@ -59,8 +59,8 @@ export default ProductContentPreview;
   "creator": {
     "id": "9078562000866",
     "name": "Jacques",
-    "profile_url": "https://jdesma.gumroad.com/",
-    "avatar_url": "https://assets.gumroad.com/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png"
+    "profile_url": "https://jdesma.gumroad.jacquesdesmarais.dev/",
+    "avatar_url": "/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png"
   },
   "digital_variant_options": [
     { "id": "VjBqZpNx9c12Y-2cAYTCVg==", "name": "one" },

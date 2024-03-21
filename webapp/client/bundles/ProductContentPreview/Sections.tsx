@@ -280,7 +280,7 @@ function Sections() {
             </span>
           </legend>
           <div className="input">
-            <div className="pill">jdesma.gumroad.com/l/</div>
+            <div className="pill">jdesma.gumroad.jacquesdesmarais.dev/l/</div>
             <input id=":r6:" type="text" placeholder="dcfqu" value="" />
           </div>
         </fieldset>
@@ -556,7 +556,7 @@ function Sections() {
                   <a
                     target="_blank"
                     aria-label="Share one"
-                    href="https://jdesma.gumroad.com/l/dcfqu?option=VjBqZpNx9c12Y-2cAYTCVg%3D%3D"
+                    href="https://jdesma.gumroad.jacquesdesmarais.dev/l/dcfqu?option=VjBqZpNx9c12Y-2cAYTCVg%3D%3D"
                     data-gumroad-ignore="true"
                     rel="noreferrer"
                   >
@@ -627,7 +627,7 @@ function Sections() {
                   <a
                     target="_blank"
                     aria-label="Share two"
-                    href="https://jdesma.gumroad.com/l/dcfqu?option=NxP68JiGajkgCRohWGNmOg%3D%3D"
+                    href="https://jdesma.gumroad.jacquesdesmarais.dev/l/dcfqu?option=NxP68JiGajkgCRohWGNmOg%3D%3D"
                     data-gumroad-ignore="true"
                     rel="noreferrer"
                   >

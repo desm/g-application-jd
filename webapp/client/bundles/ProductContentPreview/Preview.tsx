@@ -32,7 +32,7 @@ function Preview() {
               <section className="details">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacer-2)' }}>
                   <a
-                    href="https://jdesma.gumroad.com/"
+                    href="https://jdesma.gumroad.jacquesdesmarais.dev/"
                     target="_blank"
                     className="user"
                     rel="noreferrer"
@@ -40,7 +40,7 @@ function Preview() {
                   >
                     <img
                       className="user-avatar"
-                      src="https://assets.gumroad.com/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png"
+                      src="/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png"
                     />
                     Jacques
                   </a>
