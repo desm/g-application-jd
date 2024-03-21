@@ -51,7 +51,7 @@ They are not meant to be used inside docker containers.
 | deploy-production \* | Deploys to the production env using AWS Copilot                                                                                           |
 | reload               | Reloads the `.autoenv` file, if you are using [autoenv](https://github.com/hyperupcall/autoenv?tab=readme-ov-file#installation-automated) |
 
-\*: these commands require a copy of `server/config/master.key`.
+\*: these commands require a copy of `webapp/config/master.key`.
 
 ## Development
 
@@ -124,7 +124,7 @@ $ connect
 (appserver) $ rails test;
 (appserver) $ LOGS=1 rails test; # prints server-side logs to STDOUT
 
-# run frontend unit tests (tests under './server/__tests__' dir)
+# run frontend unit tests (tests under './webapp/__tests__' dir)
 (appserver) $ jest;
 
 # run system tests

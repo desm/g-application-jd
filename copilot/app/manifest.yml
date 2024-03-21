@@ -19,7 +19,7 @@ image:
   # Docker build arguments. For additional overrides: https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/#image-build
   build:
     dockerfile: copilot/app/Dockerfile
-    context: ./server/
+    context: ./webapp/
     args:
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
   # Port exposed through your container to route traffic to it.

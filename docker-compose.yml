@@ -4,13 +4,13 @@ version: '3.4'
 services:
   appserver:
     build:
-      context: ./server
+      context: ./webapp
       dockerfile: ../docker-compose/app/Dockerfile
     ports:
       - 8000:3000
       - 3035:3035
     volumes:
-      - ./server:/app
+      - ./webapp:/app
     tmpfs:
       - /tmp
     working_dir: /app

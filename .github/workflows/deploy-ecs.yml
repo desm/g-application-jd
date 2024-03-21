@@ -45,11 +45,11 @@ jobs:
         env:
           IMAGE: test:${{ github.sha }}
         run: |
-          docker build -f github-workflows/Dockerfile -t $IMAGE ./server
-          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE yarn install
-          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./node_modules/.bin/jest
-          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./bin/rails test
-          docker run --rm --volume ./server:/app --workdir /app --user runner $IMAGE ./bin/rails test:system
+          docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner $IMAGE yarn install
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner $IMAGE ./node_modules/.bin/jest
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner $IMAGE ./bin/rails test
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner $IMAGE ./bin/rails test:system
 
   deploy-staging:
     name: Deploy to staging
@@ -81,7 +81,7 @@ jobs:
           # Build a docker container and
           # push it to ECR so that it can
           # be deployed to ECS.
-          docker build -f copilot/app/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./server
+          docker build -f copilot/app/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./webapp
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
