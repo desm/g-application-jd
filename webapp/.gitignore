@@ -42,6 +42,6 @@ yarn-debug.log*
 .yarn-integrity
 
 # temp files used for comparing HTML sources
-app/javascript/bundles/a.html
-app/javascript/bundles/b.html
-app/javascript/bundles/c.html
+client/bundles/a.html
+client/bundles/b.html
+client/bundles/c.html
