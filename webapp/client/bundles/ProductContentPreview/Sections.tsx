@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function Sections() {
+function Sections({ productName, changeProductName }) {
   return (
     <>
       <section className="input-group">
@@ -16,7 +16,8 @@ function Sections() {
             className="top-level-input"
             type="text"
             placeholder="Name"
-            value="product name"
+            defaultValue={productName}
+            onChange={(e) => changeProductName(e.currentTarget.value)}
           />
         </fieldset>
         <fieldset>
@@ -250,7 +251,6 @@ function Sections() {
             <div className="rich-text">
               <div
                 className="tiptap ProseMirror textarea"
-                // contentEditable={true}
                 aria-label="Description"
                 id=":r5:"
                 tabIndex={0}

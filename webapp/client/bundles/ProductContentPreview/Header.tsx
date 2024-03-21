@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-function Header() {
+function Header({ productName }) {
   return (
     <>
-      <h1>product name</h1>
+      <h1>{productName}</h1>
       <div className="actions">
         <button className="primary" type="submit">
           Save and continue

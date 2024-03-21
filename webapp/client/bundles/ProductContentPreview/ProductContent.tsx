@@ -358,7 +358,6 @@ function ProductContent() {
           <div className="rich-text" data-gumroad-ignore="true">
             <div
               className="tiptap ProseMirror"
-              // contentEditable={true}
               aria-label="Content editor"
               id=":r14:"
               tabIndex={0}
