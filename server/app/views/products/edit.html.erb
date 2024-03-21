@@ -1,5 +1,8 @@
-<% content_for :title do %> product name <% end %> <%= react_component("Nav", props: @props[:Nav], prerender: true,
-html_options: [["style", "display: contents;"]]) %>
+<% content_for :title do %>
+product name
+<% end %>
+
+<%= react_component("Nav", props: @props[:Nav], prerender: true, html_options: [["style", "display: contents;"]]) %>
 
 <header class="sticky" id="header-root"></header>
 <div class="js-edit-product-container" data-has-rich-content data-tab-style="basic" style="display: contents">
@@ -190,8 +193,7 @@ html_options: [["style", "display: contents;"]]) %>
               "serverSide": false
             }
           </script>
-          <%= react_component("ProductPreviewVariantDropdown", props: @props[:ProductPreviewVariantDropdown], prerender:
-          true, html_options: [["style", "display: contents;"]]) %>
+          <%= react_component("ProductPreviewVariantDropdown", props: @props[:ProductPreviewVariantDropdown], prerender: true, html_options: [["style", "display: contents;"]]) %>
         </div>
         <div class="has-tooltip bottom">
           <a
@@ -207,8 +209,7 @@ html_options: [["style", "display: contents;"]]) %>
       <div class="product-container js-product-container" style="pointer-events: none">
         <div class="product-row original-product-row main-product-row js-main-product-row">
           <div class="js-content-preview-container" style="display: none">
-            <%= react_component("ProductContentPreview", props: @props[:ProductContentPreview], prerender: true,
-            html_options: [["style", "display: contents;"]]) %>
+            <%= react_component("ProductContentPreview", props: @props[:ProductContentPreview], prerender: true, html_options: [["style", "display: contents;"]]) %>
           </div>
         </div>
       </div>

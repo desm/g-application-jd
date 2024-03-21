@@ -1,8 +1,6 @@
-require_relative "product_data"
+require_relative "products/products_data"
 
 class ProductsController < ApplicationController
-include ApplicationHelper
-
   def index
     @props[:Nav][:highlight] = "Products"
     @props[:ProductsDashboardPage] = {}
@@ -23,14 +21,6 @@ include ApplicationHelper
     @edit_attributes = edit_attributes
     @discover_taxonomy_options = discover_taxonomy_options
     @current_seller = current_seller
-    # @current_seller = { "id" => "label" }
-    # @current_seller2 = { "id" => "label" }
-    # puts "++++++++++++++++++++++++++"
-    # # puts @current_seller
-    # puts JSON.generate(@design_settings)
-    # puts "++++++++++++++++++++++++++"
-    # puts encode_special_chars(JSON.generate(@design_settings))
-    # puts "++++++++++++++++++++++++++"
   end
 
   private
