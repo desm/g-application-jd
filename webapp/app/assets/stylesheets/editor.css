@@ -318,7 +318,8 @@ img.ProseMirror-separator {
   margin-top: 5px;
   display: none;
 }
-#editor, .editor {
+
+#editor, #editor2, .editor {
   background: white;
   color: black;
   background-clip: padding-box;
