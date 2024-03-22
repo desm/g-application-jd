@@ -10,8 +10,18 @@ import ProductContent from './ProductContentPreview/ProductContent';
 import ProfileSettings from './ProductContentPreview/ProfileSettings';
 import Sections from './ProductContentPreview/Sections';
 import ShareLinks from './ProductContentPreview/ShareLinks';
+import { EditorState } from 'prosemirror-state';
+import { schema } from 'prosemirror-schema-basic';
+import { Schema } from 'prosemirror-model';
+import { addListNodes } from 'prosemirror-schema-list';
+import { exampleSetup } from 'prosemirror-example-setup';
 
 export interface Props {}
+
+const mySchema = new Schema({
+  nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
+  marks: schema.spec.marks,
+});
 
 const initialState = {
   productName: 'product name',
@@ -21,9 +31,10 @@ const initialState = {
     { id: 1, text: 'Watch a puppet show', done: false },
     { id: 2, text: 'Lennon Wall pic', done: false },
   ],
+  editor: EditorState.create({ schema: mySchema, plugins: exampleSetup({ schema: mySchema }) }),
 };
 
-function reducer(draft: typeof initialState, action: { type: string; [key: string]: any }) {
+function reducer(draft, action: { type: string; [key: string]: any }) {
   switch (action.type) {
     case 'TASK_ADDED': {
       draft.initialTasks.push({
@@ -44,6 +55,11 @@ function reducer(draft: typeof initialState, action: { type: string; [key: strin
     }
     case 'PRODUCT_NAME_CHANGED': {
       draft.productName = action.productName;
+      break;
+    }
+    case 'EDITOR_TRANSACTION_OCCURRED': {
+      draft.editor = draft.editor.apply(action.transaction);
+      (window as any).view.updateState(draft.editor);
       break;
     }
     default: {
@@ -67,6 +83,13 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     document.title = productName;
   };
 
+  const changeEditorState = (transaction: any) => {
+    dispatch({
+      type: 'EDITOR_TRANSACTION_OCCURRED',
+      transaction,
+    });
+  };
+
   useEffect(() => {
     const editElement = document.getElementById('edit-link-basic-form');
     editElement.removeChild(editElement.firstChild); // removes the text node "Initializing..."
@@ -76,6 +99,8 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     previewElement.style.display = '';
   }, []);
 
+  console.log(JSON.stringify((state.editor.toJSON()), null, 4));
+
   return (
     <>
       {createPortal(<Header productName={state.productName} />, document.getElementById('header-root'))}
@@ -84,7 +109,12 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       {createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
       {createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
       {createPortal(
-        <Sections productName={state.productName} changeProductName={changeProductName} />,
+        <Sections
+          productName={state.productName}
+          changeProductName={changeProductName}
+          state={state}
+          changeEditorState={changeEditorState}
+        />,
         document.getElementById('edit-link-basic-form')
       )}
       {createPortal(<Preview productName={state.productName} />, document.getElementById('product-preview-root'))}
