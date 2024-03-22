@@ -18,11 +18,6 @@ import { exampleSetup } from 'prosemirror-example-setup';
 
 export interface Props {}
 
-const mySchema = new Schema({
-  nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-  marks: schema.spec.marks,
-});
-
 const initialState = {
   productName: 'product name',
   nextId: 3,
@@ -31,10 +26,19 @@ const initialState = {
     { id: 1, text: 'Watch a puppet show', done: false },
     { id: 2, text: 'Lennon Wall pic', done: false },
   ],
+  richTextEditorDoc: {} as any,
+};
+
+const mySchema = new Schema({
+  nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
+  marks: schema.spec.marks,
+});
+
+const initialEditorState = {
   editor: EditorState.create({ schema: mySchema, plugins: exampleSetup({ schema: mySchema }) }),
 };
 
-function reducer(draft, action: { type: string; [key: string]: any }) {
+function reducer(draft: typeof initialState, action: { type: string; [key: string]: any }) {
   switch (action.type) {
     case 'TASK_ADDED': {
       draft.initialTasks.push({
@@ -57,9 +61,27 @@ function reducer(draft, action: { type: string; [key: string]: any }) {
       draft.productName = action.productName;
       break;
     }
+    case 'RICH_TEXT_DOCUMENT_CHANGED': {
+      console.log(JSON.stringify(action.richTextEditorDoc, null, 4));
+      draft.richTextEditorDoc = action.richTextEditorDoc;
+      break;
+    }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
+  }
+}
+
+function editorReducer(draft, action: { type: string; [key: string]: any }) {
+  switch (action.type) {
     case 'EDITOR_TRANSACTION_OCCURRED': {
       draft.editor = draft.editor.apply(action.transaction);
       (window as any).view.updateState(draft.editor);
+      // action.dispatch({
+      //   type: 'RICH_TEXT_DOCUMENT_CHANGED',
+      //   richTextEditorDoc: draft.editor.toJSON().doc,
+      // });
+      action.nextAction(draft.editor);
       break;
     }
     default: {
@@ -74,6 +96,7 @@ function reducer(draft, action: { type: string; [key: string]: any }) {
  */
 const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
   const [state, dispatch] = useImmerReducer(reducer, initialState);
+  const [editorState, editorDispatch] = useImmerReducer(editorReducer, initialEditorState);
 
   const changeProductName = (productName: string) => {
     dispatch({
@@ -84,9 +107,16 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
   };
 
   const changeEditorState = (transaction: any) => {
-    dispatch({
+    editorDispatch({
       type: 'EDITOR_TRANSACTION_OCCURRED',
       transaction,
+      // dispatch
+      nextAction: (editor) => {
+        dispatch({
+          type: 'RICH_TEXT_DOCUMENT_CHANGED',
+          richTextEditorDoc: editor.toJSON().doc,
+        });
+      },
     });
   };
 
@@ -99,8 +129,6 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     previewElement.style.display = '';
   }, []);
 
-  console.log(JSON.stringify((state.editor.toJSON()), null, 4));
-
   return (
     <>
       {createPortal(<Header productName={state.productName} />, document.getElementById('header-root'))}
@@ -112,7 +140,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
         <Sections
           productName={state.productName}
           changeProductName={changeProductName}
-          state={state}
+          state={editorState}
           changeEditorState={changeEditorState}
         />,
         document.getElementById('edit-link-basic-form')
