@@ -2,14 +2,15 @@ import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
 
-function Sections({ productName, changeProductName, state, changeEditorState }) {
+function Sections({ productName, changeProductName, editorState, changeEditorState, setRteView }) {
   useEffect(() => {
-    (window as any).view = new EditorView(document.querySelector('#editor'), {
-      state: state.editor,
+    const view = new EditorView(document.querySelector('#editor'), {
+      state: editorState.editorState,
       dispatchTransaction(transaction) {
-        changeEditorState(transaction)
-      }
+        changeEditorState(transaction);
+      },
     });
+    setRteView(view);
   }, []);
 
   return (

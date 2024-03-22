@@ -2,11 +2,12 @@ import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
 
-function Preview({ productName, state }) {
+function Preview({ productName, editorState, setRtePreview }) {
   useEffect(() => {
-    (window as any).view2 = new EditorView(document.querySelector('#rich-text-preview'), {
-      state: state.editor,
+    const view = new EditorView(document.querySelector('#rich-text-preview'), {
+      state: editorState.editorState,
     });
+    setRtePreview(view);
   }, []);
 
   return (
