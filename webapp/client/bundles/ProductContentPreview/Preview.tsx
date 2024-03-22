@@ -6,7 +6,6 @@ function Preview({ productName, state }) {
   useEffect(() => {
     (window as any).view2 = new EditorView(document.querySelector('#rich-text-preview'), {
       state: state.editor,
-      dispatchTransaction(transaction) {},
     });
   }, []);
 
