@@ -1,3 +1,8 @@
+import { exampleSetup } from 'prosemirror-example-setup';
+import { DOMParser, Schema } from 'prosemirror-model';
+import { schema } from 'prosemirror-schema-basic';
+import { addListNodes } from 'prosemirror-schema-list';
+import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
@@ -5,13 +10,6 @@ import { useEffect } from 'react';
 function Sections({ productName, changeProductName, state, changeEditorState }) {
   useEffect(() => {
     (window as any).view = new EditorView(document.querySelector('#editor'), {
-      state: state.editor,
-      dispatchTransaction(transaction) {
-        changeEditorState(transaction)
-      }
-    });
-
-    (window as any).view2 = new EditorView(document.querySelector('#editor2'), {
       state: state.editor,
       dispatchTransaction(transaction) {
         changeEditorState(transaction)
@@ -66,19 +64,6 @@ function Sections({ productName, changeProductName, state, changeEditorState }) 
             </p>
             <p>Try using the “list” item in the menu to wrap this paragraph in a numbered list.</p>
           </div>
-        </fieldset>
-        <fieldset>
-          <legend>
-            <label className="top-level-label" htmlFor=":r5:">
-              Description 2
-            </label>
-          </legend>
-          <div
-            id="editor2"
-            style={{ marginBottom: '23px', paddingTop: 0 }}
-            className="rich-text-editor"
-            data-gumroad-ignore="true"
-          ></div>
         </fieldset>
         <fieldset>
           <legend>

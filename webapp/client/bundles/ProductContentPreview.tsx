@@ -77,7 +77,6 @@ function editorReducer(draft, action: { type: string; [key: string]: any }) {
     case 'EDITOR_TRANSACTION_OCCURRED': {
       draft.editor = draft.editor.apply(action.transaction);
       (window as any).view.updateState(draft.editor);
-      (window as any).view2.updateState(draft.editor);
       // action.dispatch({
       //   type: 'RICH_TEXT_DOCUMENT_CHANGED',
       //   richTextEditorDoc: draft.editor.toJSON().doc,
