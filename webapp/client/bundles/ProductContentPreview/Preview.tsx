@@ -1,6 +1,15 @@
+import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
+import { useEffect } from 'react';
 
-function Preview({productName}) {
+function Preview({ productName, state }) {
+  useEffect(() => {
+    (window as any).view2 = new EditorView(document.querySelector('#rich-text-preview'), {
+      state: state.editor,
+      dispatchTransaction(transaction) {},
+    });
+  }, []);
+
   return (
     <>
       <div role="document" style={{ height: '494px', overflow: 'hidden' }}>
@@ -50,13 +59,7 @@ function Preview({productName}) {
                 </div>
               </section>
               <section>
-                <div className="rich-text">
-                  <div className="tiptap ProseMirror" contentEditable="false" translate="no">
-                    <p>
-                      <br className="ProseMirror-trailingBreak" />
-                    </p>
-                  </div>
-                </div>
+                <div className="rich-text" id="rich-text-preview"></div>
               </section>
             </section>
             <section>
