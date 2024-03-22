@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function Preview() {
+function Preview({productName}) {
   return (
     <>
       <div role="document" style={{ height: '494px', overflow: 'hidden' }}>
@@ -27,7 +27,7 @@ function Preview() {
             </div>
             <section>
               <header>
-                <h1 itemProp="name">product name</h1>
+                <h1 itemProp="name">{productName}</h1>
               </header>
               <section className="details">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacer-2)' }}>

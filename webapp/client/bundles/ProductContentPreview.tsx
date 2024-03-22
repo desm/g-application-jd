@@ -64,7 +64,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       type: 'PRODUCT_NAME_CHANGED',
       productName,
     });
-    document.title = productName
+    document.title = productName;
   };
 
   useEffect(() => {
@@ -83,8 +83,11 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       {createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
       {createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
       {createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
-      {createPortal(<Sections productName={state.productName} changeProductName={changeProductName} />, document.getElementById('edit-link-basic-form'))}
-      {createPortal(<Preview />, document.getElementById('product-preview-root'))}
+      {createPortal(
+        <Sections productName={state.productName} changeProductName={changeProductName} />,
+        document.getElementById('edit-link-basic-form')
+      )}
+      {createPortal(<Preview productName={state.productName} />, document.getElementById('product-preview-root'))}
     </>
   );
 };
