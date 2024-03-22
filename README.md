@@ -220,3 +220,4 @@ $ git push origin [ref] deploy-20240319-01
 - [Adminer - DB Management Tool](https://www.adminer.org/)
 - [Debian Bookworm Packages (for Docker images)](https://packages.debian.org/bookworm/)
 - [GitHub Actions](https://docs.github.com/en/actions/quickstart)
+- [ProseMirror - Rich Text Editor](https://prosemirror.net/)
