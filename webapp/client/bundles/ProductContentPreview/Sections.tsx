@@ -51,7 +51,7 @@ function Sections({ productName, changeProductName }) {
           </legend>
           <div
             id="editor"
-            style={{ marginBottom: '23px' }}
+            style={{ marginBottom: '23px', paddingTop: 0 }}
             className="rich-text-editor"
             data-gumroad-ignore="true"
           ></div>
