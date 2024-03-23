@@ -1,16 +1,19 @@
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
+import { changeProductName, state } from './stateStores/application';
+import { changeEditorState, editorState, setMainEditorView } from './stateStores/textEditor';
 
-function Sections({ productName, changeProductName, editorState, changeEditorState, setRteView }) {
+function Sections() {
   useEffect(() => {
-    const view = new EditorView(document.querySelector('#editor'), {
-      state: editorState.editorState,
-      dispatchTransaction(transaction) {
-        changeEditorState(transaction);
-      },
-    });
-    setRteView(view);
+    setMainEditorView(
+      new EditorView(document.querySelector('#editor'), {
+        state: editorState.editorState,
+        dispatchTransaction(transaction) {
+          changeEditorState(transaction);
+        },
+      })
+    );
   }, []);
 
   return (
@@ -28,7 +31,7 @@ function Sections({ productName, changeProductName, editorState, changeEditorSta
             className="top-level-input"
             type="text"
             placeholder="Name"
-            defaultValue={productName}
+            defaultValue={state.productName}
             onChange={(e) => changeProductName(e.currentTarget.value)}
           />
         </fieldset>

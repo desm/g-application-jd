@@ -1,13 +1,16 @@
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
+import { state } from './stateStores/application';
+import { editorState, setPreviewEditorView } from './stateStores/textEditor';
 
-function Preview({ productName, editorState, setRtePreview }) {
+function Preview() {
   useEffect(() => {
-    const view = new EditorView(document.querySelector('#rich-text-preview'), {
-      state: editorState.editorState,
-    });
-    setRtePreview(view);
+    setPreviewEditorView(
+      new EditorView(document.querySelector('#rich-text-preview'), {
+        state: editorState.editorState,
+      })
+    );
   }, []);
 
   return (
@@ -36,7 +39,7 @@ function Preview({ productName, editorState, setRtePreview }) {
             </div>
             <section>
               <header>
-                <h1 itemProp="name">{productName}</h1>
+                <h1 itemProp="name">{state.productName}</h1>
               </header>
               <section className="details">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacer-2)' }}>
