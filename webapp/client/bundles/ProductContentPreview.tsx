@@ -11,12 +11,13 @@ import Sections from './ProductContentPreview/Sections';
 import ShareLinks from './ProductContentPreview/ShareLinks';
 import { state, initApplicationStore } from './ProductContentPreview/stateStores/application';
 import { editorState, initEditorStore } from './ProductContentPreview/stateStores/textEditor';
+import doc from './doc.json';
 
 export interface Props {}
 
 const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
   initApplicationStore({ productName: 'Product Name' });
-  initEditorStore();
+  initEditorStore(doc);
 
   useEffect(() => {
     const editElement = document.getElementById('edit-link-basic-form');

@@ -54,7 +54,7 @@ function reducer(draft, action: { type: string; [key: string]: any }) {
  *
  * that is why we check if editorState.editorState is null before setting it
  */
-export const initEditorStore = () => {
+export const initEditorStore = (doc: any) => {
   [editorState, dispatch] = useImmerReducer(reducer, initialState);
 
   if (!editorState.editorState) {
@@ -65,7 +65,7 @@ export const initEditorStore = () => {
 
     dispatch({
       type: 'EDITOR_STATE_SET',
-      editorState: EditorState.create({ schema: mySchema, plugins: exampleSetup({ schema: mySchema }) }),
+      editorState: EditorState.fromJSON({ schema: mySchema, plugins: exampleSetup({ schema: mySchema }) }, doc),
     });
   }
 };
