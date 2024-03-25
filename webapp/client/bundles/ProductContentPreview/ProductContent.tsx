@@ -81,8 +81,8 @@ function ProductContent() {
               }}
             >
               <fieldset className="tiptap__link-popover">
-                <input className="top-level-input" type="text" placeholder="Enter text" value="" tabIndex={-1} />
-                <input className="top-level-input" type="text" placeholder="Enter URL" value="" tabIndex={-1} />
+                <input className="top-level-input" type="text" placeholder="Enter text" defaultValue="" tabIndex={-1} />
+                <input className="top-level-input" type="text" placeholder="Enter URL" defaultValue="" tabIndex={-1} />
                 <button className="primary" type="button">
                   Add link
                 </button>
@@ -110,8 +110,8 @@ function ProductContent() {
               }}
             >
               <fieldset className="tiptap__link-popover">
-                <input className="top-level-input" type="text" placeholder="Enter text" value="" tabIndex={-1} />
-                <input className="top-level-input" type="text" placeholder="Enter URL" value="" tabIndex={-1} />
+                <input className="top-level-input" type="text" placeholder="Enter text" defaultValue="" tabIndex={-1} />
+                <input className="top-level-input" type="text" placeholder="Enter URL" defaultValue="" tabIndex={-1} />
                 <button className="primary" type="button">
                   Add button
                 </button>

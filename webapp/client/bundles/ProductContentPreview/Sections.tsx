@@ -66,7 +66,7 @@ function Sections() {
           </legend>
           <div className="input">
             <div className="pill">jdesma.gumroad.jacquesdesmarais.dev/l/</div>
-            <input id=":r6:" type="text" placeholder="dcfqu" value="" />
+            <input id=":r6:" type="text" placeholder="dcfqu" defaultValue="" />
           </div>
         </fieldset>
         <fieldset className="">
@@ -77,7 +77,7 @@ function Sections() {
             </a>
           </legend>
           <div className="input input-wrapper">
-            <input id=":r8:" placeholder="yourdomain.com" type="text" value="" />
+            <input id=":r8:" placeholder="yourdomain.com" type="text" defaultValue="" />
           </div>
           <small></small>
         </fieldset>
@@ -160,7 +160,7 @@ function Sections() {
               Summary
             </label>
           </legend>
-          <input className="summary-input top-level-input" id=":rd:" type="text" placeholder="You'll get..." value="" />
+          <input className="summary-input top-level-input" id=":rd:" type="text" placeholder="You'll get..." defaultValue="" />
         </fieldset>
         <fieldset>
           <legend className="additional-details-legend">Additional details</legend>
@@ -201,7 +201,7 @@ function Sections() {
                 <legend>
                   <label htmlFor=":rg:">API Token</label>
                 </legend>
-                <input id=":rg:" type="text" placeholder="Type or paste your API token" value="" />
+                <input id=":rg:" type="text" placeholder="Type or paste your API token" defaultValue="" />
               </fieldset>
               <button className="primary" type="button" style={{ marginTop: 'var(--spacer-4)' }}>
                 Update
@@ -237,7 +237,7 @@ function Sections() {
             <div className="input-with-button">
               <div className="input">
                 <div className="pill">CAD$</div>
-                <input id=":rj:" type="text" placeholder="2" maxLength={10} autoComplete="off" value="1" />
+                <input id=":rj:" type="text" placeholder="2" maxLength={10} autoComplete="off" defaultValue="1" />
               </div>
             </div>
             <div className="clear legacy-only"></div>
@@ -275,7 +275,7 @@ function Sections() {
                       maxLength={10}
                       disabled={false}
                       readOnly={false}
-                      value="1"
+                      defaultValue="1"
                     />
                   </div>
                 </fieldset>
@@ -287,7 +287,7 @@ function Sections() {
                   </legend>
                   <div className="input">
                     <div className="pill">CAD$</div>
-                    <input id=":rl:" type="text" placeholder="2" maxLength={10} value="" />
+                    <input id=":rl:" type="text" placeholder="2" maxLength={10} defaultValue="" />
                   </div>
                 </fieldset>
               </div>
@@ -337,7 +337,7 @@ function Sections() {
                   <label htmlFor="option_VjBqZpNx9c12Y-2cAYTCVg==_name">Name</label>
                 </legend>
                 <div className="input">
-                  <input id="option_VjBqZpNx9c12Y-2cAYTCVg==_name" type="text" placeholder="Version name" value="one" />
+                  <input id="option_VjBqZpNx9c12Y-2cAYTCVg==_name" type="text" placeholder="Version name" defaultValue="one" />
                   <a
                     target="_blank"
                     aria-label="Share one"
@@ -362,14 +362,14 @@ function Sections() {
                   </legend>
                   <div className="input">
                     <div className="pill">CAD$</div>
-                    <input id="option_VjBqZpNx9c12Y-2cAYTCVg==_price_diff" type="text" placeholder="0" value="0" />
+                    <input id="option_VjBqZpNx9c12Y-2cAYTCVg==_price_diff" type="text" placeholder="0" defaultValue="0" />
                   </div>
                 </fieldset>
                 <fieldset>
                   <legend>
                     <label htmlFor="option_VjBqZpNx9c12Y-2cAYTCVg==_qty">Quantity</label>
                   </legend>
-                  <input id="option_VjBqZpNx9c12Y-2cAYTCVg==_qty" placeholder="∞" type="text" value="" />
+                  <input id="option_VjBqZpNx9c12Y-2cAYTCVg==_qty" placeholder="∞" type="text" defaultValue="" />
                 </fieldset>
               </div>
             </div>
@@ -408,7 +408,7 @@ function Sections() {
                   <label htmlFor="option_NxP68JiGajkgCRohWGNmOg==_name">Name</label>
                 </legend>
                 <div className="input">
-                  <input id="option_NxP68JiGajkgCRohWGNmOg==_name" type="text" placeholder="Version name" value="two" />
+                  <input id="option_NxP68JiGajkgCRohWGNmOg==_name" type="text" placeholder="Version name" defaultValue="two" />
                   <a
                     target="_blank"
                     aria-label="Share two"
@@ -433,14 +433,14 @@ function Sections() {
                   </legend>
                   <div className="input">
                     <div className="pill">CAD$</div>
-                    <input id="option_NxP68JiGajkgCRohWGNmOg==_price_diff" type="text" placeholder="0" value="0" />
+                    <input id="option_NxP68JiGajkgCRohWGNmOg==_price_diff" type="text" placeholder="0" defaultValue="0" />
                   </div>
                 </fieldset>
                 <fieldset>
                   <legend>
                     <label htmlFor="option_NxP68JiGajkgCRohWGNmOg==_qty">Quantity</label>
                   </legend>
-                  <input id="option_NxP68JiGajkgCRohWGNmOg==_qty" placeholder="∞" type="text" value="" />
+                  <input id="option_NxP68JiGajkgCRohWGNmOg==_qty" placeholder="∞" type="text" defaultValue="" />
                 </fieldset>
               </div>
             </div>
@@ -471,7 +471,7 @@ function Sections() {
                 </legend>
                 <span className="has-tooltip bottom">
                   <span aria-describedby=":rr:" style={{ display: 'contents' }}>
-                    <input id=":ro:" className="full-width" type="text" placeholder="∞" value="" />
+                    <input id=":ro:" className="full-width" type="text" placeholder="∞" defaultValue="" />
                   </span>
                   <span role="tooltip" id=":rr:">
                     Total sales
@@ -519,7 +519,7 @@ function Sections() {
                   maxLength={50}
                   type="text"
                   placeholder="30-day money back guarantee"
-                  value=""
+                  defaultValue=""
                 />
               </fieldset>
               <fieldset>
