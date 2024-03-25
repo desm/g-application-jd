@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
   return (
@@ -8,16 +7,20 @@ const Layout = () => {
       <nav>
         <ul>
           <li>
-            {/* <Link to="">Home</Link> */}
             <a href="#">Home</a>
           </li>
           <li>
-            {/* <Link to="blogs">Blogs</Link> */}
             <a href="#blogs">Blogs</a>
           </li>
           <li>
-            {/* <Link to="contact">Contact</Link> */}
-            <a href="#contact">Contact</a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault(); // prevents the route from changing
+              }}
+            >
+              Contact
+            </a>
           </li>
         </ul>
       </nav>

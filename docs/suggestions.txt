@@ -13,3 +13,6 @@ Mar 25 10:46 EDT
     Ran out of time
     screenshot: ./screenshots/screencapture-app-gumroad-products-new-2024-03-25-10_46_53.png
 
+the "share" works if you go directly to it
+    e.g. https://app.gumroad.com/products/nteiqo/edit#share
+
