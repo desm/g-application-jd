@@ -213,7 +213,7 @@ fixed-aside sidebar-nav
       <div class="product-container js-product-container" style="pointer-events: none">
         <div class="product-row original-product-row main-product-row js-main-product-row">
           <div class="js-content-preview-container" style="display: none">
-            <%= react_component("ProductContentPreview", props: @props[:ProductContentPreview], prerender: true, html_options: [["style", "display: contents;"]]) %>
+            <%= react_component("ProductContentPreview", props: @props[:ProductContentPreview], prerender: false, html_options: [["style", "display: contents;"]]) %>
           </div>
         </div>
       </div>

@@ -198,6 +198,7 @@ $ git push origin [ref] deploy-20240319-01
 - [JavaScript reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 - [Web APIs (Mozilla) (e.g. "fetch")](https://developer.mozilla.org/en-US/docs/Web/API)
 - [React Hook Form](https://react-hook-form.com/)
+- [Immer](https://immerjs.github.io/immer/)
 
 ### Testing Libraries For Rails
 
@@ -219,3 +220,4 @@ $ git push origin [ref] deploy-20240319-01
 - [Adminer - DB Management Tool](https://www.adminer.org/)
 - [Debian Bookworm Packages (for Docker images)](https://packages.debian.org/bookworm/)
 - [GitHub Actions](https://docs.github.com/en/actions/quickstart)
+- [ProseMirror - Rich Text Editor](https://prosemirror.net/)
