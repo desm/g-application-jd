@@ -58,41 +58,41 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
           <a href="/products" title="Products" ref={refs.Products}>
             <span className="icon icon-archive-fill"></span>Products
           </a>
-          <a href="/collaborators" title="Collaborators">
+          <a href="#/collaborators" title="Collaborators" className="not-implemented">
             <span className="icon icon-deal-fill"></span>Collaborators
           </a>
-          <a href="/checkout/discounts" title="Checkout">
+          <a href="#/checkout/discounts" title="Checkout" className="not-implemented">
             <span className="icon icon-cart3-fill"></span>Checkout
           </a>
-          <a href="/posts" title="Emails">
+          <a href="#/posts" title="Emails" className="not-implemented">
             <span className="icon icon-envelope-fill"></span>Emails
           </a>
-          <a href="/workflows" title="Workflows">
+          <a href="#/workflows" title="Workflows" className="not-implemented">
             <span className="icon icon-diagram-2-fill"></span>Workflows
           </a>
-          <a href="/customers" title="Sales">
+          <a href="#/customers" title="Sales" className="not-implemented">
             <span className="icon icon-solid-currency-dollar"></span>Sales
           </a>
-          <a href="/dashboard/sales" title="Analytics">
+          <a href="#/dashboard/sales" title="Analytics" className="not-implemented">
             <span className="icon icon-bar-chart-fill"></span>Analytics
           </a>
-          <a href="/balance" title="Payouts">
+          <a href="#/balance" title="Payouts" className="not-implemented">
             <span className="icon icon-solid-currency-dollar"></span>Payouts
           </a>
         </section>
         <section>
-          <a href="#https://discover.gumroad.jacquesdesmarais.dev" title="Discover">
+          <a href="#https://discover.gumroad.jacquesdesmarais.dev" title="Discover" className="not-implemented">
             <span className="icon icon-solid-search"></span>Discover
           </a>
-          <a href="/library" title="Library">
+          <a href="#/library" title="Library" className="not-implemented">
             <span className="icon icon-bookmark-heart-fill"></span>Library
           </a>
         </section>
         <footer>
-          <a href="#https://help.gumroad.jacquesdesmarais.dev" title="Help">
+          <a href="#https://help.gumroad.jacquesdesmarais.dev" title="Help" className="not-implemented">
             <span className="icon icon-book-half"></span>Help
           </a>
-          <a href="/settings" title="Settings">
+          <a href="#/settings" title="Settings" className="not-implemented">
             <span className="icon icon-gear-fill"></span>Settings
           </a>
           <details className="popover toggle top">
@@ -110,10 +110,10 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
               }}
             >
               <div role="menu">
-                <a role="menuitem" href="#https://9078562000866.gumroad.jacquesdesmarais.dev/">
+                <a role="menuitem" href="#https://9078562000866.gumroad.jacquesdesmarais.dev/" className="not-implemented">
                   <span className="icon icon-shop-window-fill"></span>Profile
                 </a>
-                <a role="menuitem" href="/affiliates">
+                <a role="menuitem" href="#/affiliates" className="not-implemented">
                   <span className="icon icon-gift-fill"></span>Affiliates
                 </a>
                 <a role="menuitem" href="/logout">
