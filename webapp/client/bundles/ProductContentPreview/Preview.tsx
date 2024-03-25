@@ -50,10 +50,7 @@ function Preview() {
                     rel="noreferrer"
                     style={{ position: 'relative' }}
                   >
-                    <img
-                      className="user-avatar"
-                      src="/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png"
-                    />
+                    <img className="user-avatar" src={state.avatarUrl} />
                     Jacques
                   </a>
                 </div>

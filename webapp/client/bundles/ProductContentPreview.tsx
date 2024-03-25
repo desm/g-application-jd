@@ -9,9 +9,10 @@ import ProductContent from './ProductContentPreview/ProductContent';
 import ProfileSettings from './ProductContentPreview/ProfileSettings';
 import Sections from './ProductContentPreview/Sections';
 import ShareLinks from './ProductContentPreview/ShareLinks';
-import { state, initApplicationStore } from './ProductContentPreview/stateStores/application';
+import { state, initApplicationStore, setAvatarUrl } from './ProductContentPreview/stateStores/application';
 import { editorState, initEditorStore } from './ProductContentPreview/stateStores/textEditor';
 import doc from './doc.json';
+import { grabAllDataFromDataDivs } from './lib';
 
 export interface Props {}
 
@@ -26,6 +27,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
 
     const previewElement = document.getElementById('product-preview-root');
     previewElement.style.display = '';
+
+    const divData = grabAllDataFromDataDivs();
+    setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
   }, []);
 
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */

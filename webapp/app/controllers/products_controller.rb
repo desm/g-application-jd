@@ -1,5 +1,3 @@
-require_relative "products/products_data"
-
 class ProductsController < ApplicationController
   def index
     @props[:Nav][:highlight] = "Products"
@@ -16,10 +14,10 @@ class ProductsController < ApplicationController
     @props[:ProductContentPreview] = {}
     @props[:ProductPreviewVariantDropdown] = {}
 
-    @design_settings = design_settings
-    @user_agent_info = user_agent_info
-    @edit_attributes = edit_attributes
-    @discover_taxonomy_options = discover_taxonomy_options
-    @current_seller = current_seller
+    @design_settings = Products::ProductsData::design_settings
+    @user_agent_info = Products::ProductsData::user_agent_info
+    @edit_attributes = Products::ProductsData::edit_attributes(view_context)
+    @discover_taxonomy_options = Products::ProductsData::discover_taxonomy_options
+    @current_seller = Products::ProductsData::current_seller(view_context)
   end
 end

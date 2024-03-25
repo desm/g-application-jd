@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { state } from './stateStores/application';
 
 function ProductContent() {
   return (
@@ -336,10 +337,7 @@ function ProductContent() {
               <div>dfgasdf - one</div>
               <div>
                 <span style={{ display: 'flex', gap: 'var(--spacer-2)' }}>
-                  <img
-                    className="user-avatar"
-                    src="/assets/gumroad-default-avatar-5-623b6723477dd15920db554b0a4e9aac6a5e41159fd3d7bb4c9f9745a44e4f85.png"
-                  />
+                  <img className="user-avatar" src={state.avatarUrl} />
                   <span>
                     By
                     <a
@@ -356,13 +354,7 @@ function ProductContent() {
             </div>
           </div>
           <div className="rich-text" data-gumroad-ignore="true">
-            <div
-              className="tiptap ProseMirror"
-              aria-label="Content editor"
-              id=":r14:"
-              tabIndex={0}
-              translate="no"
-            >
+            <div className="tiptap ProseMirror" aria-label="Content editor" id=":r14:" tabIndex={0} translate="no">
               <p
                 data-placeholder="Enter the content you want to sell. Upload your files or start typing."
                 className="is-empty is-editor-empty"
