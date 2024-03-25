@@ -4,6 +4,7 @@ interface State {
   productName: string;
   richTextDescription: any; // rich text as javascript object
   avatarUrl: string;
+  pageToDisplay: 'a' | 'b' | 'c' | null;
 }
 
 let initialState = {} as State;
@@ -21,8 +22,8 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
       console.log('rich text doc is now:', JSON.stringify(draft.richTextDescription, null, 4));
       break;
     }
-    case 'AVATAR_URL_SET':{
-      draft.avatarUrl=action.avatarUrl
+    case 'AVATAR_URL_SET': {
+      draft.avatarUrl = action.avatarUrl;
       break;
     }
     default: {
@@ -52,7 +53,7 @@ export const changeRichTextDescription = (richTextDescription: any) => {
   });
 };
 
-export const setAvatarUrl = (avatarUrl:string) => {
+export const setAvatarUrl = (avatarUrl: string) => {
   dispatch({
     type: 'AVATAR_URL_SET',
     avatarUrl,

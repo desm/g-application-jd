@@ -13,6 +13,61 @@ import { state, initApplicationStore, setAvatarUrl } from './ProductContentPrevi
 import { editorState, initEditorStore } from './ProductContentPreview/stateStores/textEditor';
 import doc from './doc.json';
 import { grabAllDataFromDataDivs } from './lib';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
+
+const A: FunctionComponent<Props> = () => {
+  return (
+    <>
+      {createPortal(<Header productName={state.productName} />, document.getElementById('header-root'))}
+      {editorState.editorState && createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
+      {editorState.editorState && createPortal(<Preview />, document.getElementById('product-preview-root'))}
+    </>
+  );
+};
+
+const B: FunctionComponent<Props> = () => {
+  return (
+    <>
+      {createPortal(<Header productName={state.productName} />, document.getElementById('header-root'))}
+      {createPortal(<ProductContent />, document.getElementById('edit-link-content-form'))}
+    </>
+  );
+};
+
+const C: FunctionComponent<Props> = () => {
+  return (
+    <>
+      {createPortal(<Header productName={state.productName} />, document.getElementById('header-root'))}
+      {createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
+      {createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
+      {createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
+    </>
+  );
+};
+
+const router = createHashRouter([
+  {
+    path: '',
+    element: <A />,
+    loader: async () => {
+      return null;
+    },
+  },
+  {
+    path: 'content',
+    element: <B />,
+    loader: async () => {
+      return null;
+    },
+  },
+  {
+    path: 'share',
+    element: <C />,
+    loader: async () => {
+      return null;
+    },
+  },
+]);
 
 export interface Props {}
 
@@ -32,18 +87,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
   }, []);
 
-  /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
-  return (
-    <>
-      {createPortal(<Header productName={state.productName} />, document.getElementById('header-root'))}
-      {createPortal(<ProductContent />, document.getElementById('edit-link-content-form'))}
-      {createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
-      {createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
-      {createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
-      {editorState.editorState && createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
-      {editorState.editorState && createPortal(<Preview />, document.getElementById('product-preview-root'))}
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default ProductContentPreview;
