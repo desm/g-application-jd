@@ -6,7 +6,7 @@ import Home from './pages/Home.js';
 import Layout from './pages/Layout.js';
 import NoPage from './pages/NoPage.js';
 
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, redirect, RouterProvider } from 'react-router-dom';
 
 const router = createHashRouter([
   {
@@ -24,6 +24,12 @@ const router = createHashRouter([
       {
         path: 'contact',
         element: <Contact />,
+        loader: async ({ request, params, context }) => {
+          console.log(JSON.stringify({ request, params, context }, null, 4));
+          const response = redirect('/');
+          console.log({ response }); // instance of Response https://developer.mozilla.org/en-US/docs/Web/API/Response
+          return response;
+        },
       },
       {
         path: '*',

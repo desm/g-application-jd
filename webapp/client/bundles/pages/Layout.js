@@ -13,14 +13,7 @@ const Layout = () => {
             <a href="#blogs">Blogs</a>
           </li>
           <li>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault(); // prevents the route from changing
-              }}
-            >
-              Contact
-            </a>
+            <a href="#contact">Contact</a>
           </li>
         </ul>
       </nav>
