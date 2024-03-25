@@ -1,8 +1,14 @@
 import * as React from 'react';
-import { Navigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
-  return <Navigate to="/" replace={false} />
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    navigate('/');
+  });
+
+  return <h1>Contact Me</h1>;
 };
 
 export default Contact;
