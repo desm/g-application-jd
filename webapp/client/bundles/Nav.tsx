@@ -3,8 +3,9 @@ import type { FunctionComponent } from 'react';
 import { useState, useEffect, useRef } from 'react';
 
 export interface Props {
-  avatar_img: string;
+  avatar_url: string;
   highlight: string;
+  name: string;
 }
 
 // Note, you need to declare the `FunctionComponent` type so that it complies
@@ -57,6 +58,9 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
           <a href="/products" title="Products" ref={refs.Products}>
             <span className="icon icon-archive-fill"></span>Products
           </a>
+          <a href="/collaborators" title="Collaborators">
+            <span className="icon icon-deal-fill"></span>Collaborators
+          </a>
           <a href="/checkout/discounts" title="Checkout">
             <span className="icon icon-cart3-fill"></span>Checkout
           </a>
@@ -72,11 +76,11 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
           <a href="/dashboard/sales" title="Analytics">
             <span className="icon icon-bar-chart-fill"></span>Analytics
           </a>
-        </section>
-        <section>
           <a href="/balance" title="Payouts">
             <span className="icon icon-solid-currency-dollar"></span>Payouts
           </a>
+        </section>
+        <section>
           <a href="#https://discover.gumroad.jacquesdesmarais.dev" title="Discover">
             <span className="icon icon-solid-search"></span>Discover
           </a>
@@ -94,8 +98,8 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
           <details className="popover toggle top">
             <summary>
               <span aria-haspopup="true" aria-expanded="false">
-                <img className="user-avatar" src={props.avatar_img} alt="Your avatar" />
-                jdesma@gmail.com
+                <img className="user-avatar" src={props.avatar_url} alt="Your avatar" />
+                {props.name}
               </span>
             </summary>
             <div
