@@ -5865,3 +5865,7 @@ form>main section:not(form+form section):first-of-type {
         max-height:min(100%,100vh)
     }
 }
+
+.not-implemented {
+    cursor: not-allowed;
+}

@@ -1,1 +1,6 @@
 edit product e.g. http://localhost:8000/products/tcwtv/edit
+
+make same:
+https://app.gumroad.com/products/davpc/edit
+http://localhost:8000/products/qjomq/edit
+

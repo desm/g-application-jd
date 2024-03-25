@@ -55,7 +55,7 @@ function DiscoverSettings() {
                   role="combobox"
                   aria-owns=":r18:"
                   aria-controls=":r18:"
-                  value=""
+                  defaultValue=""
                   style={{
                     color: 'inherit',
                     background: '0px center',
@@ -120,7 +120,7 @@ function DiscoverSettings() {
                   aria-owns=":r1a:"
                   aria-controls=":r1a:"
                   maxLength={20}
-                  value=""
+                  defaultValue=""
                   style={{
                     color: 'inherit',
                     background: '0px center',
@@ -167,7 +167,7 @@ function DiscoverSettings() {
                 </legend>
                 <div className="input">
                   <div className="pill">%</div>
-                  <input type="number" id=":r16:" min="30" max="100" value="10" tabIndex={-1} />
+                  <input type="number" id=":r16:" min="30" max="100" defaultValue="10" tabIndex={-1} />
                 </div>
                 <small>Please enter a value between 30 and 100.</small>
               </fieldset>

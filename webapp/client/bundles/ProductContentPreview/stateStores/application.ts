@@ -3,6 +3,7 @@ import { useImmerReducer } from 'use-immer';
 interface State {
   productName: string;
   richTextDescription: any; // rich text as javascript object
+  avatarUrl: string;
 }
 
 let initialState = {} as State;
@@ -20,6 +21,10 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
       console.log('rich text doc is now:', JSON.stringify(draft.richTextDescription, null, 4));
       break;
     }
+    case 'AVATAR_URL_SET':{
+      draft.avatarUrl=action.avatarUrl
+      break;
+    }
     default: {
       throw Error('Unknown action: ' + action.type);
     }
@@ -28,6 +33,7 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
 
 export const initApplicationStore = (props: any) => {
   initialState.productName = props.productName;
+  // add here
   [state, dispatch] = useImmerReducer(reducer, initialState);
 };
 
@@ -43,5 +49,12 @@ export const changeRichTextDescription = (richTextDescription: any) => {
   dispatch({
     type: 'RICH_TEXT_DOCUMENT_CHANGED',
     richTextDescription,
+  });
+};
+
+export const setAvatarUrl = (avatarUrl:string) => {
+  dispatch({
+    type: 'AVATAR_URL_SET',
+    avatarUrl,
   });
 };
