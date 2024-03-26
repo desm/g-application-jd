@@ -1,4 +1,4 @@
-edit product e.g. http://localhost:8000/products/tcwtv/edit
+publish product
 
 make same:
 https://app.gumroad.com/products/davpc/edit

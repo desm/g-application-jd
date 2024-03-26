@@ -1,15 +1,57 @@
 import * as React from 'react';
 import { state } from './stateStores/application';
+import { showMessage } from '../lib';
 
 function Header({ productName }) {
+  const preventSwitchingToShareTabIfNotPublished = (e) => {
+    if (!state.published) {
+      e.preventDefault();
+      showMessage(
+        "Not yet! You've got to publish your awesome product before you can share it with your audience and the world."
+      );
+    }
+  };
+
   return (
     <>
       <h1>{productName || 'Untitled'}</h1>
-      <div className="actions">
-        <button className="primary" type="submit">
-          Save and continue
-        </button>
-      </div>
+      {state.activeTab === 'ACTIVE_TAB_PRODUCT' && !state.published && (
+        <div className="actions">
+          <button className="primary" type="submit">
+            Save and continue
+          </button>
+        </div>
+      )}
+      {state.activeTab === 'ACTIVE_TAB_CONTENT' && !state.published && (
+        <div className="actions">
+          <button className="primary" type="submit">
+            Save changes
+          </button>
+          <button className="accent" type="submit">
+            Publish and continue
+          </button>
+        </div>
+      )}
+      {state.published && (
+        <div className="actions">
+          <button>Unpublish</button>
+          <button className="primary" type="submit">
+            Save changes
+          </button>
+          <span className="has-tooltip bottom">
+            <span aria-describedby=":r6:" style={{ display: 'contents' }}>
+              <span style={{ display: 'contents' }}>
+                <button>
+                  <span className="icon icon-link"></span>
+                </button>
+              </span>
+            </span>
+            <span role="tooltip" id=":r6:">
+              Copy to Clipboard
+            </span>
+          </span>
+        </div>
+      )}
       <div
         style={{
           display: 'flex',
@@ -26,7 +68,12 @@ function Header({ productName }) {
           <a role="tab" href="#content" aria-selected={state.activeTab === 'ACTIVE_TAB_CONTENT'}>
             Content
           </a>
-          <a role="tab" href="#share" aria-selected={state.activeTab === 'ACTIVE_TAB_SHARE'}>
+          <a
+            role="tab"
+            href="#share"
+            aria-selected={state.activeTab === 'ACTIVE_TAB_SHARE'}
+            onClick={preventSwitchingToShareTabIfNotPublished}
+          >
             Share
           </a>
         </div>

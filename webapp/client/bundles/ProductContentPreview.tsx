@@ -18,12 +18,9 @@ import {
 import { editorState, initEditorStore } from './ProductContentPreview/stateStores/textEditor';
 import doc from './doc.json';
 import { grabAllDataFromDataDivs } from './lib';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, redirect, RouterProvider } from 'react-router-dom';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
-  const editElement = document.getElementById('edit-link-basic-form');
-  editElement.removeChild(editElement.firstChild); // removes the text node "Initializing..."
-
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;
   basicTab.style.display = visible ? '' : 'none';
 };
@@ -52,6 +49,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
   const [router, setRouter] = useState(null);
 
   useEffect(() => {
+    const editElement = document.getElementById('edit-link-basic-form');
+    editElement.removeChild(editElement.firstChild); // removes the text node "Initializing..."
+
     const divData = grabAllDataFromDataDivs();
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
 
@@ -77,6 +77,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
           path: 'share',
           element: <></>,
           loader: async () => {
+            if (!state.published) {
+              return redirect('/')
+            }
             setActiveTab('ACTIVE_TAB_SHARE');
             return null;
           },
