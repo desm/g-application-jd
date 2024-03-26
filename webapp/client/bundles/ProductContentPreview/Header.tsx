@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { state } from './stateStores/application';
 
 function Header({ productName }) {
   return (
@@ -19,13 +20,13 @@ function Header({ productName }) {
         }}
       >
         <div role="tablist" style={{ marginTop: 'unset', width: 'max-content' }}>
-          <a role="tab" href="#" aria-selected="true">
+          <a role="tab" href="#" aria-selected={state.activeTab === 'ACTIVE_TAB_PRODUCT'}>
             Product
           </a>
-          <a role="tab" href="#content" aria-selected="false">
+          <a role="tab" href="#content" aria-selected={state.activeTab === 'ACTIVE_TAB_CONTENT'}>
             Content
           </a>
-          <a role="tab" href="#share" aria-selected="false">
+          <a role="tab" href="#share" aria-selected={state.activeTab === 'ACTIVE_TAB_SHARE'}>
             Share
           </a>
         </div>
