@@ -1,4 +1,4 @@
-enable rich text editor in the "Content" tab
+improve rich text editor toolbars
 
 make same:
 https://app.gumroad.com/products/davpc/edit

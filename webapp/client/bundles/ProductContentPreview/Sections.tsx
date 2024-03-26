@@ -41,12 +41,235 @@ function Sections() {
               Description
             </label>
           </legend>
-          <div
-            id="editor"
-            style={{ marginBottom: '23px', paddingTop: 0 }}
-            className="rich-text-editor"
-            data-gumroad-ignore="true"
-          ></div>
+          <div className="rich-text-editor" data-gumroad-ignore="true">
+            <div role="toolbar" className="rich-text-editor-toolbar">
+              <span role="button" aria-pressed="false" aria-label="Bold" tabIndex={0}>
+                <span className="icon icon-bold"></span>
+              </span>
+              <span role="button" aria-pressed="false" aria-label="Italic" tabIndex={0}>
+                <span className="icon icon-italic"></span>
+              </span>
+              <span role="button" aria-pressed="false" aria-label="Underline" tabIndex={0}>
+                <span className="icon icon-underline"></span>
+              </span>
+              <span role="button" aria-pressed="false" aria-label="Strikethrough" tabIndex={0}>
+                <span className="icon icon-strikethrough"></span>
+              </span>
+              <details className="popover toggle">
+                <summary>
+                  <span
+                    role="button"
+                    aria-pressed="false"
+                    aria-label="Headings"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabIndex={0}
+                  >
+                    <span className="icon icon-headings"></span>
+                  </span>
+                </summary>
+                <div
+                  className="dropdown"
+                  style={{
+                    transform: 'translateX(min(460px - 100% - var(--spacer-4), 0px))',
+                    maxWidth: 'calc(673px - 2 * var(--spacer-4))',
+                  }}
+                >
+                  <ul role="menu" style={{ padding: '0px', overflowX: 'hidden' }}>
+                    <li role="menuitemradio" aria-checked="false">
+                      <span className="icon icon-h1"></span>
+                      <span>Large heading</span>
+                    </li>
+                    <li role="menuitemradio" aria-checked="false">
+                      <span className="icon icon-h2"></span>
+                      <span>Medium heading</span>
+                    </li>
+                    <li role="menuitemradio" aria-checked="false">
+                      <span className="icon icon-h3"></span>
+                      <span>Small heading</span>
+                    </li>
+                  </ul>
+                </div>
+              </details>
+              <span role="button" aria-pressed="false" aria-label="Toggle code block" tabIndex={0}>
+                <span className="icon icon-code"></span>
+              </span>
+              <span role="button" aria-pressed="false" aria-label="Bulleted list" tabIndex={0}>
+                <span className="icon icon-unordered-list"></span>
+              </span>
+              <span role="button" aria-pressed="false" aria-label="Numbered list" tabIndex={0}>
+                <span className="icon icon-ordered-list"></span>
+              </span>
+              <span role="button" aria-label="Horizontal line" tabIndex={0}>
+                <span className="icon icon-horizontal-rule"></span>
+              </span>
+              <span role="button" aria-pressed="false" aria-label="Quote" tabIndex={0}>
+                <span className="icon icon-quote"></span>
+              </span>
+              <details className="popover toggle">
+                <summary>
+                  <span
+                    role="button"
+                    aria-pressed="false"
+                    aria-label="Insert link"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabIndex={0}
+                  >
+                    <span className="icon icon-link"></span>
+                  </span>
+                </summary>
+                <div
+                  className="dropdown"
+                  style={{
+                    transform: 'translateX(min(244px - 100% - var(--spacer-4), 0px))',
+                    maxWidth: 'calc(673px - 2 * var(--spacer-4))',
+                  }}
+                >
+                  <fieldset className="tiptap__link-popover">
+                    <input className="top-level-input" type="text" placeholder="Enter text" value="" />
+                    <input className="top-level-input" type="text" placeholder="Enter URL" value="" />
+                    <button className="primary" type="button">
+                      Add link
+                    </button>
+                  </fieldset>
+                </div>
+              </details>
+              <div role="separator" aria-orientation="vertical"></div>
+              <label>
+                <span role="button" aria-pressed="false" aria-label="Insert image" tabIndex={0}>
+                  <span className="icon icon-image"></span>
+                </span>
+                <input multiple={false} type="file" accept=".jpeg,.jpg,.png,.gif,.webp" />
+              </label>
+              <details className="popover toggle">
+                <summary>
+                  <span
+                    role="button"
+                    aria-label="Insert button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabIndex={0}
+                  >
+                    <span className="icon icon-button"></span>
+                  </span>
+                </summary>
+                <div
+                  className="dropdown"
+                  style={{
+                    transform: 'translateX(min(151px - 100% - var(--spacer-4), 0px))',
+                    maxWidth: 'calc(673px - 2 * var(--spacer-4))',
+                  }}
+                >
+                  <fieldset className="tiptap__link-popover">
+                    <input className="top-level-input" type="text" placeholder="Enter text" value="" />
+                    <input className="top-level-input" type="text" placeholder="Enter URL" value="" />
+                    <button className="primary" type="button">
+                      Add button
+                    </button>
+                  </fieldset>
+                </div>
+              </details>
+              <details className="popover toggle">
+                <summary>
+                  <span
+                    role="button"
+                    aria-pressed="false"
+                    aria-label="Insert video"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabIndex={0}
+                  >
+                    <span className="icon icon-embed"></span>
+                  </span>
+                </summary>
+                <div
+                  className="dropdown"
+                  style={{
+                    transform: 'translateX(min(115px - 100% - var(--spacer-4), 0px))',
+                    maxWidth: 'calc(673px - 2 * var(--spacer-4))',
+                  }}
+                >
+                  <fieldset>
+                    <legend>
+                      <label htmlFor=":r16:">Video URL</label>
+                    </legend>
+                    <input
+                      id=":r16:"
+                      className="top-level-input"
+                      type="text"
+                      placeholder="https://youtu.be/Qku-fDzi3Os"
+                    />
+                    <button className="primary" type="button">
+                      Insert
+                    </button>
+                  </fieldset>
+                </div>
+              </details>
+              <details className="popover toggle">
+                <summary>
+                  <span
+                    role="button"
+                    aria-pressed="false"
+                    aria-label="Insert tweet"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    tabIndex={0}
+                  >
+                    <span className="icon icon-twitter"></span>
+                  </span>
+                </summary>
+                <div
+                  className="dropdown"
+                  style={{
+                    transform: 'translateX(min(604px - 100% - var(--spacer-4), 0px))',
+                    maxWidth: 'calc(673px - 2 * var(--spacer-4))',
+                  }}
+                >
+                  <fieldset>
+                    <legend>
+                      <label htmlFor=":r17:">Tweet URL</label>
+                    </legend>
+                    <input
+                      id=":r17:"
+                      className="top-level-input"
+                      type="text"
+                      placeholder="https://x.com/gumroad/status/1663556902624845824"
+                    />
+                    <button className="primary" type="button">
+                      Insert
+                    </button>
+                  </fieldset>
+                </div>
+              </details>
+              <div style={{ display: 'flex', marginLeft: 'auto' }}>
+                <span
+                  role="button"
+                  aria-pressed="false"
+                  aria-disabled="false"
+                  aria-label="Undo last change"
+                  tabIndex={0}
+                >
+                  <span className="icon icon-undo"></span>
+                </span>
+                <span
+                  role="button"
+                  aria-pressed="false"
+                  aria-disabled="true"
+                  aria-label="Redo last undone change"
+                  tabIndex={0}
+                >
+                  <span className="icon icon-redo"></span>
+                </span>
+              </div>
+            </div>
+            <div
+              id="editor"
+              style={{ marginBottom: '23px', paddingTop: 0 }}
+              className="rich-text-editor"
+              data-gumroad-ignore="true"
+            ></div>
+          </div>
         </fieldset>
         <fieldset>
           <legend>
@@ -160,7 +383,13 @@ function Sections() {
               Summary
             </label>
           </legend>
-          <input className="summary-input top-level-input" id=":rd:" type="text" placeholder="You'll get..." defaultValue="" />
+          <input
+            className="summary-input top-level-input"
+            id=":rd:"
+            type="text"
+            placeholder="You'll get..."
+            defaultValue=""
+          />
         </fieldset>
         <fieldset>
           <legend className="additional-details-legend">Additional details</legend>
@@ -337,7 +566,12 @@ function Sections() {
                   <label htmlFor="option_VjBqZpNx9c12Y-2cAYTCVg==_name">Name</label>
                 </legend>
                 <div className="input">
-                  <input id="option_VjBqZpNx9c12Y-2cAYTCVg==_name" type="text" placeholder="Version name" defaultValue="one" />
+                  <input
+                    id="option_VjBqZpNx9c12Y-2cAYTCVg==_name"
+                    type="text"
+                    placeholder="Version name"
+                    defaultValue="one"
+                  />
                   <a
                     target="_blank"
                     aria-label="Share one"
@@ -362,7 +596,12 @@ function Sections() {
                   </legend>
                   <div className="input">
                     <div className="pill">CAD$</div>
-                    <input id="option_VjBqZpNx9c12Y-2cAYTCVg==_price_diff" type="text" placeholder="0" defaultValue="0" />
+                    <input
+                      id="option_VjBqZpNx9c12Y-2cAYTCVg==_price_diff"
+                      type="text"
+                      placeholder="0"
+                      defaultValue="0"
+                    />
                   </div>
                 </fieldset>
                 <fieldset>
@@ -408,7 +647,12 @@ function Sections() {
                   <label htmlFor="option_NxP68JiGajkgCRohWGNmOg==_name">Name</label>
                 </legend>
                 <div className="input">
-                  <input id="option_NxP68JiGajkgCRohWGNmOg==_name" type="text" placeholder="Version name" defaultValue="two" />
+                  <input
+                    id="option_NxP68JiGajkgCRohWGNmOg==_name"
+                    type="text"
+                    placeholder="Version name"
+                    defaultValue="two"
+                  />
                   <a
                     target="_blank"
                     aria-label="Share two"
@@ -433,7 +677,12 @@ function Sections() {
                   </legend>
                   <div className="input">
                     <div className="pill">CAD$</div>
-                    <input id="option_NxP68JiGajkgCRohWGNmOg==_price_diff" type="text" placeholder="0" defaultValue="0" />
+                    <input
+                      id="option_NxP68JiGajkgCRohWGNmOg==_price_diff"
+                      type="text"
+                      placeholder="0"
+                      defaultValue="0"
+                    />
                   </div>
                 </fieldset>
                 <fieldset>
