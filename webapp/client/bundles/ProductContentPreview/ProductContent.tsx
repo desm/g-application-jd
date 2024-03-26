@@ -1,9 +1,7 @@
-import { setBlockType, toggleMark, wrapIn } from 'prosemirror-commands';
-import { schema } from 'prosemirror-schema-basic';
-import { Plugin } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
+import { createMenuPlugin } from './ProductContentRichTextMenu';
 import { state } from './stateStores/application';
 import {
   changeContentEditorState,
@@ -11,74 +9,7 @@ import {
   reconfigureContentEditorState,
   setContentEditorView,
 } from './stateStores/textEditor';
-import { Schema } from 'prosemirror-model';
-import { addListNodes } from 'prosemirror-schema-list';
 import './styles.css';
-
-class MenuView {
-  public items: any[];
-  public editorView: any;
-  public dom: HTMLDivElement;
-
-  constructor(items: any[], editorView) {
-    this.items = items;
-    this.editorView = editorView;
-
-    this.dom = document.querySelector('[role="toolbar"].rich-text-editor-toolbar') as HTMLDivElement;
-    [...this.items].reverse().forEach(({ dom }) => this.dom.insertBefore(dom, this.dom.firstChild));
-    this.update();
-
-    this.dom.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      editorView.focus();
-      items.forEach(({ command, dom }) => {
-        if (dom.contains(e.target)) command(editorView.state, editorView.dispatch, editorView);
-      });
-    });
-  }
-
-  update() {
-    this.items.forEach(({ command, dom }) => {
-      let active = command(this.editorView.state, null, this.editorView);
-      // dom.style.display = active ? '' : 'none';
-    });
-  }
-
-  destroy() {
-    this.dom.remove();
-  }
-}
-
-function menuPlugin(items) {
-  return new Plugin({
-    view(editorView) {
-      let menuView = new MenuView(items, editorView);
-      return menuView;
-    },
-  });
-}
-
-function iconBold() {
-  let span = document.createElement('span');
-  span.setAttribute('role', 'button');
-  span.setAttribute('aria-pressed', 'false');
-  span.setAttribute('aria-label', 'Bold');
-  let innerSpan = document.createElement('span');
-  innerSpan.classList.add('icon', 'icon-bold');
-  span.appendChild(innerSpan);
-  return span;
-}
-
-function iconItalic() {
-  let span = document.createElement('span');
-  span.setAttribute('role', 'button');
-  span.setAttribute('aria-pressed', 'false');
-  span.setAttribute('aria-label', 'Italic');
-  let innerSpan = document.createElement('span');
-  innerSpan.classList.add('icon', 'icon-italic');
-  span.appendChild(innerSpan);
-  return span;
-}
 
 function ProductContent() {
   useEffect(() => {
@@ -89,18 +20,11 @@ function ProductContent() {
       },
     });
     setContentEditorView(editorView);
-
-    const mySchema = new Schema({
-      nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-      marks: schema.spec.marks,
-    });
-
-    let menu = menuPlugin([
-      { command: toggleMark(mySchema.marks.strong), dom: iconBold() },
-      { command: toggleMark(mySchema.marks.em), dom: iconItalic() },
-    ]);
-
-    reconfigureContentEditorState(editorView.state.reconfigure({ plugins: [...editorView.state.plugins, menu] }));
+    reconfigureContentEditorState(
+      editorView.state.reconfigure({
+        plugins: [...editorView.state.plugins, createMenuPlugin()],
+      })
+    );
   }, []);
 
   return (
