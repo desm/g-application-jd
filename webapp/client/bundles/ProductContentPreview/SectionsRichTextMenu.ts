@@ -13,7 +13,7 @@ class MenuView {
     this.items = items;
     this.editorView = editorView;
 
-    this.dom = document.querySelector('.content-tab.rich-text-editor-toolbar') as HTMLDivElement;
+    this.dom = document.querySelector('.basic-tab.rich-text-editor-toolbar') as HTMLDivElement;
     [...this.items].reverse().forEach(({ dom }) => this.dom.insertBefore(dom, this.dom.firstChild));
     this.update();
 
@@ -52,6 +52,7 @@ function iconBold() {
   span.setAttribute('role', 'button');
   span.setAttribute('aria-pressed', 'false');
   span.setAttribute('aria-label', 'Bold');
+  span.tabIndex = 0;
   let innerSpan = document.createElement('span');
   innerSpan.classList.add('icon', 'icon-bold');
   span.appendChild(innerSpan);
@@ -63,13 +64,14 @@ function iconItalic() {
   span.setAttribute('role', 'button');
   span.setAttribute('aria-pressed', 'false');
   span.setAttribute('aria-label', 'Italic');
+  span.tabIndex = 0;
   let innerSpan = document.createElement('span');
   innerSpan.classList.add('icon', 'icon-italic');
   span.appendChild(innerSpan);
   return span;
 }
 
-export const createMenuPlugin = () => {
+export const createMenuPluginForBasicTab = () => {
   const mySchema = new Schema({
     nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
     marks: schema.spec.marks,

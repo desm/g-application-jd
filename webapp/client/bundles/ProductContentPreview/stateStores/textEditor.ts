@@ -46,6 +46,14 @@ function reducer(draft, action: { type: string; [key: string]: any }) {
       action.callback(draft.editorState);
       break;
     }
+    case 'EDITOR_STATE_RECONFIGURED': {
+      draft.editorState = action.editorState;
+      draft.mainEditorView.updateState(draft.editorState);
+      if (draft.previewEditorView) {
+        draft.previewEditorView.updateState(draft.editorState);
+      }
+      break;
+    }
     case 'CONTENT_EDITOR_STATE_SET': {
       draft.contentEditorState = action.editorState;
       break;
@@ -132,6 +140,13 @@ export const changeEditorState = (transaction: any) => {
       console.log('basic tab rich text changed', editorState.toJSON());
       changeRichTextDescription(editorState.toJSON());
     },
+  });
+};
+
+export const reconfigureEditorState = (editorState: EditorState) => {
+  dispatch({
+    type: 'EDITOR_STATE_RECONFIGURED',
+    editorState,
   });
 };
 

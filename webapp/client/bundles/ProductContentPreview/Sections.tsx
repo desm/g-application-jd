@@ -2,18 +2,23 @@ import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { changeProductName, state } from './stateStores/application';
-import { changeEditorState, editorState, setMainEditorView } from './stateStores/textEditor';
+import { changeEditorState, editorState, reconfigureEditorState, setMainEditorView } from './stateStores/textEditor';
+import { createMenuPluginForBasicTab } from './SectionsRichTextMenu';
 
 function Sections() {
   useEffect(() => {
-    setMainEditorView(
-      new EditorView(document.querySelector('#editor'), {
-        state: editorState.editorState,
-        dispatchTransaction(transaction) {
-          changeEditorState(transaction);
-        },
+    const editorView = new EditorView(document.querySelector('#editor'), {
+      state: editorState.editorState,
+      dispatchTransaction(transaction) {
+        changeEditorState(transaction);
+      },
+    });
+    setMainEditorView(editorView);
+    reconfigureEditorState(
+      editorView.state.reconfigure({
+        plugins: [...editorView.state.plugins, createMenuPluginForBasicTab()],
       })
-    );
+    )
   }, []);
 
   return (
@@ -42,13 +47,7 @@ function Sections() {
             </label>
           </legend>
           <div className="rich-text-editor" data-gumroad-ignore="true">
-            <div role="toolbar" className="rich-text-editor-toolbar">
-              <span role="button" aria-pressed="false" aria-label="Bold" tabIndex={0}>
-                <span className="icon icon-bold"></span>
-              </span>
-              <span role="button" aria-pressed="false" aria-label="Italic" tabIndex={0}>
-                <span className="icon icon-italic"></span>
-              </span>
+            <div role="toolbar" className="basic-tab rich-text-editor-toolbar">
               <span role="button" aria-pressed="false" aria-label="Underline" tabIndex={0}>
                 <span className="icon icon-underline"></span>
               </span>

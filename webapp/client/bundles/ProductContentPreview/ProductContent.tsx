@@ -30,7 +30,7 @@ function ProductContent() {
   return (
     <>
       <main className="product-content" style={{ height: '100%' }}>
-        <div role="toolbar" className="rich-text-editor-toolbar">
+        <div role="toolbar" className="content-tab rich-text-editor-toolbar">
           <div style={{ display: 'flex', marginLeft: 'auto' }}>
             <div className="combobox version-dropdown" style={{ width: '300px' }}>
               <div
