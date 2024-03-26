@@ -5,7 +5,7 @@ import { addListNodes } from 'prosemirror-schema-list';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { useImmerReducer } from 'use-immer';
-import { changeRichTextDescription } from './application';
+import { changeRichTextDescription, changeRichTextContent } from './application';
 
 /**
  * keeping a second state store for the ProseMirror EditorState and EditorView instances
@@ -16,6 +16,9 @@ interface State {
   editorState: EditorState;
   mainEditorView: EditorView;
   previewEditorView: EditorView;
+
+  contentEditorState: EditorState;
+  contentEditorView: EditorView;
 }
 
 let initialState = {} as State;
@@ -43,6 +46,25 @@ function reducer(draft, action: { type: string; [key: string]: any }) {
       action.callback(draft.editorState);
       break;
     }
+    case 'CONTENT_EDITOR_STATE_SET': {
+      draft.contentEditorState = action.editorState;
+      break;
+    }
+    case 'CONTENT_EDITOR_VIEW_SET': {
+      draft.contentEditorView = action.editorView;
+      break;
+    }
+    case 'CONTENT_EDITOR_TRANSACTION_OCCURRED': {
+      draft.contentEditorState = draft.contentEditorState.apply(action.transaction);
+      draft.contentEditorView.updateState(draft.contentEditorState);
+      action.callback(draft.contentEditorState);
+      break;
+    }
+    case 'CONTENT_EDITOR_STATE_RECONFIGURED': {
+      draft.contentEditorState = action.contentEditorState;
+      draft.contentEditorView.updateState(draft.contentEditorState);
+      break;
+    }
     default: {
       throw Error('Unknown action: ' + action.type);
     }
@@ -54,7 +76,7 @@ function reducer(draft, action: { type: string; [key: string]: any }) {
  *
  * that is why we check if editorState.editorState is null before setting it
  */
-export const initEditorStore = (doc: any) => {
+export const initEditorStore = (basicTabRichTextDoc: any, contentTabRichTextDoc: any) => {
   [editorState, dispatch] = useImmerReducer(reducer, initialState);
 
   if (!editorState.editorState) {
@@ -65,7 +87,25 @@ export const initEditorStore = (doc: any) => {
 
     dispatch({
       type: 'EDITOR_STATE_SET',
-      editorState: EditorState.fromJSON({ schema: mySchema, plugins: exampleSetup({ schema: mySchema }) }, doc),
+      editorState: EditorState.fromJSON(
+        { schema: mySchema, plugins: exampleSetup({ schema: mySchema }) },
+        basicTabRichTextDoc
+      ),
+    });
+  }
+
+  if (!editorState.contentEditorState) {
+    const mySchema = new Schema({
+      nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
+      marks: schema.spec.marks,
+    });
+
+    dispatch({
+      type: 'CONTENT_EDITOR_STATE_SET',
+      editorState: EditorState.fromJSON(
+        { schema: mySchema, plugins: exampleSetup({ schema: mySchema, menuBar: false }) },
+        contentTabRichTextDoc
+      ),
     });
   }
 };
@@ -89,8 +129,33 @@ export const changeEditorState = (transaction: any) => {
     type: 'EDITOR_TRANSACTION_OCCURRED',
     transaction,
     callback: (editorState) => {
-      console.log(editorState.toJSON());
-      changeRichTextDescription(editorState.toJSON().doc);
+      console.log('basic tab rich text changed', editorState.toJSON());
+      changeRichTextDescription(editorState.toJSON());
     },
+  });
+};
+
+export const setContentEditorView = (editorView: EditorView) => {
+  dispatch({
+    type: 'CONTENT_EDITOR_VIEW_SET',
+    editorView,
+  });
+};
+
+export const changeContentEditorState = (transaction: any) => {
+  dispatch({
+    type: 'CONTENT_EDITOR_TRANSACTION_OCCURRED',
+    transaction,
+    callback: (contentEditorState) => {
+      console.log('content tab rich text changed', contentEditorState.toJSON());
+      changeRichTextContent(contentEditorState.toJSON());
+    },
+  });
+};
+
+export const reconfigureContentEditorState = (contentEditorState: EditorState) => {
+  dispatch({
+    type: 'CONTENT_EDITOR_STATE_RECONFIGURED',
+    contentEditorState,
   });
 };

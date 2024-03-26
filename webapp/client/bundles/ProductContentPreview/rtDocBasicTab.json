@@ -1,0 +1,36 @@
+{
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Basic Tab Rich Text"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Some content here."
+          }
+        ]
+      }
+    ]
+  },
+  "selection": {
+    "type": "text",
+    "anchor": 1,
+    "head": 1
+  }
+}
