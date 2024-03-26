@@ -16,19 +16,16 @@ import { addListNodes } from 'prosemirror-schema-list';
 import './styles.css';
 
 class MenuView {
-  public items: any;
+  public items: any[];
   public editorView: any;
-  public dom: any;
+  public dom: HTMLDivElement;
 
-  constructor(items, editorView) {
+  constructor(items: any[], editorView) {
     this.items = items;
     this.editorView = editorView;
 
-    this.dom = document.createElement('div');
-    this.dom.className = 'menubar';
-    this.dom.style.backgroundColor = 'lightgrey';
-
-    items.forEach(({ dom }) => this.dom.appendChild(dom));
+    this.dom = document.querySelector('[role="toolbar"].rich-text-editor-toolbar') as HTMLDivElement;
+    [...this.items].reverse().forEach(({ dom }) => this.dom.insertBefore(dom, this.dom.firstChild));
     this.update();
 
     this.dom.addEventListener('mousedown', (e) => {
@@ -56,27 +53,31 @@ function menuPlugin(items) {
   return new Plugin({
     view(editorView) {
       let menuView = new MenuView(items, editorView);
-      editorView.dom.parentNode.insertBefore(menuView.dom, editorView.dom);
       return menuView;
     },
   });
 }
 
-// Helper function to create menu icons
-function icon(text, name) {
+function iconBold() {
   let span = document.createElement('span');
-  span.className = 'menuicon ' + name;
-  span.title = name;
-  span.textContent = text;
+  span.setAttribute('role', 'button');
+  span.setAttribute('aria-pressed', 'false');
+  span.setAttribute('aria-label', 'Bold');
+  let innerSpan = document.createElement('span');
+  innerSpan.classList.add('icon', 'icon-bold');
+  span.appendChild(innerSpan);
   return span;
 }
 
-// Create an icon for a heading at the given level
-function heading(level, schema) {
-  return {
-    command: setBlockType(schema.nodes.heading, { level }),
-    dom: icon('H' + level, 'heading'),
-  };
+function iconItalic() {
+  let span = document.createElement('span');
+  span.setAttribute('role', 'button');
+  span.setAttribute('aria-pressed', 'false');
+  span.setAttribute('aria-label', 'Italic');
+  let innerSpan = document.createElement('span');
+  innerSpan.classList.add('icon', 'icon-italic');
+  span.appendChild(innerSpan);
+  return span;
 }
 
 function ProductContent() {
@@ -95,13 +96,8 @@ function ProductContent() {
     });
 
     let menu = menuPlugin([
-      { command: toggleMark(mySchema.marks.strong), dom: icon('B', 'strong') },
-      { command: toggleMark(mySchema.marks.em), dom: icon('i', 'em') },
-      { command: setBlockType(mySchema.nodes.paragraph), dom: icon('p', 'paragraph') },
-      heading(1, mySchema),
-      heading(2, mySchema),
-      heading(3, mySchema),
-      { command: wrapIn(mySchema.nodes.blockquote), dom: icon('>', 'blockquote') },
+      { command: toggleMark(mySchema.marks.strong), dom: iconBold() },
+      { command: toggleMark(mySchema.marks.em), dom: iconItalic() },
     ]);
 
     reconfigureContentEditorState(editorView.state.reconfigure({ plugins: [...editorView.state.plugins, menu] }));
@@ -111,12 +107,6 @@ function ProductContent() {
     <>
       <main className="product-content" style={{ height: '100%' }}>
         <div role="toolbar" className="rich-text-editor-toolbar">
-          <span role="button" aria-pressed="false" aria-label="Bold">
-            <span className="icon icon-bold"></span>
-          </span>
-          <span role="button" aria-pressed="false" aria-label="Italic">
-            <span className="icon icon-italic"></span>
-          </span>
           <span role="button" aria-pressed="false" aria-label="Underline">
             <span className="icon icon-underline"></span>
           </span>
