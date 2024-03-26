@@ -18,7 +18,7 @@ import {
 import { editorState, initEditorStore } from './ProductContentPreview/stateStores/textEditor';
 import doc from './doc.json';
 import { grabAllDataFromDataDivs } from './lib';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, redirect, RouterProvider } from 'react-router-dom';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;
@@ -77,6 +77,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
           path: 'share',
           element: <></>,
           loader: async () => {
+            if (!state.published) {
+              return redirect('/')
+            }
             setActiveTab('ACTIVE_TAB_SHARE');
             return null;
           },

@@ -16,3 +16,6 @@ Mar 25 10:46 EDT
 the "share" works if you go directly to it
     e.g. https://app.gumroad.com/products/nteiqo/edit#share
 
+the message warning "Not yet! You've got to publish your awesome product before you can share it with your audience and the world."
+    once clicked, it doesn't show as long
+

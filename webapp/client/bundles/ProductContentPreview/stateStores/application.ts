@@ -5,6 +5,7 @@ interface State {
   richTextDescription: any; // rich text as javascript object
   avatarUrl: string;
   activeTab: 'ACTIVE_TAB_PRODUCT' | 'ACTIVE_TAB_CONTENT' | 'ACTIVE_TAB_SHARE';
+  published: boolean;
 }
 
 let initialState = {} as State;
