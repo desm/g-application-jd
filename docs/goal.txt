@@ -1,4 +1,4 @@
-publish product
+enable rich text editor in the "Content" tab
 
 make same:
 https://app.gumroad.com/products/davpc/edit

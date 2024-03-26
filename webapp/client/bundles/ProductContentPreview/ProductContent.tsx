@@ -1,7 +1,21 @@
+import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
+import { useEffect } from 'react';
 import { state } from './stateStores/application';
+import { changeContentEditorState, editorState, setContentEditorView } from './stateStores/textEditor';
 
 function ProductContent() {
+  useEffect(() => {
+    setContentEditorView(
+      new EditorView(document.querySelector('#content-editor'), {
+        state: editorState.contentEditorState,
+        dispatchTransaction(transaction) {
+          changeContentEditorState(transaction);
+        },
+      })
+    );
+  }, []);
+
   return (
     <>
       <main className="product-content" style={{ height: '100%' }}>
@@ -353,16 +367,12 @@ function ProductContent() {
               </div>
             </div>
           </div>
-          <div className="rich-text" data-gumroad-ignore="true">
-            <div className="tiptap ProseMirror" aria-label="Content editor" id=":r14:" tabIndex={0} translate="no">
-              <p
-                data-placeholder="Enter the content you want to sell. Upload your files or start typing."
-                className="is-empty is-editor-empty"
-              >
-                <br className="ProseMirror-trailingBreak" />
-              </p>
-            </div>
-          </div>
+          <div
+            id="content-editor"
+            style={{ marginBottom: '23px', paddingTop: 0 }}
+            className="rich-text"
+            data-gumroad-ignore="true"
+          ></div>
         </div>
       </main>
     </>

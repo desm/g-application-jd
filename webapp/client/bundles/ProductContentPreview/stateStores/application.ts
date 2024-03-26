@@ -2,7 +2,8 @@ import { useImmerReducer } from 'use-immer';
 
 interface State {
   productName: string;
-  richTextDescription: any; // rich text as javascript object
+  richTextDescription: any; // basic tab, rich text as javascript object
+  richTextContent: any; // content tab
   avatarUrl: string;
   activeTab: 'ACTIVE_TAB_PRODUCT' | 'ACTIVE_TAB_CONTENT' | 'ACTIVE_TAB_SHARE';
   published: boolean;
@@ -19,8 +20,11 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
       break;
     }
     case 'RICH_TEXT_DOCUMENT_CHANGED': {
-      draft.richTextDescription = action.richTextDescription;
-      console.log('rich text doc is now:', JSON.stringify(draft.richTextDescription, null, 4));
+      draft.richTextDescription = action.richText;
+      break;
+    }
+    case 'RICH_TEXT_CONTENT_CHANGED': {
+      draft.richTextContent = action.richText;
       break;
     }
     case 'AVATAR_URL_SET': {
@@ -51,10 +55,17 @@ export const changeProductName = (productName: string) => {
   document.title = productName;
 };
 
-export const changeRichTextDescription = (richTextDescription: any) => {
+export const changeRichTextDescription = (richText: any) => {
   dispatch({
     type: 'RICH_TEXT_DOCUMENT_CHANGED',
-    richTextDescription,
+    richText,
+  });
+};
+
+export const changeRichTextContent = (richText: any) => {
+  dispatch({
+    type: 'RICH_TEXT_CONTENT_CHANGED',
+    richText,
   });
 };
 

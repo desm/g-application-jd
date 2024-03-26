@@ -16,7 +16,8 @@ import {
   setActiveTab,
 } from './ProductContentPreview/stateStores/application';
 import { editorState, initEditorStore } from './ProductContentPreview/stateStores/textEditor';
-import doc from './doc.json';
+import rtDocBasicTab from './ProductContentPreview/rtDocBasicTab.json'
+import rtDocContentTab from './ProductContentPreview/rtDocContentTab.json'
 import { grabAllDataFromDataDivs } from './lib';
 import { createHashRouter, redirect, RouterProvider } from 'react-router-dom';
 
@@ -44,7 +45,7 @@ export interface Props {}
 
 const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
   initApplicationStore({ productName: 'Product Name' });
-  initEditorStore(doc);
+  initEditorStore(rtDocBasicTab, rtDocContentTab);
 
   const [router, setRouter] = useState(null);
 
