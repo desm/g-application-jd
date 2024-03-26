@@ -4,6 +4,7 @@ interface State {
   productName: string;
   richTextDescription: any; // rich text as javascript object
   avatarUrl: string;
+  activeTab: 'ACTIVE_TAB_PRODUCT' | 'ACTIVE_TAB_CONTENT' | 'ACTIVE_TAB_SHARE';
 }
 
 let initialState = {} as State;
@@ -21,8 +22,12 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
       console.log('rich text doc is now:', JSON.stringify(draft.richTextDescription, null, 4));
       break;
     }
-    case 'AVATAR_URL_SET':{
-      draft.avatarUrl=action.avatarUrl
+    case 'AVATAR_URL_SET': {
+      draft.avatarUrl = action.avatarUrl;
+      break;
+    }
+    case 'ACTIVE_TAB_SET': {
+      draft.activeTab = action.activeTab;
       break;
     }
     default: {
@@ -33,7 +38,7 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
 
 export const initApplicationStore = (props: any) => {
   initialState.productName = props.productName;
-  // add here
+  
   [state, dispatch] = useImmerReducer(reducer, initialState);
 };
 
@@ -52,9 +57,16 @@ export const changeRichTextDescription = (richTextDescription: any) => {
   });
 };
 
-export const setAvatarUrl = (avatarUrl:string) => {
+export const setAvatarUrl = (avatarUrl: string) => {
   dispatch({
     type: 'AVATAR_URL_SET',
     avatarUrl,
+  });
+};
+
+export const setActiveTab = (activeTab: 'ACTIVE_TAB_PRODUCT' | 'ACTIVE_TAB_CONTENT' | 'ACTIVE_TAB_SHARE') => {
+  dispatch({
+    type: 'ACTIVE_TAB_SET',
+    activeTab,
   });
 };
