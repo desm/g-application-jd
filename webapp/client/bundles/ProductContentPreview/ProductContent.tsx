@@ -1,19 +1,110 @@
+import { setBlockType, toggleMark, wrapIn } from 'prosemirror-commands';
+import { schema } from 'prosemirror-schema-basic';
+import { Plugin } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { state } from './stateStores/application';
-import { changeContentEditorState, editorState, setContentEditorView } from './stateStores/textEditor';
+import {
+  changeContentEditorState,
+  editorState,
+  reconfigureContentEditorState,
+  setContentEditorView,
+} from './stateStores/textEditor';
+import { Schema } from 'prosemirror-model';
+import { addListNodes } from 'prosemirror-schema-list';
+import './styles.css';
+
+class MenuView {
+  public items: any;
+  public editorView: any;
+  public dom: any;
+
+  constructor(items, editorView) {
+    this.items = items;
+    this.editorView = editorView;
+
+    this.dom = document.createElement('div');
+    this.dom.className = 'menubar';
+    this.dom.style.backgroundColor = 'lightgrey';
+
+    items.forEach(({ dom }) => this.dom.appendChild(dom));
+    this.update();
+
+    this.dom.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      editorView.focus();
+      items.forEach(({ command, dom }) => {
+        if (dom.contains(e.target)) command(editorView.state, editorView.dispatch, editorView);
+      });
+    });
+  }
+
+  update() {
+    this.items.forEach(({ command, dom }) => {
+      let active = command(this.editorView.state, null, this.editorView);
+      // dom.style.display = active ? '' : 'none';
+    });
+  }
+
+  destroy() {
+    this.dom.remove();
+  }
+}
+
+function menuPlugin(items) {
+  return new Plugin({
+    view(editorView) {
+      let menuView = new MenuView(items, editorView);
+      editorView.dom.parentNode.insertBefore(menuView.dom, editorView.dom);
+      return menuView;
+    },
+  });
+}
+
+// Helper function to create menu icons
+function icon(text, name) {
+  let span = document.createElement('span');
+  span.className = 'menuicon ' + name;
+  span.title = name;
+  span.textContent = text;
+  return span;
+}
+
+// Create an icon for a heading at the given level
+function heading(level, schema) {
+  return {
+    command: setBlockType(schema.nodes.heading, { level }),
+    dom: icon('H' + level, 'heading'),
+  };
+}
 
 function ProductContent() {
   useEffect(() => {
-    setContentEditorView(
-      new EditorView(document.querySelector('#content-editor'), {
-        state: editorState.contentEditorState,
-        dispatchTransaction(transaction) {
-          changeContentEditorState(transaction);
-        },
-      })
-    );
+    const editorView = new EditorView(document.querySelector('#content-editor'), {
+      state: editorState.contentEditorState,
+      dispatchTransaction(transaction) {
+        changeContentEditorState(transaction);
+      },
+    });
+    setContentEditorView(editorView);
+
+    const mySchema = new Schema({
+      nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
+      marks: schema.spec.marks,
+    });
+
+    let menu = menuPlugin([
+      { command: toggleMark(mySchema.marks.strong), dom: icon('B', 'strong') },
+      { command: toggleMark(mySchema.marks.em), dom: icon('i', 'em') },
+      { command: setBlockType(mySchema.nodes.paragraph), dom: icon('p', 'paragraph') },
+      heading(1, mySchema),
+      heading(2, mySchema),
+      heading(3, mySchema),
+      { command: wrapIn(mySchema.nodes.blockquote), dom: icon('>', 'blockquote') },
+    ]);
+
+    reconfigureContentEditorState(editorView.state.reconfigure({ plugins: [...editorView.state.plugins, menu] }));
   }, []);
 
   return (

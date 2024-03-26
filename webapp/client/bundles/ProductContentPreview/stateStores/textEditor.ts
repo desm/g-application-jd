@@ -60,6 +60,11 @@ function reducer(draft, action: { type: string; [key: string]: any }) {
       action.callback(draft.contentEditorState);
       break;
     }
+    case 'CONTENT_EDITOR_STATE_RECONFIGURED': {
+      draft.contentEditorState = action.contentEditorState;
+      draft.contentEditorView.updateState(draft.contentEditorState);
+      break;
+    }
     default: {
       throw Error('Unknown action: ' + action.type);
     }
@@ -98,7 +103,7 @@ export const initEditorStore = (basicTabRichTextDoc: any, contentTabRichTextDoc:
     dispatch({
       type: 'CONTENT_EDITOR_STATE_SET',
       editorState: EditorState.fromJSON(
-        { schema: mySchema, plugins: exampleSetup({ schema: mySchema }) },
+        { schema: mySchema, plugins: exampleSetup({ schema: mySchema, menuBar: false }) },
         contentTabRichTextDoc
       ),
     });
@@ -145,5 +150,12 @@ export const changeContentEditorState = (transaction: any) => {
       console.log('content tab rich text changed', contentEditorState.toJSON());
       changeRichTextContent(contentEditorState.toJSON());
     },
+  });
+};
+
+export const reconfigureContentEditorState = (contentEditorState: EditorState) => {
+  dispatch({
+    type: 'CONTENT_EDITOR_STATE_RECONFIGURED',
+    contentEditorState,
   });
 };
