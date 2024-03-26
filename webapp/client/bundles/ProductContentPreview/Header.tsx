@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { state } from './stateStores/application';
+import { showMessage } from '../lib';
 
 function Header({ productName }) {
   const preventIfNotPublished = (e) => {
     if (!state.published) {
       e.preventDefault();
-      const x = document.querySelector('.js-message') as HTMLElement;
-      x.textContent =
-        "Not yet! You've got to publish your awesome product before you can share it with your audience and the world.";
-      x.classList.add('message--warning', 'warning');
-      const o = document.querySelector('.js-flash-message') as HTMLElement;
-      o.style.transform = 'translateY(0px)';
-      o.style.visibility = 'visible';
-      // o.style.transform = 'translateY(-100%);'
-      // o.style.visibility = 'hidden';
+      showMessage(
+        "Not yet! You've got to publish your awesome product before you can share it with your audience and the world."
+      );
     }
   };
 
