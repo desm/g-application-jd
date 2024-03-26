@@ -237,7 +237,7 @@ function ProductContent() {
                 <span className="fake-input text-singleline">Editing: one</span>
                 <span className="icon icon-outline-cheveron-down"></span>
               </div>
-              <div hidden={false}>
+              <div hidden={true}>
                 <datalist id=":r1h:" aria-multiselectable="true">
                   <div role="option" id=":r1h:-0" className="" aria-selected="true" aria-disabled="false">
                     <div>
