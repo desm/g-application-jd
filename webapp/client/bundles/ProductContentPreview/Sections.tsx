@@ -48,6 +48,12 @@ function Sections() {
           </legend>
           <div className="rich-text-editor" data-gumroad-ignore="true">
             <div role="toolbar" className="basic-tab rich-text-editor-toolbar">
+              <span role="button" aria-pressed="false" aria-label="Bold" tabIndex={0}>
+                <span className="icon icon-bold"></span>
+              </span>
+              <span role="button" aria-pressed="false" aria-label="Italic" tabIndex={0}>
+                <span className="icon icon-italic"></span>
+              </span>
               <span role="button" aria-pressed="false" aria-label="Underline" tabIndex={0}>
                 <span className="icon icon-underline"></span>
               </span>

@@ -1,4 +1,4 @@
-import { toggleMark } from 'prosemirror-commands';
+import { toggleMark, setBlockType } from 'prosemirror-commands';
 import { Schema } from 'prosemirror-model';
 import { schema } from 'prosemirror-schema-basic';
 import { addListNodes } from 'prosemirror-schema-list';
@@ -14,12 +14,14 @@ class MenuView {
     this.editorView = editorView;
 
     this.dom = document.querySelector('.basic-tab.rich-text-editor-toolbar') as HTMLDivElement;
-    [...this.items].reverse().forEach(({ dom }) => this.dom.insertBefore(dom, this.dom.firstChild));
+    // [...this.items].reverse().forEach(({ dom }) => this.dom.insertBefore(dom, this.dom.firstChild));
     this.update();
 
+    console.log('setting up "mousedown" handler', (new Error()).stack);
+
     this.dom.addEventListener('mousedown', (e) => {
+      console.log('e', e);
       e.preventDefault();
-      editorView.focus();
       items.forEach(({ command, dom }) => {
         if (dom.contains(e.target)) command(editorView.state, editorView.dispatch, editorView);
       });
@@ -72,18 +74,27 @@ function iconItalic() {
 }
 
 export const createMenuPluginForBasicTab = () => {
+  console.log('createMenuPluginForBasicTab called');
+
   const mySchema = new Schema({
     nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
     marks: schema.spec.marks,
   });
 
+  console.log('schema', schema);
   console.log('mySchema', mySchema);
-  console.log('mySchema.marks', mySchema.marks);
-  console.log('mySchema.marks.strong', mySchema.marks.strong);
+
+  const tb = document.querySelector('.basic-tab.rich-text-editor-toolbar');
 
   let menu = menuPlugin([
-    { command: toggleMark(mySchema.marks.strong), dom: iconBold() },
-    { command: toggleMark(mySchema.marks.em), dom: iconItalic() },
+    // { command: toggleMark(mySchema.marks.strong), dom: tb.querySelector('[role=button][aria-label=Bold]') },
+    // { command: toggleMark(mySchema.marks.em), dom: tb.querySelector('[role=button][aria-label=Italic]') },
+    { command: toggleMark(mySchema.marks.strong), dom: tb.children[0] },
+    { command: toggleMark(mySchema.marks.em), dom: tb.children[1] },
+    {
+      command: setBlockType(mySchema.nodes.heading, { level: 1 }),
+      dom: tb.children[4].querySelector('[role=menu]').children[0],
+    },
   ]);
 
   return menu;
