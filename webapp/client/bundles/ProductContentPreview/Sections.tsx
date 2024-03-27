@@ -1,25 +1,36 @@
+import { exampleSetup } from 'prosemirror-example-setup';
+import { Schema } from 'prosemirror-model';
+import { schema } from 'prosemirror-schema-basic';
+import { addListNodes } from 'prosemirror-schema-list';
+import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
-import { changeProductName, applicationState } from './stateStores/application';
-import { changeEditorState, textEditorState, reconfigureEditorState, setEditorView } from './stateStores/textEditor';
 import { createMenuPluginForBasicTab } from './SectionsRichTextMenu';
+import basicTabRichTextDoc from './rtDocBasicTab.json';
+import { applicationState, changeProductName } from './stateStores/application';
+import { changeEditorState, setEditorState, setEditorView } from './stateStores/textEditor';
+import { mySchema } from './mySchema';
 
 function Sections() {
   useEffect(() => {
+    const editorState = EditorState.fromJSON(
+      {
+        schema: mySchema,
+        plugins: [...exampleSetup({ schema: mySchema, menuBar: false }), createMenuPluginForBasicTab(mySchema)],
+      },
+      basicTabRichTextDoc
+    );
+
     const editorView = new EditorView(document.querySelector('#editor'), {
-      state: textEditorState.basicTab.editorState,
+      state: editorState,
       dispatchTransaction(transaction) {
         changeEditorState('basicTab', transaction);
       },
     });
+
+    setEditorState('basicTab', editorState);
     setEditorView('basicTab', editorView);
-    reconfigureEditorState(
-      'basicTab',
-      editorView.state.reconfigure({
-        plugins: [...editorView.state.plugins, createMenuPluginForBasicTab()],
-      })
-    );
   }, []);
 
   return (

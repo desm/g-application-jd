@@ -45,9 +45,10 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
   }
 }
 
-export const initApplicationState = (props: any) => {
-  initialState.productName = props.productName;
-
+/**
+ * note: this function may get called several times during bootup
+ */
+export const useApplicationState = () => {
   [state, dispatch] = useImmerReducer(reducer, initialState);
 };
 

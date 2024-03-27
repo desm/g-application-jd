@@ -1,8 +1,5 @@
-import { toggleMark, setBlockType, wrapIn } from 'prosemirror-commands';
-import { Schema } from 'prosemirror-model';
-import { schema } from 'prosemirror-schema-basic';
-import { addListNodes } from 'prosemirror-schema-list';
-import { NodeSelection, Plugin } from 'prosemirror-state';
+import { setBlockType, toggleMark } from 'prosemirror-commands';
+import { Plugin } from 'prosemirror-state';
 
 class MenuView {
   public items: any[];
@@ -84,12 +81,7 @@ function iconItalic() {
   return span;
 }
 
-export const createMenuPluginForBasicTab = () => {
-  const mySchema = new Schema({
-    nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-    marks: schema.spec.marks,
-  });
-
+export const createMenuPluginForBasicTab = (mySchema) => {
   console.log('mySchema', mySchema);
 
   const tb = document.querySelector('.basic-tab.rich-text-editor-toolbar');
@@ -100,9 +92,8 @@ export const createMenuPluginForBasicTab = () => {
     {
       name: 'H1',
       command: setBlockType(mySchema.nodes.heading, { level: 1 }),
-      // command: wrapIn(schema.nodes.heading, { level: 1 }),
       dom: tb.children[4].querySelector('[role=menu]').children[0],
-      nodeType: schema.nodes.heading,
+      nodeType: mySchema.nodes.heading,
       options: { attrs: { level: 1 } },
     },
   ]);

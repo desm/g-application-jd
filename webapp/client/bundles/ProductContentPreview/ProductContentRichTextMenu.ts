@@ -1,7 +1,4 @@
 import { toggleMark } from 'prosemirror-commands';
-import { Schema } from 'prosemirror-model';
-import { schema } from 'prosemirror-schema-basic';
-import { addListNodes } from 'prosemirror-schema-list';
 import { Plugin } from 'prosemirror-state';
 
 class MenuView {
@@ -69,16 +66,10 @@ function iconItalic() {
   return span;
 }
 
-export const createMenuPlugin = () => {
-  const mySchema = new Schema({
-    nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-    marks: schema.spec.marks,
-  });
-
+export const createMenuPlugin = (mySchema) => {
   let menu = menuPlugin([
     { command: toggleMark(mySchema.marks.strong), dom: iconBold() },
     { command: toggleMark(mySchema.marks.em), dom: iconItalic() },
   ]);
-
   return menu;
 };

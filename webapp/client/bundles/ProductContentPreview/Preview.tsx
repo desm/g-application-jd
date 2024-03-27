@@ -1,17 +1,29 @@
+import { exampleSetup } from 'prosemirror-example-setup';
+import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
+import { mySchema } from './mySchema';
+import basicTabRichTextDoc from './rtDocBasicTab.json';
 import { applicationState } from './stateStores/application';
-import { textEditorState, setEditorView } from './stateStores/textEditor';
+import { setEditorState, setEditorView } from './stateStores/textEditor';
 
 function Preview() {
   useEffect(() => {
-    setEditorView(
-      'previewPane',
-      new EditorView(document.querySelector('#rich-text-preview'), {
-        state: textEditorState.previewPane.editorState,
-      })
+    const editorState = EditorState.fromJSON(
+      {
+        schema: mySchema,
+        plugins: exampleSetup({ schema: mySchema, menuBar: false }),
+      },
+      basicTabRichTextDoc
     );
+
+    const editorView = new EditorView(document.querySelector('#rich-text-preview'), {
+      state: editorState,
+    });
+
+    setEditorState('previewPane', editorState);
+    setEditorView('previewPane', editorView);
   }, []);
 
   return (

@@ -1,26 +1,41 @@
+import { exampleSetup } from 'prosemirror-example-setup';
+import { Schema } from 'prosemirror-model';
+import { schema } from 'prosemirror-schema-basic';
+import { addListNodes } from 'prosemirror-schema-list';
+import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { createMenuPlugin } from './ProductContentRichTextMenu';
+import contentTabRichTextDoc from './rtDocContentTab.json';
 import { applicationState } from './stateStores/application';
-import { changeEditorState, textEditorState, reconfigureEditorState, setEditorView } from './stateStores/textEditor';
+import { changeEditorState, setEditorState, setEditorView } from './stateStores/textEditor';
 import './styles.css';
 
 function ProductContent() {
   useEffect(() => {
+    const mySchema = new Schema({
+      nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
+      marks: schema.spec.marks,
+    });
+
+    const editorState = EditorState.fromJSON(
+      {
+        schema: mySchema,
+        plugins: [...exampleSetup({ schema: mySchema, menuBar: false }), createMenuPlugin(mySchema)],
+      },
+      contentTabRichTextDoc
+    );
+
     const editorView = new EditorView(document.querySelector('#content-editor'), {
-      state: textEditorState.contentTab.editorState,
+      state: editorState,
       dispatchTransaction(transaction) {
         changeEditorState('contentTab', transaction);
       },
     });
+
+    setEditorState('contentTab', editorState);
     setEditorView('contentTab', editorView);
-    reconfigureEditorState(
-      'contentTab',
-      editorView.state.reconfigure({
-        plugins: [...editorView.state.plugins, createMenuPlugin()],
-      })
-    );
   }, []);
 
   return (

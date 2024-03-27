@@ -2,6 +2,7 @@ import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { RouterProvider, createHashRouter, redirect } from 'react-router-dom';
 import DiscoverSettings from './ProductContentPreview/DiscoverSettings';
 import Header from './ProductContentPreview/Header';
 import Preview from './ProductContentPreview/Preview';
@@ -11,15 +12,12 @@ import Sections from './ProductContentPreview/Sections';
 import ShareLinks from './ProductContentPreview/ShareLinks';
 import {
   applicationState,
-  initApplicationState,
-  setAvatarUrl,
   setActiveTab,
+  setAvatarUrl,
+  useApplicationState,
 } from './ProductContentPreview/stateStores/application';
-import { textEditorState, initTextEditorState } from './ProductContentPreview/stateStores/textEditor';
-import rtDocBasicTab from './ProductContentPreview/rtDocBasicTab.json';
-import rtDocContentTab from './ProductContentPreview/rtDocContentTab.json';
+import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
 import { grabAllDataFromDataDivs } from './lib';
-import { createHashRouter, redirect, RouterProvider } from 'react-router-dom';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;
@@ -44,8 +42,8 @@ const setVisibilityOfPreviewPane = (visible: boolean) => {
 export interface Props {}
 
 const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
-  initApplicationState({ productName: 'Product Name' });
-  initTextEditorState(rtDocBasicTab, rtDocContentTab);
+  useApplicationState();
+  useTextEditorState();
 
   const [router, setRouter] = useState(null);
 
@@ -123,10 +121,8 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       {createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
       {createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
       {createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
-      {textEditorState.basicTab.editorState &&
-        createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
-      {textEditorState.previewPane.editorState &&
-        createPortal(<Preview />, document.getElementById('product-preview-root'))}
+      {createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
+      {createPortal(<Preview />, document.getElementById('product-preview-root'))}
       {router && <RouterProvider router={router} />}
     </>
   );
