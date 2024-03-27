@@ -12,6 +12,7 @@ import Sections from './ProductContentPreview/Sections';
 import ShareLinks from './ProductContentPreview/ShareLinks';
 import {
   applicationState,
+  changeProductName,
   setActiveTab,
   setAvatarUrl,
   useApplicationState,
@@ -53,6 +54,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
 
     const divData = grabAllDataFromDataDivs();
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
+    changeProductName(divData['edit-attributes']['name']);
 
     setRouter(
       createHashRouter([

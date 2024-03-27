@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { createMenuPlugin } from './ProductContentRichTextMenu';
 import contentTabRichTextDoc from './rtDocContentTab.json';
 import { applicationState } from './stateStores/application';
-import { changeEditorState, setEditorState, setEditorView } from './stateStores/textEditor';
+import { changeEditorState, setEditorView } from './stateStores/textEditor';
 import './styles.css';
 
 function ProductContent() {
@@ -34,7 +34,6 @@ function ProductContent() {
       },
     });
 
-    setEditorState('contentTab', editorState);
     setEditorView('contentTab', editorView);
   }, []);
 

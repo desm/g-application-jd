@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { mySchema } from './mySchema';
 import basicTabRichTextDoc from './rtDocBasicTab.json';
 import { applicationState } from './stateStores/application';
-import { setEditorState, setEditorView } from './stateStores/textEditor';
+import { setEditorView } from './stateStores/textEditor';
 
 function Preview() {
   useEffect(() => {
@@ -22,7 +22,6 @@ function Preview() {
       state: editorState,
     });
 
-    setEditorState('previewPane', editorState);
     setEditorView('previewPane', editorView);
   }, []);
 
