@@ -32,6 +32,12 @@ function Sections() {
     });
 
     setEditorView('basicTab', editorView);
+
+    document.body.addEventListener('mousedown', () => {
+      document.querySelectorAll('details').forEach((el) => {
+        el.removeAttribute('open');
+      });
+    });
   }, []);
 
   return (
@@ -67,11 +73,11 @@ function Sections() {
               <span role="button" aria-pressed="false" aria-label="Italic" tabIndex={0}>
                 <span className="icon icon-italic"></span>
               </span>
-              <span role="button" aria-pressed="false" aria-label="Underline" tabIndex={0}>
-                <span className="icon icon-underline"></span>
+              <span role="button" aria-pressed="false" aria-label="Underline" tabIndex={0} aria-disabled="true">
+                <span className="icon icon-underline editor-function-not-implemented"></span>
               </span>
-              <span role="button" aria-pressed="false" aria-label="Strikethrough" tabIndex={0}>
-                <span className="icon icon-strikethrough"></span>
+              <span role="button" aria-pressed="false" aria-label="Strikethrough" tabIndex={0} aria-disabled="true">
+                <span className="icon icon-strikethrough editor-function-not-implemented"></span>
               </span>
               <details className="popover toggle">
                 <summary>
@@ -124,7 +130,12 @@ function Sections() {
               <span role="button" aria-pressed="false" aria-label="Quote" tabIndex={0}>
                 <span className="icon icon-quote"></span>
               </span>
-              <details className="popover toggle">
+              <details
+                className="popover toggle"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
                 <summary>
                   <span
                     role="button"
@@ -133,8 +144,9 @@ function Sections() {
                     aria-haspopup="true"
                     aria-expanded="false"
                     tabIndex={0}
+                    aria-disabled="true"
                   >
-                    <span className="icon icon-link"></span>
+                    <span className="icon icon-link editor-function-not-implemented"></span>
                   </span>
                 </summary>
                 <div
@@ -155,12 +167,17 @@ function Sections() {
               </details>
               <div role="separator" aria-orientation="vertical"></div>
               <label>
-                <span role="button" aria-pressed="false" aria-label="Insert image" tabIndex={0}>
-                  <span className="icon icon-image"></span>
+                <span role="button" aria-pressed="false" aria-label="Insert image" tabIndex={0} aria-disabled="true">
+                  <span className="icon icon-image editor-function-not-implemented"></span>
                 </span>
-                <input multiple={false} type="file" accept=".jpeg,.jpg,.png,.gif,.webp" />
+                {/* <input multiple={false} type="file" accept=".jpeg,.jpg,.png,.gif,.webp" /> */}
               </label>
-              <details className="popover toggle">
+              <details
+                className="popover toggle"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
                 <summary>
                   <span
                     role="button"
@@ -168,8 +185,9 @@ function Sections() {
                     aria-haspopup="true"
                     aria-expanded="false"
                     tabIndex={0}
+                    aria-disabled="true"
                   >
-                    <span className="icon icon-button"></span>
+                    <span className="icon icon-button editor-function-not-implemented"></span>
                   </span>
                 </summary>
                 <div
@@ -188,7 +206,12 @@ function Sections() {
                   </fieldset>
                 </div>
               </details>
-              <details className="popover toggle">
+              <details
+                className="popover toggle"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
                 <summary>
                   <span
                     role="button"
@@ -197,8 +220,9 @@ function Sections() {
                     aria-haspopup="true"
                     aria-expanded="false"
                     tabIndex={0}
+                    aria-disabled="true"
                   >
-                    <span className="icon icon-embed"></span>
+                    <span className="icon icon-embed editor-function-not-implemented"></span>
                   </span>
                 </summary>
                 <div
@@ -224,7 +248,12 @@ function Sections() {
                   </fieldset>
                 </div>
               </details>
-              <details className="popover toggle">
+              <details
+                className="popover toggle"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
+              >
                 <summary>
                   <span
                     role="button"
@@ -233,8 +262,9 @@ function Sections() {
                     aria-haspopup="true"
                     aria-expanded="false"
                     tabIndex={0}
+                    aria-disabled="true"
                   >
-                    <span className="icon icon-twitter"></span>
+                    <span className="icon icon-twitter editor-function-not-implemented"></span>
                   </span>
                 </summary>
                 <div
@@ -261,22 +291,10 @@ function Sections() {
                 </div>
               </details>
               <div style={{ display: 'flex', marginLeft: 'auto' }}>
-                <span
-                  role="button"
-                  aria-pressed="false"
-                  aria-disabled="false"
-                  aria-label="Undo last change"
-                  tabIndex={0}
-                >
+                <span role="button" aria-pressed="false" aria-label="Undo last change" tabIndex={0}>
                   <span className="icon icon-undo"></span>
                 </span>
-                <span
-                  role="button"
-                  aria-pressed="false"
-                  aria-disabled="true"
-                  aria-label="Redo last undone change"
-                  tabIndex={0}
-                >
+                <span role="button" aria-pressed="false" aria-label="Redo last undone change" tabIndex={0}>
                   <span className="icon icon-redo"></span>
                 </span>
               </div>

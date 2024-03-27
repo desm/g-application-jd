@@ -5869,3 +5869,7 @@ form>main section:not(form+form section):first-of-type {
 .not-implemented {
     cursor: not-allowed;
 }
+
+.editor-function-not-implemented {
+    color: rgb(50,50,50);
+}

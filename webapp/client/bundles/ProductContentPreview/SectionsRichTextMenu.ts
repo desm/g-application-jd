@@ -1,4 +1,6 @@
-import { setBlockType, toggleMark } from 'prosemirror-commands';
+import { setBlockType, toggleMark, wrapIn } from 'prosemirror-commands';
+import { redo, undo } from 'prosemirror-history';
+import { wrapInList } from 'prosemirror-schema-list';
 import { Plugin } from 'prosemirror-state';
 
 class MenuView {
@@ -16,30 +18,20 @@ class MenuView {
     this.dom.addEventListener('mousedown', (e) => {
       console.log('e', e);
       e.preventDefault();
-      items.forEach(({ command, dom }) => {
+      editorView.focus();
+      items.forEach(({ command, dom, close }) => {
         if (dom.contains(e.target)) {
-          console.log('contains', command);
           command(editorView.state, editorView.dispatch);
+          if (close) close();
         }
       });
     });
   }
 
   update() {
-    this.items.forEach(({ name, command, dom, nodeType, options }) => {
-      if (!nodeType) {
-        let active = command(this.editorView.state, null);
-        dom.style.display = active ? '' : 'none';
-        console.log(`enable ${name}?`, active ? 'yes' : 'no');
-      } else {
-        let active = command(this.editorView.state);
-        console.log(`enable ${name}?`, active ? 'yes' : 'no');
-        // let { $from, to, node } = this.editorView.selection as NodeSelection;
-        // if (node) {
-        //   return node.hasMarkup(nodeType, options.attrs);
-        // }
-        // return to <= $from.end() && $from.parent.hasMarkup(nodeType, options.attrs);
-      }
+    (this.items as { command: any; dom: HTMLElement }[]).forEach(({ command, dom }) => {
+      let active = command(this.editorView.state, null);
+      dom.setAttribute('aria-disabled', !active ? 'true' : 'false');
     });
   }
 
@@ -57,45 +49,61 @@ function menuPlugin(items) {
   });
 }
 
-function iconBold() {
-  let span = document.createElement('span');
-  span.setAttribute('role', 'button');
-  span.setAttribute('aria-pressed', 'false');
-  span.setAttribute('aria-label', 'Bold');
-  span.tabIndex = 0;
-  let innerSpan = document.createElement('span');
-  innerSpan.classList.add('icon', 'icon-bold');
-  span.appendChild(innerSpan);
-  return span;
-}
-
-function iconItalic() {
-  let span = document.createElement('span');
-  span.setAttribute('role', 'button');
-  span.setAttribute('aria-pressed', 'false');
-  span.setAttribute('aria-label', 'Italic');
-  span.tabIndex = 0;
-  let innerSpan = document.createElement('span');
-  innerSpan.classList.add('icon', 'icon-italic');
-  span.appendChild(innerSpan);
-  return span;
-}
-
 export const createMenuPluginForBasicTab = (mySchema) => {
   console.log('mySchema', mySchema);
 
   const tb = document.querySelector('.basic-tab.rich-text-editor-toolbar');
 
   let menu = menuPlugin([
-    { name: 'bold', command: toggleMark(mySchema.marks.strong), dom: tb.children[0] },
-    { name: 'italics', command: toggleMark(mySchema.marks.em), dom: tb.children[1] },
+    /* bold */
+    { command: toggleMark(mySchema.marks.strong), dom: tb.children[0] },
+    /* italic */
+    { command: toggleMark(mySchema.marks.em), dom: tb.children[1] },
+    /* Heading 1 */
     {
-      name: 'H1',
-      command: setBlockType(mySchema.nodes.heading, { level: 1 }),
+      command: setBlockType(mySchema.nodes.heading, { level: 2 }),
       dom: tb.children[4].querySelector('[role=menu]').children[0],
-      nodeType: mySchema.nodes.heading,
-      options: { attrs: { level: 1 } },
+      close: () => {
+        tb.children[4].removeAttribute('open');
+      },
     },
+    /* Heading 2 */
+    {
+      command: setBlockType(mySchema.nodes.heading, { level: 3 }),
+      dom: tb.children[4].querySelector('[role=menu]').children[1],
+      close: () => {
+        tb.children[4].removeAttribute('open');
+      },
+    },
+    /* Heading 3 */
+    {
+      command: setBlockType(mySchema.nodes.heading, { level: 4 }),
+      dom: tb.children[4].querySelector('[role=menu]').children[2],
+      close: () => {
+        tb.children[4].removeAttribute('open');
+      },
+    },
+    /* Code Block */
+    { command: setBlockType(mySchema.nodes.code_block), dom: tb.children[5] },
+    /* Bullet List */
+    { command: wrapInList(mySchema.nodes.bullet_list), dom: tb.children[6] },
+    /* Number List */
+    { command: wrapInList(mySchema.nodes.ordered_list), dom: tb.children[7] },
+    /* Horizontal Rule */
+    {
+      command: (state, dispatch) => {
+        const available = true;
+        if (dispatch) dispatch(state.tr.replaceSelectionWith(mySchema.nodes.horizontal_rule.create()));
+        return available;
+      },
+      dom: tb.children[8],
+    },
+    /* Blockquote */
+    { command: wrapIn(mySchema.nodes.blockquote), dom: tb.children[9] },
+    /* Undo */
+    { command: undo, dom: tb.children[16].children[0] },
+    /* Redo */
+    { command: redo, dom: tb.children[16].children[1] },
   ]);
 
   return menu;
