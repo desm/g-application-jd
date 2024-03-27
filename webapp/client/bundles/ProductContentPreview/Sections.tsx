@@ -126,8 +126,8 @@ function Sections() {
                   }}
                 >
                   <fieldset className="tiptap__link-popover">
-                    <input className="top-level-input" type="text" placeholder="Enter text" value="" />
-                    <input className="top-level-input" type="text" placeholder="Enter URL" value="" />
+                    <input className="top-level-input" type="text" placeholder="Enter text" defaultValue="" />
+                    <input className="top-level-input" type="text" placeholder="Enter URL" defaultValue="" />
                     <button className="primary" type="button">
                       Add link
                     </button>
@@ -161,8 +161,8 @@ function Sections() {
                   }}
                 >
                   <fieldset className="tiptap__link-popover">
-                    <input className="top-level-input" type="text" placeholder="Enter text" value="" />
-                    <input className="top-level-input" type="text" placeholder="Enter URL" value="" />
+                    <input className="top-level-input" type="text" placeholder="Enter text" defaultValue="" />
+                    <input className="top-level-input" type="text" placeholder="Enter URL" defaultValue="" />
                     <button className="primary" type="button">
                       Add button
                     </button>
