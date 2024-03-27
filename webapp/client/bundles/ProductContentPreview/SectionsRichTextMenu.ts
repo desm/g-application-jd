@@ -1,8 +1,8 @@
-import { toggleMark, setBlockType } from 'prosemirror-commands';
+import { toggleMark, setBlockType, wrapIn } from 'prosemirror-commands';
 import { Schema } from 'prosemirror-model';
 import { schema } from 'prosemirror-schema-basic';
 import { addListNodes } from 'prosemirror-schema-list';
-import { Plugin } from 'prosemirror-state';
+import { NodeSelection, Plugin } from 'prosemirror-state';
 
 class MenuView {
   public items: any[];
@@ -14,22 +14,35 @@ class MenuView {
     this.editorView = editorView;
 
     this.dom = document.querySelector('.basic-tab.rich-text-editor-toolbar') as HTMLDivElement;
-    // [...this.items].reverse().forEach(({ dom }) => this.dom.insertBefore(dom, this.dom.firstChild));
     this.update();
 
     this.dom.addEventListener('mousedown', (e) => {
       console.log('e', e);
       e.preventDefault();
       items.forEach(({ command, dom }) => {
-        if (dom.contains(e.target)) command(editorView.state, editorView.dispatch, editorView);
+        if (dom.contains(e.target)) {
+          console.log('contains', command);
+          command(editorView.state, editorView.dispatch);
+        }
       });
     });
   }
 
   update() {
-    this.items.forEach(({ command, dom }) => {
-      let active = command(this.editorView.state, null, this.editorView);
-      // dom.style.display = active ? '' : 'none';
+    this.items.forEach(({ name, command, dom, nodeType, options }) => {
+      if (!nodeType) {
+        let active = command(this.editorView.state, null);
+        dom.style.display = active ? '' : 'none';
+        console.log(`enable ${name}?`, active ? 'yes' : 'no');
+      } else {
+        let active = command(this.editorView.state);
+        console.log(`enable ${name}?`, active ? 'yes' : 'no');
+        // let { $from, to, node } = this.editorView.selection as NodeSelection;
+        // if (node) {
+        //   return node.hasMarkup(nodeType, options.attrs);
+        // }
+        // return to <= $from.end() && $from.parent.hasMarkup(nodeType, options.attrs);
+      }
     });
   }
 
@@ -82,13 +95,15 @@ export const createMenuPluginForBasicTab = () => {
   const tb = document.querySelector('.basic-tab.rich-text-editor-toolbar');
 
   let menu = menuPlugin([
-    // { command: toggleMark(mySchema.marks.strong), dom: tb.querySelector('[role=button][aria-label=Bold]') },
-    // { command: toggleMark(mySchema.marks.em), dom: tb.querySelector('[role=button][aria-label=Italic]') },
-    { command: toggleMark(mySchema.marks.strong), dom: tb.children[0] },
-    { command: toggleMark(mySchema.marks.em), dom: tb.children[1] },
+    { name: 'bold', command: toggleMark(mySchema.marks.strong), dom: tb.children[0] },
+    { name: 'italics', command: toggleMark(mySchema.marks.em), dom: tb.children[1] },
     {
+      name: 'H1',
       command: setBlockType(mySchema.nodes.heading, { level: 1 }),
+      // command: wrapIn(schema.nodes.heading, { level: 1 }),
       dom: tb.children[4].querySelector('[role=menu]').children[0],
+      nodeType: schema.nodes.heading,
+      options: { attrs: { level: 1 } },
     },
   ]);
 

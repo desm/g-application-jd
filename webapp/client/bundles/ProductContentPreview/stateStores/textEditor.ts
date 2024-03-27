@@ -98,7 +98,8 @@ export const initTextEditorState = (basicTabRichTextDoc: any, contentTabRichText
     setEditorState(
       'basicTab',
       EditorState.fromJSON(
-        { schema: mySchema, plugins: exampleSetup({ schema: mySchema }) }, //
+        // { schema: mySchema, plugins: exampleSetup({ schema: mySchema }) }, //
+        { schema: mySchema, plugins: exampleSetup({ schema: mySchema, menuBar: false }) }, //
         basicTabRichTextDoc
       )
     );
@@ -151,10 +152,10 @@ export const changeEditorState = (whichEditor: WhichOfBasicContent, transaction:
     transaction,
     callback: (editorState) => {
       if (whichEditor === 'basicTab') {
-        console.log('basic tab rich text changed', editorState.toJSON());
+        // console.log('basic tab rich text changed', editorState.toJSON());
         changeRichTextDescription(editorState.toJSON());
       } else if (whichEditor === 'contentTab') {
-        console.log('content tab rich text changed', editorState.toJSON());
+        // console.log('content tab rich text changed', editorState.toJSON());
         changeRichTextContent(editorState.toJSON());
       }
     },
