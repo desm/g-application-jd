@@ -17,8 +17,6 @@ class MenuView {
     // [...this.items].reverse().forEach(({ dom }) => this.dom.insertBefore(dom, this.dom.firstChild));
     this.update();
 
-    console.log('setting up "mousedown" handler', (new Error()).stack);
-
     this.dom.addEventListener('mousedown', (e) => {
       console.log('e', e);
       e.preventDefault();
@@ -74,14 +72,11 @@ function iconItalic() {
 }
 
 export const createMenuPluginForBasicTab = () => {
-  console.log('createMenuPluginForBasicTab called');
-
   const mySchema = new Schema({
     nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
     marks: schema.spec.marks,
   });
 
-  console.log('schema', schema);
   console.log('mySchema', mySchema);
 
   const tb = document.querySelector('.basic-tab.rich-text-editor-toolbar');

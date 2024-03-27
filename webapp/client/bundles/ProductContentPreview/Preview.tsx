@@ -6,7 +6,6 @@ import { textEditorState, setEditorView } from './stateStores/textEditor';
 
 function Preview() {
   useEffect(() => {
-    console.log('initializing the Preview_s editor');
     setEditorView(
       'previewPane',
       new EditorView(document.querySelector('#rich-text-preview'), {
