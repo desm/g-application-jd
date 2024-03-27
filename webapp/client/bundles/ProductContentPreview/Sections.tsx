@@ -24,6 +24,11 @@ function Sections() {
       dispatchTransaction(transaction) {
         changeEditorState('basicTab', transaction);
       },
+      attributes: {
+        class: 'textarea',
+        'aria-label': 'Description',
+        tabindex: '0',
+      },
     });
 
     setEditorView('basicTab', editorView);
@@ -276,12 +281,7 @@ function Sections() {
                 </span>
               </div>
             </div>
-            <div
-              id="editor"
-              style={{ marginBottom: '23px', paddingTop: 0 }}
-              className="rich-text-editor"
-              data-gumroad-ignore="true"
-            ></div>
+            <div id="editor" className="rich-text" data-gumroad-ignore="true"></div>
           </div>
         </fieldset>
         <fieldset>
