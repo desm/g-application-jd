@@ -1,15 +1,16 @@
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
-import { state } from './stateStores/application';
-import { editorState, setPreviewEditorView } from './stateStores/textEditor';
+import { applicationState } from './stateStores/application';
+import { textEditorState, setEditorView } from './stateStores/textEditor';
 
 function Preview() {
   useEffect(() => {
     console.log('initializing the Preview_s editor');
-    setPreviewEditorView(
+    setEditorView(
+      'previewPane',
       new EditorView(document.querySelector('#rich-text-preview'), {
-        state: editorState.editorState,
+        state: textEditorState.previewPane.editorState,
       })
     );
   }, []);
@@ -40,7 +41,7 @@ function Preview() {
             </div>
             <section>
               <header>
-                <h1 itemProp="name">{state.productName}</h1>
+                <h1 itemProp="name">{applicationState.productName}</h1>
               </header>
               <section className="details">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacer-2)' }}>
@@ -51,7 +52,7 @@ function Preview() {
                     rel="noreferrer"
                     style={{ position: 'relative' }}
                   >
-                    <img className="user-avatar" src={state.avatarUrl} />
+                    <img className="user-avatar" src={applicationState.avatarUrl} />
                     Jacques
                   </a>
                 </div>

@@ -1,3 +1,4 @@
+import { Dispatch } from 'react';
 import { useImmerReducer } from 'use-immer';
 
 interface State {
@@ -9,9 +10,12 @@ interface State {
   published: boolean;
 }
 
-let initialState = {} as State;
-export let state = {} as State;
-let dispatch = null;
+const initialState = {} as State;
+
+let state: State;
+let dispatch: Dispatch<any>;
+
+export { state as applicationState };
 
 function reducer(draft: State, action: { type: string; [key: string]: any }) {
   switch (action.type) {
@@ -41,9 +45,9 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
   }
 }
 
-export const initApplicationStore = (props: any) => {
+export const initApplicationState = (props: any) => {
   initialState.productName = props.productName;
-  
+
   [state, dispatch] = useImmerReducer(reducer, initialState);
 };
 

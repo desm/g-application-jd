@@ -1,24 +1,25 @@
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
-import { changeProductName, state } from './stateStores/application';
-import { changeEditorState, editorState, reconfigureEditorState, setMainEditorView } from './stateStores/textEditor';
+import { changeProductName, applicationState } from './stateStores/application';
+import { changeEditorState, textEditorState, reconfigureEditorState, setEditorView } from './stateStores/textEditor';
 import { createMenuPluginForBasicTab } from './SectionsRichTextMenu';
 
 function Sections() {
   useEffect(() => {
     const editorView = new EditorView(document.querySelector('#editor'), {
-      state: editorState.editorState,
+      state: textEditorState.basicTab.editorState,
       dispatchTransaction(transaction) {
-        changeEditorState(transaction);
+        changeEditorState('basicTab', transaction);
       },
     });
-    setMainEditorView(editorView);
+    setEditorView('basicTab', editorView);
     reconfigureEditorState(
+      'basicTab',
       editorView.state.reconfigure({
         plugins: [...editorView.state.plugins, createMenuPluginForBasicTab()],
       })
-    )
+    );
   }, []);
 
   return (
@@ -36,7 +37,7 @@ function Sections() {
             className="top-level-input"
             type="text"
             placeholder="Name"
-            defaultValue={state.productName}
+            defaultValue={applicationState.productName}
             onChange={(e) => changeProductName(e.currentTarget.value)}
           />
         </fieldset>

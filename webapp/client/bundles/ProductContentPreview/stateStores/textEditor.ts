@@ -6,71 +6,73 @@ import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { useImmerReducer } from 'use-immer';
 import { changeRichTextDescription, changeRichTextContent } from './application';
+import { Dispatch } from 'react';
 
 /**
  * keeping a second state store for the ProseMirror EditorState and EditorView instances
- * helps keep the application state store using simple primitive and object types
+ * helps keep the application state store containing simple primitive and object types only
  */
 
 interface State {
-  editorState: EditorState;
-  mainEditorView: EditorView;
-  previewEditorView: EditorView;
-
-  contentEditorState: EditorState;
-  contentEditorView: EditorView;
+  basicTab: {
+    editorState: EditorState;
+    editorView: EditorView;
+  };
+  previewPane: {
+    editorState: EditorState;
+    editorView: EditorView;
+  };
+  contentTab: {
+    editorState: EditorState;
+    editorView: EditorView;
+  };
 }
 
-let initialState = {} as State;
-export let editorState = {} as State;
-let dispatch = null;
+const initialState = {
+  basicTab: {
+    editorState: null,
+    editorView: null,
+  },
+  previewPane: {
+    editorState: null,
+    editorView: null,
+  },
+  contentTab: {
+    editorState: null,
+    editorView: null,
+  },
+} as State;
+
+let state: State;
+let dispatch: Dispatch<any>;
+
+export { state as textEditorState };
 
 function reducer(draft, action: { type: string; [key: string]: any }) {
   switch (action.type) {
     case 'EDITOR_STATE_SET': {
-      draft.editorState = action.editorState;
+      draft[action.whichEditor].editorState = action.editorState;
       break;
     }
-    case 'MAIN_EDITOR_VIEW_SET': {
-      draft.mainEditorView = action.view;
-      break;
-    }
-    case 'PREVIEW_EDITOR_VIEW_SET': {
-      draft.previewEditorView = action.view;
+    case 'EDITOR_VIEW_SET': {
+      draft[action.whichEditor].editorView = action.editorView;
       break;
     }
     case 'EDITOR_TRANSACTION_OCCURRED': {
-      draft.editorState = draft.editorState.apply(action.transaction);
-      draft.mainEditorView.updateState(draft.editorState);
-      draft.previewEditorView.updateState(draft.editorState);
-      action.callback(draft.editorState);
+      draft[action.whichEditor].editorState = draft[action.whichEditor].editorState.apply(action.transaction);
+      draft[action.whichEditor].editorView.updateState(draft[action.whichEditor].editorState);
+
+      if (action.whichEditor === 'basicTab') {
+        draft.previewPane.editorState = draft.previewPane.editorState.apply(action.transaction);
+        draft.previewPane.editorView.updateState(draft.previewPane.editorState);
+      }
+
+      action.callback(draft[action.whichEditor].editorState);
       break;
     }
     case 'EDITOR_STATE_RECONFIGURED': {
-      draft.editorState = action.editorState;
-      draft.mainEditorView.updateState(draft.editorState);
-      if (draft.previewEditorView) {
-        draft.previewEditorView.updateState(draft.editorState);
-      }
-      break;
-    }
-    case 'CONTENT_EDITOR_STATE_SET': {
-      draft.contentEditorState = action.editorState;
-      break;
-    }
-    case 'CONTENT_EDITOR_VIEW_SET': {
-      draft.contentEditorView = action.editorView;
-      break;
-    }
-    case 'CONTENT_EDITOR_TRANSACTION_OCCURRED': {
-      draft.contentEditorState = draft.contentEditorState.apply(action.transaction);
-      draft.contentEditorView.updateState(draft.contentEditorState);
-      action.callback(draft.contentEditorState);
-      break;
-    }
-    case 'CONTENT_EDITOR_STATE_RECONFIGURED': {
-      draft.contentEditorState = action.contentEditorState;
-      draft.contentEditorView.updateState(draft.contentEditorState);
+      draft[action.whichEditor].editorState = action.editorState;
+      draft[action.whichEditor].editorView.updateState(draft[action.whichEditor].editorState);
       break;
     }
     default: {
@@ -84,93 +86,85 @@ function reducer(draft, action: { type: string; [key: string]: any }) {
  *
  * that is why we check if editorState.editorState is null before setting it
  */
-export const initEditorStore = (basicTabRichTextDoc: any, contentTabRichTextDoc: any) => {
-  [editorState, dispatch] = useImmerReducer(reducer, initialState);
+export const initTextEditorState = (basicTabRichTextDoc: any, contentTabRichTextDoc: any) => {
+  [state, dispatch] = useImmerReducer(reducer, initialState);
 
-  if (!editorState.editorState) {
-    const mySchema = new Schema({
-      nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-      marks: schema.spec.marks,
-    });
+  const mySchema = new Schema({
+    nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
+    marks: schema.spec.marks,
+  });
 
-    dispatch({
-      type: 'EDITOR_STATE_SET',
-      editorState: EditorState.fromJSON(
-        { schema: mySchema, plugins: exampleSetup({ schema: mySchema }) },
+  if (!state.basicTab.editorState) {
+    setEditorState(
+      'basicTab',
+      EditorState.fromJSON(
+        { schema: mySchema, plugins: exampleSetup({ schema: mySchema }) }, //
         basicTabRichTextDoc
-      ),
-    });
+      )
+    );
   }
 
-  if (!editorState.contentEditorState) {
-    const mySchema = new Schema({
-      nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-      marks: schema.spec.marks,
-    });
+  if (!state.previewPane.editorState) {
+    setEditorState(
+      'previewPane',
+      EditorState.fromJSON(
+        { schema: mySchema, plugins: exampleSetup({ schema: mySchema, menuBar: false }) },
+        basicTabRichTextDoc
+      )
+    );
+  }
 
-    dispatch({
-      type: 'CONTENT_EDITOR_STATE_SET',
-      editorState: EditorState.fromJSON(
+  if (!state.contentTab.editorState) {
+    setEditorState(
+      'contentTab',
+      EditorState.fromJSON(
         { schema: mySchema, plugins: exampleSetup({ schema: mySchema, menuBar: false }) },
         contentTabRichTextDoc
-      ),
-    });
+      )
+    );
   }
 };
 
-export const setMainEditorView = (view: EditorView) => {
-  dispatch({
-    type: 'MAIN_EDITOR_VIEW_SET',
-    view,
-  });
-};
+type WhichOfBasicPreviewContent = keyof State;
+type WhichOfBasicContent = Exclude<WhichOfBasicPreviewContent, 'previewPane'>;
 
-export const setPreviewEditorView = (view: EditorView) => {
+const setEditorState = (whichEditor: WhichOfBasicPreviewContent, editorState: EditorState) => {
   dispatch({
-    type: 'PREVIEW_EDITOR_VIEW_SET',
-    view,
-  });
-};
-
-export const changeEditorState = (transaction: any) => {
-  dispatch({
-    type: 'EDITOR_TRANSACTION_OCCURRED',
-    transaction,
-    callback: (editorState) => {
-      console.log('basic tab rich text changed', editorState.toJSON());
-      changeRichTextDescription(editorState.toJSON());
-    },
-  });
-};
-
-export const reconfigureEditorState = (editorState: EditorState) => {
-  dispatch({
-    type: 'EDITOR_STATE_RECONFIGURED',
+    type: 'EDITOR_STATE_SET',
+    whichEditor,
     editorState,
   });
 };
 
-export const setContentEditorView = (editorView: EditorView) => {
+export const setEditorView = (whichEditor: WhichOfBasicPreviewContent, editorView: EditorView) => {
   dispatch({
-    type: 'CONTENT_EDITOR_VIEW_SET',
+    type: 'EDITOR_VIEW_SET',
+    whichEditor,
     editorView,
   });
 };
 
-export const changeContentEditorState = (transaction: any) => {
+export const changeEditorState = (whichEditor: WhichOfBasicContent, transaction: any) => {
   dispatch({
-    type: 'CONTENT_EDITOR_TRANSACTION_OCCURRED',
+    type: 'EDITOR_TRANSACTION_OCCURRED',
+    whichEditor,
     transaction,
-    callback: (contentEditorState) => {
-      console.log('content tab rich text changed', contentEditorState.toJSON());
-      changeRichTextContent(contentEditorState.toJSON());
+    callback: (editorState) => {
+      if (whichEditor === 'basicTab') {
+        console.log('basic tab rich text changed', editorState.toJSON());
+        changeRichTextDescription(editorState.toJSON());
+      } else if (whichEditor === 'contentTab') {
+        console.log('content tab rich text changed', editorState.toJSON());
+        changeRichTextContent(editorState.toJSON());
+      }
     },
   });
 };
 
-export const reconfigureContentEditorState = (contentEditorState: EditorState) => {
+export const reconfigureEditorState = (whichEditor: WhichOfBasicPreviewContent, editorState: EditorState) => {
   dispatch({
-    type: 'CONTENT_EDITOR_STATE_RECONFIGURED',
-    contentEditorState,
+    type: 'EDITOR_STATE_RECONFIGURED',
+    whichEditor,
+    editorState,
   });
 };

@@ -2,25 +2,21 @@ import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { createMenuPlugin } from './ProductContentRichTextMenu';
-import { state } from './stateStores/application';
-import {
-  changeContentEditorState,
-  editorState,
-  reconfigureContentEditorState,
-  setContentEditorView,
-} from './stateStores/textEditor';
+import { applicationState } from './stateStores/application';
+import { changeEditorState, textEditorState, reconfigureEditorState, setEditorView } from './stateStores/textEditor';
 import './styles.css';
 
 function ProductContent() {
   useEffect(() => {
     const editorView = new EditorView(document.querySelector('#content-editor'), {
-      state: editorState.contentEditorState,
+      state: textEditorState.contentTab.editorState,
       dispatchTransaction(transaction) {
-        changeContentEditorState(transaction);
+        changeEditorState('contentTab', transaction);
       },
     });
-    setContentEditorView(editorView);
-    reconfigureContentEditorState(
+    setEditorView('contentTab', editorView);
+    reconfigureEditorState(
+      'contentTab',
       editorView.state.reconfigure({
         plugins: [...editorView.state.plugins, createMenuPlugin()],
       })
@@ -144,7 +140,7 @@ function ProductContent() {
               <div>dfgasdf - one</div>
               <div>
                 <span style={{ display: 'flex', gap: 'var(--spacer-2)' }}>
-                  <img className="user-avatar" src={state.avatarUrl} />
+                  <img className="user-avatar" src={applicationState.avatarUrl} />
                   <span>
                     By
                     <a
