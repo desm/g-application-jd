@@ -96,7 +96,7 @@ export const initEditorStore = (basicTabRichTextDoc: any, contentTabRichTextDoc:
     dispatch({
       type: 'EDITOR_STATE_SET',
       editorState: EditorState.fromJSON(
-        { schema: mySchema, plugins: exampleSetup({ schema: mySchema, menuBar: false }) },
+        { schema: mySchema, plugins: exampleSetup({ schema: mySchema }) },
         basicTabRichTextDoc
       ),
     });

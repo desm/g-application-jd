@@ -77,6 +77,10 @@ export const createMenuPluginForBasicTab = () => {
     marks: schema.spec.marks,
   });
 
+  console.log('mySchema', mySchema);
+  console.log('mySchema.marks', mySchema.marks);
+  console.log('mySchema.marks.strong', mySchema.marks.strong);
+
   let menu = menuPlugin([
     { command: toggleMark(mySchema.marks.strong), dom: iconBold() },
     { command: toggleMark(mySchema.marks.em), dom: iconItalic() },
