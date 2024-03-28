@@ -33,7 +33,7 @@ module Products
         "currency_code": "cad",
         "exchange_rate": 1.349595,
         "name": "digital product",
-        "description": "<p>This is the </p>",
+        "description": '{"doc":{"type":"doc","content":[{"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Description Level One"}]},{"type":"heading","attrs":{"level":3},"content":[{"type":"text","text":"Description Level Two"}]}]},"selection":{"type":"text","anchor":1,"head":1}}',
         "preorder_date": nil,
         "want_this": {
           "type": "supported",
@@ -1067,7 +1067,7 @@ module Products
             "page_id": "RXjaeTUNWdQ4V-Eyw4wV9g==",
             "title": nil,
             "variant_id": nil,
-            "description": nil,
+            "description": '{"doc":{"type":"doc","content":[{"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Content Level One"}]},{"type":"heading","attrs":{"level":3},"content":[{"type":"text","text":"Content Level Two"}]}]},"selection":{"type":"text","anchor":1,"head":1}}',
             "updated_at": "2024-03-18T20:21:39Z",
           },
         ],

@@ -13,6 +13,8 @@ import ShareLinks from './ProductContentPreview/ShareLinks';
 import {
   applicationState,
   changeProductName,
+  changeRichTextContent,
+  changeRichTextDescription,
   setActiveTab,
   setAvatarUrl,
   useApplicationState,
@@ -55,6 +57,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     const divData = grabAllDataFromDataDivs();
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
     changeProductName(divData['edit-attributes']['name']);
+
+    changeRichTextDescription(JSON.parse(divData['edit-attributes']['description']));
+    changeRichTextContent(JSON.parse(divData['edit-attributes']['rich_content_pages'][0]['description']));
 
     setRouter(
       createHashRouter([
@@ -118,13 +123,14 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
   return (
     <>
-      {createPortal(<Header productName={applicationState.productName} />, document.getElementById('header-root'))}
-      {createPortal(<ProductContent />, document.getElementById('edit-link-content-form'))}
-      {createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
-      {createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
-      {createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
-      {createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
-      {createPortal(<Preview />, document.getElementById('product-preview-root'))}
+      {router &&
+        createPortal(<Header productName={applicationState.productName} />, document.getElementById('header-root'))}
+      {router && createPortal(<ProductContent />, document.getElementById('edit-link-content-form'))}
+      {router && createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
+      {router && createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
+      {router && createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
+      {router && createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
+      {router && createPortal(<Preview />, document.getElementById('product-preview-root'))}
       {router && <RouterProvider router={router} />}
     </>
   );
