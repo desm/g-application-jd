@@ -2,7 +2,7 @@ import * as React from 'react';
 import { applicationState } from './stateStores/application';
 import { showMessage } from '../lib';
 
-function Header({ productName, dosomething }) {
+function Header({ productName }) {
   const preventSwitchingToShareTabIfNotPublished = (e) => {
     if (!applicationState.published) {
       e.preventDefault();
@@ -17,7 +17,7 @@ function Header({ productName, dosomething }) {
       <h1>{productName || 'Untitled'}</h1>
       {applicationState.activeTab === 'ACTIVE_TAB_PRODUCT' && !applicationState.published && (
         <div className="actions">
-          <button className="primary" type="submit" onClick={dosomething}>
+          <button className="primary" type="submit">
             Save and continue
           </button>
         </div>

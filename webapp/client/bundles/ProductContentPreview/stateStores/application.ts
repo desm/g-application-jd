@@ -8,7 +8,6 @@ interface State {
   avatarUrl: string;
   activeTab: 'ACTIVE_TAB_PRODUCT' | 'ACTIVE_TAB_CONTENT' | 'ACTIVE_TAB_SHARE';
   published: boolean;
-  price:number;
 }
 
 const initialState = {} as State;
@@ -38,10 +37,6 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
     }
     case 'ACTIVE_TAB_SET': {
       draft.activeTab = action.activeTab;
-      break;
-    }
-    case 'PRICE_SET': {
-      draft.price = action.price;
       break;
     }
     default: {
@@ -91,8 +86,4 @@ export const setActiveTab = (activeTab: 'ACTIVE_TAB_PRODUCT' | 'ACTIVE_TAB_CONTE
     type: 'ACTIVE_TAB_SET',
     activeTab,
   });
-};
-
-export const setPrice = (price: number) => {
-  dispatch({ type: 'PRICE_SET', price });
 };

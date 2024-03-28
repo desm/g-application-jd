@@ -15,7 +15,6 @@ import {
   changeProductName,
   setActiveTab,
   setAvatarUrl,
-  setPrice,
   useApplicationState,
 } from './ProductContentPreview/stateStores/application';
 import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
@@ -49,16 +48,13 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
 
   const [router, setRouter] = useState(null);
 
-  let divData;
-
   useEffect(() => {
     const editElement = document.getElementById('edit-link-basic-form');
     editElement.removeChild(editElement.firstChild); // removes the text node "Initializing..."
 
-    divData = grabAllDataFromDataDivs();
+    const divData = grabAllDataFromDataDivs();
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
     changeProductName(divData['edit-attributes']['name']);
-    setPrice(divData['edit-attributes']['buy_price']);
 
     setRouter(
       createHashRouter([
@@ -119,23 +115,10 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     }
   }, [applicationState.activeTab]);
 
-  const dosomething = (e) => {
-    e.preventDefault();
-    const x = [
-      ['link[name]', applicationState.productName, 'encode'],
-      ['link[price_range]', applicationState.price, 'encode'],
-      ['link[description]', JSON.stringify(applicationState.richTextDescription), 'encode'],
-    ];
-    console.log(JSON.stringify(x, null, 2));
-  };
-
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
   return (
     <>
-      {createPortal(
-        <Header productName={applicationState.productName} dosomething={dosomething} />,
-        document.getElementById('header-root')
-      )}
+      {createPortal(<Header productName={applicationState.productName} />, document.getElementById('header-root'))}
       {createPortal(<ProductContent />, document.getElementById('edit-link-content-form'))}
       {createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
       {createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}

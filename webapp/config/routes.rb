@@ -25,5 +25,4 @@ Rails.application.routes.draw do
   get "products" => "products#index"
   get "products/new"
   get "products/:id/edit" => "products#edit", as: :products_edit
-  post "links/:id" => "links#update"
 end
