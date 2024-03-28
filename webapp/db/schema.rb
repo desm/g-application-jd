@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_19_134821) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_28_173713) do
   create_table "products", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "creator_id", null: false
     t.string "permalink", null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_134821) do
     t.boolean "published", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "rich_text_description"
     t.index ["creator_id", "permalink"], name: "index_products_on_creator_id_and_permalink", unique: true
     t.index ["creator_id"], name: "index_products_on_creator_id"
   end
