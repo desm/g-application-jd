@@ -15,7 +15,7 @@ module Products
       }
     end
 
-    def self.edit_attributes(view_context)
+    def self.edit_attributes(view_context, permalink)
       {
         "seller": {
           "id": "9078562000866",
@@ -51,7 +51,7 @@ module Products
         "folders": [],
         "existing_product_files": [],
         "specific_attributes": {
-          "permalink": "gxtwf",
+          "permalink": permalink,
           "audio": false,
           "pdf": false,
           "is_streamable": false,
@@ -1046,7 +1046,7 @@ module Products
           },
         ],
         "is_epublication": false,
-        "unique_permalink": "gxtwf",
+        "unique_permalink": permalink,
         "subdomain": "jdesma.gumroad.jacquesdesmarais.dev",
         "protocol": "https",
         "is_adult_content": false,

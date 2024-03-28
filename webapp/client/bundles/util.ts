@@ -31,3 +31,19 @@ export const postJSONTo = async (json: string, path: string) => {
     return { success: false };
   }
 };
+
+export const postFormDataTo = async (formData: string, path: string) => {
+  try {
+    const response = await fetch(path, {
+      headers: addCSRFTokenIfAvailable({
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      }),
+      body: formData,
+      method: 'POST',
+    });
+    return await response.json();
+  } catch (e) {
+    console.log(e);
+    return { success: false };
+  }
+};
