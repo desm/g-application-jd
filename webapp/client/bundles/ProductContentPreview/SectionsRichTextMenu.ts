@@ -16,7 +16,6 @@ class MenuView {
     this.update();
 
     this.dom.addEventListener('mousedown', (e) => {
-      console.log('e', e);
       e.preventDefault();
       editorView.focus();
       items.forEach(({ command, dom, close }) => {
@@ -50,8 +49,6 @@ function menuPlugin(items) {
 }
 
 export const createMenuPluginForBasicTab = (mySchema) => {
-  console.log('mySchema', mySchema);
-
   const tb = document.querySelector('.basic-tab.rich-text-editor-toolbar');
 
   let menu = menuPlugin([
