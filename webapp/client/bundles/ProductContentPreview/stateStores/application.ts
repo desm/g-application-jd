@@ -82,9 +82,24 @@ export const setPrice = (price: number) => {
 };
 
 export const changeRichTextDescription = (richText: any) => {
+  const BLANK_DOCUMENT = {
+    doc: {
+      type: 'doc',
+      content: [
+        {
+          type: 'paragraph',
+        },
+      ],
+    },
+    selection: {
+      type: 'text',
+      anchor: 1,
+      head: 1,
+    },
+  };
   dispatch({
     type: 'RICH_TEXT_DOCUMENT_CHANGED',
-    richText,
+    richText: richText === null ? BLANK_DOCUMENT : richText,
   });
 };
 

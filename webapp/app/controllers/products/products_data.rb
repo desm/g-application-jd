@@ -15,7 +15,7 @@ module Products
       }
     end
 
-    def self.edit_attributes(view_context, permalink)
+    def self.edit_attributes(view_context, permalink, rich_text_description)
       {
         "seller": {
           "id": "9078562000866",
@@ -33,7 +33,7 @@ module Products
         "currency_code": "cad",
         "exchange_rate": 1.349595,
         "name": "digital product",
-        "description": '{"doc":{"type":"doc","content":[{"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Description Level One"}]},{"type":"heading","attrs":{"level":3},"content":[{"type":"text","text":"Description Level Two"}]}]},"selection":{"type":"text","anchor":1,"head":1}}',
+        "description": rich_text_description,
         "preorder_date": nil,
         "want_this": {
           "type": "supported",

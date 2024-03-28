@@ -52,6 +52,7 @@ class LinksController < ApplicationController
       @product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
       @product.name = _params["name"]
       @product.buy_price = _params["price_range"]
+      @product.rich_text_description = _params["description"]
       @result = @product.save!
     end
 
