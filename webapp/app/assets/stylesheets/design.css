@@ -5871,5 +5871,5 @@ form>main section:not(form+form section):first-of-type {
 }
 
 .editor-function-not-implemented {
-    color: rgb(50,50,50);
+    color: rgb(125,125,125);
 }
