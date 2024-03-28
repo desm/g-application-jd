@@ -2,6 +2,7 @@ import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { RouterProvider, createHashRouter, redirect } from 'react-router-dom';
 import DiscoverSettings from './ProductContentPreview/DiscoverSettings';
 import Header from './ProductContentPreview/Header';
 import Preview from './ProductContentPreview/Preview';
@@ -10,16 +11,14 @@ import ProfileSettings from './ProductContentPreview/ProfileSettings';
 import Sections from './ProductContentPreview/Sections';
 import ShareLinks from './ProductContentPreview/ShareLinks';
 import {
-  state,
-  initApplicationStore,
-  setAvatarUrl,
+  applicationState,
+  changeProductName,
   setActiveTab,
+  setAvatarUrl,
+  useApplicationState,
 } from './ProductContentPreview/stateStores/application';
-import { editorState, initEditorStore } from './ProductContentPreview/stateStores/textEditor';
-import rtDocBasicTab from './ProductContentPreview/rtDocBasicTab.json'
-import rtDocContentTab from './ProductContentPreview/rtDocContentTab.json'
+import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
 import { grabAllDataFromDataDivs } from './lib';
-import { createHashRouter, redirect, RouterProvider } from 'react-router-dom';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;
@@ -44,8 +43,8 @@ const setVisibilityOfPreviewPane = (visible: boolean) => {
 export interface Props {}
 
 const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
-  initApplicationStore({ productName: 'Product Name' });
-  initEditorStore(rtDocBasicTab, rtDocContentTab);
+  useApplicationState();
+  useTextEditorState();
 
   const [router, setRouter] = useState(null);
 
@@ -55,6 +54,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
 
     const divData = grabAllDataFromDataDivs();
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
+    changeProductName(divData['edit-attributes']['name']);
 
     setRouter(
       createHashRouter([
@@ -78,8 +78,8 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
           path: 'share',
           element: <></>,
           loader: async () => {
-            if (!state.published) {
-              return redirect('/')
+            if (!applicationState.published) {
+              return redirect('/');
             }
             setActiveTab('ACTIVE_TAB_SHARE');
             return null;
@@ -90,7 +90,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
   }, []);
 
   useEffect(() => {
-    switch (state.activeTab) {
+    switch (applicationState.activeTab) {
       case 'ACTIVE_TAB_PRODUCT': {
         setVisibilityOfProductTab(true);
         setVisibilityOfContentTab(false);
@@ -113,18 +113,18 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
         break;
       }
     }
-  }, [state.activeTab]);
+  }, [applicationState.activeTab]);
 
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
   return (
     <>
-      {createPortal(<Header productName={state.productName} />, document.getElementById('header-root'))}
+      {createPortal(<Header productName={applicationState.productName} />, document.getElementById('header-root'))}
       {createPortal(<ProductContent />, document.getElementById('edit-link-content-form'))}
       {createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
       {createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
       {createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
-      {editorState.editorState && createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
-      {editorState.editorState && createPortal(<Preview />, document.getElementById('product-preview-root'))}
+      {createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
+      {createPortal(<Preview />, document.getElementById('product-preview-root'))}
       {router && <RouterProvider router={router} />}
     </>
   );

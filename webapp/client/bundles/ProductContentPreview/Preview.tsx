@@ -1,16 +1,28 @@
+import { exampleSetup } from 'prosemirror-example-setup';
+import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
-import { state } from './stateStores/application';
-import { editorState, setPreviewEditorView } from './stateStores/textEditor';
+import { mySchema } from './mySchema';
+import basicTabRichTextDoc from './rtDocBasicTab.json';
+import { applicationState } from './stateStores/application';
+import { setEditorView } from './stateStores/textEditor';
 
 function Preview() {
   useEffect(() => {
-    setPreviewEditorView(
-      new EditorView(document.querySelector('#rich-text-preview'), {
-        state: editorState.editorState,
-      })
+    const editorState = EditorState.fromJSON(
+      {
+        schema: mySchema,
+        plugins: exampleSetup({ schema: mySchema, menuBar: false }),
+      },
+      basicTabRichTextDoc
     );
+
+    const editorView = new EditorView(document.querySelector('#rich-text-preview'), {
+      state: editorState,
+    });
+
+    setEditorView('previewPane', editorView);
   }, []);
 
   return (
@@ -39,7 +51,7 @@ function Preview() {
             </div>
             <section>
               <header>
-                <h1 itemProp="name">{state.productName}</h1>
+                <h1 itemProp="name">{applicationState.productName}</h1>
               </header>
               <section className="details">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacer-2)' }}>
@@ -50,7 +62,7 @@ function Preview() {
                     rel="noreferrer"
                     style={{ position: 'relative' }}
                   >
-                    <img className="user-avatar" src={state.avatarUrl} />
+                    <img className="user-avatar" src={applicationState.avatarUrl} />
                     Jacques
                   </a>
                 </div>

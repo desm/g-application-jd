@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { state } from './stateStores/application';
+import { applicationState } from './stateStores/application';
 import { showMessage } from '../lib';
 
 function Header({ productName }) {
   const preventSwitchingToShareTabIfNotPublished = (e) => {
-    if (!state.published) {
+    if (!applicationState.published) {
       e.preventDefault();
       showMessage(
         "Not yet! You've got to publish your awesome product before you can share it with your audience and the world."
@@ -15,14 +15,14 @@ function Header({ productName }) {
   return (
     <>
       <h1>{productName || 'Untitled'}</h1>
-      {state.activeTab === 'ACTIVE_TAB_PRODUCT' && !state.published && (
+      {applicationState.activeTab === 'ACTIVE_TAB_PRODUCT' && !applicationState.published && (
         <div className="actions">
           <button className="primary" type="submit">
             Save and continue
           </button>
         </div>
       )}
-      {state.activeTab === 'ACTIVE_TAB_CONTENT' && !state.published && (
+      {applicationState.activeTab === 'ACTIVE_TAB_CONTENT' && !applicationState.published && (
         <div className="actions">
           <button className="primary" type="submit">
             Save changes
@@ -32,7 +32,7 @@ function Header({ productName }) {
           </button>
         </div>
       )}
-      {state.published && (
+      {applicationState.published && (
         <div className="actions">
           <button>Unpublish</button>
           <button className="primary" type="submit">
@@ -62,16 +62,16 @@ function Header({ productName }) {
         }}
       >
         <div role="tablist" style={{ marginTop: 'unset', width: 'max-content' }}>
-          <a role="tab" href="#" aria-selected={state.activeTab === 'ACTIVE_TAB_PRODUCT'}>
+          <a role="tab" href="#" aria-selected={applicationState.activeTab === 'ACTIVE_TAB_PRODUCT'}>
             Product
           </a>
-          <a role="tab" href="#content" aria-selected={state.activeTab === 'ACTIVE_TAB_CONTENT'}>
+          <a role="tab" href="#content" aria-selected={applicationState.activeTab === 'ACTIVE_TAB_CONTENT'}>
             Content
           </a>
           <a
             role="tab"
             href="#share"
-            aria-selected={state.activeTab === 'ACTIVE_TAB_SHARE'}
+            aria-selected={applicationState.activeTab === 'ACTIVE_TAB_SHARE'}
             onClick={preventSwitchingToShareTabIfNotPublished}
           >
             Share

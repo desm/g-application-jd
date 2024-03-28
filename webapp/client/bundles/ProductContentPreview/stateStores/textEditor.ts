@@ -1,68 +1,65 @@
-import { exampleSetup } from 'prosemirror-example-setup';
-import { Schema } from 'prosemirror-model';
-import { schema } from 'prosemirror-schema-basic';
-import { addListNodes } from 'prosemirror-schema-list';
-import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
+import { Dispatch } from 'react';
 import { useImmerReducer } from 'use-immer';
-import { changeRichTextDescription, changeRichTextContent } from './application';
+import { changeRichTextContent, changeRichTextDescription } from './application';
 
 /**
  * keeping a second state store for the ProseMirror EditorState and EditorView instances
- * helps keep the application state store using simple primitive and object types
+ * helps keep the application state store containing simple primitive and object types only
  */
 
 interface State {
-  editorState: EditorState;
-  mainEditorView: EditorView;
-  previewEditorView: EditorView;
-
-  contentEditorState: EditorState;
-  contentEditorView: EditorView;
+  basicTab: {
+    editorView: EditorView;
+  };
+  previewPane: {
+    editorView: EditorView;
+  };
+  contentTab: {
+    editorView: EditorView;
+  };
 }
 
-let initialState = {} as State;
-export let editorState = {} as State;
-let dispatch = null;
+const initialState = {
+  basicTab: {
+    editorView: null,
+  },
+  previewPane: {
+    editorView: null,
+  },
+  contentTab: {
+    editorView: null,
+  },
+} as State;
+
+let state: State;
+let dispatch: Dispatch<any>;
+
+export { state as textEditorState };
 
 function reducer(draft, action: { type: string; [key: string]: any }) {
   switch (action.type) {
-    case 'EDITOR_STATE_SET': {
-      draft.editorState = action.editorState;
-      break;
-    }
-    case 'MAIN_EDITOR_VIEW_SET': {
-      draft.mainEditorView = action.view;
-      break;
-    }
-    case 'PREVIEW_EDITOR_VIEW_SET': {
-      draft.previewEditorView = action.view;
+    case 'EDITOR_VIEW_SET': {
+      draft[action.whichEditor].editorView = action.editorView;
       break;
     }
     case 'EDITOR_TRANSACTION_OCCURRED': {
-      draft.editorState = draft.editorState.apply(action.transaction);
-      draft.mainEditorView.updateState(draft.editorState);
-      draft.previewEditorView.updateState(draft.editorState);
-      action.callback(draft.editorState);
-      break;
-    }
-    case 'CONTENT_EDITOR_STATE_SET': {
-      draft.contentEditorState = action.editorState;
-      break;
-    }
-    case 'CONTENT_EDITOR_VIEW_SET': {
-      draft.contentEditorView = action.editorView;
-      break;
-    }
-    case 'CONTENT_EDITOR_TRANSACTION_OCCURRED': {
-      draft.contentEditorState = draft.contentEditorState.apply(action.transaction);
-      draft.contentEditorView.updateState(draft.contentEditorState);
-      action.callback(draft.contentEditorState);
-      break;
-    }
-    case 'CONTENT_EDITOR_STATE_RECONFIGURED': {
-      draft.contentEditorState = action.contentEditorState;
-      draft.contentEditorView.updateState(draft.contentEditorState);
+      if (action.whichEditor === 'basicTab') {
+        // only apply the transaction if both the basic tab and preview pane editors are ready
+        if (draft.basicTab.editorView && draft.previewPane.editorView) {
+          const basicEditorView = draft.basicTab.editorView;
+          basicEditorView.updateState(basicEditorView.state.apply(action.transaction));
+
+          const previewEditorView = draft.previewPane.editorView;
+          previewEditorView.updateState(previewEditorView.state.apply(action.transaction));
+
+          action.callback(basicEditorView.state);
+        }
+      } else {
+        const contentEditorView = draft.contentTab.editorView;
+        contentEditorView.updateState(contentEditorView.state.apply(action.transaction));
+        action.callback(contentEditorView.state);
+      }
       break;
     }
     default: {
@@ -72,90 +69,34 @@ function reducer(draft, action: { type: string; [key: string]: any }) {
 }
 
 /**
- * important: during boot-up, this function gets called several times
- *
- * that is why we check if editorState.editorState is null before setting it
+ * note: this function may get called several times during bootup
  */
-export const initEditorStore = (basicTabRichTextDoc: any, contentTabRichTextDoc: any) => {
-  [editorState, dispatch] = useImmerReducer(reducer, initialState);
-
-  if (!editorState.editorState) {
-    const mySchema = new Schema({
-      nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-      marks: schema.spec.marks,
-    });
-
-    dispatch({
-      type: 'EDITOR_STATE_SET',
-      editorState: EditorState.fromJSON(
-        { schema: mySchema, plugins: exampleSetup({ schema: mySchema }) },
-        basicTabRichTextDoc
-      ),
-    });
-  }
-
-  if (!editorState.contentEditorState) {
-    const mySchema = new Schema({
-      nodes: addListNodes(schema.spec.nodes, 'paragraph block*', 'block'),
-      marks: schema.spec.marks,
-    });
-
-    dispatch({
-      type: 'CONTENT_EDITOR_STATE_SET',
-      editorState: EditorState.fromJSON(
-        { schema: mySchema, plugins: exampleSetup({ schema: mySchema, menuBar: false }) },
-        contentTabRichTextDoc
-      ),
-    });
-  }
+export const useTextEditorState = () => {
+  [state, dispatch] = useImmerReducer(reducer, initialState);
 };
 
-export const setMainEditorView = (view: EditorView) => {
-  dispatch({
-    type: 'MAIN_EDITOR_VIEW_SET',
-    view,
-  });
-};
+type WhichOfBasicPreviewContent = keyof State;
+type WhichOfBasicContent = Exclude<WhichOfBasicPreviewContent, 'previewPane'>;
 
-export const setPreviewEditorView = (view: EditorView) => {
+export const setEditorView = (whichEditor: WhichOfBasicPreviewContent, editorView: EditorView) => {
   dispatch({
-    type: 'PREVIEW_EDITOR_VIEW_SET',
-    view,
-  });
-};
-
-export const changeEditorState = (transaction: any) => {
-  dispatch({
-    type: 'EDITOR_TRANSACTION_OCCURRED',
-    transaction,
-    callback: (editorState) => {
-      console.log('basic tab rich text changed', editorState.toJSON());
-      changeRichTextDescription(editorState.toJSON());
-    },
-  });
-};
-
-export const setContentEditorView = (editorView: EditorView) => {
-  dispatch({
-    type: 'CONTENT_EDITOR_VIEW_SET',
+    type: 'EDITOR_VIEW_SET',
+    whichEditor,
     editorView,
   });
 };
 
-export const changeContentEditorState = (transaction: any) => {
+export const changeEditorState = (whichEditor: WhichOfBasicContent, transaction: any) => {
   dispatch({
-    type: 'CONTENT_EDITOR_TRANSACTION_OCCURRED',
+    type: 'EDITOR_TRANSACTION_OCCURRED',
+    whichEditor,
     transaction,
-    callback: (contentEditorState) => {
-      console.log('content tab rich text changed', contentEditorState.toJSON());
-      changeRichTextContent(contentEditorState.toJSON());
+    callback: (editorState) => {
+      if (whichEditor === 'basicTab') {
+        changeRichTextDescription(editorState.toJSON());
+      } else if (whichEditor === 'contentTab') {
+        changeRichTextContent(editorState.toJSON());
+      }
     },
-  });
-};
-
-export const reconfigureContentEditorState = (contentEditorState: EditorState) => {
-  dispatch({
-    type: 'CONTENT_EDITOR_STATE_RECONFIGURED',
-    contentEditorState,
   });
 };

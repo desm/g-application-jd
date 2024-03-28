@@ -12,7 +12,7 @@ class MenuView {
     this.items = items;
     this.editorView = editorView;
 
-    this.dom = document.querySelector('.content-tab.rich-text-editor-toolbar') as HTMLDivElement;
+    this.dom = document.querySelector('.basic-tab.rich-text-editor-toolbar') as HTMLDivElement;
     this.update();
 
     this.dom.addEventListener('mousedown', (e) => {
@@ -48,8 +48,8 @@ function menuPlugin(items) {
   });
 }
 
-export const createMenuPluginForContentTab = (mySchema) => {
-  const tb = document.querySelector('.content-tab.rich-text-editor-toolbar');
+export const createMenuPluginForBasicTab = (mySchema) => {
+  const tb = document.querySelector('.basic-tab.rich-text-editor-toolbar');
 
   let menu = menuPlugin([
     /* bold */
@@ -98,9 +98,9 @@ export const createMenuPluginForContentTab = (mySchema) => {
     /* Blockquote */
     { command: wrapIn(mySchema.nodes.blockquote), dom: tb.children[9] },
     /* Undo */
-    { command: undo, dom: tb.children[18].children[0] },
+    { command: undo, dom: tb.children[16].children[0] },
     /* Redo */
-    { command: redo, dom: tb.children[18].children[1] },
+    { command: redo, dom: tb.children[16].children[1] },
   ]);
 
   return menu;
