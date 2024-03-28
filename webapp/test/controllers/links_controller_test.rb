@@ -64,19 +64,14 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "updating a link successfully" do
-    create_link_with_valid_payload
-    response = JSON.parse(@response.body)
-    match_data = response["redirect_to"].match(%r{/products/([^/]+)/edit})
-    permalink = match_data[1]
-
-    post links_update_url(permalink),
+    p1 = products(:p1)
+    post links_update_url(p1.permalink),
          params: "&link%5Bname%5D=a_different_name&link%5Bprice_range%5D=999&link%5Bdescription%5D=%7B%22doc%22%3A%7B%22type%22%3A%22doc%22%2C%22content%22%3A%5B%7B%22type%22%3A%22heading%22%2C%22attrs%22%3A%7B%22level%22%3A2%7D%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22Description%20Level%20One%22%7D%5D%7D%2C%7B%22type%22%3A%22heading%22%2C%22attrs%22%3A%7B%22level%22%3A3%7D%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22Description%20Level%20Two%22%7D%5D%7D%5D%7D%2C%22selection%22%3A%7B%22type%22%3A%22text%22%2C%22anchor%22%3A1%2C%22head%22%3A1%7D%7D",
          headers: { "Accept" => "application/json" }
     assert_response :ok
     response = JSON.parse(@response.body)
     assert response["success"]
-
-    @product = Product.find_by(creator_id: users(:one).id, permalink: permalink)
+    @product = Product.find_by(creator_id: users(:one).id, permalink: p1.permalink)
     assert_equal "a_different_name", @product.name
   end
 
