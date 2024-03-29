@@ -181,7 +181,7 @@ CI/CD is done using **GitHub Actions**.
 # tag the commit to deploy. "ref" can be commit sha, or HEAD, or branch name
 $ git tag deploy-20240319-01 [ref]
 
-# push the ref + tag to GitHub (use same ref as in previous command)
+# push the tag to origin (GitHub)
 $ git push origin deploy-20240319-01
 ```
 

@@ -15,6 +15,7 @@ services:
       - /tmp
     working_dir: /app
     user: appserver
+    env_file: ./webapp/.env-openapi-api-key
     command: ./bin/dev
 
   db:
