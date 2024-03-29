@@ -1,1 +1,4 @@
 add AI to rich text editor
+
+followed the following Assistants API tutorial:
+https://platform.openai.com/docs/assistants/overview?context=without-streaming&lang=node.js
