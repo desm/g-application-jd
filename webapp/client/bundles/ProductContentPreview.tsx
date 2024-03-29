@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { RouterProvider, createHashRouter, redirect } from 'react-router-dom';
+import { RouterProvider, createHashRouter, redirect, Navigate, useNavigate } from 'react-router-dom';
 import DiscoverSettings from './ProductContentPreview/DiscoverSettings';
 import Header from './ProductContentPreview/Header';
 import Preview from './ProductContentPreview/Preview';
@@ -53,6 +53,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
   useTextEditorState();
 
   const [router, setRouter] = useState(null);
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const editElement = document.getElementById('edit-link-basic-form');
@@ -135,7 +136,11 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     ];
     const formData = encode(formDataAsObj);
     const r = await postFormDataTo(formData, `/links/${applicationState.permalink}.json`);
-    console.log(r);
+    if (r.success) {
+      // setActiveTab('ACTIVE_TAB_CONTENT');
+      // navigate('content')
+      window.location.hash = 'content'
+    }
   };
 
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
