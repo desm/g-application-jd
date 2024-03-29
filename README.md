@@ -7,12 +7,14 @@ Tiny reproduction of a couple of UX flows of gumroad.com.
 - Git
 - Docker
 - Docker Compose
+- OpenAI API Key
 
 Ruby, Rails, Node.js, and Yarn do not need to be installed locally, as they will be part of the Docker environment.
 
 ## Getting Started
 
 - Check out repository
+- turn `.env-openai-tmpl` into `.env-openai` and add your OpenAI key
 - run `up-sleep` - this builds and pulls all Docker images
 - run `connect` - this opens a shell in the "appserver" container
 - in appserver container, run `yarn install` - this installs node modules
@@ -185,6 +187,8 @@ $ git push origin deploy-20240319-01
 - [React Hook Form](https://react-hook-form.com/)
 - [Immer](https://immerjs.github.io/immer/)
 - [React Router](https://reactrouter.com/)
+- [ProseMirror - Rich Text Editor](https://prosemirror.net/)
+- [Ruby OpenAI](https://github.com/alexrudall/ruby-openai?tab=readme-ov-file#ruby-openai)
 
 ### Testing Libraries For Rails
 

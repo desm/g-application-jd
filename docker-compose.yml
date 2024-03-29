@@ -15,7 +15,7 @@ services:
       - /tmp
     working_dir: /app
     user: appserver
-    env_file: ./webapp/.env-openapi-api-key
+    env_file: ./webapp/dev/.env-openai
     entrypoint: ./dev/entrypoint.sh
     command: run-react-on-rails-in-dev-mode # see webapp/dev/entrypoint.sh
 
