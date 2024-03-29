@@ -7,7 +7,7 @@ import {
   retrieveMessagesOfThread,
   retrieveThread,
   sendMessage
-} from './openapi';
+} from './openai';
 
 const itSkipIfCI = process.env.CI === 'true' ? it.skip : it;
 itSkipIfCI.skip = it.skip; // to be able to skip both here and in CI
