@@ -37,11 +37,46 @@ class LinksController < ApplicationController
     end
   end
 
+  def update
+    @result = false
+    Rails.error.set_context(
+      section: "products",
+      action: "update link",
+      user_email: Current.user.email_address,
+    )
+
+    Rails.error.handle do
+      permalink = params[:id]
+      _params = link_params_for_save_and_continue
+
+      @product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
+      @product.name = _params["name"]
+      @product.buy_price = _params["price_range"]
+      @product.rich_text_description = _params["description"]
+      @result = @product.save!
+    end
+
+    if @result == true
+      respond_to do |format|
+        format.json { render json: { success: true } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { success: false }, status: :internal_server_error }
+      end
+    end
+  end
+
   private
 
   def link_params
     params.require(:link).require([:name, :price_currency_type, :price_range])
     params.require(:link).permit([:name, :price_currency_type, :price_range])
+  end
+
+  def link_params_for_save_and_continue
+    params.require(:link).require([:name, :price_range, :description])
+    params.require(:link).permit([:name, :price_range, :description])
   end
 end
 

@@ -2,7 +2,9 @@ import { Dispatch } from 'react';
 import { useImmerReducer } from 'use-immer';
 
 interface State {
+  permalink: string;
   productName: string;
+  price: number;
   richTextDescription: any; // basic tab, rich text as javascript object
   richTextContent: any; // content tab
   avatarUrl: string;
@@ -19,8 +21,16 @@ export { state as applicationState };
 
 function reducer(draft: State, action: { type: string; [key: string]: any }) {
   switch (action.type) {
+    case 'PERMALINK_SET': {
+      draft.permalink = action.permalink;
+      break;
+    }
     case 'PRODUCT_NAME_CHANGED': {
       draft.productName = action.productName;
+      break;
+    }
+    case 'PRICE_SET': {
+      draft.price = action.price;
       break;
     }
     case 'RICH_TEXT_DOCUMENT_CHANGED': {
@@ -52,6 +62,13 @@ export const useApplicationState = () => {
   [state, dispatch] = useImmerReducer(reducer, initialState);
 };
 
+export const setPermalink = (permalink: string) => {
+  dispatch({
+    type: 'PERMALINK_SET',
+    permalink,
+  });
+};
+
 export const changeProductName = (productName: string) => {
   dispatch({
     type: 'PRODUCT_NAME_CHANGED',
@@ -60,10 +77,29 @@ export const changeProductName = (productName: string) => {
   document.title = productName;
 };
 
+export const setPrice = (price: number) => {
+  dispatch({ type: 'PRICE_SET', price });
+};
+
 export const changeRichTextDescription = (richText: any) => {
+  const BLANK_DOCUMENT = {
+    doc: {
+      type: 'doc',
+      content: [
+        {
+          type: 'paragraph',
+        },
+      ],
+    },
+    selection: {
+      type: 'text',
+      anchor: 1,
+      head: 1,
+    },
+  };
   dispatch({
     type: 'RICH_TEXT_DOCUMENT_CHANGED',
-    richText,
+    richText: richText === null ? BLANK_DOCUMENT : richText,
   });
 };
 

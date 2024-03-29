@@ -1,6 +1,5 @@
-improve rich text editor toolbars
+implement "Save and continue"
 
 make same:
-https://app.gumroad.com/products/davpc/edit
-http://localhost:8000/products/qjomq/edit
-
+    https://app.gumroad.com/products/xplitr/edit
+    http://localhost:8000/products/qjomq/edit

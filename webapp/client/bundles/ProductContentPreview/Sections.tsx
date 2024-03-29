@@ -5,7 +5,6 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { createMenuPluginForBasicTab } from './SectionsRichTextMenu';
 import { mySchema } from './mySchema';
-import basicTabRichTextDoc from './rtDocBasicTab.json';
 import { applicationState, changeProductName } from './stateStores/application';
 import { changeEditorState, setEditorView } from './stateStores/textEditor';
 
@@ -16,7 +15,7 @@ function Sections() {
         schema: mySchema,
         plugins: [...exampleSetup({ schema: mySchema, menuBar: false }), createMenuPluginForBasicTab(mySchema)],
       },
-      basicTabRichTextDoc
+      applicationState.richTextDescription
     );
 
     const editorView = new EditorView(document.querySelector('#editor'), {

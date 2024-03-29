@@ -13,12 +13,18 @@ import ShareLinks from './ProductContentPreview/ShareLinks';
 import {
   applicationState,
   changeProductName,
+  changeRichTextContent,
+  changeRichTextDescription,
   setActiveTab,
   setAvatarUrl,
+  setPermalink,
+  setPrice,
   useApplicationState,
 } from './ProductContentPreview/stateStores/application';
 import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
 import { grabAllDataFromDataDivs } from './lib';
+import { encode } from './formUrlEncoder';
+import { postFormDataTo } from './util';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;
@@ -54,7 +60,12 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
 
     const divData = grabAllDataFromDataDivs();
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
+    setPermalink(divData['edit-attributes']['unique_permalink']);
     changeProductName(divData['edit-attributes']['name']);
+    setPrice(divData['edit-attributes']['buy_price']);
+
+    changeRichTextDescription(JSON.parse(divData['edit-attributes']['description']));
+    changeRichTextContent(JSON.parse(divData['edit-attributes']['rich_content_pages'][0]['description']));
 
     setRouter(
       createHashRouter([
@@ -115,16 +126,35 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     }
   }, [applicationState.activeTab]);
 
+  const saveAndContinueButtonClickHandler = async (e) => {
+    e.preventDefault();
+    const formDataAsObj = [
+      ['link[name]', applicationState.productName, 'encode'],
+      ['link[price_range]', applicationState.price, 'encode'],
+      ['link[description]', JSON.stringify(applicationState.richTextDescription), 'encode'],
+    ];
+    const formData = encode(formDataAsObj);
+    const r = await postFormDataTo(formData, `/links/${applicationState.permalink}.json`);
+    console.log(r);
+  };
+
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
   return (
     <>
-      {createPortal(<Header productName={applicationState.productName} />, document.getElementById('header-root'))}
-      {createPortal(<ProductContent />, document.getElementById('edit-link-content-form'))}
-      {createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
-      {createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
-      {createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
-      {createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
-      {createPortal(<Preview />, document.getElementById('product-preview-root'))}
+      {router &&
+        createPortal(
+          <Header
+            productName={applicationState.productName}
+            saveAndContinueButtonClickHandler={saveAndContinueButtonClickHandler}
+          />,
+          document.getElementById('header-root')
+        )}
+      {router && createPortal(<ProductContent />, document.getElementById('edit-link-content-form'))}
+      {router && createPortal(<ShareLinks />, document.getElementById('share-links-root'))}
+      {router && createPortal(<ProfileSettings />, document.getElementById('profile-settings-root'))}
+      {router && createPortal(<DiscoverSettings />, document.getElementById('discover-settings-root'))}
+      {router && createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
+      {router && createPortal(<Preview />, document.getElementById('product-preview-root'))}
       {router && <RouterProvider router={router} />}
     </>
   );

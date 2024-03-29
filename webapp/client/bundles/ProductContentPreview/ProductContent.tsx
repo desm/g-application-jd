@@ -7,7 +7,6 @@ import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { createMenuPluginForContentTab } from './ProductContentRichTextMenu';
-import contentTabRichTextDoc from './rtDocContentTab.json';
 import { applicationState } from './stateStores/application';
 import { changeEditorState, setEditorView } from './stateStores/textEditor';
 import './styles.css';
@@ -24,7 +23,7 @@ function ProductContent() {
         schema: mySchema,
         plugins: [...exampleSetup({ schema: mySchema, menuBar: false }), createMenuPluginForContentTab(mySchema)],
       },
-      contentTabRichTextDoc
+      applicationState.richTextContent
     );
 
     const editorView = new EditorView(document.querySelector('#content-editor'), {

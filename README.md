@@ -122,6 +122,7 @@ $ connect
 
 # run all tests except for system tests
 (appserver) $ rails test;
+(appserver) $ rails test --name "name of test";
 (appserver) $ LOGS=1 rails test; # prints server-side logs to STDOUT
 
 # run frontend unit tests (tests under './webapp/__tests__' dir)
@@ -181,7 +182,7 @@ CI/CD is done using **GitHub Actions**.
 $ git tag deploy-20240319-01 [ref]
 
 # push the ref + tag to GitHub (use same ref as in previous command)
-$ git push origin [ref] deploy-20240319-01
+$ git push origin deploy-20240319-01
 ```
 
 ## Tech Stack
