@@ -15,7 +15,7 @@ module Products
       }
     end
 
-    def self.edit_attributes(view_context, permalink, rich_text_description)
+    def self.edit_attributes(view_context, product)
       {
         "seller": {
           "id": "9078562000866",
@@ -32,8 +32,8 @@ module Products
         "is_membership_price_changes_enabled": true,
         "currency_code": "cad",
         "exchange_rate": 1.349595,
-        "name": "digital product",
-        "description": rich_text_description,
+        "name": product.name,
+        "description": product.rich_text_description,
         "preorder_date": nil,
         "want_this": {
           "type": "supported",
@@ -51,7 +51,7 @@ module Products
         "folders": [],
         "existing_product_files": [],
         "specific_attributes": {
-          "permalink": permalink,
+          "permalink": product.permalink,
           "audio": false,
           "pdf": false,
           "is_streamable": false,
@@ -1046,7 +1046,7 @@ module Products
           },
         ],
         "is_epublication": false,
-        "unique_permalink": permalink,
+        "unique_permalink": product.permalink,
         "subdomain": "jdesma.gumroad.jacquesdesmarais.dev",
         "protocol": "https",
         "is_adult_content": false,
