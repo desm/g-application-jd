@@ -50,3 +50,11 @@ export const createRun = async (openai, assistant, thread) => {
     return { success: false, status: run.status };
   }
 };
+
+export const retrieveMessagesOfThread = async (openai, threadId, limit = 1) => {
+  return openai.beta.threads.messages.list(threadId, { limit });
+};
+
+export const retrieveThread = async (openai, threadId) => {
+  return openai.beta.threads.retrieve(threadId);
+};

@@ -1,5 +1,13 @@
 import OpenAI from 'openai';
-import { addMessageToThread, createAssistant, createRun, createThread, sendMessage } from './openapi';
+import {
+  addMessageToThread,
+  createAssistant,
+  createRun,
+  createThread,
+  retrieveMessagesOfThread,
+  retrieveThread,
+  sendMessage
+} from './openapi';
 
 const itSkipIfCI = process.env.CI === 'true' ? it.skip : it;
 itSkipIfCI.skip = it.skip; // to be able to skip both here and in CI
@@ -69,7 +77,7 @@ describe('a first openai test', () => {
     };
   });
 
-  itSkipIfCI(
+  itSkipIfCI.skip(
     'createRun',
     async () => {
       const openai = new OpenAI({ dangerouslyAllowBrowser: true });
@@ -291,4 +299,23 @@ describe('a first openai test', () => {
     },
     60 * 1000
   );
+
+  itSkipIfCI.skip('retrieveMessagesOfThread', async () => {
+    const openai = new OpenAI({ dangerouslyAllowBrowser: true });
+    const message = await retrieveMessagesOfThread(openai, 'thread_tGe4ig9xmAcXxXMf0H7J4nr3', 3);
+    console.log(JSON.stringify(message, null, 2));
+    const _message = null;
+  });
+
+  itSkipIfCI.skip('retrieveThread', async () => {
+    const openai = new OpenAI({ dangerouslyAllowBrowser: true });
+    const thread = await retrieveThread(openai, 'thread_tGe4ig9xmAcXxXMf0H7J4nr3');
+    console.log(JSON.stringify(thread, null, 2));
+    const _thread = {
+      id: 'thread_tGe4ig9xmAcXxXMf0H7J4nr3',
+      object: 'thread',
+      created_at: 1711733837,
+      metadata: {},
+    };
+  });
 });
