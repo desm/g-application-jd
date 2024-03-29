@@ -16,7 +16,8 @@ services:
     working_dir: /app
     user: appserver
     env_file: ./webapp/.env-openapi-api-key
-    command: ./bin/dev
+    entrypoint: ./dev/entrypoint.sh
+    command: run-react-on-rails-in-dev-mode # see webapp/dev/entrypoint.sh
 
   db:
     image: mysql:8.0.36-debian
