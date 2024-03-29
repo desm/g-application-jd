@@ -9,7 +9,7 @@ async function main(openai) {
   return completion.choices[0];
 }
 
-const itSkipIfCI = process.env.GITHUB_ACTIONS === 'true' ? it.skip : it;
+const itSkipIfCI = process.env.CI === 'true' ? it.skip : it;
 
 describe('a first openai test', () => {
   itSkipIfCI('sends a message to openai', async () => {
