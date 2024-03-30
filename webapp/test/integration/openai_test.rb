@@ -3,7 +3,7 @@ require "test_helper"
 class OpenaiTest < ActionDispatch::IntegrationTest
   def setup
     OpenAI.configure do |config|
-      config.access_token = ENV.fetch("OPENAI_ACCESS_TOKEN")
+      config.access_token = ENV.fetch("OPENAI_ACCESS_TOKEN", "")
     end
     @client = OpenAI::Client.new
     @client = @client.beta(assistants: "v1")
