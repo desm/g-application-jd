@@ -1,5 +1,6 @@
 import { Dispatch } from 'react';
 import { useImmerReducer } from 'use-immer';
+import { postCreateThreadForProduct } from '../../lib';
 
 interface State {
   permalink: string;
@@ -10,9 +11,15 @@ interface State {
   avatarUrl: string;
   activeTab: 'ACTIVE_TAB_PRODUCT' | 'ACTIVE_TAB_CONTENT' | 'ACTIVE_TAB_SHARE';
   published: boolean;
+  hasOpenaiAssistantThreadForDescription: boolean;
+  flags: {
+    isCreateOpenaiAssistantThreadForProductDescriptionPending: boolean;
+  };
 }
 
-const initialState = {} as State;
+const initialState = {
+  flags: {},
+} as State;
 
 let state: State;
 let dispatch: Dispatch<any>;
@@ -47,6 +54,18 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
     }
     case 'ACTIVE_TAB_SET': {
       draft.activeTab = action.activeTab;
+      break;
+    }
+    case 'HAS_OPENAI_ASSISTANT_THREAD_FOR_DESCRIPTION_CHANGED': {
+      draft.hasOpenaiAssistantThreadForDescription = action.value;
+      break;
+    }
+    case 'TURN_ON_FLAG': {
+      draft.flags[action.flag] = true;
+      break;
+    }
+    case 'TURN_OFF_FLAG': {
+      draft.flags[action.flag] = false;
       break;
     }
     default: {
@@ -122,4 +141,26 @@ export const setActiveTab = (activeTab: 'ACTIVE_TAB_PRODUCT' | 'ACTIVE_TAB_CONTE
     type: 'ACTIVE_TAB_SET',
     activeTab,
   });
+};
+
+export const changeHasOpenaiAssistantThreadForDescription = (value: boolean) => {
+  dispatch({
+    type: 'HAS_OPENAI_ASSISTANT_THREAD_FOR_DESCRIPTION_CHANGED',
+    value,
+  });
+};
+
+export const createOpenaiAssistantThreadForProductDescription = async () => {
+  dispatch({
+    type: 'TURN_ON_FLAG',
+    flag: 'isCreateOpenaiAssistantThreadForProductDescriptionPending',
+  });
+  const response = await postCreateThreadForProduct(state.permalink, 'description');
+  dispatch({
+    type: 'TURN_OFF_FLAG',
+    flag: 'isCreateOpenaiAssistantThreadForProductDescriptionPending',
+  });
+  if (response.success) {
+    changeHasOpenaiAssistantThreadForDescription(true);
+  }
 };

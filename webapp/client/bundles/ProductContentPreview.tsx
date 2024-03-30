@@ -12,6 +12,7 @@ import Sections from './ProductContentPreview/Sections';
 import ShareLinks from './ProductContentPreview/ShareLinks';
 import {
   applicationState,
+  changeHasOpenaiAssistantThreadForDescription,
   changeProductName,
   changeRichTextContent,
   changeRichTextDescription,
@@ -63,9 +64,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     setPermalink(divData['edit-attributes']['unique_permalink']);
     changeProductName(divData['edit-attributes']['name']);
     setPrice(divData['edit-attributes']['buy_price']);
-
     changeRichTextDescription(JSON.parse(divData['edit-attributes']['description']));
     changeRichTextContent(JSON.parse(divData['edit-attributes']['rich_content_pages'][0]['description']));
+    changeHasOpenaiAssistantThreadForDescription(divData['edit-attributes']['has_openai_assistant_thread_for_description'])
 
     setRouter(
       createHashRouter([

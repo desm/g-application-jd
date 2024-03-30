@@ -5,7 +5,11 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { createMenuPluginForBasicTab } from './SectionsRichTextMenu';
 import { mySchema } from './mySchema';
-import { applicationState, changeProductName } from './stateStores/application';
+import {
+  applicationState,
+  changeProductName,
+  createOpenaiAssistantThreadForProductDescription,
+} from './stateStores/application';
 import { changeEditorState, setEditorView } from './stateStores/textEditor';
 
 function Sections() {
@@ -38,6 +42,11 @@ function Sections() {
       });
     });
   }, []);
+
+  const turnAIAssistantONClickHandler = async (e) => {
+    e.preventDefault();
+    createOpenaiAssistantThreadForProductDescription();
+  };
 
   return (
     <>
@@ -299,6 +308,20 @@ function Sections() {
               </div>
             </div>
             <div id="editor" className="rich-text" data-gumroad-ignore="true"></div>
+            <div>
+              {applicationState.hasOpenaiAssistantThreadForDescription ? (
+                <>
+                  <button>Make Shorter</button>
+                  <button>Make Longer</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={turnAIAssistantONClickHandler} aria-disabled={applicationState.flags.isCreateOpenaiAssistantThreadForProductDescriptionPending}>
+                    Turn AI assistant ON
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </fieldset>
         <fieldset>

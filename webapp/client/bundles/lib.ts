@@ -1,3 +1,5 @@
+import { postJSONTo } from './util';
+
 /**
  * searches document for all <div data-...="{...}" id="..." /> elements, parses the data,
  * and returns as a map { "some-id": objA, "other-id", objB, ... }
@@ -34,3 +36,8 @@ export const hideMessage = () => {
   const b = document.querySelector('.js-flash-message') as HTMLElement;
   b.style.transform = 'translateY(-100%)';
 };
+
+export const postCreateThreadForProduct = async (
+  permalink: string,
+  section: 'description' | 'content'
+): Promise<{ success: boolean }> => postJSONTo(JSON.stringify({ section }), `/products/${permalink}/threads`);
