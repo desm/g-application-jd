@@ -197,6 +197,7 @@ $ git push origin deploy-20240319-01
 - [capybara 3.39.2 API](https://rubydoc.info/gems/capybara/3.39.2/index)
 - [selenium-webdriver 4.16 API](https://www.rubydoc.info/gems/selenium-webdriver/4.16.0/index)
 - [selenium-devtools V122 API](https://www.rubydoc.info/gems/selenium-devtools/Selenium/DevTools/V122)
+- [VCR](https://benoittgt.github.io/vcr)
 
 ### Testing Libraries For Jest
 
