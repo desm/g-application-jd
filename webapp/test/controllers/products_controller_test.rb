@@ -18,7 +18,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_no_current_path login_path
   end
 
-  test "when product description is nil" do
+  test "edit product when product description is nil" do
     u = users(:one)
     sign_in_using_capybara(u.email_address, "secret123456")
     p1 = products(:p1)
@@ -29,7 +29,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_nil data["description"]
   end
 
-  test "when product description is NOT nil" do
+  test "edit product when product description is NOT nil" do
     u = users(:one)
     sign_in_using_capybara(u.email_address, "secret123456")
     p3 = products(:p3)
