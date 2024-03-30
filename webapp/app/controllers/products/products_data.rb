@@ -17,6 +17,7 @@ module Products
 
     def self.edit_attributes(view_context, product)
       {
+        "has_openai_assistant_thread_for_description": product.openai_assistant_threads.where(section: :description).any?,
         "seller": {
           "id": "9078562000866",
           "name": "Jacques",
