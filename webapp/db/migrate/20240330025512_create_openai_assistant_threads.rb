@@ -5,6 +5,7 @@ class CreateOpenaiAssistantThreads < ActiveRecord::Migration[7.1]
       t.integer :section, null: false
       t.string :thread_id, null: false, index: { unique: true }
       t.timestamps
+      t.index [:product_id, :section], unique: true
     end
     add_foreign_key "openai_assistant_threads", "products"
   end

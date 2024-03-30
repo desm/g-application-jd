@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_025512) do
     t.string "thread_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "fk_rails_b1de461f89"
+    t.index ["product_id", "section"], name: "index_openai_assistant_threads_on_product_id_and_section", unique: true
     t.index ["thread_id"], name: "index_openai_assistant_threads_on_thread_id", unique: true
   end
 
