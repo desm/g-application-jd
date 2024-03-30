@@ -22,7 +22,6 @@
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "immer": "^10.0.4",
     "mini-css-extract-plugin": "^2.8.0",
-    "openai": "^4.30.0",
     "prop-types": "^15.8.1",
     "prosemirror-example-setup": "^1.2.2",
     "prosemirror-model": "^1.19.4",

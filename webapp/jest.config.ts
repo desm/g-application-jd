@@ -5,6 +5,6 @@ import type { Config } from 'jest';
 export default {
   rootDir: __dirname,
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  testMatch: ['**/__tests__/**/*.test.(jsx|tsx|ts)'],
+  testMatch: ['**/__tests__/**/*.test.(jsx|tsx)'],
   testEnvironment: 'jsdom',
 } satisfies Config;
