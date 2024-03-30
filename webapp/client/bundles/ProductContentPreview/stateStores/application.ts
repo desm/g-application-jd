@@ -57,7 +57,7 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
       break;
     }
     case 'HAS_OPENAI_ASSISTANT_THREAD_FOR_DESCRIPTION_CHANGED': {
-      draft.hasOpenaiAssistantThreadForDescription = action.value;
+      draft.hasOpenaiAssistantThreadForDescription = false;
       break;
     }
     case 'TURN_ON_FLAG': {

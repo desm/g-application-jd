@@ -317,7 +317,7 @@ function Sections() {
               ) : (
                 <>
                   <button onClick={turnAIAssistantONClickHandler} aria-disabled={applicationState.flags.isCreateOpenaiAssistantThreadForProductDescriptionPending}>
-                    Turn AI assistant ON
+                    Turn On AI Assistant
                   </button>
                 </>
               )}
