@@ -135,7 +135,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     ];
     const formData = encode(formDataAsObj);
     const r = await postFormDataTo(formData, `/links/${applicationState.permalink}.json`);
-    console.log(r);
+    if (r.success) {
+      window.location.hash = 'content'
+    }
   };
 
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
