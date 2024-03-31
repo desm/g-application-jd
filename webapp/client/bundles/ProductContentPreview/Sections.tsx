@@ -8,6 +8,7 @@ import { mySchema } from './mySchema';
 import {
   applicationState,
   changeProductName,
+  initMakeShorterLongerDialog,
   openDialog,
   setEnoughWordsSelectedInDescriptionForAiAssistant,
 } from './stateStores/application';
@@ -59,6 +60,14 @@ function Sections() {
     editorView.state.doc.textBetween(editorView.state.selection.from, editorView.state.selection.to);
 
   const countWords = (t: string) => t.split(' ').length;
+
+  const makeShorter = (text: string) => {
+    console.log(text);
+  };
+
+  const makeLonger = (text: string) => {
+    console.log(text);
+  };
 
   return (
     <>
@@ -323,10 +332,26 @@ function Sections() {
             <div>
               {applicationState.hasOpenaiAssistantThreadForDescription ? (
                 <>
-                  <button aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}>
+                  <button
+                    aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      initMakeShorterLongerDialog('shorter', getSelectedText(textEditorState.basicTab.editorView));
+                      openDialog('makeShorterLongerDialog');
+                      makeShorter(getSelectedText(textEditorState.basicTab.editorView));
+                    }}
+                  >
                     Make Shorter
                   </button>
-                  <button aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}>
+                  <button
+                    aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      initMakeShorterLongerDialog('longer', getSelectedText(textEditorState.basicTab.editorView));
+                      openDialog('makeShorterLongerDialog');
+                      makeLonger(getSelectedText(textEditorState.basicTab.editorView));
+                    }}
+                  >
                     Make Longer
                   </button>
                 </>

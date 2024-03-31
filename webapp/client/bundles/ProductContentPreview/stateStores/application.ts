@@ -18,12 +18,22 @@ interface State {
   };
   dialogs: {
     turnOnAiAssistantDialog: 'closed' | 'open';
+    makeShorterLongerDialog: 'closed' | 'open';
+  };
+  props: {
+    makeShorterLongerDialog: {
+      mode: 'shorter' | 'longer';
+      text: string;
+    };
   };
 }
 
 const initialState = {
   flags: {},
   dialogs: {},
+  props: {
+    makeShorterLongerDialog: {},
+  },
 } as State;
 
 let state: State;
@@ -89,6 +99,11 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
       Object.keys(draft.dialogs).forEach((dialogName) => {
         draft.dialogs[dialogName] = 'closed';
       });
+      break;
+    }
+    case 'DIALOG_PROPS_FOR_MAKE_SHORTER_LONGER_DIALOG_CHANGED': {
+      draft.props.makeShorterLongerDialog.mode = action.mode;
+      draft.props.makeShorterLongerDialog.text = action.text;
       break;
     }
     default: {
@@ -212,5 +227,13 @@ export const closeDialog = (dialogName: keyof State['dialogs']) => {
 export const closeAllDialogs = () => {
   dispatch({
     type: 'ALL_DIALOGS_CLOSED',
+  });
+};
+
+export const initMakeShorterLongerDialog = (mode: 'shorter' | 'longer', text: string) => {
+  dispatch({
+    type: 'DIALOG_PROPS_FOR_MAKE_SHORTER_LONGER_DIALOG_CHANGED',
+    mode,
+    text,
   });
 };

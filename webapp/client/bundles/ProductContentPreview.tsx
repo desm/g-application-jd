@@ -28,6 +28,7 @@ import { useTextEditorState } from './ProductContentPreview/stateStores/textEdit
 import { encode } from './formUrlEncoder';
 import { grabAllDataFromDataDivs } from './lib';
 import { postFormDataTo } from './util';
+import MakeShorterLongerDialog from './ProductContentPreview/MakeShorterLongerDialog';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;
@@ -169,6 +170,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       {router && createPortal(<Preview />, document.getElementById('product-preview-root'))}
       {router && <RouterProvider router={router} />}
       {router && createPortal(<TurnOnAiAssistantDialog />, document.getElementById('turn-on-ai-assistant-dialog'))}
+      {router && createPortal(<MakeShorterLongerDialog />, document.getElementById('make-shorter-longer-dialog'))}
     </>
   );
 };
