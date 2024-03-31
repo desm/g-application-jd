@@ -311,8 +311,8 @@ function Sections() {
             <div>
               {applicationState.hasOpenaiAssistantThreadForDescription ? (
                 <>
-                  <button aria-disabled="false">Make Shorter</button>
-                  <button aria-disabled="false">Make Longer</button>
+                  <button aria-disabled="true">Make Shorter</button>
+                  <button aria-disabled="true">Make Longer</button>
                 </>
               ) : (
                 <>
