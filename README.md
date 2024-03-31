@@ -173,6 +173,11 @@ $ git tag deploy-20240319-01 [ref]
 $ git push origin deploy-20240319-01
 ```
 
+## AI Assistant
+
+Version 1
+https://www.figma.com/file/QYWiq50FLUSrcVQL988XLR/Gumroad-AI-Assistant?type=design&node-id=0-1&mode=design&t=cXL1Hw4vzb8LHudr-0
+
 ## Tech Stack
 
 ### Application
@@ -212,3 +217,4 @@ $ git push origin deploy-20240319-01
 - [GitHub Actions](https://docs.github.com/en/actions/quickstart)
 - [Adminer - DB Management Tool](https://www.adminer.org/)
 - [Debian Bookworm Packages (for Docker images)](https://packages.debian.org/bookworm/)
+- [Figma](https://www.figma.com/)
