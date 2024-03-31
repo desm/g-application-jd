@@ -69,9 +69,16 @@ function Preview() {
                   <span className="rating-number">0 ratings</span>
                 </div>
               </section>
-              <section>
+              <section style={{ minHeight: '15rem' }}>
                 <div className="rich-text" id="rich-text-preview"></div>
               </section>
+              {applicationState.hasOpenaiAssistantThreadForDescription && (
+                <section>
+                  <div style={{ fontSize: '.5rem' }}>
+                    N.B. AI may have been used to help write parts of this description - The Gumroad Team.
+                  </div>
+                </section>
+              )}
             </section>
             <section>
               <section>
