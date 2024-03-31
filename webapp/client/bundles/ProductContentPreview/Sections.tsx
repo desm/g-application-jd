@@ -8,7 +8,7 @@ import { mySchema } from './mySchema';
 import {
   applicationState,
   changeProductName,
-  createOpenaiAssistantThreadForProductDescription,
+  openDialog,
   setEnoughWordsSelectedInDescriptionForAiAssistant,
 } from './stateStores/application';
 import { changeEditorState, setEditorView, textEditorState } from './stateStores/textEditor';
@@ -38,6 +38,7 @@ function Sections() {
     setEditorView('basicTab', editorView);
 
     document.body.addEventListener('mousedown', () => {
+      // close all rich text editor menubar dropdowns
       document.querySelectorAll('details').forEach((el) => {
         el.removeAttribute('open');
       });
@@ -58,11 +59,6 @@ function Sections() {
     editorView.state.doc.textBetween(editorView.state.selection.from, editorView.state.selection.to);
 
   const countWords = (t: string) => t.split(' ').length;
-
-  const turnAIAssistantONClickHandler = async (e) => {
-    e.preventDefault();
-    createOpenaiAssistantThreadForProductDescription();
-  };
 
   return (
     <>
@@ -337,10 +333,13 @@ function Sections() {
               ) : (
                 <>
                   <button
-                    onClick={turnAIAssistantONClickHandler}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openDialog('turnOnAiAssistantDialog');
+                    }}
                     aria-disabled={applicationState.flags.isCreateOpenaiAssistantThreadForProductDescriptionPending}
                   >
-                    Turn AI assistant ON
+                    Turn On AI Assistant
                   </button>
                 </>
               )}

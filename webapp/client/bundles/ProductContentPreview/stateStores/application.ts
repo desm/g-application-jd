@@ -16,10 +16,14 @@ interface State {
     isCreateOpenaiAssistantThreadForProductDescriptionPending: boolean;
     isEnoughWordsSelectedInDescriptionForAiAssistant: boolean;
   };
+  dialogs: {
+    turnOnAiAssistantDialog: 'closed' | 'open';
+  };
 }
 
 const initialState = {
   flags: {},
+  dialogs: {},
 } as State;
 
 let state: State;
@@ -71,6 +75,20 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
     }
     case 'TURN_OFF_FLAG': {
       draft.flags[action.flag] = false;
+      break;
+    }
+    case 'DIALOG_OPENED': {
+      draft.dialogs[action.dialogName] = 'open';
+      break;
+    }
+    case 'DIALOG_CLOSED': {
+      draft.dialogs[action.dialogName] = 'closed';
+      break;
+    }
+    case 'ALL_DIALOGS_CLOSED': {
+      Object.keys(draft.dialogs).forEach((dialogName) => {
+        draft.dialogs[dialogName] = 'closed';
+      });
       break;
     }
     default: {
@@ -174,5 +192,25 @@ export const setEnoughWordsSelectedInDescriptionForAiAssistant = (value: boolean
   dispatch({
     type: value ? 'TURN_ON_FLAG' : 'TURN_OFF_FLAG',
     flag: 'isEnoughWordsSelectedInDescriptionForAiAssistant',
+  });
+};
+
+export const openDialog = (dialogName: keyof State['dialogs']) => {
+  dispatch({
+    type: 'DIALOG_OPENED',
+    dialogName,
+  });
+};
+
+export const closeDialog = (dialogName: keyof State['dialogs']) => {
+  dispatch({
+    type: 'DIALOG_CLOSED',
+    dialogName,
+  });
+};
+
+export const closeAllDialogs = () => {
+  dispatch({
+    type: 'ALL_DIALOGS_CLOSED',
   });
 };

@@ -10,12 +10,14 @@ import ProductContent from './ProductContentPreview/ProductContent';
 import ProfileSettings from './ProductContentPreview/ProfileSettings';
 import Sections from './ProductContentPreview/Sections';
 import ShareLinks from './ProductContentPreview/ShareLinks';
+import TurnOnAiAssistantDialog from './ProductContentPreview/TurnOnAiAssistantDialog';
 import {
   applicationState,
   changeHasOpenaiAssistantThreadForDescription,
   changeProductName,
   changeRichTextContent,
   changeRichTextDescription,
+  closeAllDialogs,
   setActiveTab,
   setAvatarUrl,
   setPermalink,
@@ -23,8 +25,8 @@ import {
   useApplicationState,
 } from './ProductContentPreview/stateStores/application';
 import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
-import { grabAllDataFromDataDivs } from './lib';
 import { encode } from './formUrlEncoder';
+import { grabAllDataFromDataDivs } from './lib';
 import { postFormDataTo } from './util';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
@@ -66,7 +68,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     setPrice(divData['edit-attributes']['buy_price']);
     changeRichTextDescription(JSON.parse(divData['edit-attributes']['description']));
     changeRichTextContent(JSON.parse(divData['edit-attributes']['rich_content_pages'][0]['description']));
-    changeHasOpenaiAssistantThreadForDescription(divData['edit-attributes']['has_openai_assistant_thread_for_description'])
+    changeHasOpenaiAssistantThreadForDescription(
+      divData['edit-attributes']['has_openai_assistant_thread_for_description']
+    );
 
     setRouter(
       createHashRouter([
@@ -99,6 +103,11 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
         },
       ])
     );
+
+    document.body.addEventListener('mousedown', () => {
+      // close all open dialogs
+      closeAllDialogs();
+    });
   }, []);
 
   useEffect(() => {
@@ -137,7 +146,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     const formData = encode(formDataAsObj);
     const r = await postFormDataTo(formData, `/links/${applicationState.permalink}.json`);
     if (r.success) {
-      window.location.hash = 'content'
+      window.location.hash = 'content';
     }
   };
 
@@ -159,6 +168,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       {router && createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
       {router && createPortal(<Preview />, document.getElementById('product-preview-root'))}
       {router && <RouterProvider router={router} />}
+      {router && createPortal(<TurnOnAiAssistantDialog />, document.getElementById('turn-on-ai-assistant-dialog'))}
     </>
   );
 };
