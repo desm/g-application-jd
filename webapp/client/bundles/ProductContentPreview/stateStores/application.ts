@@ -24,6 +24,10 @@ const initialState = {
 let state: State;
 let dispatch: Dispatch<any>;
 
+// for testing
+(window as any)['getRichTextDescriptionDoc'] = () => state.richTextDescription;
+(window as any)['getRichTextContentDoc'] = () => state.richTextContent;
+
 export { state as applicationState };
 
 function reducer(draft: State, action: { type: string; [key: string]: any }) {
