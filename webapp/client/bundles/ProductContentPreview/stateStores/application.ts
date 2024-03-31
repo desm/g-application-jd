@@ -14,6 +14,7 @@ interface State {
   hasOpenaiAssistantThreadForDescription: boolean;
   flags: {
     isCreateOpenaiAssistantThreadForProductDescriptionPending: boolean;
+    isEnoughWordsSelectedInDescriptionForAiAssistant: boolean;
   };
 }
 
@@ -167,4 +168,11 @@ export const createOpenaiAssistantThreadForProductDescription = async () => {
   if (response.success) {
     changeHasOpenaiAssistantThreadForDescription(true);
   }
+};
+
+export const setEnoughWordsSelectedInDescriptionForAiAssistant = (value: boolean) => {
+  dispatch({
+    type: value ? 'TURN_ON_FLAG' : 'TURN_OFF_FLAG',
+    flag: 'isEnoughWordsSelectedInDescriptionForAiAssistant',
+  });
 };

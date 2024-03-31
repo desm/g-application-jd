@@ -9,8 +9,9 @@ import {
   applicationState,
   changeProductName,
   createOpenaiAssistantThreadForProductDescription,
+  setEnoughWordsSelectedInDescriptionForAiAssistant,
 } from './stateStores/application';
-import { changeEditorState, setEditorView } from './stateStores/textEditor';
+import { changeEditorState, setEditorView, textEditorState } from './stateStores/textEditor';
 
 function Sections() {
   useEffect(() => {
@@ -42,6 +43,21 @@ function Sections() {
       });
     });
   }, []);
+
+  useEffect(() => {
+    if (textEditorState.basicTab.editorView) {
+      if (countWords(getSelectedText(textEditorState.basicTab.editorView)) > 35) {
+        setEnoughWordsSelectedInDescriptionForAiAssistant(true);
+      } else {
+        setEnoughWordsSelectedInDescriptionForAiAssistant(false);
+      }
+    }
+  }, [applicationState.richTextDescription]);
+
+  const getSelectedText = (editorView: EditorView): string =>
+    editorView.state.doc.textBetween(editorView.state.selection.from, editorView.state.selection.to);
+
+  const countWords = (t: string) => t.split(' ').length;
 
   const turnAIAssistantONClickHandler = async (e) => {
     e.preventDefault();
@@ -311,12 +327,19 @@ function Sections() {
             <div>
               {applicationState.hasOpenaiAssistantThreadForDescription ? (
                 <>
-                  <button>Make Shorter</button>
-                  <button>Make Longer</button>
+                  <button aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}>
+                    Make Shorter
+                  </button>
+                  <button aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}>
+                    Make Longer
+                  </button>
                 </>
               ) : (
                 <>
-                  <button onClick={turnAIAssistantONClickHandler} aria-disabled={applicationState.flags.isCreateOpenaiAssistantThreadForProductDescriptionPending}>
+                  <button
+                    onClick={turnAIAssistantONClickHandler}
+                    aria-disabled={applicationState.flags.isCreateOpenaiAssistantThreadForProductDescriptionPending}
+                  >
                     Turn AI assistant ON
                   </button>
                 </>
