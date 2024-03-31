@@ -311,13 +311,13 @@ function Sections() {
             <div>
               {applicationState.hasOpenaiAssistantThreadForDescription ? (
                 <>
-                  <button>Make Shorter</button>
-                  <button>Make Longer</button>
+                  <button aria-disabled="true">Make Shorter</button>
+                  <button aria-disabled="true">Make Longer</button>
                 </>
               ) : (
                 <>
                   <button onClick={turnAIAssistantONClickHandler} aria-disabled={applicationState.flags.isCreateOpenaiAssistantThreadForProductDescriptionPending}>
-                    Turn AI assistant ON
+                    Turn On AI Assistant
                   </button>
                 </>
               )}
