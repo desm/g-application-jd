@@ -41,7 +41,7 @@ class AiAssistantService
     response_of_runs_create = @client.runs.create(
       thread_id: thread_id,
       parameters: {
-        assistant_id: "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+        assistant_id: Rails.application.config.openai_assistant_id,
       },
     )
     run_id = response_of_runs_create["id"]

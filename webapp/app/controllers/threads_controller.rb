@@ -97,7 +97,7 @@ class ThreadsController < ApplicationController
 
   def init_openai_client
     OpenAI.configure do |config|
-      config.access_token = ENV.fetch("OPENAI_ACCESS_TOKEN", "")
+      config.access_token = Rails.application.credentials.openai_access_token
     end
     @client = OpenAI::Client.new
     @client = @client.beta(assistants: "v1")
