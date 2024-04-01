@@ -1,5 +1,5 @@
 import { exampleSetup } from 'prosemirror-example-setup';
-import { EditorState } from 'prosemirror-state';
+import { AllSelection, EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
@@ -11,8 +11,11 @@ import {
   initMakeShorterLongerDialog,
   openDialog,
   setEnoughWordsSelectedInDescriptionForAiAssistant,
+  setRequestReworkOfSelectedTextPending,
+  setReworkedText,
 } from './stateStores/application';
 import { changeEditorState, setEditorView, textEditorState } from './stateStores/textEditor';
+import { requestReworkOfSelectedText } from '../lib';
 
 function Sections() {
   useEffect(() => {
@@ -61,12 +64,45 @@ function Sections() {
 
   const countWords = (t: string) => t.split(' ').length;
 
-  const makeShorter = (text: string) => {
-    console.log(text);
+  const getFullText = (editorView: EditorView): string => {
+    const all = new AllSelection(editorView.state.doc);
+    return editorView.state.doc.textBetween(all.from, all.to);
   };
 
-  const makeLonger = (text: string) => {
-    console.log(text);
+  const makeShorter = async () => {
+    setRequestReworkOfSelectedTextPending(true);
+    const response = await requestReworkOfSelectedText(
+      applicationState.permalink,
+      'description',
+      applicationState.productName,
+      getFullText(textEditorState.basicTab.editorView),
+      getSelectedText(textEditorState.basicTab.editorView),
+      'ask to make selection a little bit shorter'
+    );
+    if (response.success) {
+      setReworkedText(response.reworked_text);
+    } else {
+      setReworkedText(null);
+    }
+    setRequestReworkOfSelectedTextPending(false);
+  };
+
+  const makeLonger = async () => {
+    setRequestReworkOfSelectedTextPending(true);
+    const response = await requestReworkOfSelectedText(
+      applicationState.permalink,
+      'description',
+      applicationState.productName,
+      getFullText(textEditorState.basicTab.editorView),
+      getSelectedText(textEditorState.basicTab.editorView),
+      'ask to make selection a little bit longer'
+    );
+    if (response.success) {
+      setReworkedText(response.reworked_text);
+    } else {
+      setReworkedText(null);
+    }
+    setRequestReworkOfSelectedTextPending(false);
   };
 
   return (
@@ -338,7 +374,7 @@ function Sections() {
                       e.preventDefault();
                       initMakeShorterLongerDialog('shorter', getSelectedText(textEditorState.basicTab.editorView));
                       openDialog('makeShorterLongerDialog');
-                      makeShorter(getSelectedText(textEditorState.basicTab.editorView));
+                      makeShorter();
                     }}
                   >
                     Make Shorter
@@ -349,7 +385,7 @@ function Sections() {
                       e.preventDefault();
                       initMakeShorterLongerDialog('longer', getSelectedText(textEditorState.basicTab.editorView));
                       openDialog('makeShorterLongerDialog');
-                      makeLonger(getSelectedText(textEditorState.basicTab.editorView));
+                      makeLonger();
                     }}
                   >
                     Make Longer

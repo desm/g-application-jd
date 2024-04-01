@@ -1,4 +1,4 @@
-import { postJSONTo } from './util';
+import { patchJSONTo, postJSONTo } from './util';
 
 /**
  * searches document for all <div data-...="{...}" id="..." /> elements, parses the data,
@@ -41,3 +41,20 @@ export const postCreateThreadForProduct = async (
   permalink: string,
   section: 'description' | 'content'
 ): Promise<{ success: boolean }> => postJSONTo(JSON.stringify({ section }), `/products/${permalink}/threads`);
+
+export const requestReworkOfSelectedText = async (
+  permalink: string,
+  section: 'description' | 'content',
+  product_name: string,
+  full_description: string,
+  selected_text: string,
+  ask: 'ask to make selection a little bit shorter' | 'ask to make selection a little bit longer'
+): Promise<{ success: boolean, reworked_text?: string }> => {
+  const payload = {
+    product_name,
+    full_description,
+    selected_text,
+    ask,
+  };
+  return patchJSONTo(JSON.stringify(payload), `/products/${permalink}/threads/${section}`);
+};

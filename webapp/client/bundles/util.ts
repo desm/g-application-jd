@@ -32,6 +32,22 @@ export const postJSONTo = async (json: string, path: string) => {
   }
 };
 
+export const patchJSONTo = async (json: string, path: string) => {
+  try {
+    const response = await fetch(path, {
+      headers: addCSRFTokenIfAvailable({
+        'content-type': 'application/json',
+      }),
+      body: json,
+      method: 'PATCH',
+    });
+    return await response.json();
+  } catch (e) {
+    console.log(e);
+    return { success: false };
+  }
+};
+
 export const postFormDataTo = async (formData: string, path: string) => {
   try {
     const response = await fetch(path, {

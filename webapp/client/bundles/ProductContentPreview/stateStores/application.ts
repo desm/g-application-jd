@@ -15,6 +15,7 @@ interface State {
   flags: {
     isCreateOpenaiAssistantThreadForProductDescriptionPending: boolean;
     isEnoughWordsSelectedInDescriptionForAiAssistant: boolean;
+    isRequestReworkOfSelectedTextPending: boolean;
   };
   dialogs: {
     turnOnAiAssistantDialog: 'closed' | 'open';
@@ -26,6 +27,7 @@ interface State {
       text: string;
     };
   };
+  reworkedText: string;
 }
 
 const initialState = {
@@ -104,6 +106,10 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
     case 'DIALOG_PROPS_FOR_MAKE_SHORTER_LONGER_DIALOG_CHANGED': {
       draft.props.makeShorterLongerDialog.mode = action.mode;
       draft.props.makeShorterLongerDialog.text = action.text;
+      break;
+    }
+    case 'REWORKED_TEXT_CHANGED': {
+      draft.reworkedText = action.reworkedText;
       break;
     }
     default: {
@@ -235,5 +241,19 @@ export const initMakeShorterLongerDialog = (mode: 'shorter' | 'longer', text: st
     type: 'DIALOG_PROPS_FOR_MAKE_SHORTER_LONGER_DIALOG_CHANGED',
     mode,
     text,
+  });
+};
+
+export const setRequestReworkOfSelectedTextPending = (value: boolean) => {
+  dispatch({
+    type: value ? 'TURN_ON_FLAG' : 'TURN_OFF_FLAG',
+    flag: 'isRequestReworkOfSelectedTextPending',
+  });
+};
+
+export const setReworkedText = (reworkedText: string) => {
+  dispatch({
+    type: 'REWORKED_TEXT_CHANGED',
+    reworkedText,
   });
 };
