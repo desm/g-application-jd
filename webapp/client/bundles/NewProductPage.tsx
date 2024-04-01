@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import type { FunctionComponent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { postJSONTo } from './util';
+import { sendJsonToServer } from './util';
 
 interface Props {}
 
@@ -24,7 +24,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const response = await postJSONTo(JSON.stringify({ link: data }), '/links');
+    const response = await sendJsonToServer('POST', JSON.stringify({ link: data }), '/links');
     if (response.success) {
       location.href = response.redirect_to;
     } else {

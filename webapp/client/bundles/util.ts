@@ -16,30 +16,14 @@ const addCSRFTokenIfAvailable = (headers: any) => ({
   'x-csrf-token': getCSRFToken() !== null ? getCSRFToken() : undefined,
 });
 
-export const postJSONTo = async (json: string, path: string) => {
+export const sendJsonToServer = async (method: 'POST' | 'PATCH', json: string, path: string) => {
   try {
     const response = await fetch(path, {
       headers: addCSRFTokenIfAvailable({
         'content-type': 'application/json',
       }),
       body: json,
-      method: 'POST',
-    });
-    return await response.json();
-  } catch (e) {
-    console.log(e);
-    return { success: false };
-  }
-};
-
-export const patchJSONTo = async (json: string, path: string) => {
-  try {
-    const response = await fetch(path, {
-      headers: addCSRFTokenIfAvailable({
-        'content-type': 'application/json',
-      }),
-      body: json,
-      method: 'PATCH',
+      method,
     });
     return await response.json();
   } catch (e) {

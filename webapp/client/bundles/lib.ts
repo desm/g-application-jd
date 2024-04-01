@@ -1,4 +1,4 @@
-import { patchJSONTo, postJSONTo } from './util';
+import { sendJsonToServer } from './util';
 
 /**
  * searches document for all <div data-...="{...}" id="..." /> elements, parses the data,
@@ -40,7 +40,7 @@ export const hideMessage = () => {
 export const postCreateThreadForProduct = async (
   permalink: string,
   section: 'description' | 'content'
-): Promise<{ success: boolean }> => postJSONTo(JSON.stringify({ section }), `/products/${permalink}/threads`);
+): Promise<{ success: boolean }> => sendJsonToServer('POST', JSON.stringify({ section }), `/products/${permalink}/threads`);
 
 export const requestReworkOfSelectedText = async (
   permalink: string,
@@ -56,5 +56,5 @@ export const requestReworkOfSelectedText = async (
     selected_text,
     ask,
   };
-  return patchJSONTo(JSON.stringify(payload), `/products/${permalink}/threads/${section}`);
+  return sendJsonToServer('PATCH', JSON.stringify(payload), `/products/${permalink}/threads/${section}`);
 };
