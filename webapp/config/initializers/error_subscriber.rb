@@ -3,12 +3,13 @@ require "json"
 class ErrorSubscriber
   def report(error, handled:, severity:, context:, source: nil)
     log_message = JSON.dump({
-      error: error,
+      error_message: error,
       error_class: error.class,
       handled: handled,
       severity: severity,
-      context: context,
       source: source,
+      context: context,
+      backtrace: error.backtrace
     })
 
     # severity can be :error, :warning, :info

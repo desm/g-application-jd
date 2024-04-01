@@ -28,6 +28,6 @@ Rails.application.routes.draw do
   post "links/:id" => "links#update", as: :links_update
 
   resources :products, only: [] do
-    resources :threads, only: [:create]
+    resources :threads, only: [:create, :update]
   end
 end

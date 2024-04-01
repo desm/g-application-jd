@@ -1,0 +1,918 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/messages
+    body:
+      encoding: UTF-8
+      string: '{"role":"user","content":"This is the name and description of a digital
+        product that is being sold on gumroad.com. Gumroad.com is an online platform
+        that allows individual creators and businesses to sell their products directly
+        to consumers. It supports a wide range of digital products, including but
+        not limited to ebooks, software, music, and art assets like brush sets for
+        digital painting programs.\n\nProduct name: Foliage \u0026 Grass Brushset
+        (Photoshop/Procreate)\n\nFull product description: So happy to release this
+        set at long last! Tips and contributions welcome if you''re able to and wish
+        to!-Works with Photoshop CC and Procreate-125+ Brushes-3 hours of video content
+        with full voiceover -Royalty free, use with any personal, school, or professional
+        work. Remix, edit, and recreate brushes to your liking. -Due to popular request,
+        transparent PNG files of the brush tips have been added.I created these brushes
+        to speed up my own process for laying down foliage, as well as to help anyone
+        else who''s looking to do the same! I also hoped to provide a brush settings
+        framework for anyone who wants to create a style-specific original set and
+        copy the settings over. The video content is designed to explain the purpose
+        of each brush and give a framework for how it might be used in a painting,
+        as well as how to replicate the major brush archetypes used here.Special thanks
+        to Matt Hubel who went through and perfected the brush settings for Procreate
+        to match the PS set.\n\nMake the following part a little bit longer: I created
+        these brushes to speed up my own process for laying down foliage, as well
+        as to help anyone else who''s looking to do the same! I also hoped to provide
+        a brush settings framework for anyone who wants to create a style-specific
+        original set and copy the settings over.\n\nYour response should only contain
+        the result of the rewrite.\n"}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:37 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_dfd139598bd6d52527100a068f6edf7a
+      Openai-Processing-Ms:
+      - '117'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=gjO0.ROUHh6bKTfYB8bYv510XGarpwinKd2evWu5q90-1711979617-1.0.1.1-mDCKj0mawQfaJHNzCuA9eAOQ82.LsuPxuaCRn35rJG85fCY8thDBdwH5D3DkIOojzstQDaEN8hjCtofVin1D6A;
+        path=/; expires=Mon, 01-Apr-24 14:23:37 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=qVKeaUKS3Hi4GOpQg_lO3mim2iRErOomSkqyhODx1L4-1711979617429-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d910ffca3139c3-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJpZCI6ICJtc2dfTDNSMXZxZU1lR0QzS0EyRUhiTzdBSlVmIiwKICAib2JqZWN0IjogInRocmVhZC5tZXNzYWdlIiwKICAiY3JlYXRlZF9hdCI6IDE3MTE5Nzk2MTcsCiAgImFzc2lzdGFudF9pZCI6IG51bGwsCiAgInRocmVhZF9pZCI6ICJ0aHJlYWRfdEdlNGlnOXhtQWNYeFhNZjBIN0o0bnIzIiwKICAicnVuX2lkIjogbnVsbCwKICAicm9sZSI6ICJ1c2VyIiwKICAiY29udGVudCI6IFsKICAgIHsKICAgICAgInR5cGUiOiAidGV4dCIsCiAgICAgICJ0ZXh0IjogewogICAgICAgICJ2YWx1ZSI6ICJUaGlzIGlzIHRoZSBuYW1lIGFuZCBkZXNjcmlwdGlvbiBvZiBhIGRpZ2l0YWwgcHJvZHVjdCB0aGF0IGlzIGJlaW5nIHNvbGQgb24gZ3Vtcm9hZC5jb20uIEd1bXJvYWQuY29tIGlzIGFuIG9ubGluZSBwbGF0Zm9ybSB0aGF0IGFsbG93cyBpbmRpdmlkdWFsIGNyZWF0b3JzIGFuZCBidXNpbmVzc2VzIHRvIHNlbGwgdGhlaXIgcHJvZHVjdHMgZGlyZWN0bHkgdG8gY29uc3VtZXJzLiBJdCBzdXBwb3J0cyBhIHdpZGUgcmFuZ2Ugb2YgZGlnaXRhbCBwcm9kdWN0cywgaW5jbHVkaW5nIGJ1dCBub3QgbGltaXRlZCB0byBlYm9va3MsIHNvZnR3YXJlLCBtdXNpYywgYW5kIGFydCBhc3NldHMgbGlrZSBicnVzaCBzZXRzIGZvciBkaWdpdGFsIHBhaW50aW5nIHByb2dyYW1zLlxuXG5Qcm9kdWN0IG5hbWU6IEZvbGlhZ2UgJiBHcmFzcyBCcnVzaHNldCAoUGhvdG9zaG9wL1Byb2NyZWF0ZSlcblxuRnVsbCBwcm9kdWN0IGRlc2NyaXB0aW9uOiBTbyBoYXBweSB0byByZWxlYXNlIHRoaXMgc2V0IGF0IGxvbmcgbGFzdCEgVGlwcyBhbmQgY29udHJpYnV0aW9ucyB3ZWxjb21lIGlmIHlvdSdyZSBhYmxlIHRvIGFuZCB3aXNoIHRvIS1Xb3JrcyB3aXRoIFBob3Rvc2hvcCBDQyBhbmQgUHJvY3JlYXRlLTEyNSsgQnJ1c2hlcy0zIGhvdXJzIG9mIHZpZGVvIGNvbnRlbnQgd2l0aCBmdWxsIHZvaWNlb3ZlcsKgLVJveWFsdHkgZnJlZSwgdXNlIHdpdGggYW55IHBlcnNvbmFsLCBzY2hvb2wsIG9yIHByb2Zlc3Npb25hbCB3b3JrLiBSZW1peCwgZWRpdCwgYW5kIHJlY3JlYXRlIGJydXNoZXMgdG8geW91ciBsaWtpbmcuwqAtRHVlIHRvIHBvcHVsYXIgcmVxdWVzdCwgdHJhbnNwYXJlbnQgUE5HIGZpbGVzIG9mIHRoZSBicnVzaCB0aXBzIGhhdmUgYmVlbiBhZGRlZC5JIGNyZWF0ZWQgdGhlc2UgYnJ1c2hlcyB0byBzcGVlZCB1cCBteSBvd24gcHJvY2VzcyBmb3IgbGF5aW5nIGRvd24gZm9saWFnZSwgYXMgd2VsbCBhcyB0byBoZWxwIGFueW9uZSBlbHNlIHdobydzIGxvb2tpbmcgdG8gZG8gdGhlIHNhbWUhIEkgYWxzbyBob3BlZCB0byBwcm92aWRlIGEgYnJ1c2ggc2V0dGluZ3MgZnJhbWV3b3JrIGZvciBhbnlvbmUgd2hvIHdhbnRzIHRvIGNyZWF0ZSBhIHN0eWxlLXNwZWNpZmljIG9yaWdpbmFsIHNldCBhbmQgY29weSB0aGUgc2V0dGluZ3Mgb3Zlci7CoFRoZSB2aWRlbyBjb250ZW50IGlzIGRlc2lnbmVkIHRvIGV4cGxhaW4gdGhlIHB1cnBvc2Ugb2YgZWFjaCBicnVzaCBhbmQgZ2l2ZSBhIGZyYW1ld29yayBmb3IgaG93IGl0IG1pZ2h0IGJlIHVzZWQgaW4gYSBwYWludGluZywgYXMgd2VsbCBhcyBob3cgdG8gcmVwbGljYXRlIHRoZSBtYWpvciBicnVzaCBhcmNoZXR5cGVzIHVzZWQgaGVyZS5TcGVjaWFsIHRoYW5rcyB0byBNYXR0IEh1YmVsIHdobyB3ZW50IHRocm91Z2ggYW5kIHBlcmZlY3RlZCB0aGUgYnJ1c2ggc2V0dGluZ3MgZm9yIFByb2NyZWF0ZSB0byBtYXRjaCB0aGUgUFMgc2V0LlxuXG5NYWtlIHRoZSBmb2xsb3dpbmcgcGFydCBhIGxpdHRsZSBiaXQgbG9uZ2VyOiBJIGNyZWF0ZWQgdGhlc2UgYnJ1c2hlcyB0byBzcGVlZCB1cCBteSBvd24gcHJvY2VzcyBmb3IgbGF5aW5nIGRvd24gZm9saWFnZSwgYXMgd2VsbCBhcyB0byBoZWxwIGFueW9uZSBlbHNlIHdobydzIGxvb2tpbmcgdG8gZG8gdGhlIHNhbWUhIEkgYWxzbyBob3BlZCB0byBwcm92aWRlIGEgYnJ1c2ggc2V0dGluZ3MgZnJhbWV3b3JrIGZvciBhbnlvbmUgd2hvIHdhbnRzIHRvIGNyZWF0ZSBhIHN0eWxlLXNwZWNpZmljIG9yaWdpbmFsIHNldCBhbmQgY29weSB0aGUgc2V0dGluZ3Mgb3Zlci5cblxuWW91ciByZXNwb25zZSBzaG91bGQgb25seSBjb250YWluIHRoZSByZXN1bHQgb2YgdGhlIHJld3JpdGUuXG4iLAogICAgICAgICJhbm5vdGF0aW9ucyI6IFtdCiAgICAgIH0KICAgIH0KICBdLAogICJmaWxlX2lkcyI6IFtdLAogICJtZXRhZGF0YSI6IHt9Cn0=
+  recorded_at: Mon, 01 Apr 2024 13:53:37 GMT
+- request:
+    method: post
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs
+    body:
+      encoding: UTF-8
+      string: '{"assistant_id":"asst_WIrbrZvIEWPWyI4Y3XczBniu"}'
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:38 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_a74a4d4faf9bbc21c6ba0924c3560ab4
+      Openai-Processing-Ms:
+      - '301'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=JlHBsiNu4aeif7.xdJHAjUz3VjUOClNWLkJwUTdjm0c-1711979618-1.0.1.1-nIc0VEEp6khXYF08LIYht.pR6rclrwFNHtIPeKcgZNReOLbq9pHMBpr5SMS7BmcdQTlhM3RCaQzj.PMUiBu2Ow;
+        path=/; expires=Mon, 01-Apr-24 14:23:38 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=jgC4htqYl2hHmQndPrTHoEqisDMrR6jOsVUlPukjgNE-1711979618011-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d91102388fa234-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "object": "thread.run",
+          "created_at": 1711979617,
+          "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+          "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+          "status": "queued",
+          "started_at": null,
+          "expires_at": 1711980217,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "required_action": null,
+          "last_error": null,
+          "model": "gpt-4",
+          "instructions": "You are to help creators on the Gumroad.com platform write product descriptions. ",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {},
+          "temperature": 1.0,
+          "usage": null
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:38 GMT
+- request:
+    method: get
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:38 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_4fa6da22d8d06e060fb5740bf17fd0ae
+      Openai-Processing-Ms:
+      - '94'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=DtJgoTUJsMyPdpTPfWNKfZo_USu6lOIl8zS4Rs0ksxw-1711979618-1.0.1.1-Bkh6sJGo8fv4esotogAm0IvY14TgMz.vX8TMbZWltR2s9GxtiI3Oq9MyX3zBWWhY_kiWcVk7pvGo6WAol0Cq7A;
+        path=/; expires=Mon, 01-Apr-24 14:23:38 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=XJgh29N63VuUCrVdRqUIiN3sXUdjGhkOjAwmLnVKVWM-1711979618442-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d911064f53a223-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "object": "thread.run",
+          "created_at": 1711979617,
+          "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+          "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+          "status": "in_progress",
+          "started_at": 1711979618,
+          "expires_at": 1711980217,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "required_action": null,
+          "last_error": null,
+          "model": "gpt-4",
+          "instructions": "You are to help creators on the Gumroad.com platform write product descriptions. ",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {},
+          "temperature": 1.0,
+          "usage": null
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:38 GMT
+- request:
+    method: get
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:39 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_99ef8c41d9f478b025cfaedf94964088
+      Openai-Processing-Ms:
+      - '38'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=oIoAohKOs11hxDtBNRoAuWufGkgeRudz1J00vhk_8X8-1711979619-1.0.1.1-6qAQUZE3HF8ajUvnbu2c7pIfxUgo5Ygo2Sq67NyE0q2iqehh9DqiUVlxwkjdiCs106n2RlHoUWMqCQX3qunxRg;
+        path=/; expires=Mon, 01-Apr-24 14:23:39 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=53r1SCt9CPpvwdyoUkPJakXG40RUxe7cyAhApsLdn_I-1711979619831-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d9110f4df236af-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "object": "thread.run",
+          "created_at": 1711979617,
+          "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+          "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+          "status": "in_progress",
+          "started_at": 1711979618,
+          "expires_at": 1711980217,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "required_action": null,
+          "last_error": null,
+          "model": "gpt-4",
+          "instructions": "You are to help creators on the Gumroad.com platform write product descriptions. ",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {},
+          "temperature": 1.0,
+          "usage": null
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:39 GMT
+- request:
+    method: get
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:41 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_d09844ff356810c293e7f59efad86db3
+      Openai-Processing-Ms:
+      - '45'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=yOUc.093WY_zd9sZrpHO.yRLU5CDQxyV4r8XF6qoJf4-1711979621-1.0.1.1-h.EJrzLdMvU5.Df738xj83W42AKvI50FU5vwIDqIh1HP3xW6OVYUZdqTX_Ct4KzkzfZ2Go8DijKzAWsG8xdYIA;
+        path=/; expires=Mon, 01-Apr-24 14:23:41 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=jqMV3tbx_mzea0z62ahlS3o9GkddZ65NFzwUl7LlZVU-1711979621270-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d91117fa4839fd-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "object": "thread.run",
+          "created_at": 1711979617,
+          "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+          "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+          "status": "in_progress",
+          "started_at": 1711979618,
+          "expires_at": 1711980217,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "required_action": null,
+          "last_error": null,
+          "model": "gpt-4",
+          "instructions": "You are to help creators on the Gumroad.com platform write product descriptions. ",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {},
+          "temperature": 1.0,
+          "usage": null
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:41 GMT
+- request:
+    method: get
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:42 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_ec26d11aa1edb0d027d27c3053475b5b
+      Openai-Processing-Ms:
+      - '49'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=.fpM2bGGV5IloUlNuOk1tN5QWd57aGhWBhfbOGpuiG0-1711979622-1.0.1.1-ZlkkXpH7nYWaUsxuH18rWc3T7egMDc46lUmta5eF4Pb2TzNDorMi21YQsr02di6Z3AlqSV.nVw6Mn2iCF1gbRw;
+        path=/; expires=Mon, 01-Apr-24 14:23:42 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=84_qW8_8_KaWH_yllQvWZ_uiQnZKfBf_kNEnWdfansw-1711979622650-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d911209eb736cc-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "object": "thread.run",
+          "created_at": 1711979617,
+          "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+          "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+          "status": "in_progress",
+          "started_at": 1711979618,
+          "expires_at": 1711980217,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "required_action": null,
+          "last_error": null,
+          "model": "gpt-4",
+          "instructions": "You are to help creators on the Gumroad.com platform write product descriptions. ",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {},
+          "temperature": 1.0,
+          "usage": null
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:42 GMT
+- request:
+    method: get
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:44 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_ef45194ab6aa1e35d6c2ac2c43915018
+      Openai-Processing-Ms:
+      - '37'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=VG_w55kQ3egGvSQHU4D3kgdQ9mLqMrZK95JHUCHipT4-1711979624-1.0.1.1-hDlnAZE34CAep7.NpKUUpJxdDEaTJA4i36hbNumHqRa_NPZj_SU6pPKAdkDHLu.r9GJF7Fcl9x9KaV6SH5WDbw;
+        path=/; expires=Mon, 01-Apr-24 14:23:44 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=m5j9uY_5Ost20WaF5e8I1jwB5mUzJGgvw3h9SB3scdE-1711979624014-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d911294dcc38e1-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "object": "thread.run",
+          "created_at": 1711979617,
+          "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+          "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+          "status": "in_progress",
+          "started_at": 1711979618,
+          "expires_at": 1711980217,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "required_action": null,
+          "last_error": null,
+          "model": "gpt-4",
+          "instructions": "You are to help creators on the Gumroad.com platform write product descriptions. ",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {},
+          "temperature": 1.0,
+          "usage": null
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:44 GMT
+- request:
+    method: get
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:45 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_c3143ebd9e2d5dc7da941c1b826d6fe1
+      Openai-Processing-Ms:
+      - '46'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=Qcw5jl7f330GeObQ3VuchjPFs7wLTJqlGSn0J3GSsio-1711979625-1.0.1.1-2a7LK4SpqdBMqriMOUW48oXigpLaRqXu0IQYp4IzCNzU1EDdF8wBfHHRzL8S6JEbFygZdtQdfcu9iVnbpZaG.w;
+        path=/; expires=Mon, 01-Apr-24 14:23:45 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=aQCGAbaR3bt4RQTy_CzoJBbXAqvrfUn3.t5bvWUZBAs-1711979625337-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d91131980b36b4-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "object": "thread.run",
+          "created_at": 1711979617,
+          "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+          "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+          "status": "in_progress",
+          "started_at": 1711979618,
+          "expires_at": 1711980217,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "required_action": null,
+          "last_error": null,
+          "model": "gpt-4",
+          "instructions": "You are to help creators on the Gumroad.com platform write product descriptions. ",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {},
+          "temperature": 1.0,
+          "usage": null
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:45 GMT
+- request:
+    method: get
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:46 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_7c06351222457bb53356f5cdd7c12b0b
+      Openai-Processing-Ms:
+      - '44'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=Z_hCFnDNp9deHkdXqWUjoJyHYq_3SpKSmRbymo9C8oE-1711979626-1.0.1.1-bSNrXSqUkG4pZvPrkcxIYkHcpmLzJdQbUmaZBFGSfcy1mPNQ6NUOw3G.Dj0wOLD3eJOpns3Mw2rJsqPd7oB3hg;
+        path=/; expires=Mon, 01-Apr-24 14:23:46 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=ASCvT8FYO5mRNA3SCHZSF8OX1Vy7BmxaalgGSTexnpA-1711979626756-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d9113a1e0c39f7-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "object": "thread.run",
+          "created_at": 1711979617,
+          "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+          "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+          "status": "in_progress",
+          "started_at": 1711979618,
+          "expires_at": 1711980217,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": null,
+          "required_action": null,
+          "last_error": null,
+          "model": "gpt-4",
+          "instructions": "You are to help creators on the Gumroad.com platform write product descriptions. ",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {},
+          "temperature": 1.0,
+          "usage": null
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:46 GMT
+- request:
+    method: get
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:48 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_7626a383e1dc2ca200fadffcd5ccd764
+      Openai-Processing-Ms:
+      - '50'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=nKuBqlO5op15rbNBK7cLpdcv3f5n8.WFDsOpb374Wak-1711979628-1.0.1.1-zRkcDivuRHsMXkcCE9OxXtpGtWRNd6S2p3G.U_IndlYDpFGD0xXS2pwHWadgIvw6CWJxat6iNQHrIMIam9_HvA;
+        path=/; expires=Mon, 01-Apr-24 14:23:48 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=NJDbTUyl.deP5erquuEHLW3_5z7157yvDWaAQGyw2UQ-1711979628150-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d911430ccc5437-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "object": "thread.run",
+          "created_at": 1711979617,
+          "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+          "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+          "status": "completed",
+          "started_at": 1711979618,
+          "expires_at": null,
+          "cancelled_at": null,
+          "failed_at": null,
+          "completed_at": 1711979627,
+          "required_action": null,
+          "last_error": null,
+          "model": "gpt-4",
+          "instructions": "You are to help creators on the Gumroad.com platform write product descriptions. ",
+          "tools": [],
+          "file_ids": [],
+          "metadata": {},
+          "temperature": 1.0,
+          "usage": {
+            "prompt_tokens": 4847,
+            "completion_tokens": 150,
+            "total_tokens": 4997
+          }
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:48 GMT
+- request:
+    method: get
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/messages?limit=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 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
+      Openai-Beta:
+      - assistants=v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 01 Apr 2024 13:53:48 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Version:
+      - '2020-10-01'
+      Openai-Organization:
+      - user-5cvmvgsbsiwgm7e3scmxkyt3
+      X-Request-Id:
+      - req_fc9ff9f609a7ee3efaf648c81d85f7ca
+      Openai-Processing-Ms:
+      - '87'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=.kVxFHjxzkqjc1rzrpQ3uIi7GkTfvD8zb2.n5lmIwF4-1711979628-1.0.1.1-dOK_7EHBtVtNMo6ZGMe.W5D0KDX.w_cfjTj3agWRDtZU4G.Fw1JKV7V9vI4qPINuI0lJ.SOWX65ePoz7Ul8RIA;
+        path=/; expires=Mon, 01-Apr-24 14:23:48 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=8YuGMEZ7x.KKzHm4EpB4L5.g8OkAs0dNLAk5KJld.Gc-1711979628514-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 86d9114539b85413-YYZ
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "object": "list",
+          "data": [
+            {
+              "id": "msg_K2P1hKSiVFuJgJPs31LySi0W",
+              "object": "thread.message",
+              "created_at": 1711979619,
+              "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
+              "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
+              "run_id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+              "role": "assistant",
+              "content": [
+                {
+                  "type": "text",
+                  "text": {
+                    "value": "Born out of my desire to streamline the intricate process of illustrating foliage in my digital art, these brushes serve as a valuable tool not only to me, but also to fellow artists wishing to enhance their workflow. My intent was to accelerate both my personal work rate and provide a solution to those facing similar challenges in their artistic creation process. My aspiration goes beyond facilitating speed; I hoped to create a malleable brush settings framework that allows for the development of original, style-specific sets. It supports artists in tailoring the settings, empowering them to modify and reproduce the tools with ease, therefore linking their unique artistic finger prints to their creations. This amalgamation of efficiency and customization is a testament to the versatility I envisioned when creating this brushset.",
+                    "annotations": []
+                  }
+                }
+              ],
+              "file_ids": [],
+              "metadata": {}
+            }
+          ],
+          "first_id": "msg_K2P1hKSiVFuJgJPs31LySi0W",
+          "last_id": "msg_K2P1hKSiVFuJgJPs31LySi0W",
+          "has_more": true
+        }
+  recorded_at: Mon, 01 Apr 2024 13:53:48 GMT
+recorded_with: VCR 6.2.0
