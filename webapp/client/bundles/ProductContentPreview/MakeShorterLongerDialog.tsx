@@ -1,10 +1,19 @@
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { applicationState, closeDialog } from './stateStores/application';
+import { changeEditorState, textEditorState } from './stateStores/textEditor';
 
 export interface Props {}
 
 const MakeShorterLongerDialog: FunctionComponent<Props> = (props: Props) => {
+  const replaceButtonClickHandler = (e) => {
+    closeDialog('makeShorterLongerDialog');
+    changeEditorState(
+      'basicTab',
+      textEditorState.basicTab.editorView.state.tr.insertText(applicationState.reworkedText)
+    );
+  };
+
   return (
     <dialog
       aria-labelledby=":r0:"
@@ -37,15 +46,28 @@ const MakeShorterLongerDialog: FunctionComponent<Props> = (props: Props) => {
         <>
           <h4 style={{ marginBottom: '1em' }}>Original Text:</h4>
           <h4 style={{ marginBottom: '1em' }}>{applicationState.props.makeShorterLongerDialog.text}</h4>
-          <h4 style={{ marginBottom: '1em' }}>
-            {applicationState.props.makeShorterLongerDialog.mode === 'shorter' ? 'Shorter' : 'Longer'} Text:
-          </h4>
-          <h4 style={{ marginBottom: '1em' }}>{applicationState.reworkedText}</h4>
+          {applicationState.reworkedText ? (
+            <>
+              <h4 style={{ marginBottom: '1em' }}>
+                {applicationState.props.makeShorterLongerDialog.mode === 'shorter' ? 'Shorter Text:' : 'Longer Text:'}
+              </h4>
+              <h4 style={{ marginBottom: '1em' }}>{applicationState.reworkedText}</h4>
+            </>
+          ) : (
+            <>
+              <h4 style={{ marginBottom: '1em' }}>Oops...</h4>
+              <h4 style={{ marginBottom: '1em' }}>Rate limit exceeded. Please try again in a few seconds.</h4>
+            </>
+          )}
         </>
       )}
       <footer>
         <button onClick={() => closeDialog('makeShorterLongerDialog')}>Cancel</button>
-        {!applicationState.flags.isRequestReworkOfSelectedTextPending && <button className="accent">Replace</button>}
+        {!applicationState.flags.isRequestReworkOfSelectedTextPending && applicationState.reworkedText && (
+          <button className="accent" onClick={replaceButtonClickHandler}>
+            Replace
+          </button>
+        )}
       </footer>
     </dialog>
   );
