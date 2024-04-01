@@ -10,7 +10,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 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
+      - Bearer ***OPENAI_ACCESS_TOKEN***
       Openai-Beta:
       - assistants=v1
       Accept-Encoding:
@@ -25,7 +25,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 30 Mar 2024 12:56:26 GMT
+      - Mon, 01 Apr 2024 18:56:57 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -37,33 +37,33 @@ http_interactions:
       Openai-Organization:
       - user-5cvmvgsbsiwgm7e3scmxkyt3
       X-Request-Id:
-      - req_072db94d4e07686cd7620f3dcd2c8246
+      - req_7077c0c83538b7ddc62aae57dc8cf90c
       Openai-Processing-Ms:
-      - '128'
+      - '28'
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=cxWmKsXPv5bDh_2MCswuGAN2iQZ3JRzxoIY_GLZc0js-1711803386-1.0.1.1-kooqoLNeHG943YtOibiy2XxFb8z.E_aRm6lgkHWvO6.BfXWCuYILkixabxtXOxwM_cmf.fQnj_58UqbSbjUDmQ;
-        path=/; expires=Sat, 30-Mar-24 13:26:26 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=bgxGgiMDeYBWrBnerMDKbQnj75pM5vcB4dkUpNyBN0Q-1711997817-1.0.1.1-mLkk0ta2jlSWrnFpz3BLUz67xfXPqF85kgtbMSYXV02q7RDBlS0BmfO6Ehlct31kIqa.6w82agcL2sdwH9F9VQ;
+        path=/; expires=Mon, 01-Apr-24 19:26:57 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=fx3yL0We7CvbQMi4Z4lNEs.QRGazPp_opHusuJzlsIw-1711803386440-0.0.1.1-604800000;
+      - _cfuvid=f_sMnguzYkxWnUvrRDO68bhC5kGkNGUZp2zNUFQU4MY-1711997817797-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 86c8427c0a035437-YYZ
+      - 86dacd589a4036c5-YYZ
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |-
         {
-          "id": "thread_92T6xfK8AWfd55aGiwLnS9MQ",
+          "id": "thread_NnZTSMrZ1MhNqwveOI2OaqqP",
           "object": "thread",
-          "created_at": 1711803386,
+          "created_at": 1711997817,
           "metadata": {}
         }
-  recorded_at: Sat, 30 Mar 2024 12:56:26 GMT
+  recorded_at: Mon, 01 Apr 2024 18:56:57 GMT
 recorded_with: VCR 6.2.0

@@ -34,7 +34,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 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
+      - Bearer ***OPENAI_ACCESS_TOKEN***
       Openai-Beta:
       - assistants=v1
       Accept-Encoding:
@@ -49,7 +49,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 01 Apr 2024 13:53:37 GMT
+      - Mon, 01 Apr 2024 19:01:22 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -61,7 +61,7 @@ http_interactions:
       Openai-Organization:
       - user-5cvmvgsbsiwgm7e3scmxkyt3
       X-Request-Id:
-      - req_dfd139598bd6d52527100a068f6edf7a
+      - req_b5eda6eddae92f017e4da63c7152f5f5
       Openai-Processing-Ms:
       - '117'
       Strict-Transport-Security:
@@ -69,22 +69,22 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=gjO0.ROUHh6bKTfYB8bYv510XGarpwinKd2evWu5q90-1711979617-1.0.1.1-mDCKj0mawQfaJHNzCuA9eAOQ82.LsuPxuaCRn35rJG85fCY8thDBdwH5D3DkIOojzstQDaEN8hjCtofVin1D6A;
-        path=/; expires=Mon, 01-Apr-24 14:23:37 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=oDjWKjOexyK14P6AqwZla7p_nMBCIfgvbVPgLz9nj5w-1711998082-1.0.1.1-flIunapxDnTkXzSD8sWOefTVH7buaumYF_qC70OCKYSJyRkx9CFPBhEI0.HKsI.lKn8kYKiYR5D3UWAyUkLEkg;
+        path=/; expires=Mon, 01-Apr-24 19:31:22 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=qVKeaUKS3Hi4GOpQg_lO3mim2iRErOomSkqyhODx1L4-1711979617429-0.0.1.1-604800000;
+      - _cfuvid=JBlKA1DQ34kqjg0.F03YrdtVgrRV5MoiOurFQn2Lghs-1711998082620-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 86d910ffca3139c3-YYZ
+      - 86dad3cedcfd36b5-YYZ
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        ewogICJpZCI6ICJtc2dfTDNSMXZxZU1lR0QzS0EyRUhiTzdBSlVmIiwKICAib2JqZWN0IjogInRocmVhZC5tZXNzYWdlIiwKICAiY3JlYXRlZF9hdCI6IDE3MTE5Nzk2MTcsCiAgImFzc2lzdGFudF9pZCI6IG51bGwsCiAgInRocmVhZF9pZCI6ICJ0aHJlYWRfdEdlNGlnOXhtQWNYeFhNZjBIN0o0bnIzIiwKICAicnVuX2lkIjogbnVsbCwKICAicm9sZSI6ICJ1c2VyIiwKICAiY29udGVudCI6IFsKICAgIHsKICAgICAgInR5cGUiOiAidGV4dCIsCiAgICAgICJ0ZXh0IjogewogICAgICAgICJ2YWx1ZSI6ICJUaGlzIGlzIHRoZSBuYW1lIGFuZCBkZXNjcmlwdGlvbiBvZiBhIGRpZ2l0YWwgcHJvZHVjdCB0aGF0IGlzIGJlaW5nIHNvbGQgb24gZ3Vtcm9hZC5jb20uIEd1bXJvYWQuY29tIGlzIGFuIG9ubGluZSBwbGF0Zm9ybSB0aGF0IGFsbG93cyBpbmRpdmlkdWFsIGNyZWF0b3JzIGFuZCBidXNpbmVzc2VzIHRvIHNlbGwgdGhlaXIgcHJvZHVjdHMgZGlyZWN0bHkgdG8gY29uc3VtZXJzLiBJdCBzdXBwb3J0cyBhIHdpZGUgcmFuZ2Ugb2YgZGlnaXRhbCBwcm9kdWN0cywgaW5jbHVkaW5nIGJ1dCBub3QgbGltaXRlZCB0byBlYm9va3MsIHNvZnR3YXJlLCBtdXNpYywgYW5kIGFydCBhc3NldHMgbGlrZSBicnVzaCBzZXRzIGZvciBkaWdpdGFsIHBhaW50aW5nIHByb2dyYW1zLlxuXG5Qcm9kdWN0IG5hbWU6IEZvbGlhZ2UgJiBHcmFzcyBCcnVzaHNldCAoUGhvdG9zaG9wL1Byb2NyZWF0ZSlcblxuRnVsbCBwcm9kdWN0IGRlc2NyaXB0aW9uOiBTbyBoYXBweSB0byByZWxlYXNlIHRoaXMgc2V0IGF0IGxvbmcgbGFzdCEgVGlwcyBhbmQgY29udHJpYnV0aW9ucyB3ZWxjb21lIGlmIHlvdSdyZSBhYmxlIHRvIGFuZCB3aXNoIHRvIS1Xb3JrcyB3aXRoIFBob3Rvc2hvcCBDQyBhbmQgUHJvY3JlYXRlLTEyNSsgQnJ1c2hlcy0zIGhvdXJzIG9mIHZpZGVvIGNvbnRlbnQgd2l0aCBmdWxsIHZvaWNlb3ZlcsKgLVJveWFsdHkgZnJlZSwgdXNlIHdpdGggYW55IHBlcnNvbmFsLCBzY2hvb2wsIG9yIHByb2Zlc3Npb25hbCB3b3JrLiBSZW1peCwgZWRpdCwgYW5kIHJlY3JlYXRlIGJydXNoZXMgdG8geW91ciBsaWtpbmcuwqAtRHVlIHRvIHBvcHVsYXIgcmVxdWVzdCwgdHJhbnNwYXJlbnQgUE5HIGZpbGVzIG9mIHRoZSBicnVzaCB0aXBzIGhhdmUgYmVlbiBhZGRlZC5JIGNyZWF0ZWQgdGhlc2UgYnJ1c2hlcyB0byBzcGVlZCB1cCBteSBvd24gcHJvY2VzcyBmb3IgbGF5aW5nIGRvd24gZm9saWFnZSwgYXMgd2VsbCBhcyB0byBoZWxwIGFueW9uZSBlbHNlIHdobydzIGxvb2tpbmcgdG8gZG8gdGhlIHNhbWUhIEkgYWxzbyBob3BlZCB0byBwcm92aWRlIGEgYnJ1c2ggc2V0dGluZ3MgZnJhbWV3b3JrIGZvciBhbnlvbmUgd2hvIHdhbnRzIHRvIGNyZWF0ZSBhIHN0eWxlLXNwZWNpZmljIG9yaWdpbmFsIHNldCBhbmQgY29weSB0aGUgc2V0dGluZ3Mgb3Zlci7CoFRoZSB2aWRlbyBjb250ZW50IGlzIGRlc2lnbmVkIHRvIGV4cGxhaW4gdGhlIHB1cnBvc2Ugb2YgZWFjaCBicnVzaCBhbmQgZ2l2ZSBhIGZyYW1ld29yayBmb3IgaG93IGl0IG1pZ2h0IGJlIHVzZWQgaW4gYSBwYWludGluZywgYXMgd2VsbCBhcyBob3cgdG8gcmVwbGljYXRlIHRoZSBtYWpvciBicnVzaCBhcmNoZXR5cGVzIHVzZWQgaGVyZS5TcGVjaWFsIHRoYW5rcyB0byBNYXR0IEh1YmVsIHdobyB3ZW50IHRocm91Z2ggYW5kIHBlcmZlY3RlZCB0aGUgYnJ1c2ggc2V0dGluZ3MgZm9yIFByb2NyZWF0ZSB0byBtYXRjaCB0aGUgUFMgc2V0LlxuXG5NYWtlIHRoZSBmb2xsb3dpbmcgcGFydCBhIGxpdHRsZSBiaXQgbG9uZ2VyOiBJIGNyZWF0ZWQgdGhlc2UgYnJ1c2hlcyB0byBzcGVlZCB1cCBteSBvd24gcHJvY2VzcyBmb3IgbGF5aW5nIGRvd24gZm9saWFnZSwgYXMgd2VsbCBhcyB0byBoZWxwIGFueW9uZSBlbHNlIHdobydzIGxvb2tpbmcgdG8gZG8gdGhlIHNhbWUhIEkgYWxzbyBob3BlZCB0byBwcm92aWRlIGEgYnJ1c2ggc2V0dGluZ3MgZnJhbWV3b3JrIGZvciBhbnlvbmUgd2hvIHdhbnRzIHRvIGNyZWF0ZSBhIHN0eWxlLXNwZWNpZmljIG9yaWdpbmFsIHNldCBhbmQgY29weSB0aGUgc2V0dGluZ3Mgb3Zlci5cblxuWW91ciByZXNwb25zZSBzaG91bGQgb25seSBjb250YWluIHRoZSByZXN1bHQgb2YgdGhlIHJld3JpdGUuXG4iLAogICAgICAgICJhbm5vdGF0aW9ucyI6IFtdCiAgICAgIH0KICAgIH0KICBdLAogICJmaWxlX2lkcyI6IFtdLAogICJtZXRhZGF0YSI6IHt9Cn0=
-  recorded_at: Mon, 01 Apr 2024 13:53:37 GMT
+        ewogICJpZCI6ICJtc2dfWmo5aXlGelFCRVdEOFc3TTJlZUJnNkN5IiwKICAib2JqZWN0IjogInRocmVhZC5tZXNzYWdlIiwKICAiY3JlYXRlZF9hdCI6IDE3MTE5OTgwODIsCiAgImFzc2lzdGFudF9pZCI6IG51bGwsCiAgInRocmVhZF9pZCI6ICJ0aHJlYWRfdEdlNGlnOXhtQWNYeFhNZjBIN0o0bnIzIiwKICAicnVuX2lkIjogbnVsbCwKICAicm9sZSI6ICJ1c2VyIiwKICAiY29udGVudCI6IFsKICAgIHsKICAgICAgInR5cGUiOiAidGV4dCIsCiAgICAgICJ0ZXh0IjogewogICAgICAgICJ2YWx1ZSI6ICJUaGlzIGlzIHRoZSBuYW1lIGFuZCBkZXNjcmlwdGlvbiBvZiBhIGRpZ2l0YWwgcHJvZHVjdCB0aGF0IGlzIGJlaW5nIHNvbGQgb24gZ3Vtcm9hZC5jb20uIEd1bXJvYWQuY29tIGlzIGFuIG9ubGluZSBwbGF0Zm9ybSB0aGF0IGFsbG93cyBpbmRpdmlkdWFsIGNyZWF0b3JzIGFuZCBidXNpbmVzc2VzIHRvIHNlbGwgdGhlaXIgcHJvZHVjdHMgZGlyZWN0bHkgdG8gY29uc3VtZXJzLiBJdCBzdXBwb3J0cyBhIHdpZGUgcmFuZ2Ugb2YgZGlnaXRhbCBwcm9kdWN0cywgaW5jbHVkaW5nIGJ1dCBub3QgbGltaXRlZCB0byBlYm9va3MsIHNvZnR3YXJlLCBtdXNpYywgYW5kIGFydCBhc3NldHMgbGlrZSBicnVzaCBzZXRzIGZvciBkaWdpdGFsIHBhaW50aW5nIHByb2dyYW1zLlxuXG5Qcm9kdWN0IG5hbWU6IEZvbGlhZ2UgJiBHcmFzcyBCcnVzaHNldCAoUGhvdG9zaG9wL1Byb2NyZWF0ZSlcblxuRnVsbCBwcm9kdWN0IGRlc2NyaXB0aW9uOiBTbyBoYXBweSB0byByZWxlYXNlIHRoaXMgc2V0IGF0IGxvbmcgbGFzdCEgVGlwcyBhbmQgY29udHJpYnV0aW9ucyB3ZWxjb21lIGlmIHlvdSdyZSBhYmxlIHRvIGFuZCB3aXNoIHRvIS1Xb3JrcyB3aXRoIFBob3Rvc2hvcCBDQyBhbmQgUHJvY3JlYXRlLTEyNSsgQnJ1c2hlcy0zIGhvdXJzIG9mIHZpZGVvIGNvbnRlbnQgd2l0aCBmdWxsIHZvaWNlb3ZlcsKgLVJveWFsdHkgZnJlZSwgdXNlIHdpdGggYW55IHBlcnNvbmFsLCBzY2hvb2wsIG9yIHByb2Zlc3Npb25hbCB3b3JrLiBSZW1peCwgZWRpdCwgYW5kIHJlY3JlYXRlIGJydXNoZXMgdG8geW91ciBsaWtpbmcuwqAtRHVlIHRvIHBvcHVsYXIgcmVxdWVzdCwgdHJhbnNwYXJlbnQgUE5HIGZpbGVzIG9mIHRoZSBicnVzaCB0aXBzIGhhdmUgYmVlbiBhZGRlZC5JIGNyZWF0ZWQgdGhlc2UgYnJ1c2hlcyB0byBzcGVlZCB1cCBteSBvd24gcHJvY2VzcyBmb3IgbGF5aW5nIGRvd24gZm9saWFnZSwgYXMgd2VsbCBhcyB0byBoZWxwIGFueW9uZSBlbHNlIHdobydzIGxvb2tpbmcgdG8gZG8gdGhlIHNhbWUhIEkgYWxzbyBob3BlZCB0byBwcm92aWRlIGEgYnJ1c2ggc2V0dGluZ3MgZnJhbWV3b3JrIGZvciBhbnlvbmUgd2hvIHdhbnRzIHRvIGNyZWF0ZSBhIHN0eWxlLXNwZWNpZmljIG9yaWdpbmFsIHNldCBhbmQgY29weSB0aGUgc2V0dGluZ3Mgb3Zlci7CoFRoZSB2aWRlbyBjb250ZW50IGlzIGRlc2lnbmVkIHRvIGV4cGxhaW4gdGhlIHB1cnBvc2Ugb2YgZWFjaCBicnVzaCBhbmQgZ2l2ZSBhIGZyYW1ld29yayBmb3IgaG93IGl0IG1pZ2h0IGJlIHVzZWQgaW4gYSBwYWludGluZywgYXMgd2VsbCBhcyBob3cgdG8gcmVwbGljYXRlIHRoZSBtYWpvciBicnVzaCBhcmNoZXR5cGVzIHVzZWQgaGVyZS5TcGVjaWFsIHRoYW5rcyB0byBNYXR0IEh1YmVsIHdobyB3ZW50IHRocm91Z2ggYW5kIHBlcmZlY3RlZCB0aGUgYnJ1c2ggc2V0dGluZ3MgZm9yIFByb2NyZWF0ZSB0byBtYXRjaCB0aGUgUFMgc2V0LlxuXG5NYWtlIHRoZSBmb2xsb3dpbmcgcGFydCBhIGxpdHRsZSBiaXQgbG9uZ2VyOiBJIGNyZWF0ZWQgdGhlc2UgYnJ1c2hlcyB0byBzcGVlZCB1cCBteSBvd24gcHJvY2VzcyBmb3IgbGF5aW5nIGRvd24gZm9saWFnZSwgYXMgd2VsbCBhcyB0byBoZWxwIGFueW9uZSBlbHNlIHdobydzIGxvb2tpbmcgdG8gZG8gdGhlIHNhbWUhIEkgYWxzbyBob3BlZCB0byBwcm92aWRlIGEgYnJ1c2ggc2V0dGluZ3MgZnJhbWV3b3JrIGZvciBhbnlvbmUgd2hvIHdhbnRzIHRvIGNyZWF0ZSBhIHN0eWxlLXNwZWNpZmljIG9yaWdpbmFsIHNldCBhbmQgY29weSB0aGUgc2V0dGluZ3Mgb3Zlci5cblxuWW91ciByZXNwb25zZSBzaG91bGQgb25seSBjb250YWluIHRoZSByZXN1bHQgb2YgdGhlIHJld3JpdGUuXG4iLAogICAgICAgICJhbm5vdGF0aW9ucyI6IFtdCiAgICAgIH0KICAgIH0KICBdLAogICJmaWxlX2lkcyI6IFtdLAogICJtZXRhZGF0YSI6IHt9Cn0=
+  recorded_at: Mon, 01 Apr 2024 19:01:22 GMT
 - request:
     method: post
     uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs
@@ -95,7 +95,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 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
+      - Bearer ***OPENAI_ACCESS_TOKEN***
       Openai-Beta:
       - assistants=v1
       Accept-Encoding:
@@ -110,7 +110,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 01 Apr 2024 13:53:38 GMT
+      - Mon, 01 Apr 2024 19:01:23 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -122,37 +122,37 @@ http_interactions:
       Openai-Organization:
       - user-5cvmvgsbsiwgm7e3scmxkyt3
       X-Request-Id:
-      - req_a74a4d4faf9bbc21c6ba0924c3560ab4
+      - req_0e4a6fe4df6404c0f5a9e3ac506708ca
       Openai-Processing-Ms:
-      - '301'
+      - '304'
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=JlHBsiNu4aeif7.xdJHAjUz3VjUOClNWLkJwUTdjm0c-1711979618-1.0.1.1-nIc0VEEp6khXYF08LIYht.pR6rclrwFNHtIPeKcgZNReOLbq9pHMBpr5SMS7BmcdQTlhM3RCaQzj.PMUiBu2Ow;
-        path=/; expires=Mon, 01-Apr-24 14:23:38 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=1K_wkcexzKePOTj_5_iCatVpiTvnG1112S8vgxEPZ4c-1711998083-1.0.1.1-7Eshi3HdRfqyJHPzW1Gzy9y9UWRE4BFnTclY5OHQBrQohCk3WYW9vAcxfw2tT_aIJD3251qc4T2QyZ3IvhJ5eg;
+        path=/; expires=Mon, 01-Apr-24 19:31:23 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=jgC4htqYl2hHmQndPrTHoEqisDMrR6jOsVUlPukjgNE-1711979618011-0.0.1.1-604800000;
+      - _cfuvid=s.3R.54oaboRTV2U0m1G0h2S4Bwetlil3INfU0IfdDs-1711998083199-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 86d91102388fa234-YYZ
+      - 86dad3d1ace1a210-YYZ
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |-
         {
-          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "id": "run_ko6bWhZ1TSpEjdYaYSn7zSrL",
           "object": "thread.run",
-          "created_at": 1711979617,
+          "created_at": 1711998083,
           "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
           "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
           "status": "queued",
           "started_at": null,
-          "expires_at": 1711980217,
+          "expires_at": 1711998683,
           "cancelled_at": null,
           "failed_at": null,
           "completed_at": null,
@@ -166,10 +166,10 @@ http_interactions:
           "temperature": 1.0,
           "usage": null
         }
-  recorded_at: Mon, 01 Apr 2024 13:53:38 GMT
+  recorded_at: Mon, 01 Apr 2024 19:01:23 GMT
 - request:
     method: get
-    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_ko6bWhZ1TSpEjdYaYSn7zSrL
     body:
       encoding: US-ASCII
       string: ''
@@ -177,7 +177,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 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
+      - Bearer ***OPENAI_ACCESS_TOKEN***
       Openai-Beta:
       - assistants=v1
       Accept-Encoding:
@@ -192,7 +192,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 01 Apr 2024 13:53:38 GMT
+      - Mon, 01 Apr 2024 19:01:23 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -204,37 +204,37 @@ http_interactions:
       Openai-Organization:
       - user-5cvmvgsbsiwgm7e3scmxkyt3
       X-Request-Id:
-      - req_4fa6da22d8d06e060fb5740bf17fd0ae
+      - req_43f4ad11ed8ad7a7d8420743e018d875
       Openai-Processing-Ms:
-      - '94'
+      - '100'
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=DtJgoTUJsMyPdpTPfWNKfZo_USu6lOIl8zS4Rs0ksxw-1711979618-1.0.1.1-Bkh6sJGo8fv4esotogAm0IvY14TgMz.vX8TMbZWltR2s9GxtiI3Oq9MyX3zBWWhY_kiWcVk7pvGo6WAol0Cq7A;
-        path=/; expires=Mon, 01-Apr-24 14:23:38 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=7Q0vnB8g0ZAcdoi2GFWM.Sfqk1jpmN_BV69PMMZv7EI-1711998083-1.0.1.1-EIsNSjzmtONwKT4rCc0b0LqTxq5_ZxzQ0hS3YSwJzbPOmQH7M4e5ii.ytk3znN8l_mjgf_ZsKRhMN6y1ocVfIA;
+        path=/; expires=Mon, 01-Apr-24 19:31:23 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=XJgh29N63VuUCrVdRqUIiN3sXUdjGhkOjAwmLnVKVWM-1711979618442-0.0.1.1-604800000;
+      - _cfuvid=fegJVaxwYVmxN1ZWqcsokXr6Z78KKtfqs2qiiWrz4sM-1711998083588-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 86d911064f53a223-YYZ
+      - 86dad3d54e1536d2-YYZ
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |-
         {
-          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "id": "run_ko6bWhZ1TSpEjdYaYSn7zSrL",
           "object": "thread.run",
-          "created_at": 1711979617,
+          "created_at": 1711998083,
           "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
           "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
           "status": "in_progress",
-          "started_at": 1711979618,
-          "expires_at": 1711980217,
+          "started_at": 1711998083,
+          "expires_at": 1711998683,
           "cancelled_at": null,
           "failed_at": null,
           "completed_at": null,
@@ -248,10 +248,10 @@ http_interactions:
           "temperature": 1.0,
           "usage": null
         }
-  recorded_at: Mon, 01 Apr 2024 13:53:38 GMT
+  recorded_at: Mon, 01 Apr 2024 19:01:23 GMT
 - request:
     method: get
-    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_f6fMqyV1ELCc4aHqaJotQRxP
+    uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/runs/run_ko6bWhZ1TSpEjdYaYSn7zSrL
     body:
       encoding: US-ASCII
       string: ''
@@ -259,7 +259,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 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
+      - Bearer ***OPENAI_ACCESS_TOKEN***
       Openai-Beta:
       - assistants=v1
       Accept-Encoding:
@@ -274,7 +274,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 01 Apr 2024 13:53:48 GMT
+      - Mon, 01 Apr 2024 19:01:36 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -286,40 +286,40 @@ http_interactions:
       Openai-Organization:
       - user-5cvmvgsbsiwgm7e3scmxkyt3
       X-Request-Id:
-      - req_7626a383e1dc2ca200fadffcd5ccd764
+      - req_f605a200ec94b1a5163859b3e790d026
       Openai-Processing-Ms:
-      - '50'
+      - '47'
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=nKuBqlO5op15rbNBK7cLpdcv3f5n8.WFDsOpb374Wak-1711979628-1.0.1.1-zRkcDivuRHsMXkcCE9OxXtpGtWRNd6S2p3G.U_IndlYDpFGD0xXS2pwHWadgIvw6CWJxat6iNQHrIMIam9_HvA;
-        path=/; expires=Mon, 01-Apr-24 14:23:48 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=.9kreVVTf2H9o3_41DC.zRqetHI5NLBFThxSzFeUPDU-1711998096-1.0.1.1-9upHzi_7366Q_Xs_ZAU8hakNrsaFamXgAw0R_qZ5C7fkLQLD0uoVo2vRR0CR1Xn2Ks9BIZH3rN1H3BbjeuP4uA;
+        path=/; expires=Mon, 01-Apr-24 19:31:36 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=NJDbTUyl.deP5erquuEHLW3_5z7157yvDWaAQGyw2UQ-1711979628150-0.0.1.1-604800000;
+      - _cfuvid=HH.6rCl1BhxQ7aU3RXiqhE2Fn1M4MCbHWKHEgqeLGuw-1711998096056-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 86d911430ccc5437-YYZ
+      - 86dad42339c4711d-YYZ
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |-
         {
-          "id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+          "id": "run_ko6bWhZ1TSpEjdYaYSn7zSrL",
           "object": "thread.run",
-          "created_at": 1711979617,
+          "created_at": 1711998083,
           "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
           "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
           "status": "completed",
-          "started_at": 1711979618,
+          "started_at": 1711998083,
           "expires_at": null,
           "cancelled_at": null,
           "failed_at": null,
-          "completed_at": 1711979627,
+          "completed_at": 1711998095,
           "required_action": null,
           "last_error": null,
           "model": "gpt-4",
@@ -329,12 +329,12 @@ http_interactions:
           "metadata": {},
           "temperature": 1.0,
           "usage": {
-            "prompt_tokens": 4847,
-            "completion_tokens": 150,
-            "total_tokens": 4997
+            "prompt_tokens": 7107,
+            "completion_tokens": 163,
+            "total_tokens": 7270
           }
         }
-  recorded_at: Mon, 01 Apr 2024 13:53:48 GMT
+  recorded_at: Mon, 01 Apr 2024 19:01:36 GMT
 - request:
     method: get
     uri: https://api.openai.com/v1/threads/thread_tGe4ig9xmAcXxXMf0H7J4nr3/messages?limit=1
@@ -345,7 +345,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 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
+      - Bearer ***OPENAI_ACCESS_TOKEN***
       Openai-Beta:
       - assistants=v1
       Accept-Encoding:
@@ -360,7 +360,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 01 Apr 2024 13:53:48 GMT
+      - Mon, 01 Apr 2024 19:01:36 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -372,23 +372,23 @@ http_interactions:
       Openai-Organization:
       - user-5cvmvgsbsiwgm7e3scmxkyt3
       X-Request-Id:
-      - req_fc9ff9f609a7ee3efaf648c81d85f7ca
+      - req_00c935729d4fb19a12620f0fd783dad6
       Openai-Processing-Ms:
-      - '87'
+      - '95'
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=.kVxFHjxzkqjc1rzrpQ3uIi7GkTfvD8zb2.n5lmIwF4-1711979628-1.0.1.1-dOK_7EHBtVtNMo6ZGMe.W5D0KDX.w_cfjTj3agWRDtZU4G.Fw1JKV7V9vI4qPINuI0lJ.SOWX65ePoz7Ul8RIA;
-        path=/; expires=Mon, 01-Apr-24 14:23:48 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=R9pibTZXLyIN2ujGDJvr3rp1vt9XiiOh_wFqEud7mAY-1711998096-1.0.1.1-0q.HW6zw1_biRPzyoy6rhR8yfd7482c83jE_AaAfqwEl_wTD0ZtQx9tWGNkJCXh2K2_QHr4T63yUgq0FF26DBA;
+        path=/; expires=Mon, 01-Apr-24 19:31:36 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=8YuGMEZ7x.KKzHm4EpB4L5.g8OkAs0dNLAk5KJld.Gc-1711979628514-0.0.1.1-604800000;
+      - _cfuvid=x8TD4OK7mj7DNr.FvNBjkVXLiGYiQj2Om9afVAW65JA-1711998096466-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 86d9114539b85413-YYZ
+      - 86dad425ce6f39ef-YYZ
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -398,18 +398,18 @@ http_interactions:
           "object": "list",
           "data": [
             {
-              "id": "msg_K2P1hKSiVFuJgJPs31LySi0W",
+              "id": "msg_EsPs1cMydq2kfGcFTh7TWOv7",
               "object": "thread.message",
-              "created_at": 1711979619,
+              "created_at": 1711998084,
               "assistant_id": "asst_WIrbrZvIEWPWyI4Y3XczBniu",
               "thread_id": "thread_tGe4ig9xmAcXxXMf0H7J4nr3",
-              "run_id": "run_f6fMqyV1ELCc4aHqaJotQRxP",
+              "run_id": "run_ko6bWhZ1TSpEjdYaYSn7zSrL",
               "role": "assistant",
               "content": [
                 {
                   "type": "text",
                   "text": {
-                    "value": "Born out of my desire to streamline the intricate process of illustrating foliage in my digital art, these brushes serve as a valuable tool not only to me, but also to fellow artists wishing to enhance their workflow. My intent was to accelerate both my personal work rate and provide a solution to those facing similar challenges in their artistic creation process. My aspiration goes beyond facilitating speed; I hoped to create a malleable brush settings framework that allows for the development of original, style-specific sets. It supports artists in tailoring the settings, empowering them to modify and reproduce the tools with ease, therefore linking their unique artistic finger prints to their creations. This amalgamation of efficiency and customization is a testament to the versatility I envisioned when creating this brushset.",
+                    "value": "Originating from a deep desire to enhance my own workflow in the elaborate process of digitally creating foliage, these brushes were born. My intent was twofold: to amplify my own art production speed and to extend this advantage to others wrestling with similar aims. However, the vision doesn't stop at utility; it was equally important for me to infuse a component of adaptability within the brushset. Consequently, it contains a dynamic brush settings framework which can be a game-changer for anyone aspiring to put together an original, style-specific set of their own by copying and modifying the given settings. This blend of function and versatility, I believe, offers an elevated degree of creative control, empowering artists to not only rapidly produce high-quality nature-inspired artwork but also imbue it with their unique personality and style.",
                     "annotations": []
                   }
                 }
@@ -418,9 +418,9 @@ http_interactions:
               "metadata": {}
             }
           ],
-          "first_id": "msg_K2P1hKSiVFuJgJPs31LySi0W",
-          "last_id": "msg_K2P1hKSiVFuJgJPs31LySi0W",
+          "first_id": "msg_EsPs1cMydq2kfGcFTh7TWOv7",
+          "last_id": "msg_EsPs1cMydq2kfGcFTh7TWOv7",
           "has_more": true
         }
-  recorded_at: Mon, 01 Apr 2024 13:53:48 GMT
+  recorded_at: Mon, 01 Apr 2024 19:01:36 GMT
 recorded_with: VCR 6.2.0
