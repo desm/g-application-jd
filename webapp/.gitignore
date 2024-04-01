@@ -11,6 +11,9 @@
 /.env*
 !/.env*.erb
 
+# used for development
+/dev/.env-openai
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*

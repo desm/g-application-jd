@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+thread_1:
+  product: p1
+  section: 0 # :description
+  thread_id: thread_001
+
+thread_2:
+  product: p1
+  section: 1 # :content
+  thread_id: thread_002

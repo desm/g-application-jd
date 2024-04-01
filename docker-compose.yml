@@ -15,7 +15,9 @@ services:
       - /tmp
     working_dir: /app
     user: appserver
-    command: ./bin/dev
+    env_file: ./webapp/dev/.env-openai
+    entrypoint: ./dev/entrypoint.sh
+    command: run-react-on-rails-in-dev-mode # see webapp/dev/entrypoint.sh
 
   db:
     image: mysql:8.0.36-debian

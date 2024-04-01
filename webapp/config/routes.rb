@@ -26,4 +26,8 @@ Rails.application.routes.draw do
   get "products/new"
   get "products/:id/edit" => "products#edit", as: :products_edit
   post "links/:id" => "links#update", as: :links_update
+
+  resources :products, only: [] do
+    resources :threads, only: [:create]
+  end
 end

@@ -18,7 +18,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_no_current_path login_path
   end
 
-  test "when product description is nil" do
+  test "edit product when product description is nil" do
     u = users(:one)
     sign_in_using_capybara(u.email_address, "secret123456")
     p1 = products(:p1)
@@ -29,7 +29,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_nil data["description"]
   end
 
-  test "when product description is NOT nil" do
+  test "edit product when product description is NOT nil" do
     u = users(:one)
     sign_in_using_capybara(u.email_address, "secret123456")
     p3 = products(:p3)
@@ -39,5 +39,25 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(div_element["data-all-attributes"])
     richTextDescription = JSON.parse(data["description"])
     assert_equal "Description Level One", richTextDescription["doc"]["content"][0]["content"][0]["text"]
+  end
+
+  test "edit product when product has an OpenAI Thread for its 'description' section" do
+    u = users(:one)
+    sign_in_using_capybara(u.email_address, "secret123456")
+    visit products_edit_url(products(:p1).permalink)
+    assert_current_path products_edit_path(products(:p1).permalink)
+    div_element = find("div#edit-attributes", visible: :all)
+    data = JSON.parse(div_element["data-all-attributes"])
+    assert data['has_openai_assistant_thread_for_description']
+  end
+
+  test "edit product when product does not have an OpenAI Thread for its 'description' section" do
+    u = users(:one)
+    sign_in_using_capybara(u.email_address, "secret123456")
+    visit products_edit_url(products(:p2).permalink)
+    assert_current_path products_edit_path(products(:p2).permalink)
+    div_element = find("div#edit-attributes", visible: :all)
+    data = JSON.parse(div_element["data-all-attributes"])
+    assert !data['has_openai_assistant_thread_for_description']
   end
 end

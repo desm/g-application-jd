@@ -14,3 +14,8 @@ rails generate model session \
     ip_address:string \
     user_agent:string \
     last_active_at:datetime
+
+rails generate model OpenaiAssistantThread \
+    product:references \
+    section:integer \
+    thread_id:string

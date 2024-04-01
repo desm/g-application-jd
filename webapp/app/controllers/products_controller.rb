@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
 
   def edit
     permalink = params[:id]
-    product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
+    product = Product.includes(:openai_assistant_threads).find_by!(creator_id: Current.user.id, permalink: permalink)
 
     @props[:Nav][:highlight] = "Products"
     @props[:ProductContentPreview] = {}

@@ -1,4 +1,4 @@
 services:
   appserver:
-    command: sh -c 'while :; do sleep .5; done'
+    command: run-sleep-command # see webapp/dev/entrypoint.sh
     stop_signal: SIGINT

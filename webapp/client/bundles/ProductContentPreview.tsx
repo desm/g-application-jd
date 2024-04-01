@@ -10,11 +10,14 @@ import ProductContent from './ProductContentPreview/ProductContent';
 import ProfileSettings from './ProductContentPreview/ProfileSettings';
 import Sections from './ProductContentPreview/Sections';
 import ShareLinks from './ProductContentPreview/ShareLinks';
+import TurnOnAiAssistantDialog from './ProductContentPreview/TurnOnAiAssistantDialog';
 import {
   applicationState,
+  changeHasOpenaiAssistantThreadForDescription,
   changeProductName,
   changeRichTextContent,
   changeRichTextDescription,
+  closeAllDialogs,
   setActiveTab,
   setAvatarUrl,
   setPermalink,
@@ -22,9 +25,10 @@ import {
   useApplicationState,
 } from './ProductContentPreview/stateStores/application';
 import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
-import { grabAllDataFromDataDivs } from './lib';
 import { encode } from './formUrlEncoder';
+import { grabAllDataFromDataDivs } from './lib';
 import { postFormDataTo } from './util';
+import MakeShorterLongerDialog from './ProductContentPreview/MakeShorterLongerDialog';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;
@@ -63,9 +67,11 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     setPermalink(divData['edit-attributes']['unique_permalink']);
     changeProductName(divData['edit-attributes']['name']);
     setPrice(divData['edit-attributes']['buy_price']);
-
     changeRichTextDescription(JSON.parse(divData['edit-attributes']['description']));
     changeRichTextContent(JSON.parse(divData['edit-attributes']['rich_content_pages'][0]['description']));
+    changeHasOpenaiAssistantThreadForDescription(
+      divData['edit-attributes']['has_openai_assistant_thread_for_description']
+    );
 
     setRouter(
       createHashRouter([
@@ -98,6 +104,11 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
         },
       ])
     );
+
+    document.body.addEventListener('mousedown', () => {
+      // close all open dialogs
+      closeAllDialogs();
+    });
   }, []);
 
   useEffect(() => {
@@ -135,7 +146,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     ];
     const formData = encode(formDataAsObj);
     const r = await postFormDataTo(formData, `/links/${applicationState.permalink}.json`);
-    console.log(r);
+    if (r.success) {
+      window.location.hash = 'content';
+    }
   };
 
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
@@ -156,6 +169,8 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       {router && createPortal(<Sections />, document.getElementById('edit-link-basic-form'))}
       {router && createPortal(<Preview />, document.getElementById('product-preview-root'))}
       {router && <RouterProvider router={router} />}
+      {router && createPortal(<TurnOnAiAssistantDialog />, document.getElementById('turn-on-ai-assistant-dialog'))}
+      {router && createPortal(<MakeShorterLongerDialog />, document.getElementById('make-shorter-longer-dialog'))}
     </>
   );
 };

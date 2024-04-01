@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_28_173713) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_30_025512) do
+  create_table "openai_assistant_threads", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "product_id", null: false
+    t.integer "section", null: false
+    t.string "thread_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id", "section"], name: "index_openai_assistant_threads_on_product_id_and_section", unique: true
+    t.index ["thread_id"], name: "index_openai_assistant_threads_on_thread_id", unique: true
+  end
+
   create_table "products", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "creator_id", null: false
     t.string "permalink", null: false
@@ -45,6 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_173713) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "openai_assistant_threads", "products"
   add_foreign_key "products", "users", column: "creator_id"
   add_foreign_key "sessions", "users"
 end

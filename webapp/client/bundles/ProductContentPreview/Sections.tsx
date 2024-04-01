@@ -5,8 +5,14 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { createMenuPluginForBasicTab } from './SectionsRichTextMenu';
 import { mySchema } from './mySchema';
-import { applicationState, changeProductName } from './stateStores/application';
-import { changeEditorState, setEditorView } from './stateStores/textEditor';
+import {
+  applicationState,
+  changeProductName,
+  initMakeShorterLongerDialog,
+  openDialog,
+  setEnoughWordsSelectedInDescriptionForAiAssistant,
+} from './stateStores/application';
+import { changeEditorState, setEditorView, textEditorState } from './stateStores/textEditor';
 
 function Sections() {
   useEffect(() => {
@@ -33,11 +39,35 @@ function Sections() {
     setEditorView('basicTab', editorView);
 
     document.body.addEventListener('mousedown', () => {
+      // close all rich text editor menubar dropdowns
       document.querySelectorAll('details').forEach((el) => {
         el.removeAttribute('open');
       });
     });
   }, []);
+
+  useEffect(() => {
+    if (textEditorState.basicTab.editorView) {
+      if (countWords(getSelectedText(textEditorState.basicTab.editorView)) > 35) {
+        setEnoughWordsSelectedInDescriptionForAiAssistant(true);
+      } else {
+        setEnoughWordsSelectedInDescriptionForAiAssistant(false);
+      }
+    }
+  }, [applicationState.richTextDescription]);
+
+  const getSelectedText = (editorView: EditorView): string =>
+    editorView.state.doc.textBetween(editorView.state.selection.from, editorView.state.selection.to);
+
+  const countWords = (t: string) => t.split(' ').length;
+
+  const makeShorter = (text: string) => {
+    console.log(text);
+  };
+
+  const makeLonger = (text: string) => {
+    console.log(text);
+  };
 
   return (
     <>
@@ -299,6 +329,46 @@ function Sections() {
               </div>
             </div>
             <div id="editor" className="rich-text" data-gumroad-ignore="true"></div>
+            <div>
+              {applicationState.hasOpenaiAssistantThreadForDescription ? (
+                <>
+                  <button
+                    aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      initMakeShorterLongerDialog('shorter', getSelectedText(textEditorState.basicTab.editorView));
+                      openDialog('makeShorterLongerDialog');
+                      makeShorter(getSelectedText(textEditorState.basicTab.editorView));
+                    }}
+                  >
+                    Make Shorter
+                  </button>
+                  <button
+                    aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      initMakeShorterLongerDialog('longer', getSelectedText(textEditorState.basicTab.editorView));
+                      openDialog('makeShorterLongerDialog');
+                      makeLonger(getSelectedText(textEditorState.basicTab.editorView));
+                    }}
+                  >
+                    Make Longer
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openDialog('turnOnAiAssistantDialog');
+                    }}
+                    aria-disabled={applicationState.flags.isCreateOpenaiAssistantThreadForProductDescriptionPending}
+                  >
+                    Turn On AI Assistant
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </fieldset>
         <fieldset>

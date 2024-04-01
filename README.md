@@ -7,17 +7,14 @@ Tiny reproduction of a couple of UX flows of gumroad.com.
 - Git
 - Docker
 - Docker Compose
+- OpenAI API Key
 
 Ruby, Rails, Node.js, and Yarn do not need to be installed locally, as they will be part of the Docker environment.
-
-### Optional
-
-- AWS CLI
-- AWS Copilot
 
 ## Getting Started
 
 - Check out repository
+- turn `.env-openai-tmpl` into `.env-openai` and add your OpenAI key
 - run `up-sleep` - this builds and pulls all Docker images
 - run `connect` - this opens a shell in the "appserver" container
 - in appserver container, run `yarn install` - this installs node modules
@@ -61,15 +58,6 @@ Start the services needed for development: Rails, MySQL, Adminer, nginx, Seleniu
 
 ```shell
 $ up
-
-$ docker compose ps
-NAME                               IMAGE                                        COMMAND                  SERVICE               CREATED       STATUS       PORTS
-gumroad-jd-adminer-1               adminer:4.8.1-standalone                     "entrypoint.sh php -…"   adminer               3 hours ago   Up 3 hours   0.0.0.0:8001->8080/tcp, :::8001->8080/tcp
-gumroad-jd-appserver-1             gumroad-jd-appserver                         "./bin/dev"              appserver             3 hours ago   Up 3 hours   0.0.0.0:3035->3035/tcp, :::3035->3035/tcp, 0.0.0.0:8000->3000/tcp, :::8000->3000/tcp
-gumroad-jd-db-1                    mysql:8.0.36-debian                          "docker-entrypoint.s…"   db                    3 hours ago   Up 3 hours   3306/tcp, 33060/tcp
-gumroad-jd-selenium-standalone-1   selenium/standalone-chrome:4.18.1-20240224   "/opt/bin/entry_poin…"   selenium-standalone   3 hours ago   Up 3 hours   0.0.0.0:4444->4444/tcp, :::4444->4444/tcp, 5900/tcp
-gumroad-jd-smoke-test-runner-1     gumroad-jd-smoke-test-runner                 "sh -c 'while :; do …"   smoke-test-runner     3 hours ago   Up 3 hours
-gumroad-jd-www-1                   nginx:bookworm                               "/docker-entrypoint.…"   www                   3 hours ago   Up 3 hours   0.0.0.0:8080->80/tcp, :::8080->80/tcp
 ```
 
 Here are some links that should work once the services are running:
@@ -181,16 +169,19 @@ CI/CD is done using **GitHub Actions**.
 # tag the commit to deploy. "ref" can be commit sha, or HEAD, or branch name
 $ git tag deploy-20240319-01 [ref]
 
-# push the ref + tag to GitHub (use same ref as in previous command)
+# push the tag to origin (GitHub)
 $ git push origin deploy-20240319-01
 ```
+
+## AI Assistant
+
+Version 1
+https://www.figma.com/file/QYWiq50FLUSrcVQL988XLR/Gumroad-AI-Assistant?type=design&node-id=0-1&mode=design&t=cXL1Hw4vzb8LHudr-0
 
 ## Tech Stack
 
 ### Application
 
-- [GitHub - desm/gumroad-jd](https://github.com/desm/gumroad-jd)
-- [Docker and Docker Compose](https://docs.docker.com/reference/)
 - [Ruby](https://docs.ruby-lang.org/en/3.3/)
 - [Ruby on Rails](https://guides.rubyonrails.org/)
 - [TypeScript](https://www.typescriptlang.org/docs/handbook/intro.html)
@@ -201,6 +192,8 @@ $ git push origin deploy-20240319-01
 - [React Hook Form](https://react-hook-form.com/)
 - [Immer](https://immerjs.github.io/immer/)
 - [React Router](https://reactrouter.com/)
+- [ProseMirror - Rich Text Editor](https://prosemirror.net/)
+- [Ruby OpenAI](https://github.com/alexrudall/ruby-openai?tab=readme-ov-file#ruby-openai)
 
 ### Testing Libraries For Rails
 
@@ -209,6 +202,7 @@ $ git push origin deploy-20240319-01
 - [capybara 3.39.2 API](https://rubydoc.info/gems/capybara/3.39.2/index)
 - [selenium-webdriver 4.16 API](https://www.rubydoc.info/gems/selenium-webdriver/4.16.0/index)
 - [selenium-devtools V122 API](https://www.rubydoc.info/gems/selenium-devtools/Selenium/DevTools/V122)
+- [VCR](https://benoittgt.github.io/vcr)
 
 ### Testing Libraries For Jest
 
@@ -218,8 +212,9 @@ $ git push origin deploy-20240319-01
 
 ### Tools
 
+- [Docker and Docker Compose](https://docs.docker.com/reference/)
 - [AWS Copilot CLI](https://aws.github.io/copilot-cli/docs/overview/)
+- [GitHub Actions](https://docs.github.com/en/actions/quickstart)
 - [Adminer - DB Management Tool](https://www.adminer.org/)
 - [Debian Bookworm Packages (for Docker images)](https://packages.debian.org/bookworm/)
-- [GitHub Actions](https://docs.github.com/en/actions/quickstart)
-- [ProseMirror - Rich Text Editor](https://prosemirror.net/)
+- [Figma](https://www.figma.com/)
