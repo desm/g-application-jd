@@ -35,6 +35,13 @@ const initialState = {
 let state: State;
 let dispatch: Dispatch<any>;
 
+// for testing
+(window as any)['getSelectedTextOfRichTextDescription'] = () => {
+  const getSelectedText = (editorView: EditorView): string =>
+    editorView.state.doc.textBetween(editorView.state.selection.from, editorView.state.selection.to);
+  console.log(getSelectedText(state.basicTab.editorView));
+};
+
 export { state as textEditorState };
 
 function reducer(draft, action: { type: string; [key: string]: any }) {
