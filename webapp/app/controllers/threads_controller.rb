@@ -13,12 +13,12 @@ class ThreadsController < ApplicationController
       _params = create_thread_params
       permalink = _params["product_id"]
       product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
-      init_openai_client
-      openaiResponse = @client.threads.create
+      aiAssistantService = AiAssistantService.new(access_token: Rails.application.credentials.openai_access_token)
+      thread_id = aiAssistantService.create_thread
       thread = OpenaiAssistantThread.new(
         product_id: product.id,
         section: _params["section"],
-        thread_id: openaiResponse["id"],
+        thread_id: thread_id,
       )
       thread.save!
       success = true
@@ -65,8 +65,7 @@ class ThreadsController < ApplicationController
       status = 500
       reworked_text = nil
 
-      init_openai_client
-      aiAssistantService = AiAssistantService.new(client: @client)
+      aiAssistantService = AiAssistantService.new(access_token: Rails.application.credentials.openai_access_token)
       reworked_text = aiAssistantService.rework_product_description_selected_text(
         thread_id: thread.thread_id,
         mode: mode,
@@ -94,14 +93,6 @@ class ThreadsController < ApplicationController
   end
 
   private
-
-  def init_openai_client
-    OpenAI.configure do |config|
-      config.access_token = Rails.application.credentials.openai_access_token
-    end
-    @client = OpenAI::Client.new
-    @client = @client.beta(assistants: "v1")
-  end
 
   def create_thread_params
     params.require([:product_id, :section])

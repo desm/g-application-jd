@@ -1,6 +1,15 @@
 class AiAssistantService
-  def initialize(client:)
-    @client = client
+  def initialize(access_token:)
+    OpenAI.configure do |config|
+      config.access_token = access_token
+    end
+    @client = OpenAI::Client.new
+    @client = @client.beta(assistants: "v1")
+  end
+
+  def create_thread
+    response = @client.threads.create
+    response["id"]
   end
 
   def rework_product_description_selected_text(thread_id:, mode:, product_name:, full_description:, selected_text:)
