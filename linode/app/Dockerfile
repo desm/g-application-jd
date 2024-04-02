@@ -6,7 +6,6 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.3.0
-ARG RAILS_MASTER_KEY
 
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
@@ -149,7 +148,8 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production
-RUN SECRET_KEY_BASE_DUMMY=1 RAILS_MASTER_KEY=$RAILS_MASTER_KEY ./bin/rails assets:precompile
+ARG RAILS_MASTER_KEY
+RUN SECRET_KEY_BASE_DUMMY=1 RAILS_MASTER_KEY=${RAILS_MASTER_KEY} ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
