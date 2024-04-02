@@ -5,4 +5,4 @@
 FROM nginx:bookworm
 
 COPY . /usr/share/nginx/html
-RUN mv index-staging.html index.html
+RUN mv /usr/share/nginx/html/index-staging.html /usr/share/nginx/html/index.html
