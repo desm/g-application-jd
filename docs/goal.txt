@@ -1,1 +1,8 @@
 add AI to rich text editor
+
+make same:
+    https://app.gumroad.com/products/xplitr/edit
+    http://localhost:8000/products/qjomq/edit
+
+with product description to test AI Assistant:
+    http://localhost:8000/products/uivhv/edit

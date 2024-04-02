@@ -173,9 +173,42 @@ $ git tag deploy-20240319-01 [ref]
 $ git push origin deploy-20240319-01
 ```
 
+## Testing The Production Build Locally
+
+Note: since both the production and staging environments use the same build, we'll use `RAILS_ENV=staging` to test.
+
+Edit `webapp/config/database.yml` so that the staging env looks like this:
+
+```yml
+staging:
+  <<: *default
+  database: appserver_development
+```
+
+Temporarily create a `.env-staging` in the root of the project that contains this:
+
+```shell
+RAILS_ENV=staging
+RAILS_MASTER_KEY={value}
+```
+
+Then:
+
+```shell
+# build
+$ docker compose -f docker-compose-staging.yml build
+
+# start services
+$ docker compose -f docker-compose-staging.yml up -d
+
+# once done
+$ docker compose -f docker-compose-staging.yml down
+```
+
 ## AI Assistant
 
-Version 1
+Design of Version 1 in Figma:
+
 https://www.figma.com/file/QYWiq50FLUSrcVQL988XLR/Gumroad-AI-Assistant?type=design&node-id=0-1&mode=design&t=cXL1Hw4vzb8LHudr-0
 
 ## Tech Stack

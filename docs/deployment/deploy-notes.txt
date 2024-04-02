@@ -412,3 +412,50 @@ update service 'app' in both environments to be the Gumroad Rails application
 $ RAILS_MASTER_KEY=$(cat ./webapp/config/master.key) copilot svc deploy --app gumroad --diff-yes --env staging --name app
 
 $ RAILS_MASTER_KEY=$(cat ./webapp/config/master.key) copilot svc deploy --app gumroad --diff-yes --env production --name app
+
+
+April 2 2024
+
+Having issues with SSL certificate
+{
+  "error_message": "SSL_connect returned=1 errno=0 peeraddr=104.18.6.192:443 state=error: certificate verify failed (unable to get local issuer certificate)",
+  "error_class": "Faraday::SSLError",
+  "handled": true,
+  "severity": "warning",
+  "source": "application",
+  "context": {
+    "controller": "#<ThreadsController:0x00007fc6ef039888>",
+    "section": "products",
+    "action": "create thread",
+    "user_email": "jdesma@gmail.com"
+  },
+  "backtrace": [
+    "/usr/local/lib/ruby/3.3.0/net/protocol.rb:46:in `connect_nonblock'",
+    "/usr/local/lib/ruby/3.3.0/net/protocol.rb:46:in `ssl_socket_connect'",
+    "/usr/local/bundle/ruby/3.3.0/gems/net-http-0.4.1/lib/net/http.rb:1674:in `connect'",
+    "/usr/local/bundle/ruby/3.3.0/gems/net-http-0.4.1/lib/net/http.rb:1580:in `do_start'",
+    "/usr/local/bundle/ruby/3.3.0/gems/net-http-0.4.1/lib/net/http.rb:1569:in `start'",
+    "/usr/local/bundle/ruby/3.3.0/gems/faraday-net_http-3.1.0/lib/faraday/adapter/net_http.rb:112:in `request_with_wrapped_block'",
+    "...",
+    "/usr/local/bundle/ruby/3.3.0/gems/ruby-openai-6.4.0/lib/openai.rb:24:in `call'",
+    "...",
+    "/rails/app/services/AiAssistantService.rb:11:in `create_thread'",
+    "/rails/app/controllers/threads_controller.rb:17:in `block in create'",
+    "/usr/local/bundle/ruby/3.3.0/gems/activesupport-7.1.3/lib/active_support/error_reporter.rb:76:in `handle'",
+    "/rails/app/controllers/threads_controller.rb:12:in `create'",
+    "..."
+  ]
+}
+
+Create env file .env-ssl-cert-test
+RAILS_ENV=staging
+RAILS_MASTER_KEY=......
+
+ 2003  docker build -f copilot/app/Dockerfile -t ssl_cert_test ./webapp
+ 1998  docker run -d --rm --env-file ./.env-ssl-cert-test --network=gumroad-jd_default -p 3000 ssl_cert_test
+ 2001  docker exec -it jolly_ramanujan bash
+ 2002  docker stop jolly_ramanujan
+
+http://localhost:32768/products/uivhv/edit
+
+solution was to do: apt-get install ca-certificates

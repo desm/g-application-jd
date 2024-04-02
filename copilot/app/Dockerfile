@@ -2,7 +2,6 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.3.0
-ARG RAILS_MASTER_KEY
 
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
@@ -112,8 +111,8 @@ RUN set -ex \
   && yarn --version
 
 # Install packages needed for deployment
-RUN apt-get install --no-install-recommends -y curl libvips default-libmysqlclient-dev procps dropbear dropbear-bin sudo && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+RUN apt-get install --no-install-recommends -y curl libvips default-libmysqlclient-dev procps dropbear dropbear-bin sudo ca-certificates \
+    && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -145,7 +144,7 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production
-RUN SECRET_KEY_BASE_DUMMY=1 RAILS_MASTER_KEY=$RAILS_MASTER_KEY ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
