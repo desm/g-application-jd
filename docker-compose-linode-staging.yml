@@ -10,6 +10,8 @@ services:
     build:
       context: ./webapp
       dockerfile: ../linode/app/Dockerfile
+      args:
+        RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     ports:
       - 8000:3000
     env_file: ./.env-linode-staging
