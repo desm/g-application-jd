@@ -2,3 +2,5 @@ node_modules/
 .idea/
 .vscode/
 .env-staging
+.env-linode-staging
+.env-linode-production

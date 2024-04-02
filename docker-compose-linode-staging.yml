@@ -1,0 +1,46 @@
+#
+# to run staging env on linode server
+#
+
+# https://docs.docker.com/reference/
+version: '3.4'
+
+services:
+  appserver-linode-staging:
+    build:
+      context: ./webapp
+      dockerfile: ../linode/app/Dockerfile
+    ports:
+      - 8000:3000
+    env_file: ./.env-linode-staging
+    command: ./bin/rails server
+    networks:
+      - linode-staging
+
+  db:
+    image: mysql:8.0.36-debian
+    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+    # (this is just an example, not intended to be a production configuration)
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: abc
+    volumes:
+      - linode-staging-db-data:/var/lib/mysql
+    networks:
+      - linode-staging
+
+  www-linode-staging:
+    build:
+      context: ./webflow/export
+      dockerfile: ../../linode/www/Dockerfile-staging
+    ports:
+      - 8080:80
+    networks:
+      - linode-staging
+
+volumes:
+  linode-staging-db-data:
+
+networks:
+  linode-staging:

@@ -1,3 +1,7 @@
+#
+# this Dockerfile is used to run "staging" and "production" environments on linode
+#
+
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
