@@ -31,6 +31,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          envs: SHA
           script: |
             cd gumroad-jd-test
             git fetch --all
@@ -45,6 +46,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          envs: IMAGE
           script: |
             cd gumroad-jd-test
             docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
@@ -66,6 +68,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          envs: IMAGE
           script: |
             cd gumroad-jd-test
             docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./node_modules/.bin/jest
@@ -86,6 +89,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          envs: IMAGE
           script: |
             cd gumroad-jd-test
             docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test
@@ -106,6 +110,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          envs: IMAGE
           script: |
             cd gumroad-jd-test
             docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test:system
