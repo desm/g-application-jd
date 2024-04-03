@@ -18,28 +18,8 @@ on:
       - deploy-*
 
 jobs:
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    environment: test
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Run tests
-        env:
-          IMAGE: test:${{ github.sha }}
-        run: |
-          docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE yarn install
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./node_modules/.bin/jest
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test:system
-
-  deploy-staging:
-    name: Deploy to staging
-    needs: test
+  build-for-tests:
+    name: Build For Tests
     runs-on: ubuntu-latest
     environment: test
 
@@ -53,8 +33,109 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          envs: SHA
           script: |
-            cd gumroad-jd
+            cd gumroad-jd-test2
+            git fetch --all
+            git checkout $SHA
+
+      - name: Build
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test2:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test2
+            docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE yarn install
+
+  test-jest:
+    name: Run Jest Tests
+    needs: build-for-tests
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test2:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test2
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./node_modules/.bin/jest
+
+  test-rails-test:
+    name: Run rails test
+    needs: build-for-tests
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test2:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test2
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test
+
+  test-rails-test-system:
+    name: Run rails test:system
+    needs: build-for-tests
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test2:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test2
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test:system
+
+  deploy-staging:
+    name: Deploy to staging
+    needs: [test-jest, test-rails-test, test-rails-test-system]
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Checkout
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          SHA: ${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: SHA
+          script: |
+            cd gumroad-jd-staging
             git fetch --all
             git checkout $SHA
 
@@ -66,7 +147,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd gumroad-jd
+            cd gumroad-jd-staging
             source .env-linode-staging
             export RAILS_MASTER_KEY
             docker compose -f docker-compose-linode-staging.yml build appserver-linode-staging
@@ -79,7 +160,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd gumroad-jd
+            cd gumroad-jd-staging
             docker compose -f docker-compose-linode-staging.yml down appserver-linode-staging
             docker compose -f docker-compose-linode-staging.yml up -d appserver-linode-staging
 
@@ -116,6 +197,21 @@ jobs:
     environment: test
 
     steps:
+      - name: Checkout
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          SHA: ${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: SHA
+          script: |
+            cd gumroad-jd-production
+            git fetch --all
+            git checkout $SHA
+
       - name: Build
         uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         with:
@@ -124,7 +220,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd gumroad-jd
+            cd gumroad-jd-production
             source .env-linode-production
             export RAILS_MASTER_KEY
             docker compose -f docker-compose-linode-production.yml build appserver-linode-production
@@ -137,6 +233,6 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd gumroad-jd
+            cd gumroad-jd-production
             docker compose -f docker-compose-linode-production.yml down appserver-linode-production
             docker compose -f docker-compose-linode-production.yml up -d appserver-linode-production
