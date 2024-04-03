@@ -1,0 +1,32 @@
+== root ==
+
+   10  apt update
+   12  apt install git
+
+   13  # Add Docker's official GPG key:
+   14  sudo apt-get update
+   15  sudo apt-get install ca-certificates curl
+   16  sudo install -m 0755 -d /etc/apt/keyrings
+   17  sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+   18  sudo chmod a+r /etc/apt/keyrings/docker.asc
+   19  # Add the repository to Apt sources:
+   20  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   21  sudo apt-get update
+   22  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   23  sudo docker run hello-world
+
+   25  useradd desm --create-home --shell /bin/bash
+   27  cd ~desm
+   29  umask 077
+   30  mkdir .ssh
+   31  cd .ssh
+   32  cp ~/.ssh/authorized_keys  .
+   34  cd ..
+   36  chown -R desm:desm .ssh
+   37  passwd desm
+   40  usermod -aG sudo desm
+   43  usermod -aG docker desm
+
+== desm ==
+

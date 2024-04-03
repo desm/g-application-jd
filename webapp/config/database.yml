@@ -32,13 +32,12 @@ production_local:
   <<: *default
   database: appserver_production
 
-production: &production
+production:
   <<: *default
-  host: gumroad-production-addonsstack-1en6-appdbdbcluster-dqjn21zbdjxs.cluster-cbc0ceux1sr1.us-east-1.rds.amazonaws.com
   database: appserver_production
-  username: admin
-  password: <%= Rails.application.credentials.mysql_admin_password_production %>
+  host: db-production
 
 staging:
   <<: *default
-  database: appserver_development
+  database: appserver_staging
+  host: db-staging

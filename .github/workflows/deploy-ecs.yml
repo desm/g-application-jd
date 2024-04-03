@@ -15,7 +15,7 @@ name: Test & Deploy to Amazon ECS
 on:
   push:
     tags:
-      - deploy-*
+      - disabled-as-of-20240402
 
 env:
   AWS_REGION: us-east-1                                 # set this to your preferred AWS region, e.g. us-west-1

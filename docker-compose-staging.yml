@@ -9,7 +9,7 @@ services:
   appserver-staging:
     build:
       context: ./webapp
-      dockerfile: ../copilot/app/Dockerfile
+      dockerfile: ../linode/app/Dockerfile
     ports:
       - 8000:3000
     env_file: ./.env-staging
@@ -26,7 +26,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: abc
     volumes:
-      - db-data:/var/lib/mysql
+      - staging-db-data:/var/lib/mysql
     networks:
       - staging
 
@@ -71,7 +71,7 @@ services:
       - staging
 
 volumes:
-  db-data:
+  staging-db-data:
 
 networks:
   staging:
