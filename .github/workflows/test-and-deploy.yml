@@ -10,12 +10,9 @@
 # Finding and customizing actions:
 # https://docs.github.com/en/actions/learn-github-actions/finding-and-customizing-actions
 
-name: Test & Deploy to Amazon ECS
+name: Test & Deploy to Linode
 
-on:
-  push:
-    tags:
-      - deploy-*
+on: push
 
 jobs:
   build-for-tests:
