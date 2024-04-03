@@ -9,27 +9,108 @@
 
 # Finding and customizing actions:
 # https://docs.github.com/en/actions/learn-github-actions/finding-and-customizing-actions
+# https://github.com/marketplace
 
 name: Test
 
 on: push
 
 jobs:
-  test:
-    name: Test
+  build:
+    name: Build
     runs-on: ubuntu-latest
     environment: test
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          SHA: ${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: SHA
+          script: |
+            cd gumroad-jd-test
+            git fetch --all
+            git checkout $SHA
 
-      - name: Run tests
+      - name: Build
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         env:
           IMAGE: test:${{ github.sha }}
-        run: |
-          docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE yarn install
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./node_modules/.bin/jest
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test:system
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test
+            docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE yarn install
+
+  test-jest:
+    name: Run Jest Tests
+    needs: build
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./node_modules/.bin/jest
+
+  test-rails-test:
+    name: Run rails test
+    needs: build
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test
+
+  test-rails-test-system:
+    name: Run rails test:system
+    needs: build
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test:system

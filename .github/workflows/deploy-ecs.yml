@@ -15,91 +15,154 @@ name: Test & Deploy to Amazon ECS
 on:
   push:
     tags:
-      - disabled-as-of-20240402
-
-env:
-  AWS_REGION: us-east-1                                 # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: gumroad/app                           # set this to your Amazon ECR repository name
-  ECS_SERVICE: gumroad-staging-app-Service-BIz1a0vbXVft # set this to your Amazon ECS service name
-  ECS_CLUSTER: gumroad-staging-Cluster-OnUjaD06brDx     # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: .aws/task-definition.json        # set this to the path to your Amazon ECS task definition
-                                                        # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: app                                   # set this to the name of the container in the
-                                                        # containerDefinitions section of your task definition
-
-  ECS_SERVICE_PROD: gumroad-production-app-Service-FJcOhGEYnUrU
-  ECS_CLUSTER_PROD: gumroad-production-Cluster-MxEOSzI3XQCt
-  ECS_TASK_DEFINITION_PROD: .aws/task-definition-prod.json
+      - deploy-*
 
 jobs:
-  test:
-    name: Test
+  build-for-tests:
+    name: Build For Tests
     runs-on: ubuntu-latest
     environment: test
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         env:
-          IMAGE: test:${{ github.sha }}
-        run: |
-          docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE yarn install
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./node_modules/.bin/jest
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test:system
+          SHA: ${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: SHA
+          script: |
+            cd gumroad-jd-test2
+            git fetch --all
+            git checkout $SHA
+
+      - name: Build
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test2:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test2
+            docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE yarn install
+
+  test-jest:
+    name: Run Jest Tests
+    needs: build-for-tests
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test2:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test2
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./node_modules/.bin/jest
+
+  test-rails-test:
+    name: Run rails test
+    needs: build-for-tests
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test2:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test2
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test
+
+  test-rails-test-system:
+    name: Run rails test:system
+    needs: build-for-tests
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Run tests
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          IMAGE: test2:${{ github.sha }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-test2
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test:system
 
   deploy-staging:
     name: Deploy to staging
-    needs: test
+    needs: [test-jest, test-rails-test, test-rails-test-system]
     runs-on: ubuntu-latest
     environment: test
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: "Configure AWS Credentials" # Action for GitHub Actions
-        uses: aws-actions/configure-aws-credentials@v4.0.2 # https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
-
-      - name: Build, tag, and push image to Amazon ECR
-        id: build-image
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          # Build a docker container and
-          # push it to ECR so that it can
-          # be deployed to ECS.
-          docker build -f copilot/app/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./webapp
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
-
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
+          SHA: ${{ github.sha }}
         with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.build-image.outputs.image }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: SHA
+          script: |
+            cd gumroad-jd-staging
+            git fetch --all
+            git checkout $SHA
 
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
+      - name: Build
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd gumroad-jd-staging
+            source .env-linode-staging
+            export RAILS_MASTER_KEY
+            docker compose -f docker-compose-linode-staging.yml build appserver-linode-staging
+
+      - name: Deploy
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd gumroad-jd-staging
+            docker compose -f docker-compose-linode-staging.yml down appserver-linode-staging
+            docker compose -f docker-compose-linode-staging.yml up -d appserver-linode-staging
 
   smoke-test:
     name: Smoke test staging
@@ -108,24 +171,20 @@ jobs:
     environment: test
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Run smoke test
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         env:
           IMAGE: smoke-test-runner:${{ github.sha }}
-        run: |
-          docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
-          NETWORK=$(docker network ls --format '{{ .Name }}' --filter name=github_network)
-          echo "NETWORK is: $NETWORK"
-          docker run --rm --volume ./smoke-test-runner:/app --workdir /app --user runner --network $(docker network ls --format '{{ .Name }}' --filter name=github_network) $IMAGE ./bin/rails test:system
-
-    services:
-      selenium-standalone:
-        image: selenium/standalone-chrome:4.18.1-20240224
-        options: --shm-size=2gb # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontaineroptions
-        ports:
-          - 4444:4444
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: IMAGE
+          script: |
+            cd gumroad-jd-staging
+            docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
+            docker run --rm --volume ./smoke-test-runner:/app --workdir /app --user appserver --network smoke-test-network $IMAGE ./bin/rails test:system
 
   deploy-production:
     name: Deploy to production
@@ -135,31 +194,41 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: "Configure AWS Credentials" # Action for GitHub Actions
-        uses: aws-actions/configure-aws-credentials@v4.0.2 # https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          SHA: ${{ github.sha }}
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          envs: SHA
+          script: |
+            cd gumroad-jd-production
+            git fetch --all
+            git checkout $SHA
 
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
-
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
+      - name: Build
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION_PROD }}
-          container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd gumroad-jd-production
+            source .env-linode-production
+            export RAILS_MASTER_KEY
+            docker compose -f docker-compose-linode-production.yml build appserver-linode-production
 
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
+      - name: Deploy
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE_PROD }}
-          cluster: ${{ env.ECS_CLUSTER_PROD }}
-          wait-for-service-stability: true
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd gumroad-jd-production
+            docker compose -f docker-compose-linode-production.yml down appserver-linode-production
+            docker compose -f docker-compose-linode-production.yml up -d appserver-linode-production

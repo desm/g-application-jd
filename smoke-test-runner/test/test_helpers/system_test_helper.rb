@@ -1,4 +1,7 @@
 module SystemTestHelper
+  #
+  # not currently used
+  #
   def system_sign_in(email_address, password = "secret123456")
     visit "/login"
 
