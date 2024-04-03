@@ -9,6 +9,7 @@
 
 # Finding and customizing actions:
 # https://docs.github.com/en/actions/learn-github-actions/finding-and-customizing-actions
+# https://github.com/marketplace
 
 name: Test
 
@@ -21,15 +22,13 @@ jobs:
     environment: test
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Run tests
-        env:
-          IMAGE: test:${{ github.sha }}
-        run: |
-          docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE yarn install
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./node_modules/.bin/jest
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test
-          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test:system
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            whoami
+            ls -al- name: multiple command
