@@ -9,7 +9,7 @@ services:
       args:
         RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     ports:
-      - 8000:3000
+      - 8001:3000
     env_file: ./.env-linode-production
     command: ./bin/rails server
     networks:
@@ -33,7 +33,7 @@ services:
       context: ./webflow/export
       dockerfile: ../../linode/www/Dockerfile-production
     ports:
-      - 8080:80
+      - 8081:80
     networks:
       - linode-production
 
