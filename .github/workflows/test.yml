@@ -39,7 +39,7 @@ jobs:
       - name: Build
         uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         env:
-          IMAGE: test:${{ github.sha }}
+          SHA: ${{ github.sha }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -47,8 +47,8 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd gumroad-jd-test
-            docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
-            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE yarn install
+            docker build -f github-workflows/Dockerfile -t test:$SHA ./webapp
+            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true test:$SHA yarn install
 
   test-jest:
     name: Run Jest Tests
@@ -60,7 +60,7 @@ jobs:
       - name: Run tests
         uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         env:
-          IMAGE: test:${{ github.sha }}
+          SHA: ${{ github.sha }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -68,7 +68,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd gumroad-jd-test
-            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./node_modules/.bin/jest
+            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true test:$SHA ./node_modules/.bin/jest
 
   test-rails-test:
     name: Run rails test
@@ -80,7 +80,7 @@ jobs:
       - name: Run tests
         uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         env:
-          IMAGE: test:${{ github.sha }}
+          SHA: ${{ github.sha }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -88,7 +88,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd gumroad-jd-test
-            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test
+            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true test:$SHA ./bin/rails test
 
   test-rails-test-system:
     name: Run rails test:system
@@ -100,7 +100,7 @@ jobs:
       - name: Run tests
         uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
         env:
-          IMAGE: test:${{ github.sha }}
+          SHA: ${{ github.sha }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -108,4 +108,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd gumroad-jd-test
-            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test:system
+            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true test:$SHA ./bin/rails test:system
