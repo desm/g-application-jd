@@ -22,17 +22,15 @@ jobs:
     environment: test
 
     steps:
-      - name: executing remote ssh commands using ssh key
-        uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            cd gumroad-jd
-            ls -al
-            git fetch --all
-            git pull
-            docker compose -f docker-compose-linode-staging.yml ps
-            docker compose -f docker-compose-linode-production.yml ps
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run tests
+        env:
+          IMAGE: test:${{ github.sha }}
+        run: |
+          docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE yarn install
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./node_modules/.bin/jest
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test
+          docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test:system
