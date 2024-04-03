@@ -35,7 +35,9 @@ production_local:
 production:
   <<: *default
   database: appserver_production
+  host: db-production
 
 staging:
   <<: *default
   database: appserver_staging
+  host: db-staging
