@@ -47,7 +47,7 @@ RUN echo "alias jest=./node_modules/.bin/jest" >> ~/.bashrc
 
 USER root
 WORKDIR /
-RUN useradd runner --uid 1001 --create-home --shell /bin/bash
+RUN useradd runner --uid 1000 --create-home --shell /bin/bash
 
 USER runner
 WORKDIR /app
