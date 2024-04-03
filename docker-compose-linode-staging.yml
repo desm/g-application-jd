@@ -1,10 +1,6 @@
 #
 # to run staging env on linode server
 #
-
-# https://docs.docker.com/reference/
-version: '3.4'
-
 services:
   appserver-linode-staging:
     build:
