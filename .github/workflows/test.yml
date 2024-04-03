@@ -30,5 +30,9 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            whoami
+            cd gumroad-jd
             ls -al
+            git fetch --all
+            git pull
+            docker compose -f docker-compose-linode-staging.yml ps
+            docker compose -f docker-compose-linode-production.yml ps
