@@ -1,0 +1,44 @@
+#
+# to run production env on linode server
+#
+services:
+  appserver-linode-production:
+    build:
+      context: ./webapp
+      dockerfile: ../linode/app/Dockerfile
+      args:
+        RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    ports:
+      - 8000:3000
+    env_file: ./.env-linode-production
+    command: ./bin/rails server
+    networks:
+      - linode-production
+
+  db:
+    image: mysql:8.0.36-debian
+    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+    # (this is just an example, not intended to be a production configuration)
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: abc
+    volumes:
+      - linode-production-db-data:/var/lib/mysql
+    networks:
+      - linode-production
+
+  www-linode-production:
+    build:
+      context: ./webflow/export
+      dockerfile: ../../linode/www/Dockerfile-production
+    ports:
+      - 8080:80
+    networks:
+      - linode-production
+
+volumes:
+  linode-production-db-data:
+
+networks:
+  linode-production:
