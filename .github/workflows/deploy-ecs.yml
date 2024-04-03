@@ -46,6 +46,8 @@ jobs:
     steps:
       - name: Checkout
         uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
+        env:
+          SHA: ${{ github.sha }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -54,7 +56,7 @@ jobs:
           script: |
             cd gumroad-jd
             git fetch --all
-            git checkout ${{ github.sha }}
+            git checkout $SHA
 
       - name: Build
         uses: appleboy/ssh-action@v1.0.3 # https://github.com/marketplace/actions/ssh-remote-commands
