@@ -50,7 +50,7 @@ jobs:
           script: |
             cd gumroad-jd-test
             docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
-            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE yarn install
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE yarn install
 
   test-jest:
     name: Run Jest Tests
@@ -71,7 +71,7 @@ jobs:
           envs: IMAGE
           script: |
             cd gumroad-jd-test
-            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./node_modules/.bin/jest
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./node_modules/.bin/jest
 
   test-rails-test:
     name: Run rails test
@@ -92,7 +92,7 @@ jobs:
           envs: IMAGE
           script: |
             cd gumroad-jd-test
-            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test
 
   test-rails-test-system:
     name: Run rails test:system
@@ -113,4 +113,4 @@ jobs:
           envs: IMAGE
           script: |
             cd gumroad-jd-test
-            docker run --rm --volume ./webapp:/app --workdir /app --user runner --env CI=true $IMAGE ./bin/rails test:system
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test:system

@@ -44,10 +44,3 @@ WORKDIR /home/appserver/app
 RUN bundle install
 RUN echo "PATH=/app/bin:\$PATH" >> ~/.bashrc
 RUN echo "alias jest=./node_modules/.bin/jest" >> ~/.bashrc
-
-USER root
-WORKDIR /
-RUN useradd runner --uid 1000 --create-home --shell /bin/bash
-
-USER runner
-WORKDIR /app
