@@ -5,7 +5,7 @@ services:
   appserver-linode-staging:
     build:
       context: ./webapp
-      dockerfile: ../linode/app/Dockerfile
+      dockerfile: ../docker/app/Dockerfile-production
       args:
         RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     ports:

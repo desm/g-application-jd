@@ -48,7 +48,7 @@ jobs:
           envs: IMAGE
           script: |
             cd gumroad-jd-test2
-            docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
+            docker build -f docker/app/Dockerfile-cicd -t $IMAGE ./webapp
             docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE yarn install
 
   test-jest:
@@ -180,7 +180,7 @@ jobs:
           envs: IMAGE
           script: |
             cd gumroad-jd-staging
-            docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
+            docker build -f docker/app/Dockerfile-cicd -t $IMAGE ./webapp
             docker run --rm --volume ./webapp:/app --workdir /app --user appserver --network smoke-test-network $IMAGE sh -c "SMOKE_TEST=true ./bin/rails test:system"
 
   deploy-production:
