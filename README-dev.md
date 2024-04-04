@@ -9,28 +9,24 @@
 
 Ruby, Rails, Node.js, and Yarn are not required as they are part of the Docker environment.
 
-#### Tested on Ubuntu 22.04.4 LTS (Jammy Jellyfish) with the following software versions:
+#### Tested on Ubuntu 22 with: git 2.34.1, docker 25.0.4, docker compose v2.24.7
 
-| software       | version |
-| -------------- | ------- |
-| git            | 2.34.1  |
-| docker         | 25.0.4  |
-| docker compose | v2.24.7 |
+#### Tested on macOS 10.15.7 with: git 2.42.0, docker 20.10.21, docker compose v2.13.0
 
 ## Setup
 
-- Clone the repo
-- Download the `config/master.key` file and place it in `./webapp/config`
-  - (Download from Notion site mentioned in job application)
-- Run `source .autoenv`
-- Run `up-sleep` to build and pull all Docker images
-- Run `connect` to open a shell in the "appserver" container
-  - Run `yarn install` (in the container)
-  - Run `rails db:prepare` (in the container)
-- Exit the container
-- Run `down` to stop all containers
-- Run `cp ./webapp/.env-template ./webapp/.env`, and set RAILS_MASTER_KEY
-- Run `up` - this starts all containers, and starts the Rails server
+1. Clone the repo
+1. Download the `config/master.key` file and place it in `./webapp/config`
+    - (Download from Notion site mentioned in job application)
+1. Run `cp ./webapp/.env-template ./webapp/.env`, and set RAILS_MASTER_KEY
+1. Run `source .autoenv`
+1. Run `up-sleep` to build and pull all Docker images
+1. Run `connect` to open a shell in the "appserver" container
+    1. Run `yarn install` (in the container)
+    1. Run `rails db:prepare` (in the container)
+1. Exit the container
+1. Run `down` to stop all containers
+1. Run `up` - this starts all containers, and starts the Rails server
 
 Some links that should work once the services are running:
 
@@ -41,7 +37,7 @@ Some links that should work once the services are running:
 
 ## Shortcut Commands
 
-Run `source .autoenv` to make use of these shortcuts.
+Run `source .autoenv` to use these shortcuts.
 
 | Command      | Description                                                                                        |
 | ------------ | -------------------------------------------------------------------------------------------------- |
