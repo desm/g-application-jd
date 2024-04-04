@@ -1,5 +1,9 @@
 require "application_system_test_case"
 
+if ENV["SMOKE_TEST"] == "true"
+  return
+end
+
 class WhatAreYouCreatingTest < ApplicationSystemTestCase
   def setup
     system_sign_in "one@gmail.com"

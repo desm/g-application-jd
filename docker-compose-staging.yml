@@ -1,5 +1,5 @@
 #
-# for testing the production build locally (see README)
+# for testing the production build locally (see README-dev.md)
 #
 
 # https://docs.docker.com/reference/
@@ -9,15 +9,17 @@ services:
   appserver-staging:
     build:
       context: ./webapp
-      dockerfile: ../linode/app/Dockerfile
+      dockerfile: ../docker/app/Dockerfile-production
+      args:
+        RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     ports:
       - 8000:3000
-    env_file: ./.env-staging
+    env_file: ./webapp/.env
     command: ./bin/rails server
     networks:
       - staging
 
-  db:
+  db-staging:
     image: mysql:8.0.36-debian
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
     # (this is just an example, not intended to be a production configuration)
@@ -37,28 +39,14 @@ services:
       - 8001:8080
     networks:
       - staging
-  
+
   www:
     image: nginx:bookworm
     ports:
       - 8080:80
     volumes:
-      - ./docker-compose/www/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./webflow/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./webflow/export:/usr/share/nginx/html
-    networks:
-      - staging
-
-  smoke-test-runner:
-    build:
-      context: ./smoke-test-runner
-      dockerfile: ../docker-compose/app/Dockerfile
-    volumes:
-      - ./smoke-test-runner:/app
-    tmpfs:
-      - /tmp
-    working_dir: /app
-    command: sh -c 'while :; do sleep .5; done'
-    stop_signal: SIGINT
     networks:
       - staging
 

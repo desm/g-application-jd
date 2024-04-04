@@ -1,5 +1,9 @@
 require "application_system_test_case"
 
+if ENV["SMOKE_TEST"] == "true"
+  return
+end
+
 class ProductEditTest < ApplicationSystemTestCase
   test "product edit page's data-all-attributes contains correct permalink" do
     system_sign_in "one@gmail.com"

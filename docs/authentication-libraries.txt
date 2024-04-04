@@ -1,3 +1,0 @@
-https://github.com/heartcombo/devise
-
-https://github.com/binarylogic/authlogic

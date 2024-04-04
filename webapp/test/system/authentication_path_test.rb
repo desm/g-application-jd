@@ -1,5 +1,9 @@
 require "application_system_test_case"
 
+if ENV["SMOKE_TEST"] == "true"
+  return
+end
+
 class AuthenticationPathTest < ApplicationSystemTestCase
   test "when not signed in, visiting / redirects to the login page" do
     visit root_path

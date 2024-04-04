@@ -15,23 +15,6 @@ app.gumroad.jacquesdesmarais.dev should proxy to localhost port 8001
 
 # ref: https://github.com/infinityofspace/certbot_dns_porkbun?tab=readme-ov-file#docker
 
-# The wildcard cert didn't work
-docker run \
-   -v "/etc/letsencrypt:/etc/letsencrypt" \
-   -v "/var/log/letsencrypt:/var/log/letsencrypt" \
-   infinityofspace/certbot_dns_porkbun:latest \
-   certonly \
-     --non-interactive \
-     --agree-tos \
-     --email jdesma@gmail.com \
-     --preferred-challenges dns \
-     --authenticator dns-porkbun \
-     --dns-porkbun-key pk1_9496b5d891da23881b592e4ebb01ac71783b904a4904e9d21f9878572eae8334 \
-     --dns-porkbun-secret sk1_de7ae8f98a4ad333ea15c053aa7ab914678ccbfcb88762b5584bf5e0def3cfc8 \
-     --dns-porkbun-propagation-seconds 60 \
-     -d "*.gumroad.jacquesdesmarais.dev"
-
-
 docker run \
    -v "/etc/letsencrypt:/etc/letsencrypt" \
    -v "/var/log/letsencrypt:/var/log/letsencrypt" \
@@ -88,49 +71,6 @@ docker run \
      --dns-porkbun-secret sk1_de7ae8f98a4ad333ea15c053aa7ab914678ccbfcb88762b5584bf5e0def3cfc8 \
      --dns-porkbun-propagation-seconds 60 \
       -d app.gumroad.jacquesdesmarais.dev
-
-
-sudo certbot certonly --nginx \
-  -d www.staging.gumroad.jacquesdesmarais.dev \
-  -d app.staging.gumroad.jacquesdesmarais.dev \
-  -d www.gumroad.jacquesdesmarais.dev \
-  -d app.gumroad.jacquesdesmarais.dev
-
-
-/etc/letsencrypt/live/app.gumroad.jacquesdesmarais.dev/README
-/etc/letsencrypt/live/README
-/etc/letsencrypt/live/app.staging.gumroad.jacquesdesmarais.dev/README
-/etc/letsencrypt/live/gumroad.jacquesdesmarais.dev/README
-/etc/letsencrypt/live/www.gumroad.jacquesdesmarais.dev/README
-/etc/letsencrypt/live/www.staging.gumroad.jacquesdesmarais.dev/README
-/etc/letsencrypt/renewal/app.staging.gumroad.jacquesdesmarais.dev.conf
-/etc/letsencrypt/renewal/www.staging.gumroad.jacquesdesmarais.dev.conf
-/etc/letsencrypt/renewal/app.gumroad.jacquesdesmarais.dev.conf
-/etc/letsencrypt/renewal/www.gumroad.jacquesdesmarais.dev.conf
-/etc/letsencrypt/renewal/gumroad.jacquesdesmarais.dev.conf
-/etc/letsencrypt/accounts/acme-v02.api.letsencrypt.org/directory/27816b604081538de87d7dc8ba1c0836/regr.json
-/etc/letsencrypt/accounts/acme-v02.api.letsencrypt.org/directory/27816b604081538de87d7dc8ba1c0836/meta.json
-/etc/letsencrypt/accounts/acme-v02.api.letsencrypt.org/directory/27816b604081538de87d7dc8ba1c0836/private_key.json
-/etc/letsencrypt/archive/app.gumroad.jacquesdesmarais.dev/cert1.pem
-/etc/letsencrypt/archive/app.gumroad.jacquesdesmarais.dev/chain1.pem
-/etc/letsencrypt/archive/app.gumroad.jacquesdesmarais.dev/privkey1.pem
-/etc/letsencrypt/archive/app.gumroad.jacquesdesmarais.dev/fullchain1.pem
-/etc/letsencrypt/archive/app.staging.gumroad.jacquesdesmarais.dev/cert1.pem
-/etc/letsencrypt/archive/app.staging.gumroad.jacquesdesmarais.dev/chain1.pem
-/etc/letsencrypt/archive/app.staging.gumroad.jacquesdesmarais.dev/privkey1.pem
-/etc/letsencrypt/archive/app.staging.gumroad.jacquesdesmarais.dev/fullchain1.pem
-/etc/letsencrypt/archive/gumroad.jacquesdesmarais.dev/cert1.pem
-/etc/letsencrypt/archive/gumroad.jacquesdesmarais.dev/chain1.pem
-/etc/letsencrypt/archive/gumroad.jacquesdesmarais.dev/privkey1.pem
-/etc/letsencrypt/archive/gumroad.jacquesdesmarais.dev/fullchain1.pem
-/etc/letsencrypt/archive/www.gumroad.jacquesdesmarais.dev/cert1.pem
-/etc/letsencrypt/archive/www.gumroad.jacquesdesmarais.dev/chain1.pem
-/etc/letsencrypt/archive/www.gumroad.jacquesdesmarais.dev/privkey1.pem
-/etc/letsencrypt/archive/www.gumroad.jacquesdesmarais.dev/fullchain1.pem
-/etc/letsencrypt/archive/www.staging.gumroad.jacquesdesmarais.dev/cert1.pem
-/etc/letsencrypt/archive/www.staging.gumroad.jacquesdesmarais.dev/chain1.pem
-/etc/letsencrypt/archive/www.staging.gumroad.jacquesdesmarais.dev/privkey1.pem
-/etc/letsencrypt/archive/www.staging.gumroad.jacquesdesmarais.dev/fullchain1.pem
 
 
 /etc/nginx/sites-available/reverse-proxy.conf

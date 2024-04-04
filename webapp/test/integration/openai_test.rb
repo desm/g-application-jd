@@ -1,17 +1,33 @@
 require "test_helper"
 
+#
+# These tests need to be run one at a time like this:
+# RUN_OPENAI_TESTS=true rails test -n "create thread"
+#
+# Their purpose is to learn how the OpenAI API works
+#
+# Once one test is run, you need to adjust the input of the next test with the correct IDs (e.g. thread id)
+#
+
+if ENV["CI"] == "true"
+  return
+end
+
+unless ENV["RUN_OPENAI_TESTS"] == "true"
+  return
+end
+
 class OpenaiTest < ActionDispatch::IntegrationTest
   def setup
     OpenAI.configure do |config|
-      config.access_token = ENV.fetch("OPENAI_ACCESS_TOKEN", "")
+      config.access_token = Rails.application.credentials.openai_access_token
     end
     @client = OpenAI::Client.new
     @client = @client.beta(assistants: "v1")
+    sign_in :one
   end
 
   test "create thread" do
-    skip "always"
-    skip if ENV["CI"] == "true"
     response = @client.threads.create
     puts JSON.generate(response)
     _response = {
@@ -23,8 +39,6 @@ class OpenaiTest < ActionDispatch::IntegrationTest
   end
 
   test "add message to thread" do
-    skip "always"
-    skip if ENV["CI"] == "true"
     response = @client.messages.create(
       thread_id: "thread_tGa4BAOAF3prl3kbcNLS8rzU",
       parameters: {
@@ -53,8 +67,6 @@ class OpenaiTest < ActionDispatch::IntegrationTest
   end
 
   test "create run" do
-    skip "always"
-    skip if ENV["CI"] == "true"
     response = @client.runs.create(thread_id: "thread_tGa4BAOAF3prl3kbcNLS8rzU",
                                    parameters: {
                                      assistant_id: "asst_Crm0yTwJZk8BrNUtSwn6fPKF",
@@ -85,8 +97,6 @@ class OpenaiTest < ActionDispatch::IntegrationTest
   end
 
   test "wait for run to complete" do
-    skip "always"
-    skip if ENV["CI"] == "true"
     while true
       response = @client.runs.retrieve(id: "run_IXquIGvrmndHfiOe9yGQQmfJ", thread_id: "thread_tGa4BAOAF3prl3kbcNLS8rzU")
       status = response["status"]
@@ -131,8 +141,6 @@ class OpenaiTest < ActionDispatch::IntegrationTest
   end
 
   test "retrieve last message of thread" do
-    skip "always"
-    skip if ENV["CI"] == "true"
     thread_id = "thread_tGa4BAOAF3prl3kbcNLS8rzU"
     response = @client.get(path: "/threads/#{thread_id}/messages?limit=1")
     puts JSON.generate(response)

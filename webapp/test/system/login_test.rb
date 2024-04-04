@@ -1,5 +1,9 @@
 require "application_system_test_case"
 
+if ENV["SMOKE_TEST"] == "true"
+  return
+end
+
 class LoginTest < ApplicationSystemTestCase
   test "entering correct credentials successfully goes to dashboard" do
     visit login_path
