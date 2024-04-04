@@ -20,19 +20,19 @@ Ruby, Rails, Node.js, and Yarn are not required as they are part of the Docker e
 ## Setup
 
 - Clone the repo
+- Download the `config/master.key` file and place it in `./webapp/config`
+  - (Download from Notion site mentioned in job application)
 - Run `source .autoenv`
 - Run `up-sleep` to build and pull all Docker images
-- run `connect` - this opens a shell in the "appserver" container
-- in appserver container, run `yarn install` - this installs node modules
-- in appserver container, run `rails db:prepare` - this sets up the database
-- exit the container
-- run `down` - this stops all containers
-- `cp ./webapp/.env-template ./webapp/.env`
-  - setting RAILS_MASTER_KEY is optional at this point
-  - setting OPENAI_ACCESS_TOKEN is only needed if you want to test the AI Assistant
-- run `up` - this starts all containers, and starts the Rails server
+- Run `connect` to open a shell in the "appserver" container
+  - Run `yarn install` (in the container)
+  - Run `rails db:prepare` (in the container)
+- Exit the container
+- Run `down` to stop all containers
+- Run `cp ./webapp/.env-template ./webapp/.env`, and set RAILS_MASTER_KEY
+- Run `up` - this starts all containers, and starts the Rails server
 
-Here are some links that should work once the services are running:
+Some links that should work once the services are running:
 
 - http://localhost:8080/ - A partial reproduction of the www.gumroad.com web site, made with Webflow
 - http://localhost:8000/signup - Gumroad signup page
@@ -43,14 +43,14 @@ Here are some links that should work once the services are running:
 
 Run `source .autoenv` to make use of these shortcuts.
 
-| Command       | Description                                                                                        |
-| ------------- | -------------------------------------------------------------------------------------------------- |
-| up            | Starts all services: Rails server, MySQL server, Adminer DB admin tool, nginx, Selenium Standalone |
-| up-sleep      | Same as `up` except that the appserver sleeps instead of running Rails                             |
-| logs          | Tails the appserver logs                                                                           |
-| down          | Stops all services                                                                                 |
-| connect       | Opens a shell in the appserver container                                                           |
-| connect-root  | Opens a **root** shell in the appserver container                                                  |
+| Command      | Description                                                                                        |
+| ------------ | -------------------------------------------------------------------------------------------------- |
+| up           | Starts all services: Rails server, MySQL server, Adminer DB admin tool, nginx, Selenium Standalone |
+| up-sleep     | Same as `up` except that the appserver sleeps instead of running Rails                             |
+| logs         | Tails the appserver logs                                                                           |
+| down         | Stops all services                                                                                 |
+| connect      | Opens a shell in the appserver container                                                           |
+| connect-root | Opens a **root** shell in the appserver container                                                  |
 
 ## Rails CLI
 
@@ -90,13 +90,9 @@ $ up
 
 ## Rails Credentials File
 
-The `config/master.key` is required to maintain the `credentials.yml.enc` file.
-
 To edit the `credentials.yml.enc` file:
 
 ```shell
-$ up-sleep
-
 $ connect
 
 (appserver) $ VISUAL=vi rails credentials:edit
@@ -106,7 +102,9 @@ $ connect
 
 CI/CD is done using **GitHub Actions**.
 
-**The code is tested & deployed** each time a commit is pushed to GitHub. This is configured via `.github/workflows/test-and-deploy.yml`.
+**The code is tested & deployed** each time a commit is pushed to GitHub. 
+
+See: `.github/workflows/test-and-deploy.yml`.
 
 ## Testing
 
@@ -140,19 +138,9 @@ $ connect
 
 ## Testing The Production Build Locally
 
-Note: since both the production and staging environments use the same build, we'll use `RAILS_ENV=staging` to test.
+Run ` export RAILS_MASTER_KEY=_____` with your master key.
 
-Edit `webapp/config/database.yml` so that the staging env looks like this:
-
-```yml
-staging:
-  <<: *default
-  database: appserver_development
-```
-
-`cp ./webapp/.env-template ./webapp/.env-staging` and set RAILS_MASTER_KEY
-
-Then:
+Temporarily set `RAILS_ENV=staging` in `./webapp/.env`.
 
 ```shell
 # build
@@ -164,3 +152,5 @@ $ docker compose -f docker-compose-staging.yml up -d
 # once done
 $ docker compose -f docker-compose-staging.yml down
 ```
+
+After, revert to `RAILS_ENV=development` in `./webapp/.env`.

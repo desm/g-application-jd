@@ -1,5 +1,5 @@
 #
-# for testing the production build locally (see README)
+# for testing the production build locally (see README-dev.md)
 #
 
 # https://docs.docker.com/reference/
@@ -10,14 +10,16 @@ services:
     build:
       context: ./webapp
       dockerfile: ../linode/app/Dockerfile
+      args:
+        RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     ports:
       - 8000:3000
-    env_file: ./webapp/.env-staging
+    env_file: ./webapp/.env
     command: ./bin/rails server
     networks:
       - staging
 
-  db:
+  db-staging:
     image: mysql:8.0.36-debian
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
     # (this is just an example, not intended to be a production configuration)
