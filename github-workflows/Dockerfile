@@ -1,9 +1,7 @@
 #
 # this Docker image is used by GitHub Actions to run automated tests
-# (see: .github/workflows/test.yml)
-#
 # it is also used to run smoke tests against the "staging" environment
-# (see: .github/workflows/deploy-ecs.yml)
+# (see: .github/workflows/test-and-deploy.yml)
 #
 
 # syntax = docker/dockerfile:1

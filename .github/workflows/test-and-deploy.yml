@@ -180,8 +180,8 @@ jobs:
           envs: IMAGE
           script: |
             cd gumroad-jd-staging
-            docker build -f github-workflows/Dockerfile -t $IMAGE ./smoke-test-runner
-            docker run --rm --volume ./smoke-test-runner:/app --workdir /app --user appserver --network smoke-test-network $IMAGE ./bin/rails test:system
+            docker build -f github-workflows/Dockerfile -t $IMAGE ./webapp
+            docker run --rm --volume ./webapp:/app --workdir /app --user appserver --network smoke-test-network $IMAGE sh -c "SMOKE_TEST=true ./bin/rails test:system"
 
   deploy-production:
     name: Deploy to production

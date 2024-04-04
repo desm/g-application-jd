@@ -27,7 +27,9 @@ Ruby, Rails, Node.js, and Yarn are not required as they are part of the Docker e
 - in appserver container, run `rails db:prepare` - this sets up the database
 - exit the container
 - run `down` - this stops all containers
-- `cp ./webapp/dev/.env-openai-tmpl ./webapp/dev/.env-openai` and add your OpenAI key
+- `cp ./webapp/.env-template ./webapp/.env`
+  - setting RAILS_MASTER_KEY is optional at this point
+  - setting OPENAI_ACCESS_TOKEN is only needed if you want to test the AI Assistant
 - run `up` - this starts all containers, and starts the Rails server
 
 Here are some links that should work once the services are running:
@@ -49,7 +51,6 @@ Run `source .autoenv` to make use of these shortcuts.
 | down          | Stops all services                                                                                 |
 | connect       | Opens a shell in the appserver container                                                           |
 | connect-root  | Opens a **root** shell in the appserver container                                                  |
-| connect-smoke | Opens a shell in the smoke-test-runner container                                                   |
 
 ## Rails CLI
 
@@ -131,10 +132,10 @@ $ connect
 ### Smoke Testing Staging Environment
 
 ```shell
-$ connect-smoke
+$ connect
 
 # run smoke tests against staging env https://app.staging.gumroad.jacquesdesmarais.dev
-(smoke-test-runner) $ rails test:system
+(appserver) $ SMOKE_TEST=true rails test:system
 ```
 
 ## Testing The Production Build Locally
@@ -149,12 +150,7 @@ staging:
   database: appserver_development
 ```
 
-Temporarily create a `.env-staging` in the root of the project that contains this:
-
-```shell
-RAILS_ENV=staging
-RAILS_MASTER_KEY={value}
-```
+`cp ./webapp/.env-template ./webapp/.env-staging` and set RAILS_MASTER_KEY
 
 Then:
 

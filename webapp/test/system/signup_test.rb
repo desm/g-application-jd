@@ -1,5 +1,9 @@
 require "application_system_test_case"
 
+if ENV["SMOKE_TEST"] == "true"
+  return
+end
+
 class SignupTest < ApplicationSystemTestCase
   test "creating a new user account successfully goes to dashboard" do
     visit signup_path
