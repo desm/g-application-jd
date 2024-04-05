@@ -1,5 +1,6 @@
-import * as React from 'react';
 import type { FunctionComponent } from 'react';
+import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ProductListing from './ProductsDashboardPage/ProductListing';
 
 export interface Props {
@@ -8,6 +9,17 @@ export interface Props {
 }
 
 const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
+  const sectionRef = useRef();
+  const [sectionWidth, setSectionWidth] = useState(0);
+
+  useEffect(() => {
+    setSectionWidth((sectionRef.current as any).clientWidth);
+    
+    (window as any).addEventListener('resize', () => {
+      setSectionWidth((sectionRef.current as any).clientWidth);
+    });
+  }, []);
+
   return (
     <>
       <main>
@@ -59,7 +71,7 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
             </a>
           </div>
         </header>
-        <section>
+        <section ref={sectionRef}>
           <div style={{ display: 'grid;gap:var(--spacer-7)' }}>
             {props.memberships.length > 0 && (
               <section className="paragraphs">
@@ -184,7 +196,7 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                 </thead>
                 <tbody>
                   {props.products.map((product, index) => (
-                    <ProductListing key={index} product={product} />
+                    <ProductListing key={index} product={product} sectionWidth={sectionWidth} />
                   ))}
                 </tbody>
                 <tfoot>

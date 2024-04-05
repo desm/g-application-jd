@@ -1,14 +1,29 @@
-import * as React from 'react';
 import type { FunctionComponent } from 'react';
+import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export interface Props {
   product: {
     name: string;
     permalink: string;
   };
+  sectionWidth: number;
 }
 
 const ProductListing: FunctionComponent<Props> = (props: Props) => {
+  const [translateXValue, setTranslateXValue] = useState(0);
+  const iconThreeDots = useRef();
+
+  useEffect(() => {
+    const elementRect = (iconThreeDots.current as any).getBoundingClientRect();
+    setTranslateXValue(window.innerWidth - elementRect.right);
+    
+    (window as any).addEventListener('resize', () => {
+      const elementRect = (iconThreeDots.current as any).getBoundingClientRect();
+      setTranslateXValue(window.innerWidth - elementRect.right);
+    });
+  }, []);
+
   return (
     <>
       <tr>
@@ -51,21 +66,22 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
                 aria-label="Open product action menu"
                 aria-haspopup="true"
                 aria-expanded="false"
+                ref={iconThreeDots}
               ></span>
             </summary>
             <div
               className="dropdown"
               style={{
-                transform: 'translateX(min(0px - 100% - var(--spacer-4), 0px))',
-                maxWidth: 'calc(0px - 2 * var(--spacer-4))',
+                transform: `translateX(min(${translateXValue}px - 100% - var(--spacer-4), 0px))`,
+                maxWidth: `calc(${props.sectionWidth}px - 2 * var(--spacer-4))`,
               }}
             >
               <div role="menu">
-                <div role="menuitem" aria-disabled="false">
+                <div role="menuitem" aria-disabled="true">
                   <span className="icon icon-outline-duplicate"></span>
                   Duplicate
                 </div>
-                <div role="menuitem" aria-disabled="false">
+                <div role="menuitem" aria-disabled="true">
                   <span className="icon icon-archive"></span>
                   Archive
                 </div>
