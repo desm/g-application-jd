@@ -1,7 +1,12 @@
 import * as React from 'react';
 import type { FunctionComponent } from 'react';
 
-export interface Props {}
+export interface Props {
+  product: {
+    name: string;
+    permalink: string;
+  };
+}
 
 const ProductListing: FunctionComponent<Props> = (props: Props) => {
   return (
@@ -12,16 +17,15 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
         </td>
         <td>
           <div>
-            <a href="/products/foioyb/edit" style={{ textDecoration: 'none' }}>
-              <h4>Hey</h4>
+            <a href={`/products/${props.product.permalink}/edit`} style={{ textDecoration: 'none' }}>
+              <h4>{props.product.name}</h4>
             </a>
             <a
-              href="https://jdesma.gumroad.jacquesdesmarais.dev/l/foioyb"
-              title="https://jdesma.gumroad.jacquesdesmarais.dev/l/foioyb"
-              target="_blank"
+              href="#"
+              title={`https://jdesma.gumroad.jacquesdesmarais.dev/l/{props.product.permalink}`}
               rel="noreferrer"
             >
-              <small>jdesma.gumroad.jacquesdesmarais.dev/l/foioyb</small>
+              <small>jdesma.gumroad.jacquesdesmarais.dev/l/{props.product.permalink}</small>
             </a>
           </div>
         </td>
