@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @props[:Nav][:highlight] = "Products"
-    @props[:ProductsDashboardPage] = {}
+    @props[:ProductsDashboardPage] = Products::ProductListingData::product_listing
   end
 
   def new
