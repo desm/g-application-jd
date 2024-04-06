@@ -5,7 +5,7 @@ import Dashboard from '../client/bundles/Dashboard';
 
 describe('Dashboard', () => {
   it('should contain a "create product" link', async () => {
-    render(<Dashboard />);
+    render(<Dashboard first_product_image_url="" has_products={false} />);
     await screen.findAllByRole('heading');
     const createProductLink = screen.getByText('create a product');
     expect(createProductLink).toBeInstanceOf(HTMLAnchorElement);

@@ -2,4 +2,7 @@
 Home
 <% end %>
 <%= react_component("Nav", props: @props[:Nav], prerender: true, html_options: [["style", "display: contents;"]]) %>
-<%= react_component("Dashboard", props: {}, prerender: true, html_options: [["style", "display: contents;"]]) %>
+<%= react_component("Dashboard", props: {
+    first_product_image_url: asset_path("20f9d3e0a6869c1b28a1.png"),
+    has_products: @has_products,
+}, prerender: true, html_options: [["style", "display: contents;"]]) %>
