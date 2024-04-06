@@ -20,18 +20,18 @@ class AiAssistantTest < ApplicationSystemTestCase
     assert_selector "h1", text: "What are you creating?"
     current_time = Time.now
     formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
-    fill_in "name", with: "SMOKE_TEST #{formatted_time}"
+    fill_in "name", with: "SMOKE-TEST:: turn on AI Assistant #{formatted_time}"
     fill_in "price_range", with: "123"
     click_on "Next: Customize"
     assert_no_current_path "/products/new"
 
+    # Test turning on AI Assistant
     assert_current_path %r{/products/(\w{5})/edit} # e.g. /products/lgyli/edit
     click_on "Turn On AI Assistant"
     within "dialog" do
       click_on "Turn On"
     end
-
-    find('button[aria-disabled=true]', text: 'Make Shorter')
-    find('button[aria-disabled=true]', text: 'Make Longer')
+    find("button[aria-disabled=true]", text: "Make Shorter")
+    find("button[aria-disabled=true]", text: "Make Longer")
   end
 end
