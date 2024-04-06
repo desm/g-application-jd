@@ -20,15 +20,19 @@ Rails.application.routes.draw do
   # Dashboard
   get "dashboard", to: "dashboard#index"
 
-  # Products
+  # Links
   post "links" => "links#create"
-  get "products" => "products#index"
-  get "products/new"
-  get "products/:id/edit" => "products#edit", as: :products_edit
   post "links/:id" => "links#update", as: :links_update
   delete "links/:id" => "links#destroy", as: :links_delete
 
+  # Products
+  get "products" => "products#index"
+  get "products/new"
+  get "products/:id/edit" => "products#edit", as: :products_edit
+  get "products/paged" => "products#paged"
+
   resources :products, only: [] do
+    # per Product OpenAI Thread
     resources :threads, only: [:create, :update]
   end
 end

@@ -2,6 +2,8 @@ import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import ProductListing from './ProductsDashboardPage/ProductListing';
+import { DELETE_PRODUCT_SUCCESS_EVENT } from './ProductsDashboardPage/ConfirmDeleteProductDialog';
+import { sendGetRequest } from './util';
 
 export interface Props {
   memberships: any[];
@@ -11,14 +13,27 @@ export interface Props {
 const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
   const sectionRef = useRef();
   const [sectionWidth, setSectionWidth] = useState(0);
+  const [products, setProducts] = useState(props.products);
 
   useEffect(() => {
     setSectionWidth((sectionRef.current as any).clientWidth);
-    
+
     (window as any).addEventListener('resize', () => {
       setSectionWidth((sectionRef.current as any).clientWidth);
     });
+
+    document.addEventListener(DELETE_PRODUCT_SUCCESS_EVENT, handleDeleteProduct);
+    return () => {
+      document.removeEventListener('customAction', handleDeleteProduct);
+    };
   }, []);
+
+  const handleDeleteProduct = async () => {
+    const response = await sendGetRequest('/products/paged?page=1');
+    if (response.entries) {
+      setProducts(response.entries)
+    }
+  };
 
   return (
     <>
@@ -195,7 +210,7 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {props.products.map((product, index) => (
+                  {products.map((product, index) => (
                     <ProductListing key={index} product={product} sectionWidth={sectionWidth} />
                   ))}
                 </tbody>

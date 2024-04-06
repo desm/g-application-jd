@@ -24,4 +24,13 @@ class ProductsController < ApplicationController
     @discover_taxonomy_options = Products::ProductsData::discover_taxonomy_options
     @current_seller = Products::ProductsData::current_seller(view_context)
   end
+
+  def paged
+    products = Product.where(creator_id: Current.user.id).order(name: :asc)
+    respond_to do |format|
+      format.json {
+        render json: Products::ProductListingData::product_entries(products)
+      }
+    end
+  end
 end

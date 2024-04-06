@@ -10,6 +10,14 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get paged results" do
+    sign_in :one
+    get products_paged_url, as: :json
+    assert_response :success
+  end
+
+  # the below tests use Capybara in order to be able to query the DOM
+
   def sign_in_using_capybara(email, pass)
     visit login_path
     fill_in "user[login_identifier]", with: email

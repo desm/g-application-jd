@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
+import ConfirmDeleteProductDialog from './ConfirmDeleteProductDialog';
 
 export interface Props {
   product: {
@@ -12,15 +13,31 @@ export interface Props {
 
 const ProductListing: FunctionComponent<Props> = (props: Props) => {
   const [translateXValue, setTranslateXValue] = useState(0);
-  const iconThreeDots = useRef();
+  const [confirmDeleteDialog, setConfirmDeleteDialog] = useState<'open' | 'closed'>('closed');
+
+  const threeDots = {
+    detailsElement: useRef(),
+    button: useRef(),
+  };
+  const confirmDeleteDialogRef = useRef(confirmDeleteDialog);
 
   useEffect(() => {
-    const elementRect = (iconThreeDots.current as any).getBoundingClientRect();
+    confirmDeleteDialogRef.current = confirmDeleteDialog;
+  }, [confirmDeleteDialog]);
+
+  useEffect(() => {
+    const elementRect = (threeDots.button.current as any).getBoundingClientRect();
     setTranslateXValue(window.innerWidth - elementRect.right);
-    
+
     (window as any).addEventListener('resize', () => {
-      const elementRect = (iconThreeDots.current as any).getBoundingClientRect();
-      setTranslateXValue(window.innerWidth - elementRect.right);
+      if (threeDots.button.current) {
+        const elementRect = (threeDots.button.current as any).getBoundingClientRect();
+        setTranslateXValue(window.innerWidth - elementRect.right);
+      }
+    });
+
+    document.body.addEventListener('mousedown', () => {
+      (threeDots.detailsElement.current as any)?.removeAttribute('open');
     });
   }, []);
 
@@ -54,11 +71,10 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
           CAD$999
         </td>
         <td data-label="Status" style={{ whiteSpace: 'nowrap' }}>
-          <span className="icon icon-circle"></span>
-          Unpublished
+          <span className="icon icon-circle"></span> Unpublished
         </td>
         <td>
-          <details className="popover toggle">
+          <details className="popover toggle" ref={threeDots.detailsElement}>
             <summary>
               <span
                 className="icon icon-three-dots"
@@ -66,7 +82,10 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
                 aria-label="Open product action menu"
                 aria-haspopup="true"
                 aria-expanded="false"
-                ref={iconThreeDots}
+                ref={threeDots.button}
+                onMouseDown={(e) => {
+                  e.stopPropagation(); // prevents dropdown from flashing when "..." is clicked again
+                }}
               ></span>
             </summary>
             <div
@@ -85,13 +104,32 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
                   <span className="icon icon-archive"></span>
                   Archive
                 </div>
-                <div className="danger" aria-disabled="false" role="menuitem">
+                <div
+                  className="danger"
+                  aria-disabled="false"
+                  role="menuitem"
+                  onMouseDown={(e) => {
+                    e.stopPropagation(); // prevents dropdown from being closed by parent handler and dialog not opening
+                  }}
+                  onClick={(e) => {
+                    setConfirmDeleteDialog('open');
+                    (threeDots.button.current as any).click(); // closes dropdown
+                  }}
+                >
                   <span className="icon icon-trash2"></span>
                   Delete permanently
                 </div>
               </div>
             </div>
           </details>
+          <ConfirmDeleteProductDialog
+            state={confirmDeleteDialog}
+            close={() => {
+              setConfirmDeleteDialog('closed');
+            }}
+            productName={props.product.name}
+            permalink={props.product.permalink}
+          />
         </td>
       </tr>
     </>
