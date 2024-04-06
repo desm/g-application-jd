@@ -71,7 +71,7 @@ module Products
           "skus_enabled": false,
         },
         "purchase_type": "buy_only",
-        "buy_price": "999",
+        "buy_price": product.buy_price,
         "is_shipping_info_required": false,
         "rent_price": "0",
         "is_customizable": false,

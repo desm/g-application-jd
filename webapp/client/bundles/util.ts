@@ -32,6 +32,36 @@ export const sendJsonToServer = async (method: 'POST' | 'PATCH', json: string, p
   }
 };
 
+export const sendDeleteRequest = async (path: string) => {
+  try {
+    const response = await fetch(path, {
+      headers: addCSRFTokenIfAvailable({
+        'content-type': 'application/json',
+      }),
+      method: 'DELETE',
+    });
+    return await response.json();
+  } catch (e) {
+    console.log(e);
+    return { success: false };
+  }
+};
+
+export const sendGetRequest = async (path: string) => {
+  try {
+    const response = await fetch(path, {
+      headers: addCSRFTokenIfAvailable({
+        'content-type': 'application/json',
+      }),
+      method: 'GET',
+    });
+    return await response.json();
+  } catch (e) {
+    console.log(e);
+    return { success: false };
+  }
+};
+
 export const postFormDataTo = async (formData: string, path: string) => {
   try {
     const response = await fetch(path, {

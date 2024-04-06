@@ -82,4 +82,11 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_response :internal_server_error
     assert_equal ({ "success" => false }), JSON.parse(@response.body)
   end
+
+  test "delete link" do
+    p1 = products(:p1)
+    assert_includes Product.all, p1
+    delete links_delete_path(p1.permalink)
+    refute_includes Product.all, p1
+  end
 end

@@ -67,6 +67,32 @@ class LinksController < ApplicationController
     end
   end
 
+  def destroy
+    @result = false
+    Rails.error.set_context(
+      section: "products",
+      action: "delete link",
+      user_email: Current.user.email_address,
+    )
+
+    Rails.error.handle do
+      permalink = params[:id]
+      @product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
+      @product.destroy!
+      @result = true
+    end
+
+    if @result == true
+      respond_to do |format|
+        format.json { render json: { success: true } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { success: false }, status: :internal_server_error }
+      end
+    end
+  end
+
   private
 
   def link_params
@@ -78,6 +104,11 @@ class LinksController < ApplicationController
     params.require(:link).require([:name, :price_range, :description])
     params.require(:link).permit([:name, :price_range, :description])
   end
+
+  # def link_params_for_destroy
+  #   params.require(:id)
+  #   params.permit([:id])
+  # end
 end
 
 def generate_product_id

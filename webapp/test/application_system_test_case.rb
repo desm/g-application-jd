@@ -18,8 +18,6 @@ if ENV["SMOKE_TEST"] == "true"
     Capybara.run_server = false
     Capybara.app_host = "https://app.staging.gumroad.jacquesdesmarais.dev"
     Capybara.default_max_wait_time = 10
-
-    include SystemTestHelper
   end
 else
   class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
