@@ -97,12 +97,10 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
             >
               <div role="menu">
                 <div role="menuitem" aria-disabled="true">
-                  <span className="icon icon-outline-duplicate"></span>
-                  Duplicate
+                  <span className="icon icon-outline-duplicate"></span> Duplicate
                 </div>
                 <div role="menuitem" aria-disabled="true">
-                  <span className="icon icon-archive"></span>
-                  Archive
+                  <span className="icon icon-archive"></span> Archive
                 </div>
                 <div
                   className="danger"
@@ -116,8 +114,7 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
                     (threeDots.button.current as any).click(); // closes dropdown
                   }}
                 >
-                  <span className="icon icon-trash2"></span>
-                  Delete permanently
+                  <span className="icon icon-trash2"></span> Delete permanently
                 </div>
               </div>
             </div>
