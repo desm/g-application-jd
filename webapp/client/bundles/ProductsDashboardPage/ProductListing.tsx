@@ -7,6 +7,7 @@ export interface Props {
   product: {
     name: string;
     permalink: string;
+    price_formatted: string;
   };
   sectionWidth: number;
 }
@@ -68,7 +69,7 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
           $0
         </td>
         <td data-label="Price" style={{ whiteSpace: 'nowrap' }}>
-          CAD$999
+          {props.product.price_formatted}
         </td>
         <td data-label="Status" style={{ whiteSpace: 'nowrap' }}>
           <span className="icon icon-circle"></span> Unpublished

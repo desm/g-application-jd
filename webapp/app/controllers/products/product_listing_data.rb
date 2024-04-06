@@ -12,7 +12,7 @@ module Products
             is_unpublished: product.published == false,
             name: product.name,
             permalink: product.permalink,
-            price_formatted: "CAD$27",
+            price_formatted: format_price(product.currency_code, product.buy_price),
             url: "https://jdesma.gumroad.com/l/#{product.permalink}",
             url_without_protocol: "jdesma.gumroad.com/l/#{product.permalink}",
             can_edit: true,
@@ -43,7 +43,7 @@ module Products
             is_unpublished: product.published == false,
             name: product.name,
             permalink: product.permalink,
-            price_formatted: "CAD$27",
+            price_formatted: format_price(product.currency_code, product.buy_price),
             url: "https://jdesma.gumroad.com/l/#{product.permalink}",
             url_without_protocol: "jdesma.gumroad.com/l/#{product.permalink}",
             can_edit: true,
@@ -54,6 +54,36 @@ module Products
           }
         end,
       }
+    end
+
+    private
+
+    # AI helped code this method
+    def self.format_price(currency_code, buy_price)
+      currency_table = {
+        "usd" => "$",
+        "gbp" => "£",
+        "eur" => "€",
+        "jpy" => "¥",
+        "inr" => "₹",
+        "aud" => "A$",
+        "cad" => "CAD$",
+        "hkd" => "HK$",
+        "sgd" => "SGD$",
+        "twd" => "NT$",
+        "nzd" => "NZ$",
+        "brl" => "R$",
+        "zar" => "ZAR",
+        "chf" => "CHF",
+        "ils" => "₪",
+        "php" => "₱",
+        "krw" => "₩",
+        "pln" => "zł",
+        "czk" => "Kč",
+      }
+      currency_symbol = currency_table[currency_code.downcase]
+      formatted_price = buy_price.to_i == buy_price ? buy_price.to_i : format("%.2f", buy_price)
+      return "#{currency_symbol}#{formatted_price}"
     end
   end
 end
