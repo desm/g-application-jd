@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   def index
     @props[:Nav][:highlight] = "Products"
     products = Product.where(creator_id: Current.user.id).order(name: :asc)
-    @props[:ProductsDashboardPage] = Products::ProductListingData::product_listing(products)
+    @props[:ProductsDashboardPage] = Products::ProductListingData::product_listing(view_context, products)
   end
 
   def new

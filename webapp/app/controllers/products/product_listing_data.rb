@@ -1,7 +1,8 @@
 module Products
   module ProductListingData
-    def self.product_listing(products)
+    def self.product_listing(view_context, products)
       {
+        "empty_products_image_url": view_context.asset_path("c46c7f94efc36e2981ec.svg"),
         "memberships": [],
         "memberships_pagination": {
           "page": 1,
