@@ -357,10 +357,10 @@ function ProductContent() {
                 <textarea
                   id=":r13:"
                   placeholder="Want to leave a written review?"
-                  disabled={false}
+                  disabled={true}
                   tabIndex={-1}
                 ></textarea>
-                <button className="primary" disabled={false} type="button" style={{ width: '100%' }}>
+                <button className="primary" disabled={true} type="button" style={{ width: '100%' }}>
                   Post review
                 </button>
               </div>
