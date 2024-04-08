@@ -31,7 +31,7 @@ services:
   www-linode-staging:
     build:
       context: ./webflow/export
-      dockerfile: ../../linode/www/Dockerfile-staging
+      dockerfile: ../../docker/www/Dockerfile-staging
     ports:
       - 8080:80
     networks:

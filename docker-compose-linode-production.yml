@@ -31,7 +31,7 @@ services:
   www-linode-production:
     build:
       context: ./webflow/export
-      dockerfile: ../../linode/www/Dockerfile-production
+      dockerfile: ../../docker/www/Dockerfile-production
     ports:
       - 8081:80
     networks:
