@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
 
     @props[:Nav][:highlight] = "Products"
     @props[:ProductContentPreview] = {}
-    @props[:ProductPreviewVariantDropdown] = {}
 
     @design_settings = Products::ProductsData::design_settings
     @user_agent_info = Products::ProductsData::user_agent_info
