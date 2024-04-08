@@ -159,12 +159,12 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                             <h4>Podcast</h4>
                           </a>
                           <a
-                            href="https://jdesma.gumroad.jacquesdesmarais.dev/l/ptpaj"
-                            title="https://jdesma.gumroad.jacquesdesmarais.dev/l/ptpaj"
+                            href="https://_subdomain_/l/_permalink_"
+                            title="https://_subdomain_/l/_permalink_"
                             target="_blank"
                             rel="noreferrer"
                           >
-                            <small>jdesma.gumroad.jacquesdesmarais.dev/l/ptpaj</small>
+                            <small>_subdomain_/l/_permalink_</small>
                           </a>
                         </td>
                         <td data-label="Members">0</td>

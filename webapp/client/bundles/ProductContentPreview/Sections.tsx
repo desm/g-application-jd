@@ -422,9 +422,9 @@ function Sections() {
           </legend>
           <div className="input" style={{ backgroundColor: 'transparent' }}>
             <div className="pill" style={{ backgroundColor: 'transparent' }}>
-              jdesma.gumroad.jacquesdesmarais.dev/l/
+              {applicationState.seller.subdomain}/l/
             </div>
-            <input id=":r6:" type="text" placeholder="dcfqu" defaultValue="" disabled={true} />
+            <input id=":r6:" type="text" placeholder={applicationState.permalink} defaultValue="" disabled={true} />
           </div>
         </fieldset>
         <fieldset className="">

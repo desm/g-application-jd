@@ -3,6 +3,12 @@ import { useImmerReducer } from 'use-immer';
 import { postCreateThreadForProduct } from '../../lib/clientRequests/aiAssistant';
 
 interface State {
+  seller: {
+    name: string;
+    email_address: string;
+    subdomain: string;
+    avatar_url: string;
+  };
   permalink: string;
   productName: string;
   price: string;
@@ -31,6 +37,7 @@ interface State {
 }
 
 const initialState = {
+  seller: {},
   flags: {},
   dialogs: {},
   props: {
@@ -110,6 +117,10 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
     }
     case 'REWORKED_TEXT_CHANGED': {
       draft.reworkedText = action.reworkedText;
+      break;
+    }
+    case 'SELLER_SET': {
+      draft.seller = action.seller;
       break;
     }
     default: {
@@ -255,5 +266,12 @@ export const setReworkedText = (reworkedText: string) => {
   dispatch({
     type: 'REWORKED_TEXT_CHANGED',
     reworkedText,
+  });
+};
+
+export const setSeller = (seller: Pick<State, 'seller'>) => {
+  dispatch({
+    type: 'SELLER_SET',
+    seller,
   });
 };

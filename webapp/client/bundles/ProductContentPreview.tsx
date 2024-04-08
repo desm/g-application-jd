@@ -23,6 +23,7 @@ import {
   setAvatarUrl,
   setPermalink,
   setPrice,
+  setSeller,
   useApplicationState,
 } from './ProductContentPreview/stateStores/application';
 import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
@@ -63,6 +64,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     editElement.removeChild(editElement.firstChild); // removes the text node "Initializing..."
 
     const divData = grabAllDataFromDataDivs();
+    setSeller(divData['edit-attributes']['seller'])
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
     setPermalink(divData['edit-attributes']['unique_permalink']);
     changeProductName(divData['edit-attributes']['name']);

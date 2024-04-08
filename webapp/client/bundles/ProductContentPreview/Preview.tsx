@@ -77,14 +77,14 @@ function Preview() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacer-2)' }}>
                   <a
-                    href="https://jdesma.gumroad.jacquesdesmarais.dev/"
+                    href={`https://${applicationState.seller.subdomain}/`}
                     target="_blank"
                     className="user"
                     rel="noreferrer"
                     style={{ position: 'relative' }}
                   >
                     <img className="user-avatar" src={applicationState.avatarUrl} />
-                    Jacques
+                    {applicationState.seller.name}
                   </a>
                 </div>
                 <div className="rating">

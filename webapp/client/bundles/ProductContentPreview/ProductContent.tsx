@@ -374,19 +374,20 @@ function ProductContent() {
               </details>
             </div>
             <div className="stack">
-              <div>dfgasdf - one</div>
+              <div>{applicationState.productName}</div>
               <div>
                 <span style={{ display: 'flex', gap: 'var(--spacer-2)' }}>
                   <img className="user-avatar" src={applicationState.avatarUrl} />
                   <span>
-                    By
+                    By{' '}
                     <a
-                      href="https://jdesma.gumroad.jacquesdesmarais.dev/"
-                      target="_blank"
+                      href="#content"
+                      target=""
                       rel="noreferrer"
+                      className="not-implemented"
                       style={{ position: 'relative' }}
                     >
-                      Jacques
+                      {applicationState.seller.name}
                     </a>
                   </span>
                 </span>
