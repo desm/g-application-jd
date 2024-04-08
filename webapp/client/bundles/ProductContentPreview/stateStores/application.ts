@@ -155,32 +155,33 @@ export const setPrice = (price: number) => {
   dispatch({ type: 'PRICE_SET', price });
 };
 
+const BLANK_RICH_TEXT_DOC = {
+  doc: {
+    type: 'doc',
+    content: [
+      {
+        type: 'paragraph',
+      },
+    ],
+  },
+  selection: {
+    type: 'text',
+    anchor: 1,
+    head: 1,
+  },
+};
+
 export const changeRichTextDescription = (richText: any) => {
-  const BLANK_DOCUMENT = {
-    doc: {
-      type: 'doc',
-      content: [
-        {
-          type: 'paragraph',
-        },
-      ],
-    },
-    selection: {
-      type: 'text',
-      anchor: 1,
-      head: 1,
-    },
-  };
   dispatch({
     type: 'RICH_TEXT_DOCUMENT_CHANGED',
-    richText: richText === null ? BLANK_DOCUMENT : richText,
+    richText: richText === null ? BLANK_RICH_TEXT_DOC : richText,
   });
 };
 
 export const changeRichTextContent = (richText: any) => {
   dispatch({
     type: 'RICH_TEXT_CONTENT_CHANGED',
-    richText,
+    richText: richText === null ? BLANK_RICH_TEXT_DOC : richText,
   });
 };
 

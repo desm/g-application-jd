@@ -2,7 +2,7 @@ import * as React from 'react';
 import { showMessage } from '../lib/uiMessages';
 import { applicationState } from './stateStores/application';
 
-function Header({ productName, saveAndContinueButtonClickHandler }) {
+function Header({ productName, saveAndContinueButtonClickHandler, saveButtonClickHandler }) {
   const preventSwitchingToShareTabIfNotPublished = (e) => {
     if (!applicationState.published) {
       e.preventDefault();
@@ -25,10 +25,10 @@ function Header({ productName, saveAndContinueButtonClickHandler }) {
       )}
       {applicationState.activeTab === 'ACTIVE_TAB_CONTENT' && !applicationState.published && (
         <div className="actions">
-          <button className="primary" type="submit">
+          <button className="primary" type="submit" onClick={saveButtonClickHandler}>
             Save changes
           </button>
-          <button className="accent" type="submit">
+          <button className="accent not-implemented" type="submit">
             Publish and continue
           </button>
         </div>

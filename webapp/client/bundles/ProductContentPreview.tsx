@@ -30,6 +30,7 @@ import { useTextEditorState } from './ProductContentPreview/stateStores/textEdit
 import { encode } from './formUrlEncoder';
 import { postFormDataTo } from './lib/clientRequests/base';
 import { grabAllDataFromDataDivs } from './lib/dataDivs';
+import { showMessage } from './lib/uiMessages';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;
@@ -64,7 +65,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     editElement.removeChild(editElement.firstChild); // removes the text node "Initializing..."
 
     const divData = grabAllDataFromDataDivs();
-    setSeller(divData['edit-attributes']['seller'])
+    setSeller(divData['edit-attributes']['seller']);
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
     setPermalink(divData['edit-attributes']['unique_permalink']);
     changeProductName(divData['edit-attributes']['name']);
@@ -152,12 +153,14 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       ['link[name]', applicationState.productName, 'encode'],
       ['link[price_range]', parseFloat(applicationState.price.trim()), 'encode'],
       ['link[description]', JSON.stringify(applicationState.richTextDescription), 'encode'],
+      ['link[content]', JSON.stringify(applicationState.richTextContent), 'encode'],
     ];
     const formData = encode(formDataAsObj);
     const r = await postFormDataTo(formData, `/links/${applicationState.permalink}.json`);
     if (r.success) {
       window.location.hash = 'content';
     }
+    showMessage('Changes saved!', 'success');
   };
 
   const isPriceFieldValid = (price) => !isBlank(price) && isNumber(price);
@@ -165,6 +168,9 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
   const isBlank = (str) => str.match(/^\s*$/);
 
   const isNumber = (str) => str.trim().match(/^[0-9]*(.[0-9]*)?$/);
+
+  // both buttons "Save and continue" and "Save" do the same thing for now
+  const saveButtonClickHandler = saveAndContinueButtonClickHandler;
 
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
   return (
@@ -174,6 +180,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
           <Header
             productName={applicationState.productName}
             saveAndContinueButtonClickHandler={saveAndContinueButtonClickHandler}
+            saveButtonClickHandler={saveButtonClickHandler}
           />,
           document.getElementById('header-root')
         )}

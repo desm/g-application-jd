@@ -1070,7 +1070,7 @@ module Products
             "page_id": "RXjaeTUNWdQ4V-Eyw4wV9g==",
             "title": nil,
             "variant_id": nil,
-            "description": '{"doc":{"type":"doc","content":[{"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Content Level One"}]},{"type":"heading","attrs":{"level":3},"content":[{"type":"text","text":"Content Level Two"}]}]},"selection":{"type":"text","anchor":1,"head":1}}',
+            "description": product.rich_text_content,
             "updated_at": "2024-03-18T20:21:39Z",
           },
         ],
