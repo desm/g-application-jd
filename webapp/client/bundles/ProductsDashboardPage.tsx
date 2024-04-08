@@ -114,7 +114,7 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
               <span>
                 or{' '}
                 <a
-                  href="#https://help.gumroad.com/article/304-products-dashboard"
+                  href="#https://help.gumroad.jacquesdesmarais.dev/article/304-products-dashboard"
                   target="_blank"
                   rel="noreferrer"
                   className="not-implemented"

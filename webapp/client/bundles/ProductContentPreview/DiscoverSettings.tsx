@@ -7,7 +7,7 @@ function DiscoverSettings() {
         <h2>Gumroad Discover</h2>
         <a
           className="learn-more"
-          href="https://help.gumroad.com/article/79-gumroad-discover"
+          href="https://help.gumroad.jacquesdesmarais.dev/article/79-gumroad-discover"
           target="_blank"
           rel="noreferrer"
         >

@@ -6,7 +6,7 @@ function ProfileSettings() {
       <header>
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
           <h2>Profile</h2>
-          <a href="https://help.gumroad.com/article/124-your-gumroad-profile-page" target="_blank" rel="noreferrer">
+          <a href="https://help.gumroad.jacquesdesmarais.dev/article/124-your-gumroad-profile-page" target="_blank" rel="noreferrer">
             Learn more
           </a>
         </div>

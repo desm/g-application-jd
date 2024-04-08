@@ -431,7 +431,7 @@ function Sections() {
           <legend>
             <label htmlFor=":r8:">Custom domain</label>
             <a
-              href="#https://help.gumroad.com/article/153-setting-up-a-custom-domain"
+              href="#https://help.gumroad.jacquesdesmarais.dev/article/153-setting-up-a-custom-domain"
               target=""
               rel="noreferrer"
               className="not-implemented"
@@ -741,7 +741,7 @@ function Sections() {
               <label>
                 <input type="checkbox" role="switch" disabled={true} />
                 Specify a refund policy for this product
-                <a href="https://help.gumroad.com/article/335-custom-refund-policy">Learn more</a>
+                <a href="https://help.gumroad.jacquesdesmarais.dev/article/335-custom-refund-policy">Learn more</a>
               </label>
             </summary>
             <div className="dropdown paragraphs">
