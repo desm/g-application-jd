@@ -12,4 +12,15 @@ class User < ApplicationRecord
 
   has_many :sessions, dependent: :destroy
   has_many :products, dependent: :destroy
+
+  def name
+    extract_word_before_at email_address
+  end
+
+  private
+
+  def extract_word_before_at(input_string)
+    parts = input_string.split("@")
+    parts.length > 1 ? parts.first : input_string
+  end
 end

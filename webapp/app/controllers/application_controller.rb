@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
           url_path: request.path,
           help_url: "https://help.gumroad.jacquesdesmarais.dev",
           unbecome_path: nil,
-          name: Current.user.email_address, # todo: set to Profile "Name" field
+          name: Current.user.name,
         },
       }
     else
