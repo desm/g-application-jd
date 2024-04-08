@@ -35,7 +35,9 @@ const Dashboard: FunctionComponent<Props> = (props: Props) => {
               <div>
                 <div style={{ display: 'flex', gap: 'var(--spacer-3)' }}>
                   <span className="icon icon-circle"></span>
-                  <a href="/settings/profile">Customize your profile</a>
+                  <a href="#/settings/profile" className="not-implemented">
+                    Customize your profile
+                  </a>
                 </div>
               </div>
               <div>
@@ -59,25 +61,33 @@ const Dashboard: FunctionComponent<Props> = (props: Props) => {
               <div>
                 <div style={{ display: 'flex', gap: 'var(--spacer-3)' }}>
                   <span className="icon icon-circle"></span>
-                  <a href="/followers">Get your first follower</a>
+                  <a href="#/followers" className="not-implemented">
+                    Get your first follower
+                  </a>
                 </div>
               </div>
               <div>
                 <div style={{ display: 'flex', gap: 'var(--spacer-3)' }}>
                   <span className="icon icon-circle"></span>
-                  <a href="/dashboard/sales">Make your first sale</a>
+                  <a href="#/dashboard/sales" className="not-implemented">
+                    Make your first sale
+                  </a>
                 </div>
               </div>
               <div>
                 <div style={{ display: 'flex', gap: 'var(--spacer-3)' }}>
                   <span className="icon icon-circle"></span>
-                  <a href="/settings/payments">Get your first pay out</a>
+                  <a href="#/settings/payments" className="not-implemented">
+                    Get your first pay out
+                  </a>
                 </div>
               </div>
               <div>
                 <div style={{ display: 'flex', gap: 'var(--spacer-3)' }}>
                   <span className="icon icon-circle"></span>
-                  <a href="/posts">Send out your first email blast</a>
+                  <a href="#/posts" className="not-implemented">
+                    Send out your first email blast
+                  </a>
                 </div>
               </div>
             </div>
@@ -88,20 +98,23 @@ const Dashboard: FunctionComponent<Props> = (props: Props) => {
                 <h2>Best selling</h2>
                 <div className="placeholder">
                   <p>
-                    You haven't made any sales yet. Learn how to
+                    You haven't made any sales yet. Learn how to{' '}
                     <a
                       href="#https://help.gumroad.jacquesdesmarais.dev/article/170-audience"
-                      target="_blank"
+                      target=""
                       rel="noopener noreferrer"
+                      className="not-implemented"
                     >
                       build a following
-                    </a>
+                    </a>{' '}
                     and
                     <a
                       href="#https://help.gumroad.jacquesdesmarais.dev/article/79-gumroad-discover"
-                      target="_blank"
+                      target=""
                       rel="noopener noreferrer"
+                      className="not-implemented"
                     >
+                      {' '}
                       sell on Gumroad Discover
                     </a>
                   </p>
@@ -115,8 +128,8 @@ const Dashboard: FunctionComponent<Props> = (props: Props) => {
               <p>
                 Followers and sales will show up here as they come in.
                 <span>
-                  For now, <a href="/products">create a product</a> or
-                  <a href="/settings/profile">customize your profile</a>
+                  For now, <a href="/products">create a product</a> or{' '}
+                  <a href="#/settings/profile" className="not-implemented">customize your profile</a>
                 </span>
               </p>
             </div>
