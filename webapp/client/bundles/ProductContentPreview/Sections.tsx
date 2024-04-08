@@ -93,7 +93,7 @@ function Sections() {
   };
 
   const priceChangeHandler = (e) => {
-    setPrice(e.target.value)
+    setPrice(e.target.value);
   };
 
   return (
@@ -360,6 +360,7 @@ function Sections() {
               {applicationState.hasOpenaiAssistantThreadForDescription ? (
                 <>
                   <button
+                    className="primary"
                     aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}
                     onClick={(e) => {
                       e.preventDefault();
@@ -371,8 +372,9 @@ function Sections() {
                     Make Shorter
                   </button>
                   <button
-                    aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}
+                    className="primary"
                     style={{ marginLeft: '1em' }}
+                    aria-disabled={!applicationState.flags.isEnoughWordsSelectedInDescriptionForAiAssistant}
                     onClick={(e) => {
                       e.preventDefault();
                       initMakeShorterLongerDialog('longer', getSelectedText(textEditorState.basicTab.editorView));
@@ -386,11 +388,12 @@ function Sections() {
               ) : (
                 <>
                   <button
+                    className="primary"
+                    aria-disabled={applicationState.flags.isCreateOpenaiAssistantThreadForProductDescriptionPending}
                     onClick={(e) => {
                       e.preventDefault();
                       openDialog('turnOnAiAssistantDialog');
                     }}
-                    aria-disabled={applicationState.flags.isCreateOpenaiAssistantThreadForProductDescriptionPending}
                   >
                     Turn On AI Assistant
                   </button>
