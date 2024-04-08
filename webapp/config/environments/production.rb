@@ -94,4 +94,7 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # GPT-4
+  config.openai_assistant_id = "asst_WIrbrZvIEWPWyI4Y3XczBniu"
 end
