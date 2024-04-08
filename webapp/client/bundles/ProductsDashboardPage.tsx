@@ -213,19 +213,19 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                   <thead>
                     <tr>
                       <th></th>
-                      <th aria-sort="none" title="Sort by Name" className="not-implemented">
+                      <th aria-sort="none" title="Sort by Name" style={{cursor: 'not-allowed'}}>
                         Name
                       </th>
-                      <th aria-sort="none" title="Sort by Sales">
+                      <th aria-sort="none" title="Sort by Sales style={{cursor: 'not-allowed'}}">
                         Sales
                       </th>
-                      <th aria-sort="none" title="Sort by Revenue">
+                      <th aria-sort="none" title="Sort by Revenue" style={{cursor: 'not-allowed'}}>
                         Revenue
                       </th>
-                      <th aria-sort="none" title="Sort by Price">
+                      <th aria-sort="none" title="Sort by Price" style={{cursor: 'not-allowed'}}>
                         Price
                       </th>
-                      <th aria-sort="none" title="Sort by Status">
+                      <th aria-sort="none" title="Sort by Status" style={{cursor: 'not-allowed'}}>
                         Status
                       </th>
                     </tr>
