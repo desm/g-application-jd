@@ -2,7 +2,12 @@ class ProductsController < ApplicationController
   def index
     @props[:Nav][:highlight] = "Products"
     products = Product.where(creator_id: Current.user.id).order(name: :asc)
-    @props[:ProductsDashboardPage] = Products::ProductListingData::product_listing(view_context, products)
+    @props[:ProductsDashboardPage] = {
+      user_data: {
+        name: Current.user.name,
+      },
+      product_data: Products::ProductListingData::product_listing(view_context, products, Current.user),
+    }
   end
 
   def new
@@ -16,20 +21,19 @@ class ProductsController < ApplicationController
 
     @props[:Nav][:highlight] = "Products"
     @props[:ProductContentPreview] = {}
-    @props[:ProductPreviewVariantDropdown] = {}
 
     @design_settings = Products::ProductsData::design_settings
     @user_agent_info = Products::ProductsData::user_agent_info
-    @edit_attributes = Products::ProductsData::edit_attributes(view_context, product)
+    @edit_attributes = Products::ProductsData::edit_attributes(view_context, product, Current.user)
     @discover_taxonomy_options = Products::ProductsData::discover_taxonomy_options
-    @current_seller = Products::ProductsData::current_seller(view_context)
+    @current_seller = Products::ProductsData::current_seller(view_context, Current.user)
   end
 
   def paged
     products = Product.where(creator_id: Current.user.id).order(name: :asc)
     respond_to do |format|
       format.json {
-        render json: Products::ProductListingData::product_entries(products)
+        render json: Products::ProductListingData::product_entries(products, Current.user)
       }
     end
   end

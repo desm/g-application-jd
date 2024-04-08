@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { RouterProvider, createHashRouter, redirect } from 'react-router-dom';
 import DiscoverSettings from './ProductContentPreview/DiscoverSettings';
 import Header from './ProductContentPreview/Header';
+import MakeShorterLongerDialog from './ProductContentPreview/MakeShorterLongerDialog';
 import Preview from './ProductContentPreview/Preview';
 import ProductContent from './ProductContentPreview/ProductContent';
 import ProfileSettings from './ProductContentPreview/ProfileSettings';
@@ -22,13 +23,14 @@ import {
   setAvatarUrl,
   setPermalink,
   setPrice,
+  setSeller,
   useApplicationState,
 } from './ProductContentPreview/stateStores/application';
 import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
 import { encode } from './formUrlEncoder';
-import { grabAllDataFromDataDivs } from './lib';
-import { postFormDataTo } from './util';
-import MakeShorterLongerDialog from './ProductContentPreview/MakeShorterLongerDialog';
+import { postFormDataTo } from './lib/clientRequests/base';
+import { grabAllDataFromDataDivs } from './lib/dataDivs';
+import { showMessage } from './lib/uiMessages';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;
@@ -63,6 +65,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     editElement.removeChild(editElement.firstChild); // removes the text node "Initializing..."
 
     const divData = grabAllDataFromDataDivs();
+    setSeller(divData['edit-attributes']['seller']);
     setAvatarUrl(divData['edit-attributes']['seller']['avatar_url']);
     setPermalink(divData['edit-attributes']['unique_permalink']);
     changeProductName(divData['edit-attributes']['name']);
@@ -139,17 +142,35 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
 
   const saveAndContinueButtonClickHandler = async (e) => {
     e.preventDefault();
+    if (!isPriceFieldValid(applicationState.price)) {
+      const element = document.getElementById('price');
+      if (element instanceof HTMLInputElement) {
+        element.focus();
+      }
+      return;
+    }
     const formDataAsObj = [
       ['link[name]', applicationState.productName, 'encode'],
-      ['link[price_range]', applicationState.price, 'encode'],
+      ['link[price_range]', parseFloat(applicationState.price.trim()), 'encode'],
       ['link[description]', JSON.stringify(applicationState.richTextDescription), 'encode'],
+      ['link[content]', JSON.stringify(applicationState.richTextContent), 'encode'],
     ];
     const formData = encode(formDataAsObj);
     const r = await postFormDataTo(formData, `/links/${applicationState.permalink}.json`);
     if (r.success) {
       window.location.hash = 'content';
     }
+    showMessage('Changes saved!', 'success');
   };
+
+  const isPriceFieldValid = (price) => !isBlank(price) && isNumber(price);
+
+  const isBlank = (str) => str.match(/^\s*$/);
+
+  const isNumber = (str) => str.trim().match(/^[0-9]*(.[0-9]*)?$/);
+
+  // both buttons "Save and continue" and "Save" do the same thing for now
+  const saveButtonClickHandler = saveAndContinueButtonClickHandler;
 
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
   return (
@@ -159,6 +180,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
           <Header
             productName={applicationState.productName}
             saveAndContinueButtonClickHandler={saveAndContinueButtonClickHandler}
+            saveButtonClickHandler={saveButtonClickHandler}
           />,
           document.getElementById('header-root')
         )}

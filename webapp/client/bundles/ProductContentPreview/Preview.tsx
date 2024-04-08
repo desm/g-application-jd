@@ -53,16 +53,38 @@ function Preview() {
                 <h1 itemProp="name">{applicationState.productName}</h1>
               </header>
               <section className="details">
+                <div
+                  itemScope={true}
+                  itemProp="offers"
+                  itemType="https://schema.org/Offer"
+                  style={{ display: 'flex', alignItems: 'center' }}
+                >
+                  <div className="has-tooltip right" aria-describedby=":r2:">
+                    <div className="price" itemProp="price" content="4.15">
+                      CAD$4.15
+                    </div>
+                    <div role="tooltip" id=":r2:">
+                      CAD$4.15
+                    </div>
+                  </div>
+                  <link itemProp="url" href="" />
+                  <div itemProp="availability" hidden={true}>
+                    https://schema.org/InStock
+                  </div>
+                  <div itemProp="priceCurrency" hidden={true}>
+                    cad
+                  </div>
+                </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacer-2)' }}>
                   <a
-                    href="https://jdesma.gumroad.jacquesdesmarais.dev/"
+                    href={`https://${applicationState.seller.subdomain}/`}
                     target="_blank"
                     className="user"
                     rel="noreferrer"
                     style={{ position: 'relative' }}
                   >
                     <img className="user-avatar" src={applicationState.avatarUrl} />
-                    Jacques
+                    {applicationState.seller.name}
                   </a>
                 </div>
                 <div className="rating">
@@ -85,66 +107,44 @@ function Preview() {
                 <div role="status" className="warning">
                   This product is not currently for sale.
                 </div>
-                <div
-                  className="radio-buttons"
-                  role="radiogroup"
-                  itemProp="offers"
-                  itemType="https://schema.org/AggregateOffer"
-                  itemScope={false}
-                >
-                  <button
-                    role="radio"
-                    aria-checked="true"
-                    aria-label="one"
-                    itemProp="offer"
-                    itemType="https://schema.org/Offer"
-                    itemScope={false}
-                  >
-                    <div className="pill">
-                      CAD$1
-                      <div itemProp="price" hidden={false}>
-                        1
-                      </div>
-                      <div itemProp="priceCurrency" hidden={false}>
-                        cad
-                      </div>
-                    </div>
-                    <div>
-                      <h4>one</h4>
-                    </div>
-                  </button>
-                  <button
-                    role="radio"
-                    aria-checked="false"
-                    aria-label="Untitled"
-                    itemProp="offer"
-                    itemType="https://schema.org/Offer"
-                    itemScope={false}
-                  >
-                    <div className="pill">
-                      CAD$1
-                      <div itemProp="price" hidden={false}>
-                        1
-                      </div>
-                      <div itemProp="priceCurrency" hidden={false}>
-                        cad
-                      </div>
-                    </div>
-                    <div>
-                      <h4>Untitled</h4>
-                    </div>
-                  </button>
-                  <div itemProp="offerCount" hidden={false}>
-                    2
-                  </div>
-                  <div itemProp="lowPrice" hidden={false}>
-                    1
-                  </div>
-                  <div itemProp="priceCurrency" hidden={false}>
-                    cad
-                  </div>
-                </div>
                 <div style={{ textAlign: 'center' }}></div>
+                <div style={{ display: 'grid', gap: 'var(--spacer-2)', gridTemplateColumns: '1fr auto' }}>
+                  <div className="combobox">
+                    <div
+                      role="combobox"
+                      aria-expanded="false"
+                      aria-controls=":r4:"
+                      aria-disabled="false"
+                      tabIndex={0}
+                      className="input"
+                      aria-label="Add to wishlist"
+                    >
+                      <span className="fake-input text-singleline">Add to wishlist</span>
+                      <span className="icon icon-outline-cheveron-down"></span>
+                    </div>
+                    <div hidden={true}>
+                      <datalist id=":r4:">
+                        <div role="option" id=":r4:-0" className="">
+                          <div>
+                            <span className="icon icon-plus-circle"></span> New wishlist
+                          </div>
+                        </div>
+                      </datalist>
+                    </div>
+                  </div>
+                  <span className="has-tooltip">
+                    <span aria-describedby=":r5:" style={{ display: 'contents' }}>
+                      <span style={{ display: 'contents' }}>
+                        <button className="" type="button" aria-label="Copy product URL">
+                          <span className="icon icon-link"></span>
+                        </button>
+                      </span>
+                    </span>
+                    <span role="tooltip" id=":r5:">
+                      Copy product URL
+                    </span>
+                  </span>
+                </div>
               </section>
             </section>
           </article>

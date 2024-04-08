@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import ConfirmDeleteProductDialog from './ConfirmDeleteProductDialog';
 
 export interface Props {
+  user: {
+    name: string;
+  };
   product: {
     name: string;
     permalink: string;
@@ -55,10 +58,13 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
             </a>
             <a
               href="#"
-              title={`https://jdesma.gumroad.jacquesdesmarais.dev/l/{props.product.permalink}`}
+              title={`https://{props.user.name}.gumroad.jacquesdesmarais.dev/l/{props.product.permalink}`}
               rel="noreferrer"
+              className="not-implemented"
             >
-              <small>jdesma.gumroad.jacquesdesmarais.dev/l/{props.product.permalink}</small>
+              <small>
+                {props.user.name}.gumroad.jacquesdesmarais.dev/l/{props.product.permalink}
+              </small>
             </a>
           </div>
         </td>

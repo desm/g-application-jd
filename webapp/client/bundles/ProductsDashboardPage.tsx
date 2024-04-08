@@ -1,20 +1,25 @@
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import ProductListing from './ProductsDashboardPage/ProductListing';
 import { DELETE_PRODUCT_SUCCESS_EVENT } from './ProductsDashboardPage/ConfirmDeleteProductDialog';
-import { sendGetRequest } from './util';
+import ProductListing from './ProductsDashboardPage/ProductListing';
+import { sendGetRequest } from './lib/clientRequests/base';
 
 export interface Props {
-  memberships: any[];
-  products: any[];
-  empty_products_image_url: string;
+  user_data: {
+    name: string;
+  };
+  product_data: {
+    memberships: any[];
+    products: any[];
+    empty_products_image_url: string;
+  };
 }
 
 const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
   const sectionRef = useRef();
   const [sectionWidth, setSectionWidth] = useState(0);
-  const [products, setProducts] = useState(props.products);
+  const [products, setProducts] = useState(props.product_data.products);
 
   useEffect(() => {
     setSectionWidth((sectionRef.current as any).clientWidth);
@@ -42,17 +47,23 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
         <header>
           <h1>Products</h1>
           <div className="actions">
-            <details className="popover toggle">
-              <summary>
+            <details className="popover toggle" aria-disabled="true">
+              <summary className="not-implemented">
                 <span className="has-tooltip bottom">
                   <span aria-describedby=":R2p:" style={{ display: 'contents' }}>
-                    <button type="button" aria-label="Toggle Search" aria-haspopup="true" aria-expanded="false">
+                    <button
+                      type="button"
+                      aria-label="Toggle Search"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      className="not-implemented"
+                    >
                       <span className="icon icon-solid-search"></span>
                     </button>
                   </span>
-                  <span role="tooltip" id=":R2p:">
+                  {/* <span role="tooltip" id=":R2p:">
                     Search
-                  </span>
+                  </span> */}
                 </span>
               </summary>
               <div
@@ -76,22 +87,22 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
             <a aria-selected="true" href="/products" role="tab">
               All products
             </a>
-            <a aria-selected="false" href="/products/discover" role="tab">
+            <a aria-selected="false" href="#/products/discover" role="tab" className="not-implemented">
               Discover
             </a>
-            <a aria-selected="false" href="/products/affiliated" role="tab">
+            <a aria-selected="false" href="#/products/affiliated" role="tab" className="not-implemented">
               Affiliated
             </a>
-            <a aria-selected="false" href="/products/collabs" role="tab">
+            <a aria-selected="false" href="#/products/collabs" role="tab" className="not-implemented">
               Collabs
             </a>
           </div>
         </header>
         <section ref={sectionRef}>
-          {props.memberships.length + products.length === 0 ? (
+          {props.product_data.memberships.length + products.length === 0 ? (
             <div className="placeholder">
               <figure>
-                <img src={props.empty_products_image_url} />
+                <img src={props.product_data.empty_products_image_url} />
               </figure>
               <h2>We've never met an idea we didn't like.</h2>
               <p>Your first product doesn't need to be perfect. Just put it out there, and see if it sticks.</p>
@@ -101,14 +112,20 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                 </a>
               </div>
               <span>
-                or
-                <a href="https://help.gumroad.com/article/304-products-dashboard" target="_blank" rel="noreferrer"> learn more about the products dashboard
+                or{' '}
+                <a
+                  href="#https://help.gumroad.jacquesdesmarais.dev/article/304-products-dashboard"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="not-implemented"
+                >
+                  learn more about the products dashboard
                 </a>
               </span>
             </div>
           ) : (
             <div style={{ display: 'grid;gap:var(--spacer-7)' }}>
-              {props.memberships.length > 0 && (
+              {props.product_data.memberships.length > 0 && (
                 <section className="paragraphs">
                   <table aria-busy="false">
                     <caption>Memberships</caption>
@@ -142,12 +159,12 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                             <h4>Podcast</h4>
                           </a>
                           <a
-                            href="https://jdesma.gumroad.jacquesdesmarais.dev/l/ptpaj"
-                            title="https://jdesma.gumroad.jacquesdesmarais.dev/l/ptpaj"
+                            href="https://_subdomain_/l/_permalink_"
+                            title="https://_subdomain_/l/_permalink_"
                             target="_blank"
                             rel="noreferrer"
                           >
-                            <small>jdesma.gumroad.jacquesdesmarais.dev/l/ptpaj</small>
+                            <small>_subdomain_/l/_permalink_</small>
                           </a>
                         </td>
                         <td data-label="Members">0</td>
@@ -212,32 +229,32 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                   <thead>
                     <tr>
                       <th></th>
-                      <th aria-sort="none" title="Sort by Name">
+                      <th aria-sort="none" title="Sort by Name" style={{ cursor: 'not-allowed' }}>
                         Name
                       </th>
-                      <th aria-sort="none" title="Sort by Sales">
+                      <th aria-sort="none" title="Sort by Sales style={{cursor: 'not-allowed'}}">
                         Sales
                       </th>
-                      <th aria-sort="none" title="Sort by Revenue">
+                      <th aria-sort="none" title="Sort by Revenue" style={{ cursor: 'not-allowed' }}>
                         Revenue
                       </th>
-                      <th aria-sort="none" title="Sort by Price">
+                      <th aria-sort="none" title="Sort by Price" style={{ cursor: 'not-allowed' }}>
                         Price
                       </th>
-                      <th aria-sort="none" title="Sort by Status">
+                      <th aria-sort="none" title="Sort by Status" style={{ cursor: 'not-allowed' }}>
                         Status
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     {products.map((product, index) => (
-                      <ProductListing key={index} product={product} sectionWidth={sectionWidth} />
+                      <ProductListing key={index} user={props.user_data} product={product} sectionWidth={sectionWidth} />
                     ))}
                   </tbody>
                   <tfoot>
                     <tr>
                       <td colSpan={2}>Totals</td>
-                      <td>2</td>
+                      <td>0</td>
                       <td colSpan={5}>$0</td>
                     </tr>
                   </tfoot>

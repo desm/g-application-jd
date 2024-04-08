@@ -357,10 +357,10 @@ function ProductContent() {
                 <textarea
                   id=":r13:"
                   placeholder="Want to leave a written review?"
-                  disabled={false}
+                  disabled={true}
                   tabIndex={-1}
                 ></textarea>
-                <button className="primary" disabled={false} type="button" style={{ width: '100%' }}>
+                <button className="primary" disabled={true} type="button" style={{ width: '100%' }}>
                   Post review
                 </button>
               </div>
@@ -374,19 +374,20 @@ function ProductContent() {
               </details>
             </div>
             <div className="stack">
-              <div>dfgasdf - one</div>
+              <div>{applicationState.productName}</div>
               <div>
                 <span style={{ display: 'flex', gap: 'var(--spacer-2)' }}>
                   <img className="user-avatar" src={applicationState.avatarUrl} />
                   <span>
-                    By
+                    By{' '}
                     <a
-                      href="https://jdesma.gumroad.jacquesdesmarais.dev/"
-                      target="_blank"
+                      href="#content"
+                      target=""
                       rel="noreferrer"
+                      className="not-implemented"
                       style={{ position: 'relative' }}
                     >
-                      Jacques
+                      {applicationState.seller.name}
                     </a>
                   </span>
                 </span>

@@ -1,6 +1,6 @@
 module Products
   module ProductListingData
-    def self.product_listing(view_context, products)
+    def self.product_listing(view_context, products, user)
       {
         "empty_products_image_url": view_context.asset_path("c46c7f94efc36e2981ec.svg"),
         "memberships": [],
@@ -14,8 +14,8 @@ module Products
             name: product.name,
             permalink: product.permalink,
             price_formatted: format_price(product.currency_code, product.buy_price),
-            url: "https://jdesma.gumroad.com/l/#{product.permalink}",
-            url_without_protocol: "jdesma.gumroad.com/l/#{product.permalink}",
+            url: "https://#{user.name}.gumroad.jacquesdesmarais.dev/l/#{product.permalink}",
+            url_without_protocol: "#{user.name}.gumroad.jacquesdesmarais.dev/l/#{product.permalink}",
             can_edit: true,
             can_destroy: false,
             can_duplicate: false,
@@ -33,7 +33,7 @@ module Products
       }
     end
 
-    def self.product_entries(products)
+    def self.product_entries(products, user)
       {
         "pagination": {
           "page": 1,
@@ -45,8 +45,8 @@ module Products
             name: product.name,
             permalink: product.permalink,
             price_formatted: format_price(product.currency_code, product.buy_price),
-            url: "https://jdesma.gumroad.com/l/#{product.permalink}",
-            url_without_protocol: "jdesma.gumroad.com/l/#{product.permalink}",
+            url: "https://#{user.name}.gumroad.jacquesdesmarais.dev/l/#{product.permalink}",
+            url_without_protocol: "#{user.name}.gumroad.jacquesdesmarais.dev/l/#{product.permalink}",
             can_edit: true,
             can_destroy: false,
             can_duplicate: false,

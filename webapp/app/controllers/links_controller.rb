@@ -39,21 +39,32 @@ class LinksController < ApplicationController
 
   def update
     @result = false
+    http_status_code = :internal_server_error
+
     Rails.error.set_context(
       section: "products",
       action: "update link",
       user_email: Current.user.email_address,
     )
 
-    Rails.error.handle do
-      permalink = params[:id]
-      _params = link_params_for_save_and_continue
+    begin
+      Rails.error.record do
+        permalink = params[:id]
+        _params = link_params_for_save_and_continue
 
-      @product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
-      @product.name = _params["name"]
-      @product.buy_price = _params["price_range"]
-      @product.rich_text_description = _params["description"]
-      @result = @product.save!
+        @product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
+        @product.name = _params["name"]
+        @product.buy_price = _params["price_range"]
+        @product.rich_text_description = _params["description"]
+        @product.rich_text_content = _params["content"]
+        @result = @product.save!
+        http_status_code = :ok
+      end
+    rescue ActionController::ParameterMissing => e
+      http_status_code = :bad_request
+    rescue ActiveRecord::RecordNotFound => e
+      http_status_code = :not_found
+    rescue Exception => e
     end
 
     if @result == true
@@ -62,7 +73,7 @@ class LinksController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: { success: false }, status: :internal_server_error }
+        format.json { render json: { success: false }, status: http_status_code }
       end
     end
   end
@@ -101,14 +112,11 @@ class LinksController < ApplicationController
   end
 
   def link_params_for_save_and_continue
-    params.require(:link).require([:name, :price_range, :description])
-    params.require(:link).permit([:name, :price_range, :description])
+    # params.require(:link).require([:name, :price_range, :description])
+    # params.require(:link).permit([:name, :price_range, :description])
+    params.require(:link).require([:name, :price_range, :description, :content])
+    params.require(:link).permit([:name, :price_range, :description, :content])
   end
-
-  # def link_params_for_destroy
-  #   params.require(:id)
-  #   params.permit([:id])
-  # end
 end
 
 def generate_product_id

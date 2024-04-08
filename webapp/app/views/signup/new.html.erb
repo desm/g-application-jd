@@ -1,6 +1,4 @@
-<% content_for :body_class do %>
-onboarding-page
-<% end %>
+<% content_for :body_class do %> onboarding-page <% end %>
 
 <div class="modals-container" style="display: contents">
   <div class="modal gr-auth showing squished" style="display: contents">
@@ -23,50 +21,17 @@ onboarding-page
           <div class="error-indicator danger" role="alert" style="display: none"></div>
           <% end %>
           <div style="display: grid; gap: var(--spacer-3); grid-template-rows: 1fr">
-            <form class="button_to" method="post" action="/users/auth/facebook?referer=%2Fsignup">
-              <button class="button button-facebook" style="width: 100%" type="submit">Facebook</button
-              ><input
-                type="hidden"
-                name="authenticity_token"
-                value="N_GURvU_________________________________________________________________________kqCoEQ"
-                autocomplete="off"
-              />
+            <form class="button_to" method="get" action="#">
+              <button class="button button-facebook not-implemented" style="width: 100%" type="submit">Facebook</button>
             </form>
-            <form
-              class="button_to"
-              method="post"
-              action="/users/auth/google_oauth2?referer=%2Fsignup&amp;x_auth_access_type=read"
-            >
-              <button class="button button-google" style="width: 100%" type="submit">Google</button
-              ><input
-                type="hidden"
-                name="authenticity_token"
-                value="lcSL43_________________________________________________________________________Xw9xSsA"
-                autocomplete="off"
-              />
+            <form class="button_to" method="get" action="#">
+              <button class="button button-google not-implemented" style="width: 100%" type="submit">Google</button>
             </form>
-            <form
-              class="button_to"
-              method="post"
-              action="/users/auth/twitter?referer=%2Fsignup&amp;x_auth_access_type=read"
-            >
-              <button class="button button-twitter" style="width: 100%" type="submit">X</button
-              ><input
-                type="hidden"
-                name="authenticity_token"
-                value="FlIFjudEo0QXHfkFqMr2_NpvGk61yb1n2j1QpYRueKwnuPoX8_N_9-qNwjObBWpYWi7EEcENj6jEOtOBl9_yQA"
-                value="FlIFjud_______________________________________________________________________OBl9_yQA"
-                autocomplete="off"
-              />
+            <form class="button_to" method="get" action="#">
+              <button class="button button-twitter not-implemented" style="width: 100%" type="submit">X</button>
             </form>
-            <form class="button_to" method="post" action="/users/auth/stripe_connect?referer=%2Fsignup">
-              <button class="button button-stripe" style="width: 100%" type="submit">Stripe</button
-              ><input
-                type="hidden"
-                name="authenticity_token"
-                value="5-dgFl8________________________________________________________________________xB0u5BA"
-                autocomplete="off"
-              />
+            <form class="button_to" method="get" action="#">
+              <button class="button button-stripe not-implemented" style="width: 100%" type="submit">Stripe</button>
             </form>
           </div>
         </section>
@@ -97,7 +62,7 @@ onboarding-page
             Create account
           </button>
           <p class="terms">
-            You agree to our <a href="/terms">Terms Of Use</a> and <a href="/privacy">Privacy Policy</a>.
+            You agree to our <a href="#/terms">Terms Of Use</a> and <a href="#/privacy">Privacy Policy</a>.
           </p>
         </section>
         <div class="js-recaptcha" data-sitekey="6LcSj_____________________________z85cLO" id="signupRecaptcha"></div>

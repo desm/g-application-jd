@@ -15,14 +15,16 @@ module Products
       }
     end
 
-    def self.edit_attributes(view_context, product)
+    def self.edit_attributes(view_context, product, user)
       {
         "has_openai_assistant_thread_for_description": product.openai_assistant_threads.where(section: :description).any?,
         "seller": {
           "id": "9078562000866",
-          "name": "Jacques",
-          "profile_url": "https://jdesma.gumroad.jacquesdesmarais.dev/",
+          "email_address": user.email_address,
+          "name": user.name,
+          "subdomain": "#{user.name}.gumroad.jacquesdesmarais.dev",
           "avatar_url": view_context.asset_path("gumroad-default-avatar-5.png"),
+          "profile_url": "https://#{user.name}.gumroad.jacquesdesmarais.dev/",
         },
         "sales_count": 0,
         "sales_count_for_inventory": 0,
@@ -1048,7 +1050,7 @@ module Products
         ],
         "is_epublication": false,
         "unique_permalink": product.permalink,
-        "subdomain": "jdesma.gumroad.jacquesdesmarais.dev",
+        "subdomain": "#{user.name}.gumroad.jacquesdesmarais.dev",
         "protocol": "https",
         "is_adult_content": false,
         "display_product_reviews": true,
@@ -1068,7 +1070,7 @@ module Products
             "page_id": "RXjaeTUNWdQ4V-Eyw4wV9g==",
             "title": nil,
             "variant_id": nil,
-            "description": '{"doc":{"type":"doc","content":[{"type":"heading","attrs":{"level":2},"content":[{"type":"text","text":"Content Level One"}]},{"type":"heading","attrs":{"level":3},"content":[{"type":"text","text":"Content Level Two"}]}]},"selection":{"type":"text","anchor":1,"head":1}}',
+            "description": product.rich_text_content,
             "updated_at": "2024-03-18T20:21:39Z",
           },
         ],
@@ -2562,12 +2564,12 @@ module Products
       ]
     end
 
-    def self.current_seller(view_context)
+    def self.current_seller(view_context, user)
       {
         "id": "9078562000866",
-        "email": "jdesma@gmail.com",
-        "name": "Jacques",
-        "subdomain": "jdesma.gumroad.jacquesdesmarais.dev",
+        "email": user.email_address,
+        "name": user.name,
+        "subdomain": "#{user.name}.gumroad.jacquesdesmarais.dev",
         "avatar_url": view_context.asset_path("gumroad-default-avatar-5.png"),
         "is_buyer": false,
         "time_zone": {

@@ -16,7 +16,7 @@ function ShareLinks() {
       >
         <a
           className="button-social-twitter button-w-i button-twitter button"
-          href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fjdesma.gumroad.com%2Fl%2Fdcfqu&amp;text=Buy%20product%20name%20on%20%40Gumroad"
+          href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fjdesma.gumroad.jacquesdesmarais.dev%2Fl%2Fdcfqu&amp;text=Buy%20product%20name%20on%20%40Gumroad"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -24,7 +24,7 @@ function ShareLinks() {
         </a>
         <a
           className="button-social-facebook button-w-i button-facebook button"
-          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjdesma.gumroad.com%2Fl%2Fdcfqu&amp;quote=product%20name"
+          href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjdesma.gumroad.jacquesdesmarais.dev%2Fl%2Fdcfqu&amp;quote=product%20name"
           target="_blank"
           rel="noopener noreferrer"
         >

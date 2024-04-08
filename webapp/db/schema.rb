@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_30_025512) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_08_181239) do
   create_table "openai_assistant_threads", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "product_id", null: false
     t.integer "section", null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_025512) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "rich_text_description"
+    t.text "rich_text_content"
     t.index ["creator_id", "permalink"], name: "index_products_on_creator_id_and_permalink", unique: true
     t.index ["creator_id"], name: "index_products_on_creator_id"
   end
