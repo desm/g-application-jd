@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { sendJsonToServer } from './lib/clientRequests/base';
+import { showMessage } from './lib/uiMessages';
 
 interface Props {}
 
@@ -25,10 +26,12 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (!isNameFieldValid(data.name)) {
+      showMessage('Product name cannot be blank', 'danger');
       focus('name');
       return;
     }
     if (!isPriceFieldValid(data.price_range)) {
+      showMessage('Price is not valid', 'danger');
       focus('price_range');
       return;
     }
@@ -36,7 +39,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     if (response.success) {
       location.href = response.redirect_to;
     } else {
-      // todo: ask user to try again later
+      showMessage('An error occurred, please try again', 'danger');
     }
   };
 
