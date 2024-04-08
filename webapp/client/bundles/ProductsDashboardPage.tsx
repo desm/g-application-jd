@@ -46,7 +46,7 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
               <summary>
                 <span className="has-tooltip bottom">
                   <span aria-describedby=":R2p:" style={{ display: 'contents' }}>
-                    <button type="button" aria-label="Toggle Search" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" aria-label="Toggle Search" aria-haspopup="true" aria-expanded="false" aria-disabled="true">
                       <span className="icon icon-solid-search"></span>
                     </button>
                   </span>
@@ -76,13 +76,13 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
             <a aria-selected="true" href="/products" role="tab">
               All products
             </a>
-            <a aria-selected="false" href="/products/discover" role="tab">
+            <a aria-selected="false" href="#/products/discover" role="tab" className="not-implemented">
               Discover
             </a>
-            <a aria-selected="false" href="/products/affiliated" role="tab">
+            <a aria-selected="false" href="#/products/affiliated" role="tab" className="not-implemented">
               Affiliated
             </a>
-            <a aria-selected="false" href="/products/collabs" role="tab">
+            <a aria-selected="false" href="#/products/collabs" role="tab" className="not-implemented">
               Collabs
             </a>
           </div>
@@ -101,8 +101,9 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                 </a>
               </div>
               <span>
-                or
-                <a href="https://help.gumroad.com/article/304-products-dashboard" target="_blank" rel="noreferrer"> learn more about the products dashboard
+                or{' '}
+                <a href="#https://help.gumroad.com/article/304-products-dashboard" target="_blank" rel="noreferrer" className="not-implemented">
+                  learn more about the products dashboard
                 </a>
               </span>
             </div>
