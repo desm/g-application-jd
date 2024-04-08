@@ -1,9 +1,9 @@
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import ProductListing from './ProductsDashboardPage/ProductListing';
 import { DELETE_PRODUCT_SUCCESS_EVENT } from './ProductsDashboardPage/ConfirmDeleteProductDialog';
-import { sendGetRequest } from './util';
+import ProductListing from './ProductsDashboardPage/ProductListing';
+import { sendGetRequest } from './lib/clientRequests/base';
 
 export interface Props {
   memberships: any[];
@@ -213,7 +213,7 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                   <thead>
                     <tr>
                       <th></th>
-                      <th aria-sort="none" title="Sort by Name">
+                      <th aria-sort="none" title="Sort by Name" className="not-implemented">
                         Name
                       </th>
                       <th aria-sort="none" title="Sort by Sales">
@@ -238,7 +238,7 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                   <tfoot>
                     <tr>
                       <td colSpan={2}>Totals</td>
-                      <td>2</td>
+                      <td>0</td>
                       <td colSpan={5}>$0</td>
                     </tr>
                   </tfoot>

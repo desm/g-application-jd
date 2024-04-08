@@ -3,6 +3,7 @@ import { AllSelection, EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import * as React from 'react';
 import { useEffect } from 'react';
+import { requestReworkOfSelectedText } from '../lib/clientRequests/aiAssistant';
 import { createMenuPluginForBasicTab } from './SectionsRichTextMenu';
 import { mySchema } from './mySchema';
 import {
@@ -16,7 +17,6 @@ import {
   setReworkedText,
 } from './stateStores/application';
 import { changeEditorState, setEditorView, textEditorState } from './stateStores/textEditor';
-import { requestReworkOfSelectedText } from '../lib';
 
 function Sections() {
   useEffect(() => {

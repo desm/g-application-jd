@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { showMessage } from '../lib/uiMessages';
 import { applicationState } from './stateStores/application';
-import { showMessage } from '../lib';
 
 function Header({ productName, saveAndContinueButtonClickHandler }) {
   const preventSwitchingToShareTabIfNotPublished = (e) => {

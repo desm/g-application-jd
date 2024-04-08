@@ -57,6 +57,7 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
               href="#"
               title={`https://jdesma.gumroad.jacquesdesmarais.dev/l/{props.product.permalink}`}
               rel="noreferrer"
+              className="not-implemented"
             >
               <small>jdesma.gumroad.jacquesdesmarais.dev/l/{props.product.permalink}</small>
             </a>

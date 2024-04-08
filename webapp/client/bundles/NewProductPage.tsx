@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
 import type { FunctionComponent } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { sendJsonToServer } from './util';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { sendJsonToServer } from './lib/clientRequests/base';
 
 interface Props {}
 

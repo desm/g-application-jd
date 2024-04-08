@@ -1,11 +1,11 @@
-function getCSRFToken() {
+const getCSRFToken = () => {
   const csrfToken = document.querySelector("[name='csrf-token']");
   if (csrfToken) {
     return csrfToken.getAttribute('content');
   } else {
     return null;
   }
-}
+};
 
 /**
  * https://bloggie.io/@kinopyo/sending-non-get-requests-with-fetch-javascript-api-in-rails

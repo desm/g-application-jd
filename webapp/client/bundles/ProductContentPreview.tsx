@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { RouterProvider, createHashRouter, redirect } from 'react-router-dom';
 import DiscoverSettings from './ProductContentPreview/DiscoverSettings';
 import Header from './ProductContentPreview/Header';
+import MakeShorterLongerDialog from './ProductContentPreview/MakeShorterLongerDialog';
 import Preview from './ProductContentPreview/Preview';
 import ProductContent from './ProductContentPreview/ProductContent';
 import ProfileSettings from './ProductContentPreview/ProfileSettings';
@@ -26,9 +27,8 @@ import {
 } from './ProductContentPreview/stateStores/application';
 import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
 import { encode } from './formUrlEncoder';
-import { grabAllDataFromDataDivs } from './lib';
-import { postFormDataTo } from './util';
-import MakeShorterLongerDialog from './ProductContentPreview/MakeShorterLongerDialog';
+import { postFormDataTo } from './lib/clientRequests/base';
+import { grabAllDataFromDataDivs } from './lib/dataDivs';
 
 const setVisibilityOfProductTab = (visible: boolean) => {
   const basicTab = document.querySelector('.edit-page-tab.basic-tab') as HTMLElement;

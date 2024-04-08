@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { sendDeleteRequest } from '../util';
+import { sendDeleteRequest } from '../lib/clientRequests/base';
 
 export const DELETE_PRODUCT_SUCCESS_EVENT = 'DELETE_PRODUCT_SUCCESS_EVENT';
 

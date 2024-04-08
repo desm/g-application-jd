@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 import { useImmerReducer } from 'use-immer';
-import { postCreateThreadForProduct } from '../../lib';
+import { postCreateThreadForProduct } from '../../lib/clientRequests/aiAssistant';
 
 interface State {
   permalink: string;
