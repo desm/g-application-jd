@@ -24,6 +24,9 @@ fixed-aside sidebar-nav
           style
         >
           Initializing...
+          <!--  -->
+          <!-- IMPORTANT: the next 3 data-* attribute values have to be surrounded by single quotes, otherwise it won't work -->
+          <!--  -->
           <div data-all-attributes='<%= raw encode_special_chars(JSON.generate(@edit_attributes)) %>' id="edit-attributes"></div>
           <div data-discover-taxonomy-options='<%= raw encode_special_chars(JSON.generate(@discover_taxonomy_options)) %>' id="discover-taxonomy-options"></div>
           <div data-current-seller='<%= raw encode_special_chars(JSON.generate(@current_seller)) %>' id="current-seller"></div>
@@ -81,144 +84,8 @@ fixed-aside sidebar-nav
       </main>
     </div>
   </div>
-  <aside aria-label="Preview" data-gumroad-ignore="true" id="product-preview-root" style="display: none">
-    <div class="preview-product-box js-product-preview-box soft-hidden" style="display: contents">
-      <div
-        class="preview-row"
-        style="
-          display: grid;
-          grid-auto-flow: column;
-          grid-gap: var(--spacer-3);
-          align-items: center;
-          justify-content: space-between;
-        "
-      >
-        <h2>Preview</h2>
-        <div class="js-preview-variant-dropdown-container" style="display: none">
-          <script type="application/json" id="js-react-on-rails-context">
-            {
-              "railsEnv": "production",
-              "inMailer": false,
-              "i18nLocale": "en",
-              "i18nDefaultLocale": "en",
-              "rorVersion": "13.4.0",
-              "rorPro": false,
-              "href": "https://app.gumroad.jacquesdesmarais.dev/products/dcfqu/edit",
-              "location": "/products/dcfqu/edit",
-              "scheme": "https",
-              "host": "app.gumroad.jacquesdesmarais.dev",
-              "port": null,
-              "pathname": "/products/dcfqu/edit",
-              "search": null,
-              "httpAcceptLanguage": "en-US,en;q=0.9",
-              "design_settings": {
-                "font": {
-                  "name": "Mabry Pro",
-                  "url": "https://assets.gumroad.jacquesdesmarais.dev/assets/mabry-regular-pro-2987dea5e28da4cf6ec452e081243d69aa29503e7f870eddabcb2225dac42343.woff2"
-                }
-              },
-              "domain_settings": {
-                "scheme": "https",
-                "app_domain": "app.gumroad.jacquesdesmarais.dev",
-                "root_domain": "gumroad.jacquesdesmarais.dev",
-                "short_domain": "gum.co",
-                "discover_domain": "discover.gumroad.jacquesdesmarais.dev",
-                "third_party_analytics_domain": "gumroad-analytics.com"
-              },
-              "user_agent_info": {
-                "is_mobile": false
-              },
-              "current_user": {
-                "id": "9078562000866",
-                "email": "jdesma@gmail.com",
-                "name": "Jacques",
-                "avatar_url": "<%= asset_path("gumroad-default-avatar-5.png") %>",
-                "confirmed": true,
-                "team_memberships": [],
-                "policies": {
-                  "affiliate_requests_onboarding_form": {
-                    "update": true
-                  },
-                  "direct_affiliate": {
-                    "create": true,
-                    "update": true
-                  },
-                  "collaborator": {
-                    "create": true,
-                    "update": true
-                  },
-                  "product": {
-                    "create": true
-                  },
-                  "balance": {
-                    "index": true
-                  },
-                  "checkout_offer_code": {
-                    "create": true
-                  },
-                  "checkout_form": {
-                    "update": true
-                  },
-                  "upsell": {
-                    "create": true
-                  },
-                  "settings_payments_user": {
-                    "show": true
-                  },
-                  "settings_profile": {
-                    "manage_social_connections": true,
-                    "update": true,
-                    "update_username": true
-                  },
-                  "settings_third_party_analytics_user": {
-                    "update": true
-                  },
-                  "installment": {
-                    "create": true
-                  },
-                  "workflow": {
-                    "create": true
-                  }
-                }
-              },
-              "current_seller": {
-                "id": "9078562000866",
-                "email": "jdesma@gmail.com",
-                "name": "Jacques",
-                "subdomain": "jdesma.gumroad.jacquesdesmarais.dev",
-                "avatar_url": "<%= asset_path("gumroad-default-avatar-5.png") %>",
-                "is_buyer": false,
-                "time_zone": {
-                  "name": "America/New_York",
-                  "offset": -18000
-                }
-              },
-              "csp_nonce": "/sVamuGgIsdju/6UU0wR7fv17fqe8usmZr2PR04lYPA=",
-              "serverSide": false
-            }
-          </script>
-        </div>
-        <div class="has-tooltip bottom">
-          <a
-            class="button outline js-preview-link"
-            href="#"
-            target=""
-            aria-disabled="true"
-          >
-            <span class="icon icon-arrow-diagonal-up-right"></span>
-          </a>
-          <div role="tooltip">Preview</div>
-        </div>
-      </div>
-      <div class="product-container js-product-container" style="pointer-events: none">
-        <div class="product-row original-product-row main-product-row js-main-product-row">
-          <div class="js-content-preview-container" style="display: none">
-            <%= react_component("ProductContentPreview", props: @props[:ProductContentPreview], prerender: false, html_options: [["style", "display: contents;"]]) %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </aside>
+  <aside aria-label="Preview" data-gumroad-ignore="true" id="product-preview-root" style="display: none"></aside>
+  <%= react_component("ProductContentPreview", props: @props[:ProductContentPreview], prerender: false, html_options: [["style", "display: contents;"]]) %>
 </div>
 <div id="turn-on-ai-assistant-dialog"></div>
 <div id="make-shorter-longer-dialog"></div>
