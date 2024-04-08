@@ -6,15 +6,20 @@ import ProductListing from './ProductsDashboardPage/ProductListing';
 import { sendGetRequest } from './lib/clientRequests/base';
 
 export interface Props {
-  memberships: any[];
-  products: any[];
-  empty_products_image_url: string;
+  user_data: {
+    name: string;
+  };
+  product_data: {
+    memberships: any[];
+    products: any[];
+    empty_products_image_url: string;
+  };
 }
 
 const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
   const sectionRef = useRef();
   const [sectionWidth, setSectionWidth] = useState(0);
-  const [products, setProducts] = useState(props.products);
+  const [products, setProducts] = useState(props.product_data.products);
 
   useEffect(() => {
     setSectionWidth((sectionRef.current as any).clientWidth);
@@ -46,7 +51,13 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
               <summary className="not-implemented">
                 <span className="has-tooltip bottom">
                   <span aria-describedby=":R2p:" style={{ display: 'contents' }}>
-                    <button type="button" aria-label="Toggle Search" aria-haspopup="true" aria-expanded="false" className="not-implemented">
+                    <button
+                      type="button"
+                      aria-label="Toggle Search"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      className="not-implemented"
+                    >
                       <span className="icon icon-solid-search"></span>
                     </button>
                   </span>
@@ -88,10 +99,10 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
           </div>
         </header>
         <section ref={sectionRef}>
-          {props.memberships.length + products.length === 0 ? (
+          {props.product_data.memberships.length + products.length === 0 ? (
             <div className="placeholder">
               <figure>
-                <img src={props.empty_products_image_url} />
+                <img src={props.product_data.empty_products_image_url} />
               </figure>
               <h2>We've never met an idea we didn't like.</h2>
               <p>Your first product doesn't need to be perfect. Just put it out there, and see if it sticks.</p>
@@ -102,14 +113,19 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
               </div>
               <span>
                 or{' '}
-                <a href="#https://help.gumroad.com/article/304-products-dashboard" target="_blank" rel="noreferrer" className="not-implemented">
+                <a
+                  href="#https://help.gumroad.com/article/304-products-dashboard"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="not-implemented"
+                >
                   learn more about the products dashboard
                 </a>
               </span>
             </div>
           ) : (
             <div style={{ display: 'grid;gap:var(--spacer-7)' }}>
-              {props.memberships.length > 0 && (
+              {props.product_data.memberships.length > 0 && (
                 <section className="paragraphs">
                   <table aria-busy="false">
                     <caption>Memberships</caption>
@@ -213,26 +229,26 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
                   <thead>
                     <tr>
                       <th></th>
-                      <th aria-sort="none" title="Sort by Name" style={{cursor: 'not-allowed'}}>
+                      <th aria-sort="none" title="Sort by Name" style={{ cursor: 'not-allowed' }}>
                         Name
                       </th>
                       <th aria-sort="none" title="Sort by Sales style={{cursor: 'not-allowed'}}">
                         Sales
                       </th>
-                      <th aria-sort="none" title="Sort by Revenue" style={{cursor: 'not-allowed'}}>
+                      <th aria-sort="none" title="Sort by Revenue" style={{ cursor: 'not-allowed' }}>
                         Revenue
                       </th>
-                      <th aria-sort="none" title="Sort by Price" style={{cursor: 'not-allowed'}}>
+                      <th aria-sort="none" title="Sort by Price" style={{ cursor: 'not-allowed' }}>
                         Price
                       </th>
-                      <th aria-sort="none" title="Sort by Status" style={{cursor: 'not-allowed'}}>
+                      <th aria-sort="none" title="Sort by Status" style={{ cursor: 'not-allowed' }}>
                         Status
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     {products.map((product, index) => (
-                      <ProductListing key={index} product={product} sectionWidth={sectionWidth} />
+                      <ProductListing key={index} user={props.user_data} product={product} sectionWidth={sectionWidth} />
                     ))}
                   </tbody>
                   <tfoot>
