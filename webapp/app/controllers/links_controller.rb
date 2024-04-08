@@ -104,11 +104,6 @@ class LinksController < ApplicationController
     params.require(:link).require([:name, :price_range, :description])
     params.require(:link).permit([:name, :price_range, :description])
   end
-
-  # def link_params_for_destroy
-  #   params.require(:id)
-  #   params.permit([:id])
-  # end
 end
 
 def generate_product_id

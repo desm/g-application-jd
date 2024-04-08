@@ -7,7 +7,8 @@ function Header({ productName, saveAndContinueButtonClickHandler }) {
     if (!applicationState.published) {
       e.preventDefault();
       showMessage(
-        "Not yet! You've got to publish your awesome product before you can share it with your audience and the world."
+        "Not yet! You've got to publish your awesome product before you can share it with your audience and the world.",
+        'warning'
       );
     }
   };
