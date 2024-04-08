@@ -11,6 +11,7 @@ import {
   initMakeShorterLongerDialog,
   openDialog,
   setEnoughWordsSelectedInDescriptionForAiAssistant,
+  setPrice,
   setRequestReworkOfSelectedTextPending,
   setReworkedText,
 } from './stateStores/application';
@@ -89,6 +90,10 @@ function Sections() {
       setReworkedText(null);
     }
     setRequestReworkOfSelectedTextPending(false);
+  };
+
+  const priceChangeHandler = (e) => {
+    setPrice(e.target.value)
   };
 
   return (
@@ -413,7 +418,9 @@ function Sections() {
             </span>
           </legend>
           <div className="input" style={{ backgroundColor: 'transparent' }}>
-            <div className="pill" style={{ backgroundColor: 'transparent' }}>jdesma.gumroad.jacquesdesmarais.dev/l/</div>
+            <div className="pill" style={{ backgroundColor: 'transparent' }}>
+              jdesma.gumroad.jacquesdesmarais.dev/l/
+            </div>
             <input id=":r6:" type="text" placeholder="dcfqu" defaultValue="" disabled={true} />
           </div>
         </fieldset>
@@ -596,8 +603,15 @@ function Sections() {
             </legend>
             <div className="input-with-button">
               <div className="input">
-                <div className="pill">CAD$</div>
-                <input id=":rj:" type="text" placeholder="2" maxLength={10} autoComplete="off" defaultValue="1" />
+                <div className="pill">$</div>
+                <input
+                  id="price"
+                  type="text"
+                  maxLength={10}
+                  autoComplete="off"
+                  defaultValue={applicationState.price}
+                  onChange={priceChangeHandler}
+                />
               </div>
             </div>
             <div className="clear legacy-only"></div>

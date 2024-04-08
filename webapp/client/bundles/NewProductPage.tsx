@@ -24,11 +24,11 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    if (!isNameFieldValid(data)) {
+    if (!isNameFieldValid(data.name)) {
       focus('name');
       return;
     }
-    if (!isPriceFieldValid(data)) {
+    if (!isPriceFieldValid(data.price_range)) {
       focus('price_range');
       return;
     }
@@ -40,9 +40,9 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     }
   };
 
-  const isNameFieldValid = (data) => !isBlank(data.name);
+  const isNameFieldValid = (name) => !isBlank(name);
 
-  const isPriceFieldValid = (data) => !isBlank(data.price_range) && isNumber(data.price_range);
+  const isPriceFieldValid = (price) => !isBlank(price) && isNumber(price);
 
   const isBlank = (str) => str.match(/^\s*$/);
 

@@ -5,7 +5,7 @@ import { postCreateThreadForProduct } from '../../lib';
 interface State {
   permalink: string;
   productName: string;
-  price: number;
+  price: string;
   richTextDescription: any; // basic tab, rich text as javascript object
   richTextContent: any; // content tab
   avatarUrl: string;

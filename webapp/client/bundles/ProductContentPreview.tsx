@@ -139,9 +139,16 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
 
   const saveAndContinueButtonClickHandler = async (e) => {
     e.preventDefault();
+    if (!isPriceFieldValid(applicationState.price)) {
+      const element = document.getElementById('price');
+      if (element instanceof HTMLInputElement) {
+        element.focus();
+      }
+      return;
+    }
     const formDataAsObj = [
       ['link[name]', applicationState.productName, 'encode'],
-      ['link[price_range]', applicationState.price, 'encode'],
+      ['link[price_range]', parseFloat(applicationState.price.trim()), 'encode'],
       ['link[description]', JSON.stringify(applicationState.richTextDescription), 'encode'],
     ];
     const formData = encode(formDataAsObj);
@@ -150,6 +157,12 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       window.location.hash = 'content';
     }
   };
+
+  const isPriceFieldValid = (price) => !isBlank(price) && isNumber(price);
+
+  const isBlank = (str) => str.match(/^\s*$/);
+
+  const isNumber = (str) => str.trim().match(/^[0-9]*(.[0-9]*)?$/);
 
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
   return (
