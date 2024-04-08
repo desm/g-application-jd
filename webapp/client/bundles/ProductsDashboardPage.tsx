@@ -42,17 +42,17 @@ const ProductsDashboardPage: FunctionComponent<Props> = (props: Props) => {
         <header>
           <h1>Products</h1>
           <div className="actions">
-            <details className="popover toggle">
-              <summary>
+            <details className="popover toggle" aria-disabled="true">
+              <summary className="not-implemented">
                 <span className="has-tooltip bottom">
                   <span aria-describedby=":R2p:" style={{ display: 'contents' }}>
-                    <button type="button" aria-label="Toggle Search" aria-haspopup="true" aria-expanded="false" aria-disabled="true">
+                    <button type="button" aria-label="Toggle Search" aria-haspopup="true" aria-expanded="false" className="not-implemented">
                       <span className="icon icon-solid-search"></span>
                     </button>
                   </span>
-                  <span role="tooltip" id=":R2p:">
+                  {/* <span role="tooltip" id=":R2p:">
                     Search
-                  </span>
+                  </span> */}
                 </span>
               </summary>
               <div
