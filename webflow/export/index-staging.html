@@ -41,19 +41,15 @@
             }
           });
           $.get(`https://app.staging.gumroad.jacquesdesmarais.dev/session_info`, function(data) {
-            console.log(data);
-            console.log(data.is_signed_in);
             if (data.is_signed_in) {
-              console.log("signed in");
               $("a.nav-link.hidden-login").attr('style', 'display: none !important');
               $("a.nav-link.hidden-sign-up .nav-link-text").text("Dashboard");
               $("a.nav-link.hidden-sign-up").attr("href", "https://app.staging.gumroad.jacquesdesmarais.dev");
               $("a.nav-link.sign-up").attr('style', 'transform: translateY(0)');
               $("a.nav-link.sign-up").attr("href", "https://app.staging.gumroad.jacquesdesmarais.dev");
               $("a.nav-link.sign-up div").text("Dashboard");
-              document.getElementById("discover").href = "https://discover.gumroad.jacquesdesmarais.dev/";
+              // document.getElementById("discover").href = "https://discover.gumroad.jacquesdesmarais.dev/";
             } else {
-              console.log("not signed in");
               $("a.nav-link.log-in").attr('style', 'transform: translateY(0)');
               $("a.nav-link.sign-up").attr('style', 'transform: translateY(0)');
             }
@@ -129,7 +125,7 @@
             <div class="content-grid home-hero">
               <h1 id="w-node-_07f169ec-9a5a-bb9d-78f0-02b7e37ef58d-f9ea3226">Go from<br>zero to $1</h1>
               <p id="w-node-d3cf6b2d-2b39-7042-3c46-8f20b7af1f85-f9ea3226" class="section-sub-head">With Gumroad, anyone can earn their first dollar online. Just start with what you know, see what sticks, and get paid. It’s that easy.</p>
-              <a id="w-node-_989e43b7-53cf-e08a-2557-39b6b4b49e45-f9ea3226" data-w-id="989e43b7-53cf-e08a-2557-39b6b4b49e45" href="#" class="shadow-button-wrap w-inline-block">
+              <a id="w-node-_989e43b7-53cf-e08a-2557-39b6b4b49e45-f9ea3226" data-w-id="989e43b7-53cf-e08a-2557-39b6b4b49e45" href="https://app.staging.gumroad.jacquesdesmarais.dev" class="shadow-button-wrap w-inline-block">
                 <div id="w-node-_8222dd49-2ff1-55ed-6029-2f594c3f1366-f9ea3226" class="shadow-button-text">Start Selling</div>
                 <div class="shadow-button-shaddow _2"></div>
                 <div class="shadow-button-shaddow"></div>
