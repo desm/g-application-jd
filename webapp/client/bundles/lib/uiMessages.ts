@@ -6,7 +6,8 @@ export const showMessage = (msg: string, level: 'success' | 'warning' | 'danger'
   }
   const a = document.querySelector('.js-message') as HTMLElement;
   a.textContent = msg;
-  a.classList.add('message--warning', level);
+  a.classList.remove('success', 'warning', 'danger');
+  a.classList.add(level);
   const b = document.querySelector('.js-flash-message') as HTMLElement;
   b.style.transform = 'translateY(0px)';
   b.style.visibility = 'visible';
