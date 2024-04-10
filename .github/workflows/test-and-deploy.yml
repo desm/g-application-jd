@@ -32,7 +32,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: SHA
           script: |
-            cd gumroad-jd-test2
+            cd g-application-jd-test2
             git fetch --all
             git checkout $SHA
 
@@ -47,7 +47,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: IMAGE
           script: |
-            cd gumroad-jd-test2
+            cd g-application-jd-test2
             docker build -f docker/app/Dockerfile-cicd -t $IMAGE ./webapp
             docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE yarn install
 
@@ -69,7 +69,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: IMAGE
           script: |
-            cd gumroad-jd-test2
+            cd g-application-jd-test2
             docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./node_modules/.bin/jest
 
   test-rails-test:
@@ -90,7 +90,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: IMAGE
           script: |
-            cd gumroad-jd-test2
+            cd g-application-jd-test2
             docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test
 
   test-rails-test-system:
@@ -111,7 +111,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: IMAGE
           script: |
-            cd gumroad-jd-test2
+            cd g-application-jd-test2
             docker run --rm --volume ./webapp:/app --workdir /app --user appserver --env CI=true $IMAGE ./bin/rails test:system
 
   deploy-staging:
@@ -132,7 +132,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: SHA
           script: |
-            cd gumroad-jd-staging
+            cd g-application-jd-staging
             git fetch --all
             git checkout $SHA
 
@@ -144,7 +144,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd gumroad-jd-staging
+            cd g-application-jd-staging
             source .env-linode-staging
             export RAILS_MASTER_KEY
             docker compose -f docker-compose-linode-staging.yml build appserver-linode-staging
@@ -157,7 +157,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd gumroad-jd-staging
+            cd g-application-jd-staging
             docker compose -f docker-compose-linode-staging.yml down appserver-linode-staging
             docker compose -f docker-compose-linode-staging.yml up -d appserver-linode-staging
 
@@ -179,7 +179,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: IMAGE
           script: |
-            cd gumroad-jd-staging
+            cd g-application-jd-staging
             docker build -f docker/app/Dockerfile-cicd -t $IMAGE ./webapp
             docker run --rm --volume ./webapp:/app --workdir /app --user appserver --network smoke-test-network $IMAGE sh -c "SMOKE_TEST=true ./bin/rails test:system"
 
@@ -201,7 +201,7 @@ jobs:
           port: ${{ secrets.PORT }}
           envs: SHA
           script: |
-            cd gumroad-jd-production
+            cd g-application-jd-production
             git fetch --all
             git checkout $SHA
 
@@ -213,7 +213,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd gumroad-jd-production
+            cd g-application-jd-production
             source .env-linode-production
             export RAILS_MASTER_KEY
             docker compose -f docker-compose-linode-production.yml build appserver-linode-production
@@ -226,6 +226,6 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            cd gumroad-jd-production
+            cd g-application-jd-production
             docker compose -f docker-compose-linode-production.yml down appserver-linode-production
             docker compose -f docker-compose-linode-production.yml up -d appserver-linode-production
