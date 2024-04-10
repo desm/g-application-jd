@@ -30,9 +30,8 @@ Ruby, Rails, Node.js, and Yarn are not required as they are part of the Docker e
 
 Some links that should work once the services are running:
 
-- http://localhost:8080/ - A partial reproduction of the www.gumroad.com web site, made with Webflow
-- http://localhost:8000/signup - Gumroad signup page
-- http://localhost:8000/dashboard - Gumroad dashboard page
+- http://localhost:8080/ - A partial reproduction of the www web site, made with Webflow
+- http://localhost:8000/signup - signup page
 - http://localhost:8001/?server=db&username=root - DB Admin Tool (see database.yml "default" section for credentials)
 
 ## Shortcut Commands
@@ -128,7 +127,7 @@ $ connect
 ```shell
 $ connect
 
-# run smoke tests against staging env https://app.staging.gumroad.jacquesdesmarais.dev
+# run smoke tests against staging env
 (appserver) $ SMOKE_TEST=true rails test:system
 ```
 
