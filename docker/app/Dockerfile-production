@@ -115,7 +115,7 @@ RUN set -ex \
   && yarn --version
 
 # Install packages needed for deployment
-RUN apt-get install --no-install-recommends -y curl libvips default-libmysqlclient-dev procps dropbear dropbear-bin sudo ca-certificates \
+RUN apt-get install --no-install-recommends -y curl libvips default-libmysqlclient-dev procps sudo ca-certificates \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Throw-away build stage to reduce size of final image
@@ -161,15 +161,9 @@ COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
 RUN mv production/docker-entrypoint.sh /rails/bin/docker-entrypoint \
-    && mv production/start-sshd.sh / \
-    && mkdir /root/.ssh/ \
-    && mv production/id_rsa_gumroad.pub /root/.ssh/authorized_keys \
-    && chmod 700 /root/.ssh \
-    && chmod 600 /root/.ssh/authorized_keys \
     && useradd rails --create-home --shell /bin/bash \
     && chown -R rails:rails db log storage tmp \
     && sed -i -e 's/\(sudo.*\)/\1rails/' /etc/group \
-    && echo "rails ALL=(root) NOPASSWD: /start-sshd.sh" > /etc/sudoers.d/rails \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 

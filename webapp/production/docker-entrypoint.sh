@@ -16,7 +16,4 @@ if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
     # DISABLE_DATABASE_ENVIRONMENT_CHECK=1 ./bin/rails db:migrate
 fi
 
-# Dropbear SSH server - never ended up needing
-# sudo /start-sshd.sh
-
 exec "${@}"

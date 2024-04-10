@@ -1,14 +1,12 @@
-# Gumroad JD
+# g-application-jd
 
-A reproduction of a couple of Gumroad UX flows:
+A reproduction of a couple of G UX flows:
 
 - Welcome page and Sign-Up/Login page interaction
 - Working Navbar links: Home, Products, Logout
 - Products -> New product (Digital product type only)
 - Product Edit: Name, Description, Content
 - **Add-On**: AI Assistant for the Product Description
-
-Deployed here: https://www.gumroad.jacquesdesmarais.dev
 
 ## AI Assistant
 
