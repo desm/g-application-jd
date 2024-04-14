@@ -89,4 +89,22 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     delete links_delete_path(p1.permalink)
     refute_includes Product.all, p1
   end
+
+  test "publish link" do
+    p = products(:p2)
+    refute p.published
+    post links_publish_url(p.permalink), headers: { "Accept" => "application/json" }
+    assert_response :ok
+    assert_equal ({ "success" => true }), JSON.parse(@response.body)
+    p = Product.find_by!(permalink: p.permalink)
+    assert p.published
+  end
+
+  test "publishing an already published link does nothing" do
+    p = products(:p1)
+    assert p.published
+    post links_publish_url(p.permalink), headers: { "Accept" => "application/json" }
+    assert_response :ok
+    assert_equal ({ "success" => true }), JSON.parse(@response.body)
+  end
 end
