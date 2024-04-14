@@ -104,6 +104,46 @@ class LinksController < ApplicationController
     end
   end
 
+  def publish
+    @result = false
+    http_status_code = :internal_server_error
+
+    Rails.error.set_context(
+      section: "products",
+      action: "publish link",
+      user_email: Current.user.email_address,
+    )
+
+    begin
+      Rails.error.record do
+        permalink = params[:id]
+        @product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
+        if @product.published
+          @result = true
+        else
+          @product.published = true
+          @result = @product.save!
+        end
+        http_status_code = :ok
+      end
+    rescue ActionController::ParameterMissing => e
+      http_status_code = :bad_request
+    rescue ActiveRecord::RecordNotFound => e
+      http_status_code = :not_found
+    rescue Exception => e
+    end
+
+    if @result == true
+      respond_to do |format|
+        format.json { render json: { success: true } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { success: false }, status: http_status_code }
+      end
+    end
+  end
+
   private
 
   def link_params
