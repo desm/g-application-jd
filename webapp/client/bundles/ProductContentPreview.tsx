@@ -23,12 +23,14 @@ import {
   setAvatarUrl,
   setPermalink,
   setPrice,
+  setPublished,
+  setReady,
   setSeller,
   useApplicationState,
 } from './ProductContentPreview/stateStores/application';
 import { useTextEditorState } from './ProductContentPreview/stateStores/textEditor';
 import { encode } from './formUrlEncoder';
-import { postFormDataTo } from './lib/clientRequests/base';
+import { postFormDataTo, postTo } from './lib/clientRequests/base';
 import { grabAllDataFromDataDivs } from './lib/dataDivs';
 import { showMessage } from './lib/uiMessages';
 
@@ -70,56 +72,62 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     setPermalink(divData['edit-attributes']['unique_permalink']);
     changeProductName(divData['edit-attributes']['name']);
     setPrice(divData['edit-attributes']['buy_price']);
+    setPublished(divData['edit-attributes']['is_published']);
     changeRichTextDescription(JSON.parse(divData['edit-attributes']['description']));
     changeRichTextContent(JSON.parse(divData['edit-attributes']['rich_content_pages'][0]['description']));
     changeHasOpenaiAssistantThreadForDescription(
       divData['edit-attributes']['has_openai_assistant_thread_for_description']
     );
-
-    setRouter(
-      createHashRouter([
-        {
-          path: '',
-          element: <></>,
-          loader: async () => {
-            setActiveTab('ACTIVE_TAB_PRODUCT');
-            return null;
-          },
-        },
-        {
-          path: 'content',
-          element: <></>,
-          loader: async () => {
-            setActiveTab('ACTIVE_TAB_CONTENT');
-            return null;
-          },
-        },
-        {
-          path: 'share',
-          element: <></>,
-          loader: async () => {
-            if (!applicationState.published) {
-              return redirect('/');
-            }
-            setActiveTab('ACTIVE_TAB_SHARE');
-            return null;
-          },
-        },
-        {
-          path: '*',
-          element: <></>,
-          loader: async () => {
-            return redirect('/');
-          },
-        },
-      ])
-    );
+    setReady(true);
 
     document.body.addEventListener('mousedown', () => {
       // close all open dialogs
       closeAllDialogs();
     });
   }, []);
+
+  useEffect(() => {
+    if (applicationState.ready) {
+      setRouter(
+        createHashRouter([
+          {
+            path: '',
+            element: <></>,
+            loader: async () => {
+              setActiveTab('ACTIVE_TAB_PRODUCT');
+              return null;
+            },
+          },
+          {
+            path: 'content',
+            element: <></>,
+            loader: async () => {
+              setActiveTab('ACTIVE_TAB_CONTENT');
+              return null;
+            },
+          },
+          {
+            path: 'share',
+            element: <></>,
+            loader: async () => {
+              if (!applicationState.published) {
+                return redirect('/');
+              }
+              setActiveTab('ACTIVE_TAB_SHARE');
+              return null;
+            },
+          },
+          {
+            path: '*',
+            element: <></>,
+            loader: async () => {
+              return redirect('/');
+            },
+          },
+        ])
+      );
+    }
+  }, [applicationState.ready]);
 
   useEffect(() => {
     switch (applicationState.activeTab) {
@@ -147,15 +155,25 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     }
   }, [applicationState.activeTab]);
 
-  const saveAndContinueButtonClickHandler = async (e) => {
-    e.preventDefault();
+  const isBlank = (str) => str.match(/^\s*$/);
+
+  const isNumber = (str) => str.trim().match(/^[0-9]*(.[0-9]*)?$/);
+
+  const isPriceFieldValid = (price) => !isBlank(price) && isNumber(price);
+
+  const validateForm = () => {
     if (!isPriceFieldValid(applicationState.price)) {
       const element = document.getElementById('price');
       if (element instanceof HTMLInputElement) {
         element.focus();
       }
-      return;
+      showMessage(`The Pricing > Amount field value of "${applicationState.price}" is not valid`, 'danger');
+      return false;
     }
+    return true;
+  };
+
+  const saveForm = async () => {
     const formDataAsObj = [
       ['link[name]', applicationState.productName, 'encode'],
       ['link[price_range]', parseFloat(applicationState.price.trim()), 'encode'],
@@ -164,20 +182,41 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     ];
     const formData = encode(formDataAsObj);
     const r = await postFormDataTo(formData, `/links/${applicationState.permalink}.json`);
-    if (r.success) {
-      window.location.hash = 'content';
+    if (!r.success) {
+      showMessage('An error occurred, please try again later', 'danger');
     }
-    showMessage('Changes saved!', 'success');
+    return r.success;
   };
 
-  const isPriceFieldValid = (price) => !isBlank(price) && isNumber(price);
+  const publish = async () => {
+    const r = await postTo(`/links/${applicationState.permalink}/publish`);
+    if (!r.success) {
+      showMessage('An error occurred, please try again later', 'danger');
+    }
+    return r.success;
+  };
 
-  const isBlank = (str) => str.match(/^\s*$/);
+  const saveButtonClickHandler = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return false;
+    if (!(await saveForm())) return false;
+    showMessage('Changes saved!', 'success');
+    return true;
+  };
 
-  const isNumber = (str) => str.trim().match(/^[0-9]*(.[0-9]*)?$/);
+  const saveAndContinueButtonClickHandler = async (e) => {
+    if (await saveButtonClickHandler(e)) {
+      setActiveTab('ACTIVE_TAB_CONTENT');
+    }
+  };
 
-  // both buttons "Save and continue" and "Save" do the same thing for now
-  const saveButtonClickHandler = saveAndContinueButtonClickHandler;
+  const publishButtonClickHandler = async (e) => {
+    if (!(await saveButtonClickHandler(e))) return;
+    if (!(await publish())) return;
+    showMessage('Published!', 'success');
+    setPublished(true);
+    setActiveTab('ACTIVE_TAB_SHARE');
+  };
 
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
   return (
@@ -188,6 +227,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
             productName={applicationState.productName}
             saveAndContinueButtonClickHandler={saveAndContinueButtonClickHandler}
             saveButtonClickHandler={saveButtonClickHandler}
+            publishButtonClickHandler={publishButtonClickHandler}
           />,
           document.getElementById('header-root')
         )}

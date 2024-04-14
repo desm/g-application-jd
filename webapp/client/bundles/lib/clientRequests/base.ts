@@ -77,3 +77,7 @@ export const postFormDataTo = async (formData: string, path: string) => {
     return { success: false };
   }
 };
+
+export const postTo = async (path: string) => {
+  return postFormDataTo(null, path);
+};
