@@ -2,7 +2,7 @@ import * as React from 'react';
 import { showMessage } from '../lib/uiMessages';
 import { applicationState } from './stateStores/application';
 
-function Header({ productName, saveAndContinueButtonClickHandler, saveButtonClickHandler }) {
+function Header({ productName, saveAndContinueButtonClickHandler, saveButtonClickHandler, publishButtonClickHandler }) {
   const preventSwitchingToShareTabIfNotPublished = (e) => {
     if (!applicationState.published) {
       e.preventDefault();
@@ -28,21 +28,21 @@ function Header({ productName, saveAndContinueButtonClickHandler, saveButtonClic
           <button className="primary" type="submit" onClick={saveButtonClickHandler}>
             Save changes
           </button>
-          <button className="accent not-implemented" type="submit">
+          <button className="accent" type="submit" onClick={publishButtonClickHandler}>
             Publish and continue
           </button>
         </div>
       )}
       {applicationState.published && (
         <div className="actions">
-          <button>Unpublish</button>
-          <button className="primary" type="submit">
+          <button className="not-implemented">Unpublish</button>
+          <button className="primary" type="submit" onClick={saveButtonClickHandler}>
             Save changes
           </button>
           <span className="has-tooltip bottom">
             <span aria-describedby=":r6:" style={{ display: 'contents' }}>
               <span style={{ display: 'contents' }}>
-                <button>
+                <button className="not-implemented">
                   <span className="icon icon-link"></span>
                 </button>
               </span>
