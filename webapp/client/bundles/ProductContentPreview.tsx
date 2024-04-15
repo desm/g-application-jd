@@ -196,6 +196,14 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     return r.success;
   };
 
+  const unpublish = async () => {
+    const r = await postTo(`/links/${applicationState.permalink}/unpublish`);
+    if (!r.success) {
+      showMessage('An error occurred, please try again later', 'danger');
+    }
+    return r.success;
+  };
+
   const saveButtonClickHandler = async (e) => {
     e.preventDefault();
     if (!validateForm()) return false;
@@ -218,6 +226,16 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     setActiveTab('ACTIVE_TAB_SHARE');
   };
 
+  const unpublishButtonClickHandler = async (e) => {
+    if (!(await saveButtonClickHandler(e))) return;
+    if (!(await unpublish())) return;
+    showMessage('Unpublished!', 'success');
+    setPublished(false);
+    if (applicationState.activeTab === 'ACTIVE_TAB_SHARE') {
+      setActiveTab('ACTIVE_TAB_CONTENT');
+    }
+  };
+
   /* info on "createPortal": https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes */
   return (
     <>
@@ -228,6 +246,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
             saveAndContinueButtonClickHandler={saveAndContinueButtonClickHandler}
             saveButtonClickHandler={saveButtonClickHandler}
             publishButtonClickHandler={publishButtonClickHandler}
+            unpublishButtonClickHandler={unpublishButtonClickHandler}
           />,
           document.getElementById('header-root')
         )}

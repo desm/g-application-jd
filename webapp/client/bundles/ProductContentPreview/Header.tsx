@@ -2,7 +2,7 @@ import * as React from 'react';
 import { showMessage } from '../lib/uiMessages';
 import { applicationState } from './stateStores/application';
 
-function Header({ productName, saveAndContinueButtonClickHandler, saveButtonClickHandler, publishButtonClickHandler }) {
+function Header({ productName, saveAndContinueButtonClickHandler, saveButtonClickHandler, publishButtonClickHandler, unpublishButtonClickHandler }) {
   const preventSwitchingToShareTabIfNotPublished = (e) => {
     if (!applicationState.published) {
       e.preventDefault();
@@ -35,7 +35,7 @@ function Header({ productName, saveAndContinueButtonClickHandler, saveButtonClic
       )}
       {applicationState.published && (
         <div className="actions">
-          <button className="not-implemented">Unpublish</button>
+          <button onClick={unpublishButtonClickHandler}>Unpublish</button>
           <button className="primary" type="submit" onClick={saveButtonClickHandler}>
             Save changes
           </button>
