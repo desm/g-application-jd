@@ -85,7 +85,7 @@ function DiscoverSettings() {
             <div className="css-0">
               <datalist id=":r15:" style={{ maxHeight: '300px' }}>
                 {applicationState.discoverTaxonomyOptions.map((v, index) => (
-                  <div id={`react-select-:r14:-option-${index}`} tabIndex={-1} role="option">
+                  <div id={`react-select-:r14:-option-${index}`} tabIndex={-1} role="option" key={index}>
                     <span>
                       <em></em>
                       {v.label}
@@ -157,7 +157,7 @@ function DiscoverSettings() {
       <div className="settings-group">
         <fieldset>
           <label>
-            <input type="checkbox" role="switch" checked={true} />
+            <input type="checkbox" role="switch"/>
             Display your product's 1-5 star rating to prospective customers
           </label>
           <label>
