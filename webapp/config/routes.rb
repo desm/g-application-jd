@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post "links/:id" => "links#update", as: :links_update
   delete "links/:id" => "links#destroy", as: :links_delete
   post "links/:id/publish" => "links#publish", as: :links_publish
+  post "links/:id/unpublish" => "links#unpublish", as: :links_unpublish
 
   # Products
   get "products" => "products#index"

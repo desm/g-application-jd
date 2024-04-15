@@ -107,4 +107,22 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_equal ({ "success" => true }), JSON.parse(@response.body)
   end
+
+  test "unpublish link" do
+    p = products(:p1)
+    assert p.published
+    post links_unpublish_url(p.permalink), headers: { "Accept" => "application/json" }
+    assert_response :ok
+    assert_equal ({ "success" => true }), JSON.parse(@response.body)
+    p = Product.find_by!(permalink: p.permalink)
+    refute p.published
+  end
+
+  test "unpublishing a non-published link does nothing" do
+    p = products(:p2)
+    refute p.published
+    post links_unpublish_url(p.permalink), headers: { "Accept" => "application/json" }
+    assert_response :ok
+    assert_equal ({ "success" => true }), JSON.parse(@response.body)
+  end
 end
