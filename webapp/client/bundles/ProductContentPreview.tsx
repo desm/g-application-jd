@@ -105,6 +105,13 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
             return null;
           },
         },
+        {
+          path: '*',
+          element: <></>,
+          loader: async () => {
+            return redirect('/');
+          },
+        },
       ])
     );
 

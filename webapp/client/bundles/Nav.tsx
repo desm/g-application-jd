@@ -110,13 +110,24 @@ const Nav: FunctionComponent<Props> = (props: Props) => {
               }}
             >
               <div role="menu">
-                <a role="menuitem" href="#https://9078562000866.gumroad.jacquesdesmarais.dev/" className="not-implemented">
+                <a
+                  role="menuitem"
+                  href="#https://9078562000866.gumroad.jacquesdesmarais.dev/"
+                  className="not-implemented"
+                >
                   <span className="icon icon-shop-window-fill"></span>Profile
                 </a>
                 <a role="menuitem" href="#/affiliates" className="not-implemented">
                   <span className="icon icon-gift-fill"></span>Affiliates
                 </a>
-                <a role="menuitem" href="/logout">
+                <a
+                  role="menuitem"
+                  href="/logout"
+                  onMouseDown={(e) => {
+                    // needed because of mouseodwn handler on body that closes all menus
+                    e.stopPropagation();
+                  }}
+                >
                   <span className="icon icon-box-arrow-in-right-fill"></span>Logout
                 </a>
               </div>
