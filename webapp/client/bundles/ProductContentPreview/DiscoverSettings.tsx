@@ -16,8 +16,8 @@ function DiscoverSettings() {
       </header>
       <p style={{ whiteSpace: 'pre-wrap' }}>
         Gumroad Discover recommends your products to prospective customers, helping you grow beyond your existing
-        following and find even more people who care about your work. When enabled, the product will also become part of
-        the Gumroad affiliate program.
+        following and find even more people who care about your work.{'\n\n'}
+        When enabled, the product will also become part of the Gumroad affiliate program.
       </p>
       <fieldset>
         <legend>
