@@ -21,10 +21,10 @@ function DiscoverSettings() {
       </p>
       <fieldset>
         <legend>
-          <label htmlFor=":r17:">Category</label>
+          <label htmlFor=":rt:">Category</label>
         </legend>
         <div className="combobox css-b62m3t-container">
-          <span id="react-select-:r17:-live-region" className="css-7pg0cj-a11yText"></span>
+          <span id="react-select-:rt:-live-region" className="css-7pg0cj-a11yText"></span>
           <span
             aria-live="polite"
             aria-atomic="false"
@@ -45,16 +45,15 @@ function DiscoverSettings() {
                   autoCapitalize="none"
                   autoComplete="off"
                   autoCorrect="off"
-                  id=":r17:"
+                  id=":rt:"
                   spellCheck="false"
-                  tabIndex={-1}
                   type="text"
                   aria-autocomplete="list"
                   aria-expanded="false"
                   aria-haspopup="listbox"
                   role="combobox"
-                  aria-owns=":r18:"
-                  aria-controls=":r18:"
+                  aria-owns=":ru:"
+                  aria-controls=":ru:"
                   defaultValue=""
                   style={{
                     color: 'inherit',
@@ -86,10 +85,10 @@ function DiscoverSettings() {
       </fieldset>
       <fieldset>
         <legend>
-          <label htmlFor=":r19:">Tags</label>
+          <label htmlFor=":rv:">Tags</label>
         </legend>
         <div className="combobox discover-tags css-b62m3t-container">
-          <span id="react-select-:r19:-live-region" className="css-7pg0cj-a11yText"></span>
+          <span id="react-select-:rv:-live-region" className="css-7pg0cj-a11yText"></span>
           <span
             aria-live="polite"
             aria-atomic="false"
@@ -99,7 +98,7 @@ function DiscoverSettings() {
           ></span>
           <div className="input css-0">
             <div className="css-15pp9oa">
-              <div className="css-1bkpx9o-placeholder" id="react-select-:r19:-placeholder">
+              <div className="css-1bkpx9o-placeholder" id="react-select-:rv:-placeholder">
                 Begin typing to add a tag...
               </div>
               <div className="css-1kc4aue" data-value="">
@@ -108,17 +107,16 @@ function DiscoverSettings() {
                   autoCapitalize="none"
                   autoComplete="off"
                   autoCorrect="off"
-                  id=":r19:"
+                  id=":rv:"
                   spellCheck="false"
-                  tabIndex={-1}
                   type="text"
                   aria-autocomplete="list"
                   aria-expanded="false"
                   aria-haspopup="listbox"
                   role="combobox"
-                  aria-describedby="react-select-:r19:-placeholder"
-                  aria-owns=":r1a:"
-                  aria-controls=":r1a:"
+                  aria-describedby="react-select-:rv:-placeholder"
+                  aria-owns=":r10:"
+                  aria-controls=":r10:"
                   maxLength={20}
                   defaultValue=""
                   style={{
@@ -144,18 +142,17 @@ function DiscoverSettings() {
       <div className="settings-group">
         <fieldset>
           <label>
-            {/* <input type="checkbox" role="switch" checked={false} tabIndex={-1} /> */}
-            <input type="checkbox" role="switch" tabIndex={-1} />
+            <input type="checkbox" role="switch" checked={true} />
             Display your product's 1-5 star rating to prospective customers
           </label>
           <label>
-            <input type="checkbox" role="switch" tabIndex={-1} />
+            <input type="checkbox" role="switch" />
             This product contains content meant only for adults, including the preview
           </label>
           <details className="toggle">
             <summary>
               <label>
-                <input type="checkbox" role="switch" tabIndex={-1} />
+                <input type="checkbox" role="switch" />
                 Boost your product's visibility in Gumroad recommendations
               </label>
             </summary>
@@ -163,11 +160,11 @@ function DiscoverSettings() {
               Increase your product visibility by setting a higher fee. The higher the fee the better the boost.
               <fieldset className="danger">
                 <legend>
-                  <label htmlFor=":r16:">Gumroad Fee</label>
+                  <label htmlFor=":rs:">Gumroad Fee</label>
                 </legend>
                 <div className="input">
                   <div className="pill">%</div>
-                  <input type="number" id=":r16:" min="30" max="100" defaultValue="10" tabIndex={-1} />
+                  <input type="number" id=":rs:" min="30" max="100" defaultValue="10" />
                 </div>
                 <small>Please enter a value between 30 and 100.</small>
               </fieldset>
