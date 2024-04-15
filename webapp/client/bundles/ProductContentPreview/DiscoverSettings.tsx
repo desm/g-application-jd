@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { applicationState } from './stateStores/application';
 
 function DiscoverSettings() {
   return (
@@ -80,6 +81,20 @@ function DiscoverSettings() {
               </div>
             </div>
           </div>
+          {true && (
+            <div className="css-0">
+              <datalist id=":r15:" style={{ maxHeight: '300px' }}>
+                {applicationState.discoverTaxonomyOptions.map((v, index) => (
+                  <div id={`react-select-:r14:-option-${index}`} tabIndex={-1} role="option">
+                    <span>
+                      <em></em>
+                      {v.label}
+                    </span>
+                  </div>
+                ))}
+              </datalist>
+            </div>
+          )}
         </div>
         <small>Select a category to show your product on Gumroad Discover.</small>
       </fieldset>

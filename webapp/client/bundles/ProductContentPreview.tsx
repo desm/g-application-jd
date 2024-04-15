@@ -21,6 +21,7 @@ import {
   closeAllDialogs,
   setActiveTab,
   setAvatarUrl,
+  setDiscoverTaxonomyOptions,
   setPermalink,
   setPrice,
   setPublished,
@@ -78,6 +79,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
     changeHasOpenaiAssistantThreadForDescription(
       divData['edit-attributes']['has_openai_assistant_thread_for_description']
     );
+    setDiscoverTaxonomyOptions(divData['discover-taxonomy-options']);
     setReady(true);
 
     document.body.addEventListener('mousedown', () => {

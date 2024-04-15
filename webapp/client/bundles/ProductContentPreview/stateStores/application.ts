@@ -35,6 +35,7 @@ interface State {
     };
   };
   reworkedText: string;
+  discoverTaxonomyOptions: { id: string; label: string }[];
 }
 
 const initialState = {
@@ -131,6 +132,10 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
     }
     case 'PUBLISHED_SET': {
       draft.published = action.published;
+      break;
+    }
+    case 'DISCOVER_TAXONOMY_OPTIONS_SET': {
+      draft.discoverTaxonomyOptions = action.discoverTaxonomyOptions;
       break;
     }
     default: {
@@ -287,7 +292,6 @@ export const setSeller = (seller: Pick<State, 'seller'>) => {
   });
 };
 
-
 export const setPublished = (published: boolean) => {
   dispatch({
     type: 'PUBLISHED_SET',
@@ -299,5 +303,12 @@ export const setReady = (ready: boolean) => {
   dispatch({
     type: 'READY_SET',
     ready,
+  });
+};
+
+export const setDiscoverTaxonomyOptions = (discoverTaxonomyOptions: { id: string; label: string }[]) => {
+  dispatch({
+    type: 'DISCOVER_TAXONOMY_OPTIONS_SET',
+    discoverTaxonomyOptions,
   });
 };
