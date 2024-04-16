@@ -1,15 +1,76 @@
-import * as React from 'react';
-import { applicationState } from './stateStores/application';
+import React, { CSSProperties } from 'react';
+import Select, { ActionMeta, ClearIndicatorProps, DropdownIndicatorProps, OptionProps } from 'react-select';
+import { applicationState, setDiscoverTaxonomyId } from './stateStores/application';
 
 function DiscoverSettings() {
+  const ClearIndicator = (props: ClearIndicatorProps<{ id: string; label: string }, true>) => {
+    const {
+      children = <span className="icon icon-solid-x" aria-label="Clear value" role="button"></span>,
+      getStyles,
+      innerProps: { ref, ...restInnerProps },
+    } = props;
+    return (
+      <div
+        {...restInnerProps}
+        ref={ref}
+        style={{ ...(getStyles('clearIndicator', props) as CSSProperties), padding: '0px' }}
+      >
+        <div style={{ padding: '0px', marginRight: '0.5rem', color: '#000' }}>{children}</div>
+      </div>
+    );
+  };
+
+  const DropdownIndicator = (props: DropdownIndicatorProps<{ id: string; label: string }, true>) => {
+    const {
+      children = <span className="icon icon-outline-cheveron-down"></span>,
+      getStyles,
+      innerProps: { ref, ...restInnerProps },
+    } = props;
+    return (
+      <div
+        {...restInnerProps}
+        ref={ref}
+        style={{ ...(getStyles('clearIndicator', props) as CSSProperties), padding: '0px' }}
+      >
+        <div style={{ padding: '0px', color: '#000' }}>{children}</div>
+      </div>
+    );
+  };
+
+  type Option = { id: string; label: string };
+
+  const onChange = (option: Option | null, actionMeta: ActionMeta<Option>) => {
+    setDiscoverTaxonomyId(option ? option.id : null);
+  };
+
+  const option = (baseStyles, props: OptionProps) => {
+    if (props.isSelected) {
+      return { ...baseStyles, color: 'white', backgroundColor: 'black' };
+    } else if (props.isFocused) {
+      return { ...baseStyles, color: 'white', backgroundColor: 'grey' };
+    } else {
+      return { ...baseStyles, color: 'black', backgroundColor: 'white' };
+    }
+  };
+
+  const defaultValue = () => {
+    if (applicationState.ready) {
+      const id = applicationState.discoverTaxonomyId;
+      return applicationState.discoverTaxonomyOptions.find((el) => el.id === id);
+    } else {
+      return null;
+    }
+  };
+
   return (
     <>
       <header style={{ display: 'flex', justifyContent: 'space-between' }}>
         <h2>Gumroad Discover</h2>
         <a
-          className="learn-more"
-          href="https://help.gumroad.jacquesdesmarais.dev/article/79-gumroad-discover"
-          target="_blank"
+          className="learn-more not-implemented"
+          // href="https://help.gumroad.jacquesdesmarais.dev/article/79-gumroad-discover"
+          // target="_blank"
+          href="#share"
           rel="noreferrer"
         >
           Learn more
@@ -24,150 +85,88 @@ function DiscoverSettings() {
         <legend>
           <label htmlFor=":rt:">Category</label>
         </legend>
-        <div className="combobox css-b62m3t-container">
-          <span id="react-select-:rt:-live-region" className="css-7pg0cj-a11yText"></span>
-          <span
-            aria-live="polite"
-            aria-atomic="false"
-            aria-relevant="additions text"
-            role="log"
-            className="css-7pg0cj-a11yText"
-          ></span>
-          <div className="input css-0">
-            <div className="css-15pp9oa">
-              <div className="css-1yh68ch-singleValue">
-                <span>
-                  <em></em>Other
-                </span>
-              </div>
-              <div className="css-1kc4aue" data-value="">
-                <input
-                  className=""
-                  autoCapitalize="none"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  id=":rt:"
-                  spellCheck="false"
-                  type="text"
-                  aria-autocomplete="list"
-                  aria-expanded="false"
-                  aria-haspopup="listbox"
-                  role="combobox"
-                  aria-owns=":ru:"
-                  aria-controls=":ru:"
-                  defaultValue=""
-                  style={{
-                    color: 'inherit',
-                    background: '0px center',
-                    opacity: 1,
-                    width: '100%',
-                    gridArea: '1 / 2',
-                    font: 'inherit',
-                    minWidth: '2px',
-                    border: '0px',
-                    margin: '0px',
-                    outline: '0px',
-                    padding: '0px',
-                  }}
-                />
-              </div>
-            </div>
-            <div className="css-1obf64m">
-              <div className="css-0" aria-hidden="true">
-                <span className="icon icon-solid-x" aria-label="Clear value" role="button"></span>
-              </div>
-              <div className="css-0" aria-hidden="true">
-                <span className="icon icon-outline-cheveron-down"></span>
-              </div>
-            </div>
-          </div>
-          {true && (
-            <div className="css-0">
-              <datalist id=":r15:" style={{ maxHeight: '300px' }}>
-                {applicationState.discoverTaxonomyOptions.map((v, index) => (
-                  <div id={`react-select-:r14:-option-${index}`} tabIndex={-1} role="option" key={index}>
-                    <span>
-                      <em></em>
-                      {v.label}
-                    </span>
-                  </div>
-                ))}
-              </datalist>
-            </div>
-          )}
-        </div>
+        <Select
+          defaultValue={defaultValue}
+          isMulti={false}
+          unstyled={false}
+          className="combobox"
+          classNames={{ control: () => 'input' }}
+          styles={{
+            control: () => ({}),
+            valueContainer: (baseStyles) => ({
+              ...baseStyles,
+              flex: '1 1 0%',
+              padding: '0px',
+              margin: '0px',
+              color: '#000',
+            }),
+            placeholder: (baseStyles) => ({ ...baseStyles, margin: '0px' }),
+            indicatorsContainer: (baseStyles) => ({ ...baseStyles }),
+            indicatorSeparator: (baseStyles) => ({ ...baseStyles, width: '' }),
+            dropdownIndicator: (baseStyles) => ({ ...baseStyles, padding: 0 }),
+            option: option,
+          }}
+          onChange={onChange}
+          options={applicationState.discoverTaxonomyOptions}
+          getOptionValue={(option: Option) => option.id}
+          getOptionLabel={(option: Option) => option.label}
+          placeholder="Begin typing to select a category"
+          isClearable={true}
+          backspaceRemovesValue={true}
+          captureMenuScroll={true}
+          openMenuOnFocus={true}
+          components={{
+            ClearIndicator,
+            DropdownIndicator,
+          }}
+        />
         <small>Select a category to show your product on Gumroad Discover.</small>
       </fieldset>
       <fieldset>
         <legend>
           <label htmlFor=":rv:">Tags</label>
         </legend>
-        <div className="combobox discover-tags css-b62m3t-container">
-          <span id="react-select-:rv:-live-region" className="css-7pg0cj-a11yText"></span>
-          <span
-            aria-live="polite"
-            aria-atomic="false"
-            aria-relevant="additions text"
-            role="log"
-            className="css-7pg0cj-a11yText"
-          ></span>
-          <div className="input css-0">
-            <div className="css-15pp9oa">
-              <div className="css-1bkpx9o-placeholder" id="react-select-:rv:-placeholder">
-                Begin typing to add a tag...
-              </div>
-              <div className="css-1kc4aue" data-value="">
-                <input
-                  className=""
-                  autoCapitalize="none"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  id=":rv:"
-                  spellCheck="false"
-                  type="text"
-                  aria-autocomplete="list"
-                  aria-expanded="false"
-                  aria-haspopup="listbox"
-                  role="combobox"
-                  aria-describedby="react-select-:rv:-placeholder"
-                  aria-owns=":r10:"
-                  aria-controls=":r10:"
-                  maxLength={20}
-                  defaultValue=""
-                  style={{
-                    color: 'inherit',
-                    background: '0px center',
-                    opacity: 1,
-                    width: '100%',
-                    gridArea: '1 / 2',
-                    font: 'inherit',
-                    minWidth: '2px',
-                    border: '0px',
-                    margin: '0px',
-                    outline: '0px',
-                    padding: '0px',
-                  }}
-                />
-              </div>
-            </div>
-            <div className="css-1obf64m"></div>
-          </div>
-        </div>
+        <Select
+          isDisabled={true}
+          isMulti={true}
+          unstyled={false}
+          className="combobox"
+          classNames={{ control: () => 'input' }}
+          styles={{
+            control: () => ({ backgroundColor: 'transparent' }),
+            valueContainer: (baseStyles) => ({
+              ...baseStyles,
+              flex: '1 1 0%',
+              padding: '0px',
+              margin: '0px',
+              color: '#000',
+            }),
+            placeholder: (baseStyles) => ({ ...baseStyles, margin: '0px' }),
+            indicatorsContainer: (baseStyles) => ({ ...baseStyles, display: 'none' }),
+          }}
+          getOptionValue={(option: Option) => option.id}
+          getOptionLabel={(option: Option) => option.label}
+          placeholder="Begin typing to add a tag..."
+          isClearable={false}
+          backspaceRemovesValue={true}
+          captureMenuScroll={true}
+          openMenuOnFocus={false}
+        />
       </fieldset>
       <div className="settings-group">
         <fieldset>
           <label>
-            <input type="checkbox" role="switch"/>
+            <input type="checkbox" role="switch" disabled={true} />
             Display your product's 1-5 star rating to prospective customers
           </label>
           <label>
-            <input type="checkbox" role="switch" />
+            <input type="checkbox" role="switch" disabled={true} />
             This product contains content meant only for adults, including the preview
           </label>
           <details className="toggle">
             <summary>
               <label>
-                <input type="checkbox" role="switch" />
+                <input type="checkbox" role="switch" disabled={true} />
                 Boost your product's visibility in Gumroad recommendations
               </label>
             </summary>

@@ -36,6 +36,7 @@ interface State {
   };
   reworkedText: string;
   discoverTaxonomyOptions: { id: string; label: string }[];
+  discoverTaxonomyId: string;
 }
 
 const initialState = {
@@ -46,6 +47,7 @@ const initialState = {
   props: {
     makeShorterLongerDialog: {},
   },
+  discoverTaxonomyId: null,
 } as State;
 
 let state: State;
@@ -136,6 +138,10 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
     }
     case 'DISCOVER_TAXONOMY_OPTIONS_SET': {
       draft.discoverTaxonomyOptions = action.discoverTaxonomyOptions;
+      break;
+    }
+    case 'DISCOVER_TAXONOMY_ID_SET': {
+      draft.discoverTaxonomyId = action.discoverTaxonomyId;
       break;
     }
     default: {
@@ -310,5 +316,12 @@ export const setDiscoverTaxonomyOptions = (discoverTaxonomyOptions: { id: string
   dispatch({
     type: 'DISCOVER_TAXONOMY_OPTIONS_SET',
     discoverTaxonomyOptions,
+  });
+};
+
+export const setDiscoverTaxonomyId = (discoverTaxonomyId: string) => {
+  dispatch({
+    type: 'DISCOVER_TAXONOMY_ID_SET',
+    discoverTaxonomyId,
   });
 };

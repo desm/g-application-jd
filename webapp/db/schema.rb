@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_08_181239) do
-  create_table "openai_assistant_threads", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_04_16_020726) do
+  create_table "openai_assistant_threads", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "product_id", null: false
     t.integer "section", null: false
     t.string "thread_id", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_181239) do
     t.index ["thread_id"], name: "index_openai_assistant_threads_on_thread_id", unique: true
   end
 
-  create_table "products", id: :string, force: :cascade do |t|
+  create_table "products", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "creator_id", null: false
     t.string "permalink", null: false
     t.string "name", null: false
@@ -32,11 +32,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_181239) do
     t.datetime "updated_at", null: false
     t.text "rich_text_description"
     t.text "rich_text_content"
+    t.string "discover_taxonomy_id", default: "266"
     t.index ["creator_id", "permalink"], name: "index_products_on_creator_id_and_permalink", unique: true
     t.index ["creator_id"], name: "index_products_on_creator_id"
   end
 
-  create_table "sessions", force: :cascade do |t|
+  create_table "sessions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "token", null: false
     t.string "ip_address"
@@ -48,7 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_181239) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email_address"
     t.string "password_digest"
     t.datetime "created_at", null: false

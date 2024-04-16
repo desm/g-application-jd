@@ -21,6 +21,7 @@ import {
   closeAllDialogs,
   setActiveTab,
   setAvatarUrl,
+  setDiscoverTaxonomyId,
   setDiscoverTaxonomyOptions,
   setPermalink,
   setPrice,
@@ -80,6 +81,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       divData['edit-attributes']['has_openai_assistant_thread_for_description']
     );
     setDiscoverTaxonomyOptions(divData['discover-taxonomy-options']);
+    setDiscoverTaxonomyId(divData['edit-attributes']['discover_taxonomy_id']);
     setReady(true);
 
     document.body.addEventListener('mousedown', () => {
@@ -181,6 +183,7 @@ const ProductContentPreview: FunctionComponent<Props> = (props: Props) => {
       ['link[price_range]', parseFloat(applicationState.price.trim()), 'encode'],
       ['link[description]', JSON.stringify(applicationState.richTextDescription), 'encode'],
       ['link[content]', JSON.stringify(applicationState.richTextContent), 'encode'],
+      ['link[discover_taxonomy_id]', applicationState.discoverTaxonomyId, 'encode'],
     ];
     const formData = encode(formDataAsObj);
     const r = await postFormDataTo(formData, `/links/${applicationState.permalink}.json`);

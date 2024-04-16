@@ -1062,7 +1062,7 @@ module Products
           "google_calendar": nil,
         },
         "tags": [],
-        "discover_taxonomy_id": "266",
+        "discover_taxonomy_id": product.discover_taxonomy_id,
         "native_type": "digital",
         "rich_content_version": "sectionless",
         "rich_content_pages": [

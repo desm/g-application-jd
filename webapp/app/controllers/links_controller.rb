@@ -57,6 +57,7 @@ class LinksController < ApplicationController
         @product.buy_price = _params["price_range"]
         @product.rich_text_description = _params["description"]
         @product.rich_text_content = _params["content"]
+        @product.discover_taxonomy_id = _params["discover_taxonomy_id"]
         @result = @product.save!
         http_status_code = :ok
       end
@@ -192,10 +193,8 @@ class LinksController < ApplicationController
   end
 
   def link_params_for_save_and_continue
-    # params.require(:link).require([:name, :price_range, :description])
-    # params.require(:link).permit([:name, :price_range, :description])
-    params.require(:link).require([:name, :price_range, :description, :content])
-    params.require(:link).permit([:name, :price_range, :description, :content])
+    params.require(:link).require([:name, :price_range, :description, :content, :discover_taxonomy_id])
+    params.require(:link).permit([:name, :price_range, :description, :content, :discover_taxonomy_id])
   end
 end
 
