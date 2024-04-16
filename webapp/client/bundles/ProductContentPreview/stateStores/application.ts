@@ -3,6 +3,7 @@ import { useImmerReducer } from 'use-immer';
 import { postCreateThreadForProduct } from '../../lib/clientRequests/aiAssistant';
 
 interface State {
+  ready: boolean;
   seller: {
     name: string;
     email_address: string;
@@ -34,15 +35,19 @@ interface State {
     };
   };
   reworkedText: string;
+  discoverTaxonomyOptions: { id: string; label: string }[];
+  discoverTaxonomyId: string;
 }
 
 const initialState = {
+  ready: false,
   seller: {},
   flags: {},
   dialogs: {},
   props: {
     makeShorterLongerDialog: {},
   },
+  discoverTaxonomyId: null,
 } as State;
 
 let state: State;
@@ -56,6 +61,10 @@ export { state as applicationState };
 
 function reducer(draft: State, action: { type: string; [key: string]: any }) {
   switch (action.type) {
+    case 'READY_SET': {
+      draft.ready = action.ready;
+      break;
+    }
     case 'PERMALINK_SET': {
       draft.permalink = action.permalink;
       break;
@@ -121,6 +130,18 @@ function reducer(draft: State, action: { type: string; [key: string]: any }) {
     }
     case 'SELLER_SET': {
       draft.seller = action.seller;
+      break;
+    }
+    case 'PUBLISHED_SET': {
+      draft.published = action.published;
+      break;
+    }
+    case 'DISCOVER_TAXONOMY_OPTIONS_SET': {
+      draft.discoverTaxonomyOptions = action.discoverTaxonomyOptions;
+      break;
+    }
+    case 'DISCOVER_TAXONOMY_ID_SET': {
+      draft.discoverTaxonomyId = action.discoverTaxonomyId;
       break;
     }
     default: {
@@ -274,5 +295,33 @@ export const setSeller = (seller: Pick<State, 'seller'>) => {
   dispatch({
     type: 'SELLER_SET',
     seller,
+  });
+};
+
+export const setPublished = (published: boolean) => {
+  dispatch({
+    type: 'PUBLISHED_SET',
+    published,
+  });
+};
+
+export const setReady = (ready: boolean) => {
+  dispatch({
+    type: 'READY_SET',
+    ready,
+  });
+};
+
+export const setDiscoverTaxonomyOptions = (discoverTaxonomyOptions: { id: string; label: string }[]) => {
+  dispatch({
+    type: 'DISCOVER_TAXONOMY_OPTIONS_SET',
+    discoverTaxonomyOptions,
+  });
+};
+
+export const setDiscoverTaxonomyId = (discoverTaxonomyId: string) => {
+  dispatch({
+    type: 'DISCOVER_TAXONOMY_ID_SET',
+    discoverTaxonomyId,
   });
 };

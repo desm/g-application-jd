@@ -30,7 +30,7 @@ module Products
         "sales_count_for_inventory": 0,
         "options_sales_counts": [],
         "rating_counts": [0, 0, 0, 0, 0],
-        "is_published": true,
+        "is_published": product.published,
         "is_flat_fee_applicable": true,
         "is_membership_price_changes_enabled": true,
         "currency_code": "cad",
@@ -1062,7 +1062,7 @@ module Products
           "google_calendar": nil,
         },
         "tags": [],
-        "discover_taxonomy_id": "266",
+        "discover_taxonomy_id": product.discover_taxonomy_id,
         "native_type": "digital",
         "rich_content_version": "sectionless",
         "rich_content_pages": [

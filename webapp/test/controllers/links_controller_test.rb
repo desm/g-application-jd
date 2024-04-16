@@ -66,7 +66,7 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
   test "updating a link successfully" do
     p1 = products(:p1)
     post links_update_url(p1.permalink),
-         params: "&link%5Bname%5D=a_different_name&link%5Bprice_range%5D=10.17&link%5Bdescription%5D=%7B%22doc%22%3A%7B%22type%22%3A%22doc%22%2C%22content%22%3A%5B%7B%22type%22%3A%22paragraph%22%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22ABC%22%7D%5D%7D%5D%7D%2C%22selection%22%3A%7B%22type%22%3A%22text%22%2C%22anchor%22%3A4%2C%22head%22%3A4%7D%7D&link%5Bcontent%5D=%7B%22doc%22%3A%7B%22type%22%3A%22doc%22%2C%22content%22%3A%5B%7B%22type%22%3A%22paragraph%22%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22ABC%22%7D%5D%7D%5D%7D%2C%22selection%22%3A%7B%22type%22%3A%22text%22%2C%22anchor%22%3A4%2C%22head%22%3A4%7D%7D",
+         params: "&link%5Bname%5D=a_different_name&link%5Bprice_range%5D=33&link%5Bdescription%5D=%7B%22doc%22%3A%7B%22type%22%3A%22doc%22%2C%22content%22%3A%5B%7B%22type%22%3A%22paragraph%22%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22DESCRIPTION%22%7D%5D%7D%5D%7D%2C%22selection%22%3A%7B%22type%22%3A%22text%22%2C%22anchor%22%3A12%2C%22head%22%3A12%7D%7D&link%5Bcontent%5D=%7B%22doc%22%3A%7B%22type%22%3A%22doc%22%2C%22content%22%3A%5B%7B%22type%22%3A%22paragraph%22%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22CONTENT%22%7D%5D%7D%5D%7D%2C%22selection%22%3A%7B%22type%22%3A%22text%22%2C%22anchor%22%3A8%2C%22head%22%3A8%7D%7D&link%5Bdiscover_taxonomy_id%5D=266",
          headers: { "Accept" => "application/json" }
     assert_response :ok
     response = JSON.parse(@response.body)
@@ -77,7 +77,7 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
 
   test "updating a link fails when the permalink doesn't exist" do
     post links_update_url("non-existent-permalink"),
-         params: "&link%5Bname%5D=digital%20product&link%5Bprice_range%5D=10.17&link%5Bdescription%5D=%7B%22doc%22%3A%7B%22type%22%3A%22doc%22%2C%22content%22%3A%5B%7B%22type%22%3A%22paragraph%22%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22ABC%22%7D%5D%7D%5D%7D%2C%22selection%22%3A%7B%22type%22%3A%22text%22%2C%22anchor%22%3A4%2C%22head%22%3A4%7D%7D&link%5Bcontent%5D=%7B%22doc%22%3A%7B%22type%22%3A%22doc%22%2C%22content%22%3A%5B%7B%22type%22%3A%22paragraph%22%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22ABC%22%7D%5D%7D%5D%7D%2C%22selection%22%3A%7B%22type%22%3A%22text%22%2C%22anchor%22%3A4%2C%22head%22%3A4%7D%7D",
+         params: "&link%5Bname%5D=a_different_name&link%5Bprice_range%5D=33&link%5Bdescription%5D=%7B%22doc%22%3A%7B%22type%22%3A%22doc%22%2C%22content%22%3A%5B%7B%22type%22%3A%22paragraph%22%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22DESCRIPTION%22%7D%5D%7D%5D%7D%2C%22selection%22%3A%7B%22type%22%3A%22text%22%2C%22anchor%22%3A12%2C%22head%22%3A12%7D%7D&link%5Bcontent%5D=%7B%22doc%22%3A%7B%22type%22%3A%22doc%22%2C%22content%22%3A%5B%7B%22type%22%3A%22paragraph%22%2C%22content%22%3A%5B%7B%22type%22%3A%22text%22%2C%22text%22%3A%22CONTENT%22%7D%5D%7D%5D%7D%2C%22selection%22%3A%7B%22type%22%3A%22text%22%2C%22anchor%22%3A8%2C%22head%22%3A8%7D%7D&link%5Bdiscover_taxonomy_id%5D=266",
          headers: { "Accept" => "application/json" }
     assert_response :not_found
     assert_equal ({ "success" => false }), JSON.parse(@response.body)
@@ -88,5 +88,41 @@ class LinksControllerTest < ActionDispatch::IntegrationTest
     assert_includes Product.all, p1
     delete links_delete_path(p1.permalink)
     refute_includes Product.all, p1
+  end
+
+  test "publish link" do
+    p = products(:p2)
+    refute p.published
+    post links_publish_url(p.permalink), headers: { "Accept" => "application/json" }
+    assert_response :ok
+    assert_equal ({ "success" => true }), JSON.parse(@response.body)
+    p = Product.find_by!(permalink: p.permalink)
+    assert p.published
+  end
+
+  test "publishing an already published link does nothing" do
+    p = products(:p1)
+    assert p.published
+    post links_publish_url(p.permalink), headers: { "Accept" => "application/json" }
+    assert_response :ok
+    assert_equal ({ "success" => true }), JSON.parse(@response.body)
+  end
+
+  test "unpublish link" do
+    p = products(:p1)
+    assert p.published
+    post links_unpublish_url(p.permalink), headers: { "Accept" => "application/json" }
+    assert_response :ok
+    assert_equal ({ "success" => true }), JSON.parse(@response.body)
+    p = Product.find_by!(permalink: p.permalink)
+    refute p.published
+  end
+
+  test "unpublishing a non-published link does nothing" do
+    p = products(:p2)
+    refute p.published
+    post links_unpublish_url(p.permalink), headers: { "Accept" => "application/json" }
+    assert_response :ok
+    assert_equal ({ "success" => true }), JSON.parse(@response.body)
   end
 end

@@ -19,15 +19,15 @@ class ProductEditTest < ApplicationSystemTestCase
 
   test "change a product's name" do
     system_sign_in "one@gmail.com"
-    p1 = products(:p1)
-    visit products_edit_path(p1.permalink)
-    assert_equal "product one", find_field('link_name').value
+    p = products(:p2)
+    visit products_edit_path(p.permalink)
+    assert_equal "product two", find_field('link_name').value
 
     fill_in 'link_name', with: "changed product name"
     click_on "Save and continue"
 
     visit dashboard_path
-    visit products_edit_path(p1.permalink)
+    visit products_edit_path(p.permalink)
     assert_equal "changed product name", find_field('link_name').value
   end
 end

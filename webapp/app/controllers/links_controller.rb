@@ -57,6 +57,7 @@ class LinksController < ApplicationController
         @product.buy_price = _params["price_range"]
         @product.rich_text_description = _params["description"]
         @product.rich_text_content = _params["content"]
+        @product.discover_taxonomy_id = _params["discover_taxonomy_id"]
         @result = @product.save!
         http_status_code = :ok
       end
@@ -104,6 +105,86 @@ class LinksController < ApplicationController
     end
   end
 
+  def publish
+    @result = false
+    http_status_code = :internal_server_error
+
+    Rails.error.set_context(
+      section: "products",
+      action: "publish link",
+      user_email: Current.user.email_address,
+    )
+
+    begin
+      Rails.error.record do
+        permalink = params[:id]
+        @product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
+        if @product.published
+          @result = true
+        else
+          @product.published = true
+          @result = @product.save!
+        end
+        http_status_code = :ok
+      end
+    rescue ActionController::ParameterMissing => e
+      http_status_code = :bad_request
+    rescue ActiveRecord::RecordNotFound => e
+      http_status_code = :not_found
+    rescue Exception => e
+    end
+
+    if @result == true
+      respond_to do |format|
+        format.json { render json: { success: true } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { success: false }, status: http_status_code }
+      end
+    end
+  end
+
+  def unpublish
+    @result = false
+    http_status_code = :internal_server_error
+
+    Rails.error.set_context(
+      section: "products",
+      action: "unpublish link",
+      user_email: Current.user.email_address,
+    )
+
+    begin
+      Rails.error.record do
+        permalink = params[:id]
+        @product = Product.find_by!(creator_id: Current.user.id, permalink: permalink)
+        unless @product.published
+          @result = true
+        else
+          @product.published = false
+          @result = @product.save!
+        end
+        http_status_code = :ok
+      end
+    rescue ActionController::ParameterMissing => e
+      http_status_code = :bad_request
+    rescue ActiveRecord::RecordNotFound => e
+      http_status_code = :not_found
+    rescue Exception => e
+    end
+
+    if @result == true
+      respond_to do |format|
+        format.json { render json: { success: true } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { success: false }, status: http_status_code }
+      end
+    end
+  end
+
   private
 
   def link_params
@@ -112,10 +193,8 @@ class LinksController < ApplicationController
   end
 
   def link_params_for_save_and_continue
-    # params.require(:link).require([:name, :price_range, :description])
-    # params.require(:link).permit([:name, :price_range, :description])
-    params.require(:link).require([:name, :price_range, :description, :content])
-    params.require(:link).permit([:name, :price_range, :description, :content])
+    params.require(:link).require([:name, :price_range, :description, :content, :discover_taxonomy_id])
+    params.require(:link).permit([:name, :price_range, :description, :content, :discover_taxonomy_id])
   end
 end
 

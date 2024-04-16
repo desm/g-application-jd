@@ -11,6 +11,7 @@ export interface Props {
     name: string;
     permalink: string;
     price_formatted: string;
+    is_unpublished: boolean;
   };
   sectionWidth: number;
 }
@@ -77,8 +78,17 @@ const ProductListing: FunctionComponent<Props> = (props: Props) => {
         <td data-label="Price" style={{ whiteSpace: 'nowrap' }}>
           {props.product.price_formatted}
         </td>
+
         <td data-label="Status" style={{ whiteSpace: 'nowrap' }}>
-          <span className="icon icon-circle"></span> Unpublished
+          {props.product.is_unpublished ? (
+            <>
+              <span className="icon icon-circle"></span> Unpublished
+            </>
+          ) : (
+            <>
+              <span className="icon icon-circle-fill"></span> Published
+            </>
+          )}
         </td>
         <td>
           <details className="popover toggle" ref={threeDots.detailsElement}>
