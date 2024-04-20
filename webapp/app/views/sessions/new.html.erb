@@ -106,7 +106,11 @@
       // Handle response
       xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
-          window.location.href = '/';
+          if (formData.get('user[login_identifier]') === 'sahil@gumroad.com') {
+            window.location.href = '/products/sbysk/edit';
+          } else {
+            window.location.href = '/';
+          }
         } else {
           const el = document.querySelector('.error-indicator');
           el.innerHTML = 'Incorrect username or password.';
