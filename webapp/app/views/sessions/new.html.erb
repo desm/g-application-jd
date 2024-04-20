@@ -55,9 +55,28 @@
   </div>
   <aside class="avatars-container"><%= image_tag "auth/background.png" %></aside>
 </div>
+<dialog id="screen-size-dialog">
+  <h4>This demo works on larger screens only</h4>
+</dialog>
 
 <script>
+  function initScreenSizeDialog() {
+    var d = document.getElementById('screen-size-dialog');
+    if (window.innerWidth < 1025) {
+      d.showModal();
+    }
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 1025) {
+        d.showModal();
+      } else {
+        d.close();
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    initScreenSizeDialog();
+
     var form = document.getElementById('login-form');
     var submitButton = document.getElementById('submit_button');
 
