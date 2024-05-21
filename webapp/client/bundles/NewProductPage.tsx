@@ -102,7 +102,7 @@ const NewProductPage: FunctionComponent<Props> = (props: Props) => {
     <>
       <main>
         <header>
-          <h1>What are you creating?</h1>
+          <h1>What are you creating yo?</h1>
           <div className="actions">
             <a className="button" href="/products">
               <span className="icon icon-x-square"></span>
